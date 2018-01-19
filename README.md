@@ -2,9 +2,9 @@
 # Project Plan
 
 ## Aries Team Members:
-Alexander Clairmont
-Christopher Buttacavoli
-Victoria Dorn
+Alexander Clairmont 
+Christopher Buttacavoli 
+Victoria Dorn 
 
 ## Introductions:
 The Aries team will be constructing a digital synthesizer on the Windows platform with the JUCE framework. JUCE is an audio framework for development of applications, digital signal processing, and virtual instruments written in C++. Our team will also be utilizing the Maximilion audio library for DSP effects. Every member of our team has some experience with creating music or sounds. Our team is also fairly experienced with C/C++. None of our members has had a good chance to really try out audio programming in C/C++ environments yet. So, this project will be a great gateway into that field of work.
