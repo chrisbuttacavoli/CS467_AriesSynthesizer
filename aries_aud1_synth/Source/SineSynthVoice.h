@@ -29,11 +29,13 @@ public:
 	}
 	//called to start a new note
 	void startNote(int midiNoteNumber, float velocity, SynthesiserSound *, int /*currentPitchWheelPosition*/) override {
-		/*level = velocity;
+		level = velocity;
 		//when we hit a key we want our oscillator to play at a frequency
-		frequency = MidiMessage::getMidiNoteInHertz(midiNoteNumber);*/
+		frequency = MidiMessage::getMidiNoteInHertz(midiNoteNumber);
+		tailOff = 0.0;
 
-		currentAngle = 0.0;
+		//For the working sine wave - Victoria
+		/*currentAngle = 0.0;
 		level = velocity * 0.15;
 		tailOff = 0.0;
 
@@ -41,7 +43,7 @@ public:
 		double cyclesPerSecond = MidiMessage::getMidiNoteInHertz(midiNoteNumber);
 		double cyclesPerSample = cyclesPerSecond / getSampleRate();
 
-		angleDelta = cyclesPerSample * 2.0 * double_Pi;
+		angleDelta = cyclesPerSample * 2.0 * double_Pi;*/
 
 		//print out midi note when its pressed
 		std::cout << midiNoteNumber << std::endl;
@@ -79,16 +81,45 @@ public:
 	}
 	//renders the next block of data for this voice
 	void renderNextBlock(AudioBuffer<float> &outputBuffer, int startSample, int numSample) override {
+		//NOT currently working - Victoria
 		//Adjusting ordering might be a bit more complicating
 		//Maybe create a function called applyEffects and deal with ordering inside applyEffects
 		
+		//adding the tail off back to our code
+		if (tailOff > 0)
+		{
+			//iterating through samples
+			while (--numSample >= 0)
+			{
+				const float mySine = osc1.sinewave(frequency) * level * tailOff;
 
-		//iterating through samples
-		for (int sample = 0; sample < outputBuffer.getNumSamples(); ++sample) {
-			double mySine = osc1.sinewave(440);
-			
-			for (int channel = 0; channel < outputBuffer.getNumChannels(); channel++)
-				outputBuffer.addSample(channel, startSample, mySine);
+				//iterating through channels
+				for (int channel = 0; channel < outputBuffer.getNumChannels(); ++channel) {
+					outputBuffer.addSample(channel, startSample, mySine);
+				}
+				++startSample;
+
+				tailOff *= 0.99;
+
+				if (tailOff <= 0.005)
+				{
+					clearCurrentNote();
+					break;
+				}
+			}
+		}
+		else {
+			//iterating through samples
+			while (--numSample >= 0)
+			{
+				const float mySine = osc1.sinewave(frequency) * level * tailOff;
+
+				//iterating through channels
+				for (int channel = 0; channel < outputBuffer.getNumChannels(); ++channel) {
+					outputBuffer.addSample(channel, startSample, mySine);
+				}
+				++startSample;
+			}
 		}
 
 		/*//temp sine wave got code from: https://github.com/WeAreROLI/JUCE/blob/master/examples/Demo/Source/Demos/AudioSynthesiserDemo.cpp
@@ -134,5 +165,6 @@ public:
 	}
 private:
 	double currentAngle, angleDelta, level, tailOff;
+	double frequency;
 	maxiOsc osc1;
 };
