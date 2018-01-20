@@ -13,11 +13,22 @@
 #include "SynthSound.h"
 #include "maximilian.h"
 
+
+#include <sstream>
+template <typename T>
+string ToString(T val)
+{
+	stringstream stream;
+	stream << val;
+	return stream.str();
+};
+
+
 class SineSynthVoice : public SynthesiserVoice {
 
 public:
 
-	SineSynthVoice() : level(0), tailOff(0)
+	SineSynthVoice() : level(0), tailOff(0), silent(1)
 	{
 
 	}
@@ -30,10 +41,10 @@ public:
 	//called to start a new note
 	void startNote(int midiNoteNumber, float velocity, SynthesiserSound *, int /*currentPitchWheelPosition*/) override {
 		level = velocity;
-		//when we hit a key we want our oscillator to play at a frequency
 		frequency = MidiMessage::getMidiNoteInHertz(midiNoteNumber);
 		tailOff = 0.0;
-
+		silent = 0;
+		
 		//For the working sine wave - Victoria
 		/*currentAngle = 0.0;
 		level = velocity * 0.15;
@@ -51,6 +62,8 @@ public:
 	//called to stop a note
 	void stopNote(float velocity, bool allowTailOff) override {
 		level = 0;
+		clearCurrentNote();
+		silent = 1;
 		//if (velocity == 0) {
 		//	clearCurrentNote();
 		//}
@@ -79,10 +92,18 @@ public:
 
 	}
 	//renders the next block of data for this voice
-	void renderNextBlock(AudioBuffer<float> &outputBuffer, int startSample, int numSample) override {
-		for (int sample = 0; sample < numSample; ++sample) {
-			double theWave = osc1.sinewave(400) * level;
+	void renderNextBlock(AudioBuffer<float> &outputBuffer, int startSample, int numSamples) override {
+		// This function runs constantly, so return to make it super fast if we aren't hitting a note.
+		// We can work on the tailoff feature later, but for now the frequency is actually working - Chris
+		if (silent)
+		{
+			return;
+		}
 
+		for (int sample = 0; sample < numSamples; ++sample) {
+			
+			double theWave = osc1.sinewave(frequency) * level;
+			
 			for (int channel = 0; channel < outputBuffer.getNumChannels(); ++channel) {
 				outputBuffer.addSample(channel, startSample, theWave);
 			}
@@ -128,5 +149,6 @@ public:
 private:
 	double level, tailOff;
 	double frequency;
+	int silent;
 	maxiOsc osc1;
 };
