@@ -28,7 +28,7 @@ class SineSynthVoice : public SynthesiserVoice {
 
 public:
 
-	SineSynthVoice() : level(0), tailOff(0), silent(1)
+	SineSynthVoice() : level(0), tailOff(0), keyPressed(0)
 	{
 
 	}
@@ -40,16 +40,13 @@ public:
 	}
 	//called to start a new note
 	void startNote(int midiNoteNumber, float velocity, SynthesiserSound *, int /*currentPitchWheelPosition*/) override {
-		env1.setAttack(10);
-		env1.setDecay(500);
-		env1.setRelease(1000);
-		env1.setSustain(1);
-
-		env1.trigger = 1;
+		env.trigger = 1;
 		level = velocity;
 		frequency = MidiMessage::getMidiNoteInHertz(midiNoteNumber);
 		tailOff = 0.0;
-		silent = 0;
+		keyPressed = 1;
+
+		this->initEnvelope();
 		
 		//For the working sine wave - Victoria
 		/*currentAngle = 0.0;
@@ -67,10 +64,10 @@ public:
 	}
 	//called to stop a note
 	void stopNote(float velocity, bool allowTailOff) override {
-		env1.trigger = 0;
-		level = 0;
 		clearCurrentNote();
-		silent = 1;
+		env.trigger = 0;
+		keyPressed = 0;
+
 		//if (velocity == 0) {
 		//	clearCurrentNote();
 		//}
@@ -98,22 +95,36 @@ public:
 	void controllerMoved(int controllerNumber, int newControllerValue) override {
 
 	}
+
+	void initEnvelope() {
+		// Slightly raise the attack and release to get rid of clicks.
+		// See: https://www.youtube.com/watch?v=9niampRkFW0
+		env.setAttack(50);
+		env.setDecay(1);
+		env.setSustain(100);
+		env.setRelease(50);
+		env.amplitude = 0.1;
+	}
+
 	//renders the next block of data for this voice
 	void renderNextBlock(AudioBuffer<float> &outputBuffer, int startSample, int numSamples) override {
 		// This function runs constantly, so return to make it super fast if we aren't hitting a note.
 		// We can work on the tailoff feature later, but for now the frequency is actually working - Chris
-		if (silent) return;
-
+		if (!keyPressed) return;
+		
 		for (int sample = 0; sample < numSamples; ++sample) {
 			
-			double theWave = osc1.sinewave(frequency);
-			double theSound = env1.adsr(theWave, env1.trigger) * level; // Envelope not working...?
-
+			// Use a basic envelope to get rid of clicks (not sure if it really helps much though)
+			double sineWave = osc.sinewave(frequency);
+			double envSound = env.adsr(sineWave, env.trigger);
+				
 			for (int channel = 0; channel < outputBuffer.getNumChannels(); ++channel) {
-				outputBuffer.addSample(channel, startSample, theSound);
+				outputBuffer.addSample(channel, startSample, envSound);
 			}
 			++startSample;
 		}
+		
+
 		////adding the tail off back to our code
 		//if (tailOff > 0)
 		//{
@@ -154,7 +165,7 @@ public:
 private:
 	double level, tailOff;
 	double frequency;
-	int silent;
-	maxiOsc osc1;
-	maxiEnv env1;
+	int keyPressed;
+	maxiOsc osc;
+	maxiEnv env;
 };
