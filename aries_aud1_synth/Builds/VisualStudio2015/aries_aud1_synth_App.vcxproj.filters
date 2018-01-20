@@ -5,6 +5,12 @@
     <Filter Include="aries_aud1_synth\Source">
       <UniqueIdentifier>{107D9120-6DC7-26D4-9BDA-B841A71305FE}</UniqueIdentifier>
     </Filter>
+    <Filter Include="aries_aud1_synth\maximillion\libs">
+      <UniqueIdentifier>{4BA610C9-C197-7B0A-BADE-EF7A100CAD88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="aries_aud1_synth\maximillion">
+      <UniqueIdentifier>{9946C028-31D6-6A9E-2791-C467D689CA98}</UniqueIdentifier>
+    </Filter>
     <Filter Include="aries_aud1_synth">
       <UniqueIdentifier>{D27F47EA-4DCD-92B5-6F80-74CE8AC2AD88}</UniqueIdentifier>
     </Filter>
@@ -378,6 +384,36 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Main.cpp">
       <Filter>aries_aud1_synth\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\maximillion\libs\fft.cpp">
+      <Filter>aries_aud1_synth\maximillion\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\maximillion\libs\maxiAtoms.cpp">
+      <Filter>aries_aud1_synth\maximillion\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\maximillion\libs\maxiBark.cpp">
+      <Filter>aries_aud1_synth\maximillion\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\maximillion\libs\maxiFFT.cpp">
+      <Filter>aries_aud1_synth\maximillion\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\maximillion\libs\maxiGrains.cpp">
+      <Filter>aries_aud1_synth\maximillion\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\maximillion\libs\maxiMFCC.cpp">
+      <Filter>aries_aud1_synth\maximillion\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\maximillion\main.cpp">
+      <Filter>aries_aud1_synth\maximillion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\maximillion\maximilian.cpp">
+      <Filter>aries_aud1_synth\maximillion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\maximillion\RtAudio.cpp">
+      <Filter>aries_aud1_synth\maximillion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\maximillion\stb_vorbis.c">
+      <Filter>aries_aud1_synth\maximillion</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\juce\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
       <Filter>Juce Modules\juce_audio_basics\buffers</Filter>
@@ -2101,6 +2137,9 @@
     <ClCompile Include="..\..\..\juce\modules\juce_video\juce_video.mm">
       <Filter>Juce Modules\juce_video</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\BinaryData.cpp">
+      <Filter>Juce Library Code</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_basics.cpp">
       <Filter>Juce Library Code</Filter>
     </ClCompile>
@@ -2156,6 +2195,45 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\SynthVoice.h">
       <Filter>aries_aud1_synth\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\maximillion\libs\fft.h">
+      <Filter>aries_aud1_synth\maximillion\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\maximillion\libs\maxiAtoms.h">
+      <Filter>aries_aud1_synth\maximillion\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\maximillion\libs\maxiBark.h">
+      <Filter>aries_aud1_synth\maximillion\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\maximillion\libs\maxiFFT.h">
+      <Filter>aries_aud1_synth\maximillion\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\maximillion\libs\maxiGrains.h">
+      <Filter>aries_aud1_synth\maximillion\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\maximillion\libs\maxim.h">
+      <Filter>aries_aud1_synth\maximillion\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\maximillion\libs\maxiMFCC.h">
+      <Filter>aries_aud1_synth\maximillion\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\maximillion\libs\sineTable.h">
+      <Filter>aries_aud1_synth\maximillion\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\maximillion\maximilian.h">
+      <Filter>aries_aud1_synth\maximillion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\maximillion\portaudio.h">
+      <Filter>aries_aud1_synth\maximillion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\maximillion\RtAudio.h">
+      <Filter>aries_aud1_synth\maximillion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\maximillion\RtError.h">
+      <Filter>aries_aud1_synth\maximillion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\maximillion\stb_vorbis.h">
+      <Filter>aries_aud1_synth\maximillion</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\juce\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h">
       <Filter>Juce Modules\juce_audio_basics\audio_play_head</Filter>
@@ -3990,11 +4068,29 @@
     <ClInclude Include="..\..\JuceLibraryCode\AppConfig.h">
       <Filter>Juce Library Code</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\JuceLibraryCode\BinaryData.h">
+      <Filter>Juce Library Code</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\JuceLibraryCode\JuceHeader.h">
       <Filter>Juce Library Code</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\maximillion\beat2.wav">
+      <Filter>aries_aud1_synth\maximillion</Filter>
+    </None>
+    <None Include="..\..\..\maximillion\bigFiles.txt">
+      <Filter>aries_aud1_synth\maximillion</Filter>
+    </None>
+    <None Include="..\..\..\maximillion\blip.wav">
+      <Filter>aries_aud1_synth\maximillion</Filter>
+    </None>
+    <None Include="..\..\..\maximillion\README">
+      <Filter>aries_aud1_synth\maximillion</Filter>
+    </None>
+    <None Include="..\..\..\maximillion\snare.wav">
+      <Filter>aries_aud1_synth\maximillion</Filter>
+    </None>
     <None Include="..\..\..\juce\modules\juce_audio_formats\codecs\flac\Flac Licence.txt">
       <Filter>Juce Modules\juce_audio_formats\codecs\flac</Filter>
     </None>

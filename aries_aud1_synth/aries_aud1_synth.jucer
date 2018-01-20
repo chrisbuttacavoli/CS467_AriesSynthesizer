@@ -4,7 +4,7 @@
               splashScreenColour="Dark" projectType="guiapp" version="1.0.0"
               bundleIdentifier="com.yourcompany.aries_aud1_synth" includeBinaryInAppConfig="1"
               cppLanguageStandard="11" companyCopyright="" jucerVersion="5.2.0"
-              userNotes="" headerPath="">
+              userNotes="" headerPath="C:\Users\Chris.Buttacavoli\Documents\GitHub\CS467_Aries-\maximillion">
   <MAINGROUP id="DbO0WA" name="aries_aud1_synth">
     <GROUP id="{25EB4AD0-1085-2D6D-2C5D-94D74EEB437F}" name="Source">
       <FILE id="DU16Nb" name="SineSynthVoice.h" compile="0" resource="0"
@@ -17,6 +17,38 @@
             file="Source/MainComponent.cpp"/>
       <FILE id="yw7lJI" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
     </GROUP>
+    <GROUP id="{62B2A28A-DBA4-0C44-1683-1CE945E2DB06}" name="maximillion">
+      <GROUP id="{0FB15AE8-5596-7D38-2FB7-A7E9800324A1}" name="libs">
+        <FILE id="qAxQc6" name="fft.cpp" compile="1" resource="0" file="../maximillion/libs/fft.cpp"/>
+        <FILE id="Z6dKzE" name="fft.h" compile="0" resource="0" file="../maximillion/libs/fft.h"/>
+        <FILE id="jSRyPG" name="maxiAtoms.cpp" compile="1" resource="0" file="../maximillion/libs/maxiAtoms.cpp"/>
+        <FILE id="A5vlCn" name="maxiAtoms.h" compile="0" resource="0" file="../maximillion/libs/maxiAtoms.h"/>
+        <FILE id="kuUJgV" name="maxiBark.cpp" compile="1" resource="0" file="../maximillion/libs/maxiBark.cpp"/>
+        <FILE id="YZrutv" name="maxiBark.h" compile="0" resource="0" file="../maximillion/libs/maxiBark.h"/>
+        <FILE id="OvDrOr" name="maxiFFT.cpp" compile="1" resource="0" file="../maximillion/libs/maxiFFT.cpp"/>
+        <FILE id="PBYFEW" name="maxiFFT.h" compile="0" resource="0" file="../maximillion/libs/maxiFFT.h"/>
+        <FILE id="Mv64Yz" name="maxiGrains.cpp" compile="1" resource="0" file="../maximillion/libs/maxiGrains.cpp"/>
+        <FILE id="eD2vPY" name="maxiGrains.h" compile="0" resource="0" file="../maximillion/libs/maxiGrains.h"/>
+        <FILE id="k5LMXu" name="maxim.h" compile="0" resource="0" file="../maximillion/libs/maxim.h"/>
+        <FILE id="R8EUl5" name="maxiMFCC.cpp" compile="1" resource="0" file="../maximillion/libs/maxiMFCC.cpp"/>
+        <FILE id="uqLmef" name="maxiMFCC.h" compile="0" resource="0" file="../maximillion/libs/maxiMFCC.h"/>
+        <FILE id="yOTaq9" name="sineTable.h" compile="0" resource="0" file="../maximillion/libs/sineTable.h"/>
+      </GROUP>
+      <FILE id="jMIbqn" name="beat2.wav" compile="0" resource="1" file="../maximillion/beat2.wav"/>
+      <FILE id="GRPL4v" name="bigFiles.txt" compile="0" resource="1" file="../maximillion/bigFiles.txt"/>
+      <FILE id="N8NzNl" name="blip.wav" compile="0" resource="1" file="../maximillion/blip.wav"/>
+      <FILE id="qhJAGd" name="main.cpp" compile="1" resource="0" file="../maximillion/main.cpp"/>
+      <FILE id="cg4eWp" name="maximilian.cpp" compile="1" resource="0" file="../maximillion/maximilian.cpp"/>
+      <FILE id="SREo1n" name="maximilian.h" compile="0" resource="0" file="../maximillion/maximilian.h"/>
+      <FILE id="ZHD0Vn" name="portaudio.h" compile="0" resource="0" file="../maximillion/portaudio.h"/>
+      <FILE id="gdgAxg" name="README" compile="0" resource="1" file="../maximillion/README"/>
+      <FILE id="VJKl58" name="RtAudio.cpp" compile="1" resource="0" file="../maximillion/RtAudio.cpp"/>
+      <FILE id="fV5NLz" name="RtAudio.h" compile="0" resource="0" file="../maximillion/RtAudio.h"/>
+      <FILE id="uLXXJn" name="RtError.h" compile="0" resource="0" file="../maximillion/RtError.h"/>
+      <FILE id="h9nKX2" name="snare.wav" compile="0" resource="1" file="../maximillion/snare.wav"/>
+      <FILE id="y9sHll" name="stb_vorbis.c" compile="1" resource="0" file="../maximillion/stb_vorbis.c"/>
+      <FILE id="HvWke8" name="stb_vorbis.h" compile="0" resource="0" file="../maximillion/stb_vorbis.h"/>
+    </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
     <VS2017 targetFolder="Builds/VisualStudio2017" windowsTargetPlatformVersion="10.0.16299.0">
@@ -24,7 +56,7 @@
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
                        debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
                        linkTimeOptimisation="0" isDebug="1" optimisation="1" targetName="aries_aud1_synth"
-                       headerPath="C:\Users\vdorn\Documents\CS467\aries\maximillion"/>
+                       headerPath="C:\Users\Chris.Buttacavoli\Documents\GitHub\CS467_Aries-\maximillion"/>
         <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
                        debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
                        linkTimeOptimisation="1" isDebug="0" optimisation="3" targetName="aries_aud1_synth"

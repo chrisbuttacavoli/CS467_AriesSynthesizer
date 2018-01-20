@@ -11,7 +11,7 @@
 #pragma once
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "SynthSound.h"
-//#include "../../maximillion/maximilian.h"
+#include "maximilian.h"
 
 class SineSynthVoice : public SynthesiserVoice {
 
@@ -79,26 +79,19 @@ public:
 	}
 	//renders the next block of data for this voice
 	void renderNextBlock(AudioBuffer<float> &outputBuffer, int startSample, int numSample) override {
-		/* can add effects here?
 		//Adjusting ordering might be a bit more complicating
 		//Maybe create a function called applyEffects and deal with ordering inside applyEffects
-		double theWave = osc1.sinewave(440);
+		
 
 		//iterating through samples
-		for (int sample = 0; sample < numSample; sample++) {
-		//get the audio waveform from oscillator
-		//double theWave = mySine * level;
-
-		//iterating through channels
-		for (int channel = 0; channel < outputBuffer.getNumChannels(); channel++) {
-
-		outputBuffer.addSample(channel, startSample, theWave);
-		}
-		++startSample;
+		/*for (int sample = 0; sample < outputBuffer.getNumSamples(); ++sample) {
+			double mySine = osc1.sinewave(440);
+			
+			for (int channel = 0; channel < outputBuffer.getNumChannels(); channel++)
+				outputBuffer.addSample(channel, startSample, mySine);
 		}*/
 
 		//temp sine wave got code from: https://github.com/WeAreROLI/JUCE/blob/master/examples/Demo/Source/Demos/AudioSynthesiserDemo.cpp
-
 		if (angleDelta != 0.0)
 		{
 			if (tailOff > 0)
@@ -141,4 +134,5 @@ public:
 	}
 private:
 	double currentAngle, angleDelta, level, tailOff;
+	maxiOsc osc1;
 };

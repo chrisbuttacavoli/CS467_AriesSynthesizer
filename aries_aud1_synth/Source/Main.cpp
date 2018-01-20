@@ -9,6 +9,8 @@
 */
 
 #include "../JuceLibraryCode/JuceHeader.h"
+//#include <windows.h>
+
 
 Component* createMainContentComponent();
 
