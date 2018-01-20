@@ -40,6 +40,12 @@ public:
 	}
 	//called to start a new note
 	void startNote(int midiNoteNumber, float velocity, SynthesiserSound *, int /*currentPitchWheelPosition*/) override {
+		env1.setAttack(10);
+		env1.setDecay(500);
+		env1.setRelease(1000);
+		env1.setSustain(1);
+
+		env1.trigger = 1;
 		level = velocity;
 		frequency = MidiMessage::getMidiNoteInHertz(midiNoteNumber);
 		tailOff = 0.0;
@@ -61,6 +67,7 @@ public:
 	}
 	//called to stop a note
 	void stopNote(float velocity, bool allowTailOff) override {
+		env1.trigger = 0;
 		level = 0;
 		clearCurrentNote();
 		silent = 1;
@@ -95,17 +102,15 @@ public:
 	void renderNextBlock(AudioBuffer<float> &outputBuffer, int startSample, int numSamples) override {
 		// This function runs constantly, so return to make it super fast if we aren't hitting a note.
 		// We can work on the tailoff feature later, but for now the frequency is actually working - Chris
-		if (silent)
-		{
-			return;
-		}
+		if (silent) return;
 
 		for (int sample = 0; sample < numSamples; ++sample) {
 			
-			double theWave = osc1.sinewave(frequency) * level;
-			
+			double theWave = osc1.sinewave(frequency);
+			double theSound = env1.adsr(theWave, env1.trigger) * level; // Envelope not working...?
+
 			for (int channel = 0; channel < outputBuffer.getNumChannels(); ++channel) {
-				outputBuffer.addSample(channel, startSample, theWave);
+				outputBuffer.addSample(channel, startSample, theSound);
 			}
 			++startSample;
 		}
@@ -151,4 +156,5 @@ private:
 	double frequency;
 	int silent;
 	maxiOsc osc1;
+	maxiEnv env1;
 };
