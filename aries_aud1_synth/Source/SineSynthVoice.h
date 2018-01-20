@@ -84,14 +84,14 @@ public:
 		
 
 		//iterating through samples
-		/*for (int sample = 0; sample < outputBuffer.getNumSamples(); ++sample) {
+		for (int sample = 0; sample < outputBuffer.getNumSamples(); ++sample) {
 			double mySine = osc1.sinewave(440);
 			
 			for (int channel = 0; channel < outputBuffer.getNumChannels(); channel++)
 				outputBuffer.addSample(channel, startSample, mySine);
-		}*/
+		}
 
-		//temp sine wave got code from: https://github.com/WeAreROLI/JUCE/blob/master/examples/Demo/Source/Demos/AudioSynthesiserDemo.cpp
+		/*//temp sine wave got code from: https://github.com/WeAreROLI/JUCE/blob/master/examples/Demo/Source/Demos/AudioSynthesiserDemo.cpp
 		if (angleDelta != 0.0)
 		{
 			if (tailOff > 0)
@@ -130,7 +130,7 @@ public:
 					++startSample;
 				}
 			}
-		}
+		}*/
 	}
 private:
 	double currentAngle, angleDelta, level, tailOff;
