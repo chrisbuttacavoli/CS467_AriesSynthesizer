@@ -12,13 +12,15 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "SynthSound.h"
 #include "SineSynthVoice.h"
+#include "SawSynthVoice.h"
+
 
 struct SynthAudioSource : public AudioSource
 {
 	SynthAudioSource(MidiKeyboardState &keyState) : keyboardState(keyState) {
 		for (int i = 0; i < 5; i++)
 		{
-			mySynth.addVoice(new SineSynthVoice());
+			mySynth.addVoice(new SawSynthVoice());
 		}
 		mySynth.clearSounds();
 		mySynth.addSound(new SynthSound());
@@ -62,4 +64,7 @@ struct SynthAudioSource : public AudioSource
 
 	//the actual synth object
 	Synthesiser mySynth;
+
+	// Used to pass values to synth voice
+	//AudioProcessorValueTreeState tree;
 };

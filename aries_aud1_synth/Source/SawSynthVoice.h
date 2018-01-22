@@ -1,11 +1,11 @@
 /*
-  ==============================================================================
+==============================================================================
 
-    SineSynthVoice.h
-    Created: 19 Jan 2018 1:55:12pm
-    Author:  vdorn
+SineSynthVoice.h
+Created: 19 Jan 2018 1:55:12pm
+Author:  vdorn
 
-  ==============================================================================
+==============================================================================
 */
 
 #pragma once
@@ -14,23 +14,11 @@
 #include "maximilian.h"
 
 
-// This is used for debugging: DBG(ToString(someInt))
-#include <sstream>
-template <typename T>
-string ToString(T val)
-{
-	stringstream stream;
-	stream << val;
-	return stream.str();
-};
-///////////////
-
-
-class SineSynthVoice : public SynthesiserVoice {
+class SawSynthVoice : public SynthesiserVoice {
 
 public:
 
-	SineSynthVoice() : level(0), tailOff(0), keyPressed(0)
+	SawSynthVoice() : level(0), tailOff(0), keyPressed(0)
 	{
 
 	}
@@ -49,7 +37,7 @@ public:
 		keyPressed = 1;
 
 		this->initEnvelope();
-		
+
 		//For the working sine wave - Victoria
 		/*currentAngle = 0.0;
 		level = velocity * 0.15;
@@ -113,19 +101,19 @@ public:
 		// This function runs constantly, so return to make it super fast if we aren't hitting a note.
 		// We can work on the tailoff feature later, but for now the frequency is actually working - Chris
 		if (!keyPressed) return;
-		
+
 		for (int sample = 0; sample < numSamples; ++sample) {
-			
+
 			// Use a basic envelope to get rid of clicks (not sure if it really helps much though)
-			double sineWave = osc.sinewave(frequency);
-			double envSound = env.adsr(sineWave, env.trigger);
-				
+			double wave = osc.saw(frequency);
+			double envSound = env.adsr(wave, env.trigger);
+
 			for (int channel = 0; channel < outputBuffer.getNumChannels(); ++channel) {
 				outputBuffer.addSample(channel, startSample, envSound);
 			}
 			++startSample;
 		}
-		
+
 
 		////adding the tail off back to our code
 		//if (tailOff > 0)

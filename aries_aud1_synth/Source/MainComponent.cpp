@@ -7,9 +7,13 @@
 */
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "Enums.h"
+#include "Oscillator.h"
 #include "SineSynthVoice.h"
 #include "SynthSound.h"
 #include "SynthAudioSource.h"
+#include "SynthProcessor.h"
+
 
 //==============================================================================
 /*
@@ -34,7 +38,7 @@ public:
 		setOpaque(true);
 
 		mySynth.clearVoices();
-		
+
 		//Debug prints display box
 		addAndMakeVisible(midiInputListLabel);
 		midiInputListLabel.setText("MIDI Input:", dontSendNotification);
@@ -46,6 +50,8 @@ public:
 		const StringArray midiInputs(MidiInput::getDevices());
 		midiInputList.addItemList(midiInputs, 1);
 		midiInputList.addListener(this);
+
+		addOscillatorControls();
 
 		// find the first enabled device and use that by default
 		for (int i = 0; i < midiInputs.size(); ++i)
@@ -99,6 +105,7 @@ public:
 		keyboardState.removeListener(this);
 		deviceManager.removeMidiInputCallback(MidiInput::getDevices()[midiInputList.getSelectedItemIndex()], this);
 		midiInputList.removeListener(this);
+		//cbOsc1.removeListener(this);
     }
 
     //==============================================================================
@@ -145,9 +152,12 @@ public:
         // If you add any child components, this is where you should
         // update their positions.
 		juce::Rectangle<int> area(getLocalBounds());
-		midiInputList.setBounds(area.removeFromTop(36).removeFromRight(getWidth() - 150).reduced(8));
+		/*midiInputList.setBounds(area.removeFromTop(36).removeFromRight(getWidth() - 150).reduced(8));
 		keyboardComponent.setBounds(area.removeFromBottom(80).reduced(8));
-		midiMessagesBox.setBounds(area.reduced(8));
+		midiMessagesBox.setBounds(area.reduced(8));*/
+		osc1.setBounds(0, 0, getWidth(), 100);
+		midiInputList.setBounds(0, 100, getWidth(), 100);
+		keyboardComponent.setBounds(0, 200, getWidth(), 200);
 	}
 
 private:
@@ -199,6 +209,9 @@ private:
 	{
 		if (box == &midiInputList)
 			setMidiInput(midiInputList.getSelectedItemIndex());
+
+		/*if (box == &cbOsc1)
+			DBG(cbOsc1.getSelectedIdAsValue().toString());*/
 	}
 
 	// These methods handle callbacks from the midi device + on-screen keyboard..
@@ -276,6 +289,19 @@ private:
 		logMessage(midiMessageString);
 	}
 
+
+	void addOscillatorControls() {
+		/*addAndMakeVisible(lblOsc1);
+		lblOsc1.setText("Oscillator 1:", dontSendNotification);
+		lblOsc1.attachToComponent(&cbOsc1, true);
+		addAndMakeVisible(cbOsc1);
+		cbOsc1.addItem("Sine", sine);
+		cbOsc1.addItem("Saw", saw);
+		cbOsc1.addListener(this);
+		cbOsc1.setSelectedId(sine);*/
+		addAndMakeVisible(osc1);
+	}
+
 	//==============================================================================
 
     // Your private member variables go here...
@@ -295,7 +321,10 @@ private:
 	Synthesiser mySynth;
 	double lastSampleRate;
 
-
+	// Controls
+	/*ComboBox cbOsc1;
+	Label lblOsc1;*/
+	Oscillator osc1;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
 };

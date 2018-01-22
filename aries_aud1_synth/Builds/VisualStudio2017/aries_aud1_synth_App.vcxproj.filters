@@ -379,6 +379,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\SynthProcessor.cpp">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Oscillator.cpp">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\MainComponent.cpp">
       <Filter>aries_aud1_synth\Source</Filter>
     </ClCompile>
@@ -2184,6 +2190,18 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\SynthProcessor.h">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Oscillator.h">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Enums.h">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\SawSynthVoice.h">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\SineSynthVoice.h">
       <Filter>aries_aud1_synth\Source</Filter>
     </ClInclude>

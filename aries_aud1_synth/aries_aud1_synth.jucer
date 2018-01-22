@@ -7,6 +7,14 @@
               userNotes="" headerPath="C:\Users\Chris.Buttacavoli\Documents\GitHub\CS467_Aries-\maximillion">
   <MAINGROUP id="DbO0WA" name="aries_aud1_synth">
     <GROUP id="{25EB4AD0-1085-2D6D-2C5D-94D74EEB437F}" name="Source">
+      <FILE id="k7NEul" name="SynthProcessor.cpp" compile="1" resource="0"
+            file="Source/SynthProcessor.cpp"/>
+      <FILE id="gqrIYv" name="SynthProcessor.h" compile="0" resource="0"
+            file="Source/SynthProcessor.h"/>
+      <FILE id="Hfy49D" name="Oscillator.cpp" compile="1" resource="0" file="Source/Oscillator.cpp"/>
+      <FILE id="d2m8RY" name="Oscillator.h" compile="0" resource="0" file="Source/Oscillator.h"/>
+      <FILE id="US94US" name="Enums.h" compile="0" resource="0" file="Source/Enums.h"/>
+      <FILE id="DHN807" name="SawSynthVoice.h" compile="0" resource="0" file="Source/SawSynthVoice.h"/>
       <FILE id="DU16Nb" name="SineSynthVoice.h" compile="0" resource="0"
             file="Source/SineSynthVoice.h"/>
       <FILE id="L6zs4E" name="SynthAudioSource.h" compile="0" resource="0"

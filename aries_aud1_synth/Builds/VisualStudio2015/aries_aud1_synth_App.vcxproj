@@ -147,6 +147,8 @@
     <Lib/>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\SynthProcessor.cpp"/>
+    <ClCompile Include="..\..\Source\Oscillator.cpp"/>
     <ClCompile Include="..\..\Source\MainComponent.cpp"/>
     <ClCompile Include="..\..\Source\Main.cpp"/>
     <ClCompile Include="..\..\..\maximillion\libs\fft.cpp"/>
@@ -1781,6 +1783,10 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_video.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\SynthProcessor.h"/>
+    <ClInclude Include="..\..\Source\Oscillator.h"/>
+    <ClInclude Include="..\..\Source\Enums.h"/>
+    <ClInclude Include="..\..\Source\SawSynthVoice.h"/>
     <ClInclude Include="..\..\Source\SineSynthVoice.h"/>
     <ClInclude Include="..\..\Source\SynthAudioSource.h"/>
     <ClInclude Include="..\..\Source\SynthSound.h"/>
