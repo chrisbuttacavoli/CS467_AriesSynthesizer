@@ -32,7 +32,7 @@ public:
 		lastInputIndex(0),
 		isAddingFromMidiInput(false),
 		keyboardComponent(keyboardState, MidiKeyboardComponent::horizontalKeyboard),
-		synthAudioSource (keyboardState),
+		theSynthProcessor(keyboardState),
 		startTime(Time::getMillisecondCounterHiRes() * 0.001)
     {
 		setOpaque(true);
@@ -88,11 +88,11 @@ public:
 		midiMessagesBox.setColour(TextEditor::shadowColourId, Colour(0x16000000));
 
 		//setting up an audio player to actually output audio
-		audioSourcePlayer.setSource(&synthAudioSource);
+		audioSourcePlayer.setProcessor(&theSynthProcessor);
 
 		//device manager to deal with midi/devices
 		deviceManager.addAudioCallback(&audioSourcePlayer);
-		deviceManager.addMidiInputCallback(String(), &(synthAudioSource.midiCollector));
+		deviceManager.addMidiInputCallback(String(), &(theSynthProcessor.midiCollector));
 
 		//setting the size of the windows
 		setSize(600, 400);
@@ -315,8 +315,10 @@ private:
 	TextEditor midiMessagesBox;
 	double startTime;
 
-	AudioSourcePlayer audioSourcePlayer;
-	SynthAudioSource synthAudioSource;
+	//AudioSourcePlayer audioSourcePlayer;
+	//SynthAudioSource synthAudioSource;
+	AudioProcessorPlayer audioSourcePlayer;	//need to play audio through a processor player now
+	SynthProcessor theSynthProcessor;		//new synth processor to replay synthAudioSource
 
 	Synthesiser mySynth;
 	double lastSampleRate;

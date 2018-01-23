@@ -11,6 +11,7 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "SynthSound.h"
 #include "OscillatorVoice.h"
 
 //==============================================================================
@@ -18,6 +19,7 @@
 */
 class SynthProcessor : public AudioProcessor
 {
+public:
 	SynthProcessor(MidiKeyboardState &keyState) : keyboardState(keyState) {
 		for (int i = 0; i < 5; i++)
 		{
@@ -27,7 +29,6 @@ class SynthProcessor : public AudioProcessor
 		mySynth.addSound(new SynthSound());
 	}
 
-public:
 	~SynthProcessor() {	}
 
 	const String getName() const override {
@@ -61,10 +62,65 @@ public:
 	}
 
 	void releaseResources() override {
+
+	}
+
+	double getTailLengthSeconds() const override {
+
+	}
+
+	bool acceptsMidi() const override {
+		return true;
+	}
+
+	bool producesMidi() const override {
+		return true;
 	}
 
 
-private:
+	/*************
+	** Create Process Editor Class to generete new UI elements
+	**
+	*************/
+	AudioProcessorEditor* createEditor() override {
+		//not sure what to put here
+		return new AudioProcessEditor(*this);
+	}
+
+	bool hasEditor() const override {
+		return false;
+	}
+
+	int getNumPrograms() override {
+		//temp?
+		return 0;
+	}
+
+	void changeProgramName(int index, const String &newName) override {
+		
+	}
+
+	int getCurrentProgram() override {
+		//temp?
+		return 0;
+	}
+
+	void setCurrentProgram(int index) override {
+		
+	}
+
+	const String getProgramName(int index) override {
+		return "The Synth";
+	}
+
+	void setStateInformation(const void * data, int sizeInBytes) override {
+
+	}
+
+	void getStateInformation(juce::MemoryBlock &destData) override {
+
+	}
+
 	//Getting midi/keyboard messages
 	MidiMessageCollector midiCollector;
 	MidiKeyboardState& keyboardState;
