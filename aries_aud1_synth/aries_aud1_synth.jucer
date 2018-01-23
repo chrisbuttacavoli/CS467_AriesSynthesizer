@@ -14,9 +14,8 @@
       <FILE id="Hfy49D" name="Oscillator.cpp" compile="1" resource="0" file="Source/Oscillator.cpp"/>
       <FILE id="d2m8RY" name="Oscillator.h" compile="0" resource="0" file="Source/Oscillator.h"/>
       <FILE id="US94US" name="Enums.h" compile="0" resource="0" file="Source/Enums.h"/>
-      <FILE id="DHN807" name="SawSynthVoice.h" compile="0" resource="0" file="Source/SawSynthVoice.h"/>
-      <FILE id="DU16Nb" name="SineSynthVoice.h" compile="0" resource="0"
-            file="Source/SineSynthVoice.h"/>
+      <FILE id="DU16Nb" name="OscillatorVoice.h" compile="0" resource="0"
+            file="Source/OscillatorVoice.h"/>
       <FILE id="L6zs4E" name="SynthAudioSource.h" compile="0" resource="0"
             file="Source/SynthAudioSource.h"/>
       <FILE id="zSmVh9" name="SynthSound.h" compile="0" resource="0" file="Source/SynthSound.h"/>

@@ -11,8 +11,7 @@
 #pragma once
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "SynthSound.h"
-#include "SineSynthVoice.h"
-#include "SawSynthVoice.h"
+#include "OscillatorVoice.h"
 
 
 struct SynthAudioSource : public AudioSource
@@ -20,7 +19,7 @@ struct SynthAudioSource : public AudioSource
 	SynthAudioSource(MidiKeyboardState &keyState) : keyboardState(keyState) {
 		for (int i = 0; i < 5; i++)
 		{
-			mySynth.addVoice(new SawSynthVoice());
+			mySynth.addVoice(new OscillatorVoice(OscillatorType::sawWave));
 		}
 		mySynth.clearSounds();
 		mySynth.addSound(new SynthSound());

@@ -1786,8 +1786,7 @@
     <ClInclude Include="..\..\Source\SynthProcessor.h"/>
     <ClInclude Include="..\..\Source\Oscillator.h"/>
     <ClInclude Include="..\..\Source\Enums.h"/>
-    <ClInclude Include="..\..\Source\SawSynthVoice.h"/>
-    <ClInclude Include="..\..\Source\SineSynthVoice.h"/>
+    <ClInclude Include="..\..\Source\OscillatorVoice.h"/>
     <ClInclude Include="..\..\Source\SynthAudioSource.h"/>
     <ClInclude Include="..\..\Source\SynthSound.h"/>
     <ClInclude Include="..\..\Source\SynthVoice.h"/>

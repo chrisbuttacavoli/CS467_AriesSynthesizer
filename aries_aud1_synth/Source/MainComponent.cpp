@@ -9,7 +9,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "Enums.h"
 #include "Oscillator.h"
-#include "SineSynthVoice.h"
+#include "OscillatorVoice.h"
 #include "SynthSound.h"
 #include "SynthAudioSource.h"
 #include "SynthProcessor.h"
