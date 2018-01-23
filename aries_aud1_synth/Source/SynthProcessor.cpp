@@ -9,14 +9,14 @@
 */
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "SynthProcessor.h"
+//#include "SynthProcessor.h"
 
 //==============================================================================
-SynthProcessor::SynthProcessor()
+/*SynthProcessor::SynthProcessor()
 {
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
-
+	
 }
 
 SynthProcessor::~SynthProcessor()
@@ -27,6 +27,10 @@ const String SynthProcessor::getName() const {
 	return String("My Synth Processor");
 };
 
+void SynthProcessor::prepareToPlay(double sampleRate, int MaxSamplesPerBlock) {
+
+}
+
 void SynthProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &midiMessages)
 {
 
@@ -36,3 +40,5 @@ void SynthProcessor::releaseResources()
 {
 
 };
+
+*/
