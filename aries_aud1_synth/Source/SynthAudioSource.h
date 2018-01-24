@@ -19,7 +19,7 @@ struct SynthAudioSource : public AudioSource
 	SynthAudioSource(MidiKeyboardState &keyState) : keyboardState(keyState) {
 		for (int i = 0; i < 5; i++)
 		{
-			mySynth1.addVoice(new OscillatorVoice(OscillatorType::sawWave));
+			mySynth1.addVoice(new OscillatorVoice(OscillatorType::noiseWave));
 		}
 		mySynth1.clearSounds();
 		mySynth1.addSound(new SynthSound());

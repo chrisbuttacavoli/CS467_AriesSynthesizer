@@ -1,9 +1,9 @@
 /*
   ==============================================================================
 
-    SineSynthVoice.h
-    Created: 19 Jan 2018 1:55:12pm
-    Author:  vdorn
+    OscillatorVoice.h
+    
+	Provides the wave data for any oscillator shape
 
   ==============================================================================
 */
@@ -32,7 +32,7 @@ class OscillatorVoice : public SynthesiserVoice {
 
 public:
 
-	OscillatorVoice(OscillatorType oscType) : level(0), tailOff(0), keyPressed(0)
+	OscillatorVoice(OscillatorType oscType) : level(0), keyPressed(0)
 	{
 		this->oscType = oscType;
 	}
@@ -47,55 +47,28 @@ public:
 		env.trigger = 1;
 		level = velocity;
 		frequency = MidiMessage::getMidiNoteInHertz(midiNoteNumber);
-		tailOff = 0.0;
-		keyPressed = 1;
 
 		this->initEnvelope();
-		
-		//For the working sine wave - Victoria
-		/*currentAngle = 0.0;
-		level = velocity * 0.15;
-		tailOff = 0.0;
 
-		//get the note number so that we can set the cycles
-		double cyclesPerSecond = MidiMessage::getMidiNoteInHertz(midiNoteNumber);
-		double cyclesPerSample = cyclesPerSecond / getSampleRate();
-
-		angleDelta = cyclesPerSample * 2.0 * double_Pi;*/
+		keyPressed = 1;
 
 		//print out midi note when its pressed
 		std::cout << midiNoteNumber << std::endl;
 	}
-	//called to stop a note
+
+	// called to stop a note
 	void stopNote(float velocity, bool allowTailOff) override {
 		clearCurrentNote();
 		env.trigger = 0;
 		keyPressed = 0;
-
-		//if (velocity == 0) {
-		//	clearCurrentNote();
-		//}
-
-		//if (allowTailOff)
-		//{
-		//	// start a tail-off by setting this flag. The render callback will pick up on
-		//	// this and do a fade out, calling clearCurrentNote() when it's finished.
-
-		//	if (tailOff == 0.0) // we only need to begin a tail-off if it's not already doing so - the
-		//						// stopNote method could be called more than once.
-		//		tailOff = 1.0;
-		//}
-		//else
-		//{
-		//	// we're being told to stop playing immediately, so reset everything..
-		//	clearCurrentNote();
-		//}
 	}
-	//called to let the voice know that the pitch wheel has been moved
+
+	// called to let the voice know that the pitch wheel has been moved
 	void pitchWheelMoved(int newPitchWheelValue) override {
 
 	}
-	//controller moved
+
+	// controller moved
 	void controllerMoved(int controllerNumber, int newControllerValue) override {
 
 	}
@@ -119,72 +92,29 @@ public:
 		
 		for (int sample = 0; sample < numSamples; ++sample) {
 			
-			// Use a basic envelope to get rid of clicks (not sure if it really helps much though)
-			double wave = getWave(); // Depends on the oscillator type
-			double envSound = env.adsr(wave, env.trigger);
-	
+			// Get our basic wave shape based on the oscillator type
+			double wave = getWave();
+
+			// Apply a basic envelope to get rid of clicks
+		 	double finalWave = env.adsr(wave, env.trigger);
+		
 			for (int channel = 0; channel < outputBuffer.getNumChannels(); ++channel) {
-				
-				if (wave == noiseWave) {
-					outputBuffer.addSample(channel, startSample, env.adsr(random.nextFloat() * 0.25f - 0.125f, env.trigger));
-				}
-				else {
-					outputBuffer.addSample(channel, startSample, env.adsr(wave, env.trigger));
-				}
-				
+				outputBuffer.addSample(channel, startSample, finalWave);
 			}
+
 			++startSample;
 		}
-		
-
-		////adding the tail off back to our code
-		//if (tailOff > 0)
-		//{
-		//	//iterating through samples
-		//	while (--numSample >= 0)
-		//	{
-		//		const float mySine = osc1.sinewave(frequency) * level * tailOff;
-
-		//		//iterating through channels
-		//		for (int channel = 0; channel < outputBuffer.getNumChannels(); ++channel) {
-		//			outputBuffer.addSample(channel, startSample, mySine);
-		//		}
-		//		++startSample;
-
-		//		tailOff *= 0.99;
-
-		//		if (tailOff <= 0.005)
-		//		{
-		//			clearCurrentNote();
-		//			break;
-		//		}
-		//	}
-		//}
-		//else {
-		//	//iterating through samples
-		//	while (--numSample >= 0)
-		//	{
-		//		const float mySine = osc1.sinewave(frequency) * level * tailOff;
-
-		//		//iterating through channels
-		//		for (int channel = 0; channel < outputBuffer.getNumChannels(); ++channel) {
-		//			outputBuffer.addSample(channel, startSample, mySine);
-		//		}
-		//		++startSample;
-		//	}
-		//}
 	}
 private:
-	double level, tailOff;
+	double level;
 	double frequency;
 	int keyPressed;
 	OscillatorType oscType;
 	maxiOsc osc;
 	maxiEnv env;
-	Random random;
 
+	// This function outputs a wave form based on how the object was constructed
 	double getWave() {
-		// Would be faster to have a dictionary, but I don't know how to have the mapped value as a function in C++
 		switch (oscType)
 		{
 		case sineWave:
