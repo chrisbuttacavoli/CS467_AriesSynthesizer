@@ -12,7 +12,7 @@
 #include "OscillatorVoice.h"
 #include "SynthSound.h"
 #include "SynthAudioSource.h"
-#include "SynthProcessor.h"
+//#include "SynthProcessor.h"
 
 
 //==============================================================================
@@ -32,7 +32,7 @@ public:
 		lastInputIndex(0),
 		isAddingFromMidiInput(false),
 		keyboardComponent(keyboardState, MidiKeyboardComponent::horizontalKeyboard),
-		theSynthProcessor(keyboardState),
+		synthAudioSource (keyboardState),
 		startTime(Time::getMillisecondCounterHiRes() * 0.001)
     {
 		setOpaque(true);
@@ -88,11 +88,12 @@ public:
 		midiMessagesBox.setColour(TextEditor::shadowColourId, Colour(0x16000000));
 
 		//setting up an audio player to actually output audio
-		audioSourcePlayer.setProcessor(&theSynthProcessor);
+		//audioSourcePlayer.setProcessor(&theSynthProcessor); //for synthProcessor class
+		audioSourcePlayer.setSource(&synthAudioSource);
 
 		//device manager to deal with midi/devices
 		deviceManager.addAudioCallback(&audioSourcePlayer);
-		deviceManager.addMidiInputCallback(String(), &(theSynthProcessor.midiCollector));
+		deviceManager.addMidiInputCallback(String(), (&synthAudioSource.midiCollector));
 
 		//setting the size of the windows
 		setSize(600, 400);
@@ -315,10 +316,10 @@ private:
 	TextEditor midiMessagesBox;
 	double startTime;
 
-	//AudioSourcePlayer audioSourcePlayer;
-	//SynthAudioSource synthAudioSource;
-	AudioProcessorPlayer audioSourcePlayer;	//need to play audio through a processor player now
-	SynthProcessor theSynthProcessor;		//new synth processor to replay synthAudioSource
+	AudioSourcePlayer audioSourcePlayer;
+	SynthAudioSource synthAudioSource;
+	//AudioProcessorPlayer audioSourcePlayer;	//need to play audio through a processor player now
+	//SynthProcessor theSynthProcessor;		//new synth processor to replay synthAudioSource
 
 	Synthesiser mySynth;
 	double lastSampleRate;
