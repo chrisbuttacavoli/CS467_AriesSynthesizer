@@ -21,6 +21,10 @@ class SynthProcessor : public AudioProcessor
 {
 public:
 	SynthProcessor(MidiKeyboardState &keyState) : keyboardState(keyState) {
+
+		//initializing gain param
+		addParameter(gainParam = new AudioParameterFloat("gain", "Gain", 0.0f, 1.0f, 0.9f));
+
 		for (int i = 0; i < 5; i++)
 		{
 			mySynth.addVoice(new OscillatorVoice(OscillatorType::sawWave));
