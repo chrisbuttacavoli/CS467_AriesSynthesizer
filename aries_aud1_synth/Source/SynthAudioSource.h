@@ -19,17 +19,25 @@ struct SynthAudioSource : public AudioSource
 	SynthAudioSource(MidiKeyboardState &keyState) : keyboardState(keyState) {
 		for (int i = 0; i < 5; i++)
 		{
-			mySynth.addVoice(new OscillatorVoice(OscillatorType::sawWave));
+			mySynth1.addVoice(new OscillatorVoice(OscillatorType::sawWave));
 		}
-		mySynth.clearSounds();
-		mySynth.addSound(new SynthSound());
+		mySynth1.clearSounds();
+		mySynth1.addSound(new SynthSound());
+
+		for (int i = 0; i < 5; i++)
+		{
+			mySynth2.addVoice(new OscillatorVoice(OscillatorType::squareWave));
+		}
+		mySynth2.clearSounds();
+		mySynth2.addSound(new SynthSound());
 	}
 
 	void prepareToPlay(int /*samplesPerBlockExpected*/, double sampleRate) override
 	{
 		midiCollector.reset(sampleRate);
 
-		mySynth.setCurrentPlaybackSampleRate(sampleRate);
+		mySynth1.setCurrentPlaybackSampleRate(sampleRate);
+		mySynth2.setCurrentPlaybackSampleRate(sampleRate);
 	}
 
 	void releaseResources() override
@@ -53,7 +61,8 @@ struct SynthAudioSource : public AudioSource
 		keyboardState.processNextMidiBuffer(incomingMidi, 0, bufferToFill.numSamples, true);
 
 		// and now get the synth to process the midi events and generate its output.
-		mySynth.renderNextBlock(*bufferToFill.buffer, incomingMidi, 0, bufferToFill.numSamples);
+		mySynth1.renderNextBlock(*bufferToFill.buffer, incomingMidi, 0, bufferToFill.numSamples);
+		mySynth2.renderNextBlock(*bufferToFill.buffer, incomingMidi, 0, bufferToFill.numSamples);
 	}
 
 
@@ -62,7 +71,8 @@ struct SynthAudioSource : public AudioSource
 	MidiKeyboardState& keyboardState;
 
 	//the actual synth object
-	Synthesiser mySynth;
+	Synthesiser mySynth1;
+	Synthesiser mySynth2;
 
 	// Used to pass values to synth voice
 	//AudioProcessorValueTreeState tree;
