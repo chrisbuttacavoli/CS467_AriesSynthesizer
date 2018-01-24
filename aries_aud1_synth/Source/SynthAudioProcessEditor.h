@@ -47,14 +47,16 @@ public:
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(RotarySlider)
 };
 
+//=================================================================================
+
 class SynthAudioProcessorEditor : public AudioProcessorEditor,
 	private Timer
 {
 public:	
 	//SynthAudioProcessorEditor(SynthAudioProcessorEditor&);
 
-	SynthAudioProcessorEditor(SynthAudioProcessorEditor& owner) : AudioProcessorEditor(owner),
-		midiKeyboard(owner.keyboardState, MidiKeyboardComponent::horizontalKeyboard),
+	SynthAudioProcessorEditor(AudioProcessor& owner) : AudioProcessorEditor(owner),
+		//midiKeyboard(owner.keyboardState, MidiKeyboardComponent::horizontalKeyboard),
 		timecodeDisplayLabel(String()),
 		gainLabel(String(), "Throughput level:")
 	{
@@ -65,9 +67,6 @@ public:
 		// add some labels for the sliders..
 		gainLabel.attachToComponent(gainSlider, false);
 		gainLabel.setFont(Font(11.0f));
-
-		// add the midi keyboard component..
-		addAndMakeVisible(midiKeyboard);
 
 		// add a label that will display the current timecode and status..
 		addAndMakeVisible(timecodeDisplayLabel);
@@ -102,7 +101,6 @@ public:
 private:
 	class RotarySlider;
 
-	MidiKeyboardComponent midiKeyboard;
 	Label timecodeDisplayLabel, gainLabel;
 	ScopedPointer<RotarySlider> gainSlider;
 	Colour backgroundColour;
