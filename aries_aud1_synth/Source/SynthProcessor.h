@@ -128,5 +128,8 @@ public:
 	//the actual synth object
 	Synthesiser mySynth;
 
+	// Our parameters
+	AudioParameterFloat* gainParam = nullptr;
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthProcessor)
 };
