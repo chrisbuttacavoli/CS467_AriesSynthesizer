@@ -2191,7 +2191,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\SynthAudioProcessEditor.h">
-      <Filter>aries_aud1_synth</Filter>
+      <Filter>aries_aud1_synth\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\SynthProcessor.h">
       <Filter>aries_aud1_synth\Source</Filter>

@@ -55,7 +55,7 @@ class SynthAudioProcessorEditor : public AudioProcessorEditor,
 public:	
 	//SynthAudioProcessorEditor(SynthAudioProcessorEditor&);
 
-	SynthAudioProcessorEditor(AudioProcessor& owner) : AudioProcessorEditor(owner),
+	SynthAudioProcessorEditor(SynthProcessor& owner) : AudioProcessorEditor(owner),
 		//midiKeyboard(owner.keyboardState, MidiKeyboardComponent::horizontalKeyboard),
 		timecodeDisplayLabel(String()),
 		gainLabel(String(), "Throughput level:")
