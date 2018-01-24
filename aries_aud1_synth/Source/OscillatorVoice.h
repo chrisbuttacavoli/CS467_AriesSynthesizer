@@ -12,6 +12,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "Enums.h"
 #include "maximilian.h"
+//#include "../../maximillion/maximilian.h" // for alex compilation
 #include "SynthSound.h"
 
 
@@ -121,9 +122,16 @@ public:
 			// Use a basic envelope to get rid of clicks (not sure if it really helps much though)
 			double wave = getWave(); // Depends on the oscillator type
 			double envSound = env.adsr(wave, env.trigger);
-				
+	
 			for (int channel = 0; channel < outputBuffer.getNumChannels(); ++channel) {
-				outputBuffer.addSample(channel, startSample, envSound);
+				
+				if (wave == noiseWave) {
+					outputBuffer.addSample(channel, startSample, env.adsr(random.nextFloat() * 0.25f - 0.125f, env.trigger));
+				}
+				else {
+					outputBuffer.addSample(channel, startSample, env.adsr(wave, env.trigger));
+				}
+				
 			}
 			++startSample;
 		}
@@ -173,7 +181,7 @@ private:
 	OscillatorType oscType;
 	maxiOsc osc;
 	maxiEnv env;
-
+	Random random;
 
 	double getWave() {
 		// Would be faster to have a dictionary, but I don't know how to have the mapped value as a function in C++
@@ -187,6 +195,9 @@ private:
 			break;
 		case squareWave:
 			return osc.square(frequency);
+			break;
+		case noiseWave:
+			return osc.noise();
 			break;
 		default:
 			break;
