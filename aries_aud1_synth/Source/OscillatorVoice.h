@@ -99,7 +99,7 @@ public:
 		 	double finalWave = env.adsr(wave, env.trigger);
 		
 			for (int channel = 0; channel < outputBuffer.getNumChannels(); ++channel) {
-				outputBuffer.addSample(channel, startSample, finalWave);
+				outputBuffer.addSample(channel, startSample, env.adsr(random.nextFloat() * 0.25f - 0.125f, env.trigger));
 			}
 
 			++startSample;
@@ -112,6 +112,7 @@ private:
 	OscillatorType oscType;
 	maxiOsc osc;
 	maxiEnv env;
+	Random random;
 
 	// This function outputs a wave form based on how the object was constructed
 	double getWave() {
