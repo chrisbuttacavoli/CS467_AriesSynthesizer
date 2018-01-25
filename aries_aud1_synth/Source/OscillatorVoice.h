@@ -83,7 +83,6 @@ public:
 		env.amplitude = 0.1;
 	}
 
-
 	//renders the next block of data for this voice
 	void renderNextBlock(AudioBuffer<float> &outputBuffer, int startSample, int numSamples) override {
 		// This function runs constantly, so return to make it super fast if we aren't hitting a note.
@@ -97,9 +96,17 @@ public:
 
 			// Apply a basic envelope to get rid of clicks
 		 	double finalWave = env.adsr(wave, env.trigger);
+
+			//Applying distortion - Victoria
+			//Commenting out for now so as not to mess with the env code in the loop below
+			/*atan distortion, see http://www.musicdsp.org/showArchiveComment.php?ArchiveID=104*/
+			/*shape from 1 (soft clipping) to infinity (hard clipping)*/
+			//double distortedWave = distortion.atanDist(finalWave, 5);
 		
 			for (int channel = 0; channel < outputBuffer.getNumChannels(); ++channel) {
 				outputBuffer.addSample(channel, startSample, env.adsr(random.nextFloat() * 0.25f - 0.125f, env.trigger));
+				//outputBuffer.addSample(channel, startSample, distortedWave); //for distortion testing - Victoria
+
 			}
 
 			++startSample;
@@ -112,6 +119,7 @@ private:
 	OscillatorType oscType;
 	maxiOsc osc;
 	maxiEnv env;
+	maxiDistortion distortion;
 	Random random;
 
 	// This function outputs a wave form based on how the object was constructed
