@@ -13,6 +13,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "SynthSound.h"
 #include "OscillatorVoice.h"
+#include "SynthAudioProcessEditor.h"
 
 //==============================================================================
 /*
@@ -88,7 +89,7 @@ public:
 	*************/
 	AudioProcessorEditor* createEditor() override {
 		//not sure what to put here
-		return new AudioProcessEditor(*this);
+		return new SynthAudioProcessorEditor(*this);
 	}
 
 	bool hasEditor() const override {
