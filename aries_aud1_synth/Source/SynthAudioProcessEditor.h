@@ -12,115 +12,149 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "SynthProcessor.h"
 
-//I dont think that we actually need this. I just implemented a rotary slider in the main editor class - Victoria
+/*
+==============================================================================
 
-/*class SynthAudioProcessorEditor::RotarySlider : public Slider,
+This file is part of the JUCE library.
+Copyright (c) 2015 - ROLI Ltd.
+
+Permission is granted to use this software under the terms of either:
+a) the GPL v2 (or any later version)
+b) the Affero GPL v3
+
+Details of these licenses can be found at: www.gnu.org/licenses
+
+JUCE is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+------------------------------------------------------------------------------
+
+To release a closed-source product which uses JUCE, commercial licenses are
+available: visit www.juce.com for more information.
+
+==============================================================================
+*/
+
+
+//Using the generic editor so that we can use it for the plugins as well maybe? - Victoria
+class GenericEditor : public AudioProcessorEditor,
+	public Slider::Listener,
 	private Timer
 {
 public:
-	RotarySlider(AudioProcessorParameter& p)
-		: Slider(p.getName(256)), param(p)
+	enum
 	{
-		setRange(0.0, 1.0, 0.0);
-		startTimerHz(30);
-		updateSliderPos();
+		kParamControlHeight = 40,
+		kParamLabelWidth = 80,
+		kParamSliderWidth = 300
+	};
+
+	GenericEditor(AudioProcessor& parent)
+		: AudioProcessorEditor(parent),
+		noParameterLabel("noparam", "No parameters available")
+	{
+		const OwnedArray<AudioProcessorParameter>& params = parent.getParameters();
+
+		//Creates a slider for each parameter of the processor
+		for (int i = 0; i < params.size(); ++i)
+		{
+			if (const AudioParameterFloat* param = dynamic_cast<AudioParameterFloat*> (params[i]))
+			{
+				Slider* aSlider;
+
+				paramSliders.add(aSlider = new Slider(param->name));
+				aSlider->setRange(param->range.start, param->range.end);
+				aSlider->setSliderStyle(Slider::Rotary);	//setting the slider to be rotary
+				aSlider->setValue(*param);
+
+				aSlider->addListener(this);
+				addAndMakeVisible(aSlider);
+
+				Label* aLabel;
+				paramLabels.add(aLabel = new Label(param->name, param->name));
+				addAndMakeVisible(aLabel);
+			}
+		}
+
+		noParameterLabel.setJustificationType(Justification::horizontallyCentred | Justification::verticallyCentred);
+		noParameterLabel.setFont(noParameterLabel.getFont().withStyle(Font::italic));
+
+		setSize(kParamSliderWidth + kParamLabelWidth,
+			jmax(1, kParamControlHeight * paramSliders.size()));
+
+		if (paramSliders.size() == 0)
+			addAndMakeVisible(noParameterLabel);
+		else
+			startTimer(100);
 	}
 
-	void valueChanged() override { param.setValueNotifyingHost((float)Slider::getValue()); }
-
-	void timerCallback() override { updateSliderPos(); }
-
-	void startedDragging() override { param.beginChangeGesture(); }
-	void stoppedDragging() override { param.endChangeGesture(); }
-
-	double getValueFromText(const String& text) override { return param.getValueForText(text); }
-	String getTextFromValue(double value) override { return param.getText((float)value, 1024); }
-
-	void updateSliderPos()
-	{
-		const float newValue = param.getValue();
-
-		if (newValue != (float)Slider::getValue() && !isMouseButtonDown())
-			Slider::setValue(newValue, NotificationType::dontSendNotification);
-	}
-
-	AudioProcessorParameter& param;
-
-	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(RotarySlider)
-};*/
-
-//=================================================================================
-
-class SynthAudioProcessorEditor : public AudioProcessorEditor,
-	private Timer
-{
-public:	
-
-	SynthAudioProcessorEditor(SynthProcessor& owner) : AudioProcessorEditor(owner),
-		//midiKeyboard(owner.keyboardState, MidiKeyboardComponent::horizontalKeyboard),
-		timecodeDisplayLabel(String()),
-		gainLabel(String(), "Throughput level:")
-	{
-		// add some sliders..
-		//addAndMakeVisible(gainSlider = new RotarySlider (*owner.gainParam)); - Previous code
-		addAndMakeVisible(gainSlider);
-		gainSlider.setSliderStyle(Slider::Rotary);
-
-		// add some labels for the sliders..
-		gainLabel.attachToComponent(&gainSlider, false);
-		gainLabel.setFont(Font(11.0f));
-
-		// add a label that will display the current timecode and status..
-		addAndMakeVisible(timecodeDisplayLabel);
-		timecodeDisplayLabel.setFont(Font(Font::getDefaultMonospacedFontName(), 15.0f, Font::plain));
-
-		// set resize limits for this plug-in
-		setResizeLimits(400, 200, 1024, 700);
-
-		// set our component's initial size to be the last one that was stored in the filter's settings
-		//setSize(owner.lastUIWidth, owner.lastUIHeight);
-
-		//updateTrackProperties();
-
-		// start a timer which will keep our timecode display updated
-		//startTimerHz(30);
-	}
-
-	~SynthAudioProcessorEditor()
+	~GenericEditor()
 	{
 	}
 
-	//==============================================================================
-	void paint(Graphics& g) override {
-		g.setColour(backgroundColour);
+	void resized() override
+	{
+		juce::Rectangle<int> r = getLocalBounds();
+		noParameterLabel.setBounds(r);
+
+		for (int i = 0; i < paramSliders.size(); ++i)
+		{
+			juce::Rectangle<int> paramBounds = r.removeFromTop(kParamControlHeight);
+			juce::Rectangle<int> labelBounds = paramBounds.removeFromLeft(kParamLabelWidth);
+
+			paramLabels[i]->setBounds(labelBounds);
+			paramSliders[i]->setBounds(paramBounds);
+		}
+	}
+
+	void paint(Graphics& g) override
+	{
+		g.setColour(getLookAndFeel().findColour(ResizableWindow::backgroundColourId));
 		g.fillAll();
 	}
 
-	void resized() override {
-		juce::Rectangle<int> r(getLocalBounds().reduced(8));
-
-
-		r.removeFromTop(20);
-		juce::Rectangle<int> sliderArea(r.removeFromTop(60));
-		gainSlider.setBounds(sliderArea.removeFromLeft(jmin(180, sliderArea.getWidth() / 2)));
-	}
-
-	void hostMIDIControllerIsAvailable(bool) override {
-		//not sure what we need to do here - Victoria
-	}
-
-	void timerCallback()
+	//==============================================================================
+	void sliderValueChanged(Slider* slider) override
 	{
-		//not sure what we need to do here - Victoria
+		if (AudioParameterFloat* param = getParameterForSlider(slider))
+			*param = (float)slider->getValue();
+	}
+
+	void sliderDragStarted(Slider* slider) override
+	{
+		if (AudioParameterFloat* param = getParameterForSlider(slider))
+			param->beginChangeGesture();
+	}
+
+	void sliderDragEnded(Slider* slider) override
+	{
+		if (AudioParameterFloat* param = getParameterForSlider(slider))
+			param->endChangeGesture();
 	}
 
 private:
-	Slider gainSlider;
+	void timerCallback() override
+	{
+		const OwnedArray<AudioProcessorParameter>& params = getAudioProcessor()->getParameters();
 
-	Label timecodeDisplayLabel, gainLabel;
-	//ScopedPointer<RotarySlider> gainSlider; - Don't think we will need this anymore - Victoria 
-	Colour backgroundColour;
+		for (int i = 0; i < params.size(); ++i)
+		{
+			if (const AudioParameterFloat* param = dynamic_cast<AudioParameterFloat*> (params[i]))
+			{
+				if (i < paramSliders.size())
+					paramSliders[i]->setValue(*param);
+			}
+		}
+	}
 
+	AudioParameterFloat* getParameterForSlider(Slider* slider)
+	{
+		const OwnedArray<AudioProcessorParameter>& params = getAudioProcessor()->getParameters();
+		return dynamic_cast<AudioParameterFloat*> (params[paramSliders.indexOf(slider)]);
+	}
+
+	Label noParameterLabel;
+	OwnedArray<Slider> paramSliders;
+	OwnedArray<Label> paramLabels;
 };
-
-//===================================================================================

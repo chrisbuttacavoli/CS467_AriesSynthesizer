@@ -28,10 +28,17 @@ public:
 
 		for (int i = 0; i < 5; i++)
 		{
-			mySynth.addVoice(new OscillatorVoice(OscillatorType::sawWave));
+			mySynth1.addVoice(new OscillatorVoice(OscillatorType::noiseWave));
 		}
-		mySynth.clearSounds();
-		mySynth.addSound(new SynthSound());
+		mySynth1.clearSounds();
+		mySynth1.addSound(new SynthSound());
+
+		for (int i = 0; i < 5; i++)
+		{
+			mySynth2.addVoice(new OscillatorVoice(OscillatorType::squareWave));
+		}
+		mySynth2.clearSounds();
+		mySynth2.addSound(new SynthSound());
 	}
 
 	~SynthProcessor() {	}
@@ -44,7 +51,8 @@ public:
 
 		midiCollector.reset(sampleRate);
 
-		mySynth.setCurrentPlaybackSampleRate(sampleRate);
+		mySynth1.setCurrentPlaybackSampleRate(sampleRate);
+		mySynth2.setCurrentPlaybackSampleRate(sampleRate);
 	}
 	
 	void processBlock(AudioBuffer<float> &buffer, MidiBuffer &midiMessages) override {
@@ -63,7 +71,8 @@ public:
 		keyboardState.processNextMidiBuffer(incomingMidi, 0, buffer.getNumSamples(), true);
 
 		// and now get the synth to process the midi events and generate its output.
-		mySynth.renderNextBlock(buffer, incomingMidi, 0, buffer.getNumSamples());
+		mySynth1.renderNextBlock(buffer, incomingMidi, 0, buffer.getNumSamples());
+		mySynth2.renderNextBlock(buffer, incomingMidi, 0, buffer.getNumSamples());
 	}
 
 	void releaseResources() override {
@@ -71,7 +80,7 @@ public:
 	}
 
 	double getTailLengthSeconds() const override {
-
+		return 0;
 	}
 
 	bool acceptsMidi() const override {
@@ -87,9 +96,9 @@ public:
 	** Create Process Editor Class to generete new UI elements
 	**
 	*************/
-	AudioProcessorEditor* createEditor() override {
+	AudioProcessorEditor* createEditor() override{
 		//not sure what to put here
-		return new SynthAudioProcessorEditor(*this);
+		return new GenericEditor (*this);
 	}
 
 	bool hasEditor() const override {
@@ -131,7 +140,9 @@ public:
 	MidiKeyboardState& keyboardState;
 
 	//the actual synth object
-	Synthesiser mySynth;
+	//the actual synth object
+	Synthesiser mySynth1;
+	Synthesiser mySynth2;
 
 	// Our parameters
 	AudioParameterFloat* gainParam = nullptr;
