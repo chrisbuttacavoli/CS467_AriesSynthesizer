@@ -31,10 +31,7 @@ string ToString(T val)
 class OscillatorVoice : public SynthesiserVoice {
 
 public:
-
-	int applyDistortion;
-
-	OscillatorVoice(OscillatorType oscType) : level(0), keyPressed(0), applyDistortion(0)
+	OscillatorVoice(OscillatorType oscType) : level(0), keyPressed(0)
 	{
 		this->oscType = oscType;
 	}
@@ -99,13 +96,6 @@ public:
 			// Apply a basic envelope to get rid of clicks
 		 	double finalWave = env.adsr(wave, env.trigger);
 
-			//Applying distortion - Victoria
-			//Commenting out for now so as not to mess with the env code in the loop below
-			/*atan distortion, see http://www.musicdsp.org/showArchiveComment.php?ArchiveID=104*/
-			/*shape from 1 (soft clipping) to infinity (hard clipping)*/
-			if (applyDistortion)
-				finalWave = distortion.atanDist(finalWave, 10);
-		
 			for (int channel = 0; channel < outputBuffer.getNumChannels(); ++channel) {
 				// Keep this loop clean, apply effects to the finalWave
 				outputBuffer.addSample(channel, startSample, finalWave);

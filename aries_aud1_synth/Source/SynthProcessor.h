@@ -38,6 +38,8 @@ public:
 		}
 		mySynth1.addSound(new SynthSound());
 		mySynth2.addSound(new SynthSound());
+
+		this->initEnvelope();
 	}
 
 	~SynthProcessor() {	}
@@ -80,10 +82,30 @@ public:
 		/*shape from 1 (soft clipping) to infinity (hard clipping)*/
 		// Always apply effects, control using parameters through GUI
 		for (int sample = 0; sample < buffer.getNumSamples(); ++sample) {
+			
 			for (int channel = 0; channel < buffer.getNumChannels(); ++channel) {
+				//float sampleToAdd = buffer.getSample(channel, sample);
+				
+				// Apply distortion
+				//distortion.atanDist(sampleToAdd, 15);
+
+				// Envelope last
+				//env.adsr(sampleToAdd, 1);
 				buffer.addSample(channel, sample, distortion.atanDist(buffer.getSample(channel, sample), 15));
+				
+				// Apply all effects to the sample
+				//buffer.addSample(channel, sample, sampleToAdd);
 			}
 		}
+	}
+
+	void initEnvelope() {
+		env.setAttack(1);
+		env.setDecay(1);
+		env.setSustain(100);
+		env.setRelease(5000);
+		env.amplitude = 1;
+		env.trigger = 1;
 	}
 
 	void releaseResources() override {
@@ -157,6 +179,7 @@ public:
 
 	// Effects for now
 	maxiDistortion distortion;
+	maxiEnv env;
 
 	// Our parameters
 	AudioParameterFloat* gainParam = nullptr;
