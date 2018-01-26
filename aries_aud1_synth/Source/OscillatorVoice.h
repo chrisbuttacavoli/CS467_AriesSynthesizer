@@ -104,7 +104,7 @@ public:
 			//double distortedWave = distortion.atanDist(finalWave, 5);
 		
 			for (int channel = 0; channel < outputBuffer.getNumChannels(); ++channel) {
-				outputBuffer.addSample(channel, startSample, env.adsr(random.nextFloat() * 0.25f - 0.125f, env.trigger));
+				outputBuffer.addSample(channel, startSample, finalWave);
 				//outputBuffer.addSample(channel, startSample, distortedWave); //for distortion testing - Victoria
 
 			}
@@ -136,7 +136,7 @@ private:
 			return osc.square(frequency);
 			break;
 		case noiseWave:
-			return osc.noise();
+			return random.nextFloat() * 0.25f - 0.125f;
 			break;
 		default:
 			break;

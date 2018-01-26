@@ -25,19 +25,16 @@ public:
 
 		//initializing gain param
 		addParameter(gainParam = new AudioParameterFloat("gain", "Gain", 0.0f, 1.0f, 0.9f));
-
-		for (int i = 0; i < 5; i++)
-		{
-			mySynth1.addVoice(new OscillatorVoice(OscillatorType::noiseWave));
-		}
+		
 		mySynth1.clearSounds();
-		mySynth1.addSound(new SynthSound());
+		mySynth2.clearSounds();
 
 		for (int i = 0; i < 5; i++)
 		{
-			mySynth2.addVoice(new OscillatorVoice(OscillatorType::squareWave));
+			mySynth1.addVoice(new OscillatorVoice(OscillatorType::sineWave));
+			mySynth2.addVoice(new OscillatorVoice(OscillatorType::noiseWave));
 		}
-		mySynth2.clearSounds();
+		mySynth1.addSound(new SynthSound());
 		mySynth2.addSound(new SynthSound());
 	}
 
