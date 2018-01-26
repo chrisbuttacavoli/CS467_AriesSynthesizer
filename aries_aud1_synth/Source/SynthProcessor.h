@@ -14,6 +14,8 @@
 #include "SynthSound.h"
 #include "OscillatorVoice.h"
 #include "SynthAudioProcessEditor.h"
+#include "maximilian.h"
+
 
 //==============================================================================
 /*
@@ -32,7 +34,7 @@ public:
 		for (int i = 0; i < 5; i++)
 		{
 			mySynth1.addVoice(new OscillatorVoice(OscillatorType::sineWave));
-			mySynth2.addVoice(new OscillatorVoice(OscillatorType::noiseWave));
+			mySynth2.addVoice(new OscillatorVoice(OscillatorType::squareWave));
 		}
 		mySynth1.addSound(new SynthSound());
 		mySynth2.addSound(new SynthSound());
@@ -69,7 +71,19 @@ public:
 
 		// and now get the synth to process the midi events and generate its output.
 		mySynth1.renderNextBlock(buffer, incomingMidi, 0, buffer.getNumSamples());
-		mySynth2.renderNextBlock(buffer, incomingMidi, 0, buffer.getNumSamples());
+		//mySynth2.renderNextBlock(buffer, incomingMidi, 0, buffer.getNumSamples());
+
+
+		//Applying distortion - Victoria
+		//Commenting out for now so as not to mess with the env code in the loop below
+		/*atan distortion, see http://www.musicdsp.org/showArchiveComment.php?ArchiveID=104*/
+		/*shape from 1 (soft clipping) to infinity (hard clipping)*/
+		// Always apply effects, control using parameters through GUI
+		for (int sample = 0; sample < buffer.getNumSamples(); ++sample) {
+			for (int channel = 0; channel < buffer.getNumChannels(); ++channel) {
+				buffer.addSample(channel, sample, distortion.atanDist(buffer.getSample(channel, sample), 15));
+			}
+		}
 	}
 
 	void releaseResources() override {
@@ -140,6 +154,9 @@ public:
 	//the actual synth object
 	Synthesiser mySynth1;
 	Synthesiser mySynth2;
+
+	// Effects for now
+	maxiDistortion distortion;
 
 	// Our parameters
 	AudioParameterFloat* gainParam = nullptr;

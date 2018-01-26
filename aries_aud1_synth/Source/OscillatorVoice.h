@@ -32,7 +32,9 @@ class OscillatorVoice : public SynthesiserVoice {
 
 public:
 
-	OscillatorVoice(OscillatorType oscType) : level(0), keyPressed(0)
+	int applyDistortion;
+
+	OscillatorVoice(OscillatorType oscType) : level(0), keyPressed(0), applyDistortion(0)
 	{
 		this->oscType = oscType;
 	}
@@ -101,12 +103,13 @@ public:
 			//Commenting out for now so as not to mess with the env code in the loop below
 			/*atan distortion, see http://www.musicdsp.org/showArchiveComment.php?ArchiveID=104*/
 			/*shape from 1 (soft clipping) to infinity (hard clipping)*/
-			//double distortedWave = distortion.atanDist(finalWave, 5);
+			if (applyDistortion)
+				finalWave = distortion.atanDist(finalWave, 10);
 		
 			for (int channel = 0; channel < outputBuffer.getNumChannels(); ++channel) {
+				// Keep this loop clean, apply effects to the finalWave
 				outputBuffer.addSample(channel, startSample, finalWave);
-				//outputBuffer.addSample(channel, startSample, distortedWave); //for distortion testing - Victoria
-
+				
 			}
 
 			++startSample;
