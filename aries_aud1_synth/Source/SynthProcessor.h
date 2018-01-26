@@ -93,7 +93,7 @@ public:
 
 				// Envelope last
 				//env.adsr(sampleToAdd, 1);
-				buffer.addSample(channel, sample, distortion.atanDist(buffer.getSample(channel, sample), 15));
+				buffer.addSample(channel, sample, (distortion.atanDist(buffer.getSample(channel, sample), 15) * gainParam->get()));
 				
 				// Apply all effects to the sample
 				//buffer.addSample(channel, sample, sampleToAdd);
