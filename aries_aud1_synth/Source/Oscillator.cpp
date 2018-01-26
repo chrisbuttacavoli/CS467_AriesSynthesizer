@@ -46,15 +46,15 @@ void Oscillator::paint (Graphics& g)
        drawing code..
     */
 
-    //g.fillAll (getLookAndFeel().findColour (ResizableWindow::backgroundColourId));   // clear the background
+    g.fillAll (getLookAndFeel().findColour (ResizableWindow::backgroundColourId));   // clear the background
 
-    //g.setColour (Colours::grey);
-    //g.drawRect (getLocalBounds(), 1);   // draw an outline around the component
+    g.setColour (Colours::grey);
+    g.drawRect (getLocalBounds(), 1);   // draw an outline around the component
 
-    //g.setColour (Colours::white);
-    //g.setFont (14.0f);
-    //g.drawText ("Oscillator", getLocalBounds(),
-    //            Justification::centred, true);   // draw some placeholder text
+    g.setColour (Colours::white);
+    g.setFont (9.0f);
+    g.drawText ("Oscillator", getLocalBounds(),
+                Justification::centred, true);   // draw some placeholder text
 }
 
 void Oscillator::resized()

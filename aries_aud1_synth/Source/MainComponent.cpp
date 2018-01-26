@@ -13,6 +13,7 @@
 #include "SynthSound.h"
 //#include "SynthAudioSource.h"
 #include "SynthProcessor.h"
+#include "SynthAudioProcessEditor.h"
 
 
 //==============================================================================
@@ -39,6 +40,11 @@ public:
 		setOpaque(true);
 
 		mySynth.clearVoices();
+
+		theEditor = static_cast <GenericEditor*>(theSynthProcessor.createEditor());
+		//addChildComponent(theEditor);
+		addAndMakeVisible(theEditor);
+		theEditor->setSize(800, 400);
 
 		//Debug prints display box
 		addAndMakeVisible(midiInputListLabel);
@@ -77,7 +83,7 @@ public:
 		keyboardState.addListener(this);
 
 		//actually displaying the midi messages
-		addAndMakeVisible(midiMessagesBox);
+		/*addAndMakeVisible(midiMessagesBox);
 		midiMessagesBox.setMultiLine(true);
 		midiMessagesBox.setReturnKeyStartsNewLine(true);
 		midiMessagesBox.setReadOnly(true);
@@ -86,19 +92,17 @@ public:
 		midiMessagesBox.setPopupMenuEnabled(true);
 		midiMessagesBox.setColour(TextEditor::backgroundColourId, Colour(0x32ffffff));
 		midiMessagesBox.setColour(TextEditor::outlineColourId, Colour(0x1c000000));
-		midiMessagesBox.setColour(TextEditor::shadowColourId, Colour(0x16000000));
+		midiMessagesBox.setColour(TextEditor::shadowColourId, Colour(0x16000000));*/
 
 		//setting up an audio player to actually output audio
 		audioSourcePlayer.setProcessor(&theSynthProcessor); //for synthProcessor class
-		//audioSourcePlayer.setSource(&synthAudioSource);
 
 		//device manager to deal with midi/devices
 		deviceManager.addAudioCallback(&audioSourcePlayer);
-		//deviceManager.addMidiInputCallback(String(), (&synthAudioSource.midiCollector));
 		deviceManager.addMidiInputCallback(String(), (&theSynthProcessor.midiCollector));
 
 		//setting the size of the windows
-		setSize(600, 400);
+		setSize(800, 400);
     }
 
 	//destructor
@@ -143,7 +147,7 @@ public:
     {
         // (Our component is opaque, so we must completely fill the background with a solid colour)
         g.fillAll (getLookAndFeel().findColour (ResizableWindow::backgroundColourId));
-
+		//theEditor->paint(g);
         // You can add your drawing code here!
 		
     }
@@ -158,9 +162,11 @@ public:
 		/*midiInputList.setBounds(area.removeFromTop(36).removeFromRight(getWidth() - 150).reduced(8));
 		keyboardComponent.setBounds(area.removeFromBottom(80).reduced(8));
 		midiMessagesBox.setBounds(area.reduced(8));*/
-		osc1.setBounds(0, 0, getWidth(), 100);
-		midiInputList.setBounds(0, 100, getWidth(), 100);
-		keyboardComponent.setBounds(0, 200, getWidth(), 200);
+		//osc1.setBounds(0, 40, (area.getWidth()/4), 100);
+		//theEditor->setBounds(0, 40, (area.getWidth() / 4), 100);
+		midiInputList.setBounds(area.removeFromTop(36).removeFromRight(getWidth() - 100).reduced(8));
+		keyboardComponent.setBounds(0, 250, getWidth(), 150);
+		theEditor->setBounds(area.removeFromTop(50).removeFromRight(getWidth() - 100).reduced(8));
 	}
 
 private:
@@ -322,6 +328,7 @@ private:
 	//SynthAudioSource synthAudioSource;
 	AudioProcessorPlayer audioSourcePlayer;	//need to play audio through a processor player now
 	SynthProcessor theSynthProcessor;		//new synth processor to replay synthAudioSource
+	GenericEditor *theEditor;
 
 	Synthesiser mySynth;
 	double lastSampleRate;

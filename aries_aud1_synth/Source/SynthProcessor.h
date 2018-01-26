@@ -137,7 +137,7 @@ public:
 	}
 
 	bool hasEditor() const override {
-		return false;
+		return true;
 	}
 
 	int getNumPrograms() override {
