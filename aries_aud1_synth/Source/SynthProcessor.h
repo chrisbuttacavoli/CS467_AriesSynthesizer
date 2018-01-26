@@ -74,6 +74,8 @@ public:
 		// and now get the synth to process the midi events and generate its output.
 		mySynth1.renderNextBlock(buffer, incomingMidi, 0, buffer.getNumSamples());
 		//mySynth2.renderNextBlock(buffer, incomingMidi, 0, buffer.getNumSamples());
+		//mySynth3.renderNextBlock(buffer, incomingMidi, 0, buffer.getNumSamples());
+		//mySynth4.renderNextBlock(buffer, incomingMidi, 0, buffer.getNumSamples());
 
 
 		//Applying distortion - Victoria
