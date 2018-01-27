@@ -7,13 +7,12 @@
 */
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "Enums.h"
 #include "Oscillator.h"
 #include "OscillatorVoice.h"
 #include "SynthSound.h"
 #include "SynthProcessor.h"
 #include "GenericEditor.h"
-
+#include "OscillatorCombo.h"
 
 //==============================================================================
 /*
@@ -348,10 +347,10 @@ private:
 	// Controls
 	/*ComboBox cbOsc1;
 	Label lblOsc1;*/
-	Oscillator osc1;
-	Oscillator osc2;
-	Oscillator osc3;
-	Oscillator osc4;
+	OscillatorCombo osc1;
+	OscillatorCombo sc2;
+	OscillatorCombo osc3;
+	OscillatorCombo osc4;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
 };
 

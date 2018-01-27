@@ -10,7 +10,6 @@ Author:  Chris.Buttacavoli
 
 #pragma once
 
-#include "Enums.h"
 #include "maximilian.h"
 
 enum OscillatorType

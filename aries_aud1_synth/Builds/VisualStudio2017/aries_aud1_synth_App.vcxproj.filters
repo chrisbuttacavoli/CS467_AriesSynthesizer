@@ -379,6 +379,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\OscillatorCombo.cpp">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\MainComponent.cpp">
       <Filter>aries_aud1_synth\Source</Filter>
     </ClCompile>
@@ -2184,6 +2187,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\OscillatorCombo.h">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\GenericEditor.h">
       <Filter>aries_aud1_synth\Source</Filter>
     </ClInclude>
