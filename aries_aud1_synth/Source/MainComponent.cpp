@@ -13,7 +13,7 @@
 #include "SynthSound.h"
 //#include "SynthAudioSource.h"
 #include "SynthProcessor.h"
-#include "SynthAudioProcessEditor.h"
+#include "GenericEditor.h"
 
 
 //==============================================================================
