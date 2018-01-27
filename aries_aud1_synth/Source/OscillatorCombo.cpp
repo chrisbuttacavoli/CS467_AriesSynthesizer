@@ -59,6 +59,6 @@ void OscillatorCombo::paint(Graphics& g)
 
 void OscillatorCombo::resized()
 {
-	Rectangle<int> area = getLocalBounds().reduced(40);
+	juce::Rectangle<int> area = getLocalBounds().reduced(40);
 	cbOsc.setBounds(area.removeFromTop(20));
 }
