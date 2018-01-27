@@ -165,8 +165,9 @@ public:
 		//osc1.setBounds(0, 40, (area.getWidth()/4), 100);
 		//theEditor->setBounds(0, 40, (area.getWidth() / 4), 100);
 		midiInputList.setBounds(area.removeFromTop(36).removeFromRight(getWidth() - 100).reduced(8));
+		//theEditor->setBounds(area.removeFromTop(50).removeFromRight(getWidth() - 100).reduced(8)); // This didn't give enough height to the component
+		theEditor->setBounds(0, 50, getWidth(), 250); // hardcoded positions
 		keyboardComponent.setBounds(0, 250, getWidth(), 150);
-		theEditor->setBounds(area.removeFromTop(50).removeFromRight(getWidth() - 100).reduced(8));
 	}
 
 private:

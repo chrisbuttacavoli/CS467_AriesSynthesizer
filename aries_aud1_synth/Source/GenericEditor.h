@@ -112,7 +112,8 @@ public:
 
 	void paint(Graphics& g) override
 	{
-		g.setColour(getLookAndFeel().findColour(ResizableWindow::backgroundColourId));
+		//g.setColour(getLookAndFeel().findColour(ResizableWindow::backgroundColourId));
+		g.setColour(Colour::fromRGB(255, 0, 0));
 		g.fillAll();
 	}
 
