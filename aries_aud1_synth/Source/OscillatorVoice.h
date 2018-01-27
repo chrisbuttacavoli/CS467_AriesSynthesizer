@@ -16,18 +16,8 @@
 #include "SynthSound.h"
 
 
-// This is used for debugging: DBG(ToString(someInt))
+// This is used for debugging: DBG(FloatToStr(someFloatValue))
 #include <sstream>
-template <typename T>
-string ToString(T val)
-{
-	stringstream stream;
-	stream << val;
-	return stream.str();
-};
-///////////////
-
-
 string FloatToStr(float val) {
 	std::ostringstream ss;
 	ss << val;
@@ -45,12 +35,14 @@ string DoubleToStr(double val) {
 class OscillatorVoice : public SynthesiserVoice {
 
 public:
-	OscillatorVoice(OscillatorType oscType) : keyPressed(0)
+	OscillatorVoice() : keyPressed(0)
 	{
-		this->oscType = oscType;
+		// Initialize parameter values
 		distortionMin = 0.1f;
 		distortionAmount = 0.1f;
-		level = 1;
+		sineLevel = 1.0f;
+		squareLevel = 0.0f;
+		sawLevel = 0.0f;
 	}
 
 	//must return true if this voice object is capable of playing the given sound
@@ -60,11 +52,8 @@ public:
 	}
 	//called to start a new note
 	void startNote(int midiNoteNumber, float velocity, SynthesiserSound *, int /*currentPitchWheelPosition*/) override {
-		//level = velocity;
 		frequency = MidiMessage::getMidiNoteInHertz(midiNoteNumber);
-
 		this->initEnvelope();
-
 		keyPressed = 1;
 	}
 
@@ -108,14 +97,25 @@ public:
 			if ((**ptr).getName(32) == "Distortion")
 				distortionAmount = (**ptr).getValue() + distortionMin;
 
+			// Oscillator parameters
+			else if ((**ptr).getName(32) == "Sine Level")
+				this->sineLevel = (**ptr).getValue();
+
+			else if ((**ptr).getName(32) == "Square Level")
+				this->squareLevel = (**ptr).getValue();
+
+			else if ((*ptr)->getName(32) == "Saw Level")
+				this->sawLevel = (**ptr).getValue();
+
+			else if ((*ptr)->getName(32) == "Noise Level")
+				this->noiseLevel = (**ptr).getValue();
+
+			// Envelope parameters
 			else if ((**ptr).getName(32) == "Release") {
 				// Value in GUI is displayed in seconds, but release needs ms, so 10*1000
-				// Min value (behind the scecnes) is 50 ms
+				// Min value (behind the scecnes) is 50 ms to reduce clicks
 				env.setRelease((**ptr).getValue() * 10000 + 50);
 			}
-
-			else if ((**ptr).getName(32) == "Level")
-				this->level = (**ptr).getValue();
 		}
 	}
 
@@ -125,17 +125,16 @@ public:
 		if (!keyPressed) return;
 		
 		for (int sample = 0; sample < numSamples; ++sample) {
-			
-			// Get our basic wave shape based on the oscillator type
-			double wave = getWave() * level;
+			// Add all our oscillators together
+			double wave = (sineOsc.sinewave(frequency) * sineLevel) + (squareOsc.square(frequency) * squareLevel)
+				+ (sawOsc.saw(frequency) * sawLevel) + ((random.nextFloat() * 0.25f - 0.125f) * noiseLevel);
 
-			// Apply a basic envelope to get rid of clicks
+			// Apply post process effects
 			wave = applyEffects(outputBuffer, wave);
 
+			// Output the final wave product
 			for (int channel = 0; channel < outputBuffer.getNumChannels(); ++channel) {
-				// Keep this loop clean, apply effects to the finalWave
 				outputBuffer.addSample(channel, startSample, wave);
-				
 			}
 			++startSample;
 		}
@@ -154,35 +153,20 @@ public:
 private:
 	double frequency;
 	int keyPressed;
-	OscillatorType oscType;
-	maxiOsc osc;
+
+	// We need multiple maxiOsc's otherwise it is computationally inefficient and distorts
+	maxiOsc sineOsc;
+	maxiOsc squareOsc;
+	maxiOsc sawOsc;
 	maxiEnv env;
 	maxiDistortion distortion;
-	Random random;
+	Random random; // For the noise oscillator
 
 	// Temporary private variables to hold param values for PoC
-	double level;
+	double sineLevel;
+	double squareLevel;
+	double sawLevel;
+	double noiseLevel;
 	double distortionAmount;
 	double distortionMin;
-
-	// This function outputs a wave form based on how the object was constructed
-	double getWave() {
-		switch (oscType)
-		{
-		case sineWave:
-			return osc.sinewave(frequency);
-			break;
-		case sawWave:
-			return osc.saw(frequency);
-			break;
-		case squareWave:
-			return osc.square(frequency);
-			break;
-		case noiseWave:
-			return random.nextFloat() * 0.25f - 0.125f;
-			break;
-		default:
-			break;
-		}
-	}
 };

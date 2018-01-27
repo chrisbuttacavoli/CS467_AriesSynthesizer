@@ -32,18 +32,20 @@ public:
 		// need to fix the GUI so that more than one shows
 		addParameter(envReleaseParam = new AudioParameterFloat("release",
 			"Release", 0.0f, 10.0f, 2.0f));
-		addParameter(levelParam = new AudioParameterFloat("level",
-			"Level", 0.0f, 1.0f, 1.0f));
+		addParameter(levelParam = new AudioParameterFloat("sineLevel",
+			"Sine Level", 0.0f, 1.0f, 1.0f));
+		addParameter(levelParam = new AudioParameterFloat("squareLevel",
+			"Square Level", 0.0f, 1.0f, 0.2f));
+		addParameter(levelParam = new AudioParameterFloat("sawLevel",
+			"Saw Level", 0.0f, 1.0f, 0.0f));
+		addParameter(levelParam = new AudioParameterFloat("noiseLevel",
+			"Noise Level", 0.0f, 1.0f, 0.0f));
 		addParameter(distAmountParam = new AudioParameterFloat("distAmount",
 			"Distortion", 0.0f, 15.0f, 0.0f));
 
-		mySynth1.clearSounds();
-		mySynth1.addVoice(new OscillatorVoice(OscillatorType::sineWave));
-		mySynth1.addSound(new SynthSound());
-
-		/*mySynth2.clearSounds();
-		mySynth2.addVoice(new OscillatorVoice(OscillatorType::squareWave));
-		mySynth2.addSound(new SynthSound());*/
+		mySynth.clearSounds();
+		mySynth.addVoice(new OscillatorVoice());
+		mySynth.addSound(new SynthSound());
 	}
 
 	~SynthProcessor() {	}
@@ -54,22 +56,18 @@ public:
 	}
 
 	void prepareToPlay(double sampleRate, int MaxSamplesPerBlock) override{
-
 		midiCollector.reset(sampleRate);
-
-		mySynth1.setCurrentPlaybackSampleRate(sampleRate);
-		//mySynth2.setCurrentPlaybackSampleRate(sampleRate);
+		mySynth.setCurrentPlaybackSampleRate(sampleRate);
 	}
 	
 	void processBlock(AudioBuffer<float> &buffer, MidiBuffer &midiMessages) override {
-		// Hooking up our OscillatorVoice to our parameters. 
-		if (myVoice = dynamic_cast<OscillatorVoice*>(mySynth1.getVoice(0))) {
-			const OwnedArray<AudioProcessorParameter>& params = getParameters();
+		// Hooking up our OscillatorVoice to our parameters.
+		const OwnedArray<AudioProcessorParameter>& params = getParameters();
+		if (myVoice = dynamic_cast<OscillatorVoice*>(mySynth.getVoice(0))) {
 			myVoice->getParamsFromProcessor(params);
 		}
 		
-		// the synth always adds its output to the audio buffer, so we have to clear it
-		// first..
+		// the synth always adds its output to the audio buffer, so we have to clear it first..
 		buffer.clear();
 
 		// fill a midi buffer with incoming messages from the midi input.
@@ -83,8 +81,7 @@ public:
 		keyboardState.processNextMidiBuffer(incomingMidi, 0, buffer.getNumSamples(), true);
 
 		// and now get the synth to process the midi events and generate its output.
-		mySynth1.renderNextBlock(buffer, incomingMidi, 0, buffer.getNumSamples());
-		//mySynth2.renderNextBlock(buffer, incomingMidi, 0, buffer.getNumSamples());
+		mySynth.renderNextBlock(buffer, incomingMidi, 0, buffer.getNumSamples());
 	}
 
 	void releaseResources() override {
@@ -153,8 +150,7 @@ public:
 	MidiKeyboardState& keyboardState;
 
 	//the actual synth object
-	Synthesiser mySynth1;
-	//Synthesiser mySynth2;
+	Synthesiser mySynth;
 	OscillatorVoice* myVoice;
 
 	// Our parameters
@@ -163,6 +159,5 @@ public:
 	AudioParameterFloat* distAmountParam = nullptr;
 	AudioParameterFloat* levelParam = nullptr;
 
-	
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthProcessor)
 };
