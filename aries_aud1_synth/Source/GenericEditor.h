@@ -157,4 +157,5 @@ private:
 	Label noParameterLabel;
 	OwnedArray<Slider> paramSliders;
 	OwnedArray<Label> paramLabels;
+
 };

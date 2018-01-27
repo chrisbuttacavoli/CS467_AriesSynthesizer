@@ -147,7 +147,6 @@
     <Lib/>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\SynthProcessor.cpp"/>
     <ClCompile Include="..\..\Source\Oscillator.cpp"/>
     <ClCompile Include="..\..\Source\MainComponent.cpp"/>
     <ClCompile Include="..\..\Source\Main.cpp"/>
@@ -1783,14 +1782,13 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_video.cpp"/>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\SynthAudioProcessEditor.h"/>
+    <ClInclude Include="..\..\Source\GenericEditor.h"/>
     <ClInclude Include="..\..\Source\SynthProcessor.h"/>
     <ClInclude Include="..\..\Source\Oscillator.h"/>
     <ClInclude Include="..\..\Source\Enums.h"/>
     <ClInclude Include="..\..\Source\OscillatorVoice.h"/>
     <ClInclude Include="..\..\Source\SynthAudioSource.h"/>
     <ClInclude Include="..\..\Source\SynthSound.h"/>
-    <ClInclude Include="..\..\Source\SynthVoice.h"/>
     <ClInclude Include="..\..\..\maximillion\libs\fft.h"/>
     <ClInclude Include="..\..\..\maximillion\libs\maxiAtoms.h"/>
     <ClInclude Include="..\..\..\maximillion\libs\maxiBark.h"/>
