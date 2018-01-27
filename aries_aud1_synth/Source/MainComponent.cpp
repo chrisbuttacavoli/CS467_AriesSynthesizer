@@ -11,7 +11,6 @@
 #include "Oscillator.h"
 #include "OscillatorVoice.h"
 #include "SynthSound.h"
-//#include "SynthAudioSource.h"
 #include "SynthProcessor.h"
 #include "GenericEditor.h"
 
@@ -102,7 +101,8 @@ public:
 		deviceManager.addMidiInputCallback(String(), (&theSynthProcessor.midiCollector));
 
 		//setting the size of the windows
-		setSize(800, 400);
+		setSize(900, 600);
+
     }
 
 	//destructor
@@ -149,7 +149,12 @@ public:
         g.fillAll (getLookAndFeel().findColour (ResizableWindow::backgroundColourId));
 		//theEditor->paint(g);
         // You can add your drawing code here!
-		
+			Font theFont("Helvetica", "Bold", 50.0f);
+			g.setFont(theFont);
+			g.drawText("Aries Synthesizer", 25, 25, 400, 60, Justification::topRight);
+			Font theFont2("Helvetica", "Bold", 20.0f);
+			g.setFont(theFont2);
+			g.drawText("Chris B, Victoria D, Alex C", 50, 30, 400, 60, Justification::bottomLeft);
     }
 
 	//placing objects inside the main window
@@ -162,12 +167,15 @@ public:
 		/*midiInputList.setBounds(area.removeFromTop(36).removeFromRight(getWidth() - 150).reduced(8));
 		keyboardComponent.setBounds(area.removeFromBottom(80).reduced(8));
 		midiMessagesBox.setBounds(area.reduced(8));*/
-		//osc1.setBounds(0, 40, (area.getWidth()/4), 100);
+		osc1.setBounds(50, 120, (area.getWidth()/4.8), 125);
+		osc2.setBounds(250, 120, (area.getWidth() / 4.8), 125);
+		osc3.setBounds(450, 120, (area.getWidth() / 4.8), 125);
+		osc4.setBounds(650, 120, (area.getWidth() / 4.8), 125);
 		//theEditor->setBounds(0, 40, (area.getWidth() / 4), 100);
 		midiInputList.setBounds(area.removeFromTop(36).removeFromRight(getWidth() - 100).reduced(8));
 		//theEditor->setBounds(area.removeFromTop(50).removeFromRight(getWidth() - 100).reduced(8)); // This didn't give enough height to the component
-		theEditor->setBounds(0, 50, getWidth(), 250); // hardcoded positions
-		keyboardComponent.setBounds(0, 250, getWidth(), 150);
+		theEditor->setBounds(0, 250, getWidth(), 250); // hardcoded positions
+		keyboardComponent.setBounds(0, 450, getWidth(), 150);
 	}
 
 private:
@@ -310,6 +318,9 @@ private:
 		cbOsc1.addListener(this);
 		cbOsc1.setSelectedId(sine);*/
 		addAndMakeVisible(osc1);
+		addAndMakeVisible(osc2);
+		addAndMakeVisible(osc3);
+		addAndMakeVisible(osc4);
 	}
 
 	//==============================================================================
@@ -338,7 +349,9 @@ private:
 	/*ComboBox cbOsc1;
 	Label lblOsc1;*/
 	Oscillator osc1;
-
+	Oscillator osc2;
+	Oscillator osc3;
+	Oscillator osc4;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
 };
 
