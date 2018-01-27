@@ -1,31 +1,33 @@
 /*
-  ==============================================================================
+==============================================================================
 
-    This file was auto-generated!
+This file was auto-generated!
 
-  ==============================================================================
+==============================================================================
 */
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "Enums.h"
+#include "Oscillator.h"
 #include "OscillatorVoice.h"
-//#include "SynthAudioSource.h"
+#include "SynthSound.h"
 #include "SynthProcessor.h"
 #include "GenericEditor.h"
 
 
 //==============================================================================
 /*
-    This component lives inside our window, and this is where you should put all
-    your controls and content.
+This component lives inside our window, and this is where you should put all
+your controls and content.
 */
-class MainContentComponent   : public AudioAppComponent,
+class MainContentComponent : public AudioAppComponent,
 	private ComboBox::Listener,
 	private MidiInputCallback,
 	private MidiKeyboardStateListener
 {
 public:
-    //==============================================================================
-    MainContentComponent()
+	//==============================================================================
+	MainContentComponent()
 		: deviceManager(AudioAppComponent::deviceManager),
 		lastInputIndex(0),
 		isAddingFromMidiInput(false),
@@ -33,7 +35,7 @@ public:
 		theSynthProcessor(keyboardState),
 		//synthAudioSource (keyboardState),
 		startTime(Time::getMillisecondCounterHiRes() * 0.001)
-    {
+	{
 		setOpaque(true);
 
 		mySynth.clearVoices();
@@ -71,8 +73,8 @@ public:
 		if (midiInputList.getSelectedId() == 0)
 			setMidiInput(0);
 
-        // specify the number of input and output channels that we want to open
-        setAudioChannels (0, 2);
+		// specify the number of input and output channels that we want to open
+		setAudioChannels(0, 2);
 
 
 		//making keyboard visible
@@ -94,77 +96,86 @@ public:
 		//setting up an audio player to actually output audio
 		audioSourcePlayer.setProcessor(&theSynthProcessor); //for synthProcessor class
 
-		//device manager to deal with midi/devices
+															//device manager to deal with midi/devices
 		deviceManager.addAudioCallback(&audioSourcePlayer);
 		deviceManager.addMidiInputCallback(String(), (&theSynthProcessor.midiCollector));
 
 		//setting the size of the windows
-		setSize(800, 400);
-    }
+		setSize(900, 600);
+
+	}
 
 	//destructor
-    ~MainContentComponent()
-    {
-        shutdownAudio();
+	~MainContentComponent()
+	{
+		shutdownAudio();
 		keyboardState.removeListener(this);
 		deviceManager.removeMidiInputCallback(MidiInput::getDevices()[midiInputList.getSelectedItemIndex()], this);
 		midiInputList.removeListener(this);
 		//cbOsc1.removeListener(this);
-    }
+	}
 
-    //==============================================================================
-    void prepareToPlay (int samplesPerBlockExpected, double sampleRate) override
-    {
-        // This function will be called when the audio device is started, or when
-        // its settings (i.e. sample rate, block size, etc) are changed.
+	//==============================================================================
+	void prepareToPlay(int samplesPerBlockExpected, double sampleRate) override
+	{
+		// This function will be called when the audio device is started, or when
+		// its settings (i.e. sample rate, block size, etc) are changed.
 
-        // You can use this function to initialise any resources you might need,
-        // but be careful - it will be called on the audio thread, not the GUI thread.
+		// You can use this function to initialise any resources you might need,
+		// but be careful - it will be called on the audio thread, not the GUI thread.
 
-        // For more details, see the help for AudioProcessor::prepareToPlay()
+		// For more details, see the help for AudioProcessor::prepareToPlay()
 
 		//ignore unused samples to remove garbage from last key press
 		ignoreUnused(samplesPerBlockExpected);
 		lastSampleRate = sampleRate;
 		mySynth.setCurrentPlaybackSampleRate(lastSampleRate);
-    }
+	}
 
-    void getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill) override
-    {
-        //Currently using SynthAudioSource.h to play audio
-    }
+	void getNextAudioBlock(const AudioSourceChannelInfo& bufferToFill) override
+	{
+		//Currently using SynthAudioSource.h to play audio
+	}
 
-    void releaseResources() override
-    {
-        //releasing resources in SynthAudioSource.h
-    }
+	void releaseResources() override
+	{
+		//releasing resources in SynthAudioSource.h
+	}
 
-    //==============================================================================
-    void paint (Graphics& g) override
-    {
-        // (Our component is opaque, so we must completely fill the background with a solid colour)
-        g.fillAll (getLookAndFeel().findColour (ResizableWindow::backgroundColourId));
+	//==============================================================================
+	void paint(Graphics& g) override
+	{
+		// (Our component is opaque, so we must completely fill the background with a solid colour)
+		g.fillAll(getLookAndFeel().findColour(ResizableWindow::backgroundColourId));
 		//theEditor->paint(g);
-        // You can add your drawing code here!
-		
-    }
+		// You can add your drawing code here!
+		Font theFont("Helvetica", "Bold", 50.0f);
+		g.setFont(theFont);
+		g.drawText("Aries Synthesizer", 25, 25, 400, 60, Justification::topRight);
+		Font theFont2("Helvetica", "Bold", 20.0f);
+		g.setFont(theFont2);
+		g.drawText("Chris B, Victoria D, Alex C", 50, 30, 400, 60, Justification::bottomLeft);
+	}
 
 	//placing objects inside the main window
-    void resized() override
-    {
-        // This is called when the MainContentComponent is resized.
-        // If you add any child components, this is where you should
-        // update their positions.
+	void resized() override
+	{
+		// This is called when the MainContentComponent is resized.
+		// If you add any child components, this is where you should
+		// update their positions.
 		juce::Rectangle<int> area(getLocalBounds());
 		/*midiInputList.setBounds(area.removeFromTop(36).removeFromRight(getWidth() - 150).reduced(8));
 		keyboardComponent.setBounds(area.removeFromBottom(80).reduced(8));
 		midiMessagesBox.setBounds(area.reduced(8));*/
-		//osc1.setBounds(0, 40, (area.getWidth()/4), 100);
+		osc1.setBounds(50, 120, (area.getWidth() / 4.8), 125);
+		osc2.setBounds(250, 120, (area.getWidth() / 4.8), 125);
+		osc3.setBounds(450, 120, (area.getWidth() / 4.8), 125);
+		osc4.setBounds(650, 120, (area.getWidth() / 4.8), 125);
 		//theEditor->setBounds(0, 40, (area.getWidth() / 4), 100);
 		midiInputList.setBounds(area.removeFromTop(36).removeFromRight(getWidth() - 100).reduced(8));
 		//theEditor->setBounds(area.removeFromTop(50).removeFromRight(getWidth() - 100).reduced(8)); // This didn't give enough height to the component
-		theEditor->setBounds(0, 50, getWidth(), 250); // hardcoded positions
-		keyboardComponent.setBounds(0, 250, getWidth(), 150);
+		theEditor->setBounds(0, 250, getWidth(), 250); // hardcoded positions
+		keyboardComponent.setBounds(0, 450, getWidth(), 150);
 	}
 
 private:
@@ -218,7 +229,7 @@ private:
 			setMidiInput(midiInputList.getSelectedItemIndex());
 
 		/*if (box == &cbOsc1)
-			DBG(cbOsc1.getSelectedIdAsValue().toString());*/
+		DBG(cbOsc1.getSelectedIdAsValue().toString());*/
 	}
 
 	// These methods handle callbacks from the midi device + on-screen keyboard..
@@ -306,12 +317,15 @@ private:
 		cbOsc1.addItem("Saw", saw);
 		cbOsc1.addListener(this);
 		cbOsc1.setSelectedId(sine);*/
-		//addAndMakeVisible(osc1);
+		addAndMakeVisible(osc1);
+		addAndMakeVisible(osc2);
+		addAndMakeVisible(osc3);
+		addAndMakeVisible(osc4);
 	}
 
 	//==============================================================================
 
-    // Your private member variables go here...
+	// Your private member variables go here...
 	AudioDeviceManager& deviceManager;           // [1]
 	ComboBox midiInputList;                     // [2]
 	Label midiInputListLabel;
@@ -334,10 +348,13 @@ private:
 	// Controls
 	/*ComboBox cbOsc1;
 	Label lblOsc1;*/
-
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
+	Oscillator osc1;
+	Oscillator osc2;
+	Oscillator osc3;
+	Oscillator osc4;
+	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MainContentComponent)
 };
 
 
 // (This function is called by the app startup code to create our main component)
-Component* createMainContentComponent()     { return new MainContentComponent(); }
+Component* createMainContentComponent() { return new MainContentComponent(); }
