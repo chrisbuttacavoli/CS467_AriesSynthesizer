@@ -31,7 +31,7 @@ public:
 		// You can swap these lines to get one of these parameters to show up on the screen,
 		// need to fix the GUI so that more than one shows
 		addParameter(envReleaseParam = new AudioParameterFloat("release",
-			"Release", 50, 10000, 100));
+			"Release", 0.0f, 10.0f, 2.0f));
 		addParameter(levelParam = new AudioParameterFloat("level",
 			"Level", 0.0f, 1.0f, 1.0f));
 		addParameter(distAmountParam = new AudioParameterFloat("distAmount",
@@ -62,9 +62,10 @@ public:
 	}
 	
 	void processBlock(AudioBuffer<float> &buffer, MidiBuffer &midiMessages) override {
-		// Hooking up our OscillatorVoice to our parameters. This will need to be refactored at some point.
+		// Hooking up our OscillatorVoice to our parameters. 
 		if (myVoice = dynamic_cast<OscillatorVoice*>(mySynth1.getVoice(0))) {
-			myVoice->getParamsFromProcessor(envReleaseParam->get(), distAmountParam->get(), levelParam->get());
+			const OwnedArray<AudioProcessorParameter>& params = getParameters();
+			myVoice->getParamsFromProcessor(params);
 		}
 		
 		// the synth always adds its output to the audio buffer, so we have to clear it
@@ -161,6 +162,7 @@ public:
 	AudioParameterFloat* envReleaseParam = nullptr;
 	AudioParameterFloat* distAmountParam = nullptr;
 	AudioParameterFloat* levelParam = nullptr;
+
 	
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthProcessor)
 };

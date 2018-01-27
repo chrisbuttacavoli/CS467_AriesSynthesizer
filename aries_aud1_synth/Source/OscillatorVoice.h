@@ -48,6 +48,7 @@ public:
 	OscillatorVoice(OscillatorType oscType) : keyPressed(0)
 	{
 		this->oscType = oscType;
+		distortionMin = 0.1f;
 		distortionAmount = 0.1f;
 		level = 1;
 	}
@@ -87,23 +88,35 @@ public:
 	void initEnvelope() {
 		// Slightly raise the attack and release to get rid of clicks.
 		// See for theory: https://www.youtube.com/watch?v=9niampRkFW0
-		env.setAttack(1000);
+		env.setAttack(50);
 		env.setDecay(1);
-		env.setSustain(100);
-		env.setRelease(1000);
+		env.setSustain(50);
+		env.setRelease(50);
 		env.amplitude = 0.1;
 		env.trigger = 1;
 	}
 
-	// Get updated values from the processor here
-	void getParamsFromProcessor(float releaseParam, double distParam, float levelParam) {
-		env.setRelease((double)releaseParam);
-		
-		if (distParam <= 0.05f)
-			distParam = 0.0f;
-		distortionAmount = 0.1f + distParam; // A value of 0 would mute everything, offset by a smidge
+	void getParamsFromProcessor(const OwnedArray<AudioProcessorParameter>& params) {
+		// Need to iterate over this array since there isn't a method to get by name/id etc
+		for (AudioProcessorParameter** ptr = params.begin(); ptr < params.end(); ptr++)
+		{
+			/*
+			// This is a cheesy way of doing this, will have to figure out a fater way like
+			// using a dictionary to update the parameters. Parameter values are all between
+			// 0.0 and 1.0, so we need to handle them on a parameter by parameter basis
+			*/
+			if ((**ptr).getName(32) == "Distortion")
+				distortionAmount = (**ptr).getValue() + distortionMin;
 
-		level = levelParam;
+			else if ((**ptr).getName(32) == "Release") {
+				// Value in GUI is displayed in seconds, but release needs ms, so 10*1000
+				// Min value (behind the scecnes) is 50 ms
+				env.setRelease((**ptr).getValue() * 10000 + 50);
+			}
+
+			else if ((**ptr).getName(32) == "Level")
+				this->level = (**ptr).getValue();
+		}
 	}
 
 	//renders the next block of data for this voice
@@ -139,7 +152,6 @@ public:
 	}
 
 private:
-	double level;
 	double frequency;
 	int keyPressed;
 	OscillatorType oscType;
@@ -149,7 +161,9 @@ private:
 	Random random;
 
 	// Temporary private variables to hold param values for PoC
+	double level;
 	double distortionAmount;
+	double distortionMin;
 
 	// This function outputs a wave form based on how the object was constructed
 	double getWave() {
