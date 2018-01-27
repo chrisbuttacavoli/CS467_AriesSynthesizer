@@ -10,9 +10,7 @@
       <FILE id="cmqKoL" name="GenericEditor.h" compile="0" resource="0" file="Source/GenericEditor.h"/>
       <FILE id="gqrIYv" name="SynthProcessor.h" compile="0" resource="0"
             file="Source/SynthProcessor.h"/>
-      <FILE id="Hfy49D" name="Oscillator.cpp" compile="1" resource="0" file="Source/Oscillator.cpp"/>
       <FILE id="d2m8RY" name="Oscillator.h" compile="0" resource="0" file="Source/Oscillator.h"/>
-      <FILE id="US94US" name="Enums.h" compile="0" resource="0" file="Source/Enums.h"/>
       <FILE id="DU16Nb" name="OscillatorVoice.h" compile="0" resource="0"
             file="Source/OscillatorVoice.h"/>
       <FILE id="zSmVh9" name="SynthSound.h" compile="0" resource="0" file="Source/SynthSound.h"/>

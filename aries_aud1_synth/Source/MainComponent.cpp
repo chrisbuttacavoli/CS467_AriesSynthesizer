@@ -7,10 +7,7 @@
 */
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "Enums.h"
-#include "Oscillator.h"
 #include "OscillatorVoice.h"
-#include "SynthSound.h"
 //#include "SynthAudioSource.h"
 #include "SynthProcessor.h"
 #include "GenericEditor.h"
@@ -309,7 +306,7 @@ private:
 		cbOsc1.addItem("Saw", saw);
 		cbOsc1.addListener(this);
 		cbOsc1.setSelectedId(sine);*/
-		addAndMakeVisible(osc1);
+		//addAndMakeVisible(osc1);
 	}
 
 	//==============================================================================
@@ -337,7 +334,6 @@ private:
 	// Controls
 	/*ComboBox cbOsc1;
 	Label lblOsc1;*/
-	Oscillator osc1;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
 };

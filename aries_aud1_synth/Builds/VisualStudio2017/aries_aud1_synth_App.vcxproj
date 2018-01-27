@@ -147,7 +147,6 @@
     <Lib/>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\Oscillator.cpp"/>
     <ClCompile Include="..\..\Source\MainComponent.cpp"/>
     <ClCompile Include="..\..\Source\Main.cpp"/>
     <ClCompile Include="..\..\..\maximillion\libs\fft.cpp"/>
@@ -1785,7 +1784,6 @@
     <ClInclude Include="..\..\Source\GenericEditor.h"/>
     <ClInclude Include="..\..\Source\SynthProcessor.h"/>
     <ClInclude Include="..\..\Source\Oscillator.h"/>
-    <ClInclude Include="..\..\Source\Enums.h"/>
     <ClInclude Include="..\..\Source\OscillatorVoice.h"/>
     <ClInclude Include="..\..\Source\SynthSound.h"/>
     <ClInclude Include="..\..\..\maximillion\libs\fft.h"/>

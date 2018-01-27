@@ -9,11 +9,11 @@
 */
 
 #pragma once
-#include "../JuceLibraryCode/JuceHeader.h"
-#include "Enums.h"
-#include "maximilian.h"
 //#include "../../maximillion/maximilian.h" // for alex compilation
+#include "maximilian.h"
+#include "../JuceLibraryCode/JuceHeader.h"
 #include "SynthSound.h"
+#include "Oscillator.h"
 
 
 // This is used for debugging: DBG(FloatToStr(someFloatValue))
@@ -35,7 +35,9 @@ string DoubleToStr(double val) {
 class OscillatorVoice : public SynthesiserVoice {
 
 public:
-	OscillatorVoice() : keyPressed(0)
+	OscillatorVoice() : keyPressed(0), sineOsc(OscillatorType::sineWave),
+		sawOsc(OscillatorType::sawWave), squareOsc(OscillatorType::squareWave),
+		noiseOsc(OscillatorType::noiseWave)
 	{
 		// Initialize parameter values
 		distortionMin = 0.1f;
@@ -49,6 +51,11 @@ public:
 	//called to start a new note
 	void startNote(int midiNoteNumber, float velocity, SynthesiserSound *, int /*currentPitchWheelPosition*/) override {
 		frequency = MidiMessage::getMidiNoteInHertz(midiNoteNumber);
+		sineOsc.adjustPitch(0, frequency);
+		sawOsc.adjustPitch(0, frequency);
+		squareOsc.adjustPitch(0, frequency);
+		squareOsc.adjustPitch(0, frequency);
+
 		this->initEnvelope();
 		keyPressed = 1;
 	}
@@ -90,30 +97,46 @@ public:
 			// using a dictionary to update the parameters. Parameter values are all between
 			// 0.0 and 1.0, so we need to handle them on a parameter by parameter basis
 			*/
-			if ((**ptr).getName(32) == "Distortion")
-				distortionAmount = (**ptr).getValue() + distortionMin;
+			float val = (**ptr).getValue();
+			juce::String paramName = (**ptr).getName(32);
+
+			if (paramName == "Distortion")
+				distortionAmount = val + distortionMin;
 
 			// Oscillator parameters
-			else if ((**ptr).getName(32) == "Sine Level")
-				this->sineLevel = (**ptr).getValue();
+			else if (paramName == "Sine Level")
+				//this->sineLevel = (**ptr).getValue();
+				sineOsc.level = val;
 
-			else if ((**ptr).getName(32) == "Square Level")
-				this->squareLevel = (**ptr).getValue();
+			else if (paramName == "Square Level")
+				//this->squareLevel = (**ptr).getValue();
+				squareOsc.level = val;
 
-			else if ((*ptr)->getName(32) == "Saw Level")
-				this->sawLevel = (**ptr).getValue();
+			else if (paramName == "Square Pitch")
+				//this->squareFreq = adjustFrequency(((**ptr)).getValue(), frequency);
+				squareOsc.adjustPitch(val, frequency);
 
-			else if ((*ptr)->getName(32) == "Noise Level")
-				this->noiseLevel = (**ptr).getValue();
+			else if (paramName == "Saw Level")
+				sawOsc.level = val;
+
+			else if (paramName == "Noise Level")
+				noiseOsc.level = val;
 
 			// Envelope parameters
-			else if ((**ptr).getName(32) == "Release") {
+			else if (paramName == "Release") {
 				// Value in GUI is displayed in seconds, but release needs ms, so 10*1000
 				// Min value (behind the scecnes) is 50 ms to reduce clicks
-				env.setRelease((**ptr).getValue() * 10000 + 50);
+				env.setRelease(val * 10000 + 50);
 			}
 		}
 	}
+
+	// Maybe someone could figure out a more efficient algorithm?
+	//double adjustFrequency(float octaveVal, double freq) {
+	//	// Octave val is between 0.0 and 1.0
+	//	return freq * pow(2, 2 * octaveVal - 1);
+	//	//return freq * 2^(2*octaveVal - 1);
+	//}
 
 	//renders the next block of data for this voice
 	void renderNextBlock(AudioBuffer<float> &outputBuffer, int startSample, int numSamples) override {
@@ -122,11 +145,9 @@ public:
 		
 		for (int sample = 0; sample < numSamples; ++sample) {
 			// Add all our oscillators together
-			double wave = (sineOsc.sinewave(frequency) * sineLevel)
-				+ (squareOsc.square(frequency) * squareLevel)
-				+ (sawOsc.saw(frequency) * sawLevel)
-				+ ((random.nextFloat() * 0.25f - 0.125f) * noiseLevel);
-
+			double wave = sineOsc.getWave() + squareOsc.getWave()
+				+ sawOsc.getWave() + noiseOsc.getWave();
+			
 			// Apply post process effects
 			wave = applyEffects(outputBuffer, wave);
 
@@ -152,19 +173,14 @@ private:
 	double frequency;
 	int keyPressed;
 
-	// We need multiple maxiOsc's otherwise it is computationally inefficient and distorts
-	maxiOsc sineOsc;
-	maxiOsc squareOsc;
-	maxiOsc sawOsc;
 	maxiEnv env;
 	maxiDistortion distortion;
-	Random random; // For the noise oscillator
+	Oscillator sineOsc;
+	Oscillator sawOsc;
+	Oscillator squareOsc;
+	Oscillator noiseOsc;
 
 	// Temporary private variables to hold param values for PoC
-	double sineLevel;
-	double squareLevel;
-	double sawLevel;
-	double noiseLevel;
 	double distortionAmount;
 	double distortionMin;
 };

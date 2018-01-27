@@ -1,32 +1,70 @@
 /*
-  ==============================================================================
+==============================================================================
 
-    Oscillator.h
-    Created: 21 Jan 2018 3:47:03pm
-    Author:  Chris.Buttacavoli
+Oscillator.h
+Created: 27 Jan 2018 2:39:45pm
+Author:  Chris.Buttacavoli
 
-  ==============================================================================
+==============================================================================
 */
 
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
+#include "Enums.h"
+#include "maximilian.h"
 
-//==============================================================================
-/*
-*/
-class Oscillator    : public Component,
-	private ComboBox::Listener
+enum OscillatorType
 {
+	sineWave = 1,
+	sawWave = 2,
+	squareWave = 3,
+	noiseWave = 4
+};
+
+class Oscillator {
 public:
-    Oscillator();
-    ~Oscillator();
+	// Choose the oscillator type
+	Oscillator(OscillatorType oscType) {
+		type = oscType;
+	}
 
-    void paint (Graphics&) override;
-    void resized() override;
-	void comboBoxChanged(ComboBox*) override;
+	OscillatorType type;
+	double level;
 
+	// The frequency is adjusted by the GUI parameters. To change the
+	// type of wave, change the type property.
+	double getWave() {
+		switch (type)
+		{
+		case sineWave:
+			return osc.sinewave(freq) * level;
+			break;
+		case sawWave:
+			return osc.saw(freq) * level;
+			break;
+		case squareWave:
+			return osc.square(freq) * level;
+			break;
+		case noiseWave:
+			return (random.nextFloat() * 0.25f - 0.125f) * level;
+			break;
+		default:
+			break;
+		}
+		return 0;
+	}
+
+	// Octave val should between 0.0 and 1.0 from the GUI params
+	void adjustPitch(float octaveVal, float referenceFreq) {
+		// We only adjust +/- 1 octave
+		freq = referenceFreq * pow(2, 2 * octaveVal - 1);
+	}
+
+
+	//=======================================================
 private:
-	ComboBox cbOsc;
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Oscillator)
+	double freq;
+	double pitch;
+	maxiOsc osc;
+	Random random; // For the noise oscillator
 };

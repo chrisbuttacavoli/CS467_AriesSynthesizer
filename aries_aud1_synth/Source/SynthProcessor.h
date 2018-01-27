@@ -26,25 +26,16 @@ public:
 	SynthProcessor(MidiKeyboardState &keyState) : keyboardState(keyState) {
 
 		// Initialize GUI controlled parameters
-		//addParameter(gainParam = new AudioParameterFloat("gain", "Gain", 0.0f, 1.0f, 0.9f));
-
-		// You can swap these lines to get one of these parameters to show up on the screen,
-		// need to fix the GUI so that more than one shows
-		addParameter(envReleaseParam = new AudioParameterFloat("release",
-			"Release", 0.0f, 10.0f, 2.0f));
-		addParameter(levelParam = new AudioParameterFloat("sineLevel",
-			"Sine Level", 0.0f, 1.0f, 1.0f));
-		addParameter(levelParam = new AudioParameterFloat("squareLevel",
-			"Square Level", 0.0f, 1.0f, 0.2f));
-		addParameter(levelParam = new AudioParameterFloat("sawLevel",
-			"Saw Level", 0.0f, 1.0f, 0.0f));
-		addParameter(levelParam = new AudioParameterFloat("noiseLevel",
-			"Noise Level", 0.0f, 1.0f, 0.0f));
-		addParameter(distAmountParam = new AudioParameterFloat("distAmount",
-			"Distortion", 0.0f, 15.0f, 0.0f));
+		addParameter(new AudioParameterFloat("squarePitch", "Square Pitch", -1.0f, 1.0f, 0.0f));
+		addParameter(new AudioParameterFloat("sineLevel", "Sine Level", 0.0f, 1.0f, 0.0f));
+		addParameter(new AudioParameterFloat("squareLevel", "Square Level", 0.0f, 1.0f, 0.5f));
+		addParameter(new AudioParameterFloat("sawLevel", "Saw Level", 0.0f, 1.0f, 0.0f));
+		addParameter(new AudioParameterFloat("noiseLevel", "Noise Level", 0.0f, 1.0f, 0.0f));
+		addParameter(new AudioParameterFloat("release", "Release", 0.0f, 10.0f, 5.0f));
+		addParameter(new AudioParameterFloat("distAmount", "Distortion", 0.0f, 15.0f, 0.0f));
 
 		mySynth.clearSounds();
-		// Add multiple voices so that we can play more than one note
+		// Use this loop to add multiple voices so that we can play more than one note
 		for (int i = 0; i < 10; i++)
 			mySynth.addVoice(new OscillatorVoice());
 		mySynth.addSound(new SynthSound());
@@ -157,9 +148,7 @@ public:
 
 	// Our parameters
 	//AudioParameterFloat* gainParam = nullptr;
-	AudioParameterFloat* envReleaseParam = nullptr;
-	AudioParameterFloat* distAmountParam = nullptr;
-	AudioParameterFloat* levelParam = nullptr;
+	AudioParameterFloat* paramFloat = nullptr;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthProcessor)
 };
