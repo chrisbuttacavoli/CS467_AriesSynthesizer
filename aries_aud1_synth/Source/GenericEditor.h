@@ -56,7 +56,7 @@ public:
 	{
 		const OwnedArray<AudioProcessorParameter>& params = parent.getParameters();
 
-		//Creates a slider for each parameter of the processor
+		// Creates a rotary slider for each parameter of the processor
 		for (int i = 0; i < params.size(); ++i)
 		{
 			if (const AudioParameterFloat* param = dynamic_cast<AudioParameterFloat*> (params[i]))
@@ -65,7 +65,7 @@ public:
 
 				paramSliders.add(aSlider = new Slider(param->name));
 				aSlider->setRange(param->range.start, param->range.end);
-				aSlider->setSliderStyle(Slider::Rotary);	//setting the slider to be rotary
+				aSlider->setSliderStyle(Slider::Rotary);
 				aSlider->setValue(*param);
 
 				aSlider->addListener(this);
@@ -76,6 +76,8 @@ public:
 				addAndMakeVisible(aLabel);
 			}
 		}
+
+		//sliderTree = new AudioProcessorValueTreeState::SliderAttachment()
 
 		noParameterLabel.setJustificationType(Justification::horizontallyCentred | Justification::verticallyCentred);
 		noParameterLabel.setFont(noParameterLabel.getFont().withStyle(Font::italic));
@@ -134,6 +136,9 @@ public:
 	}
 
 private:
+	// I believe this updates the GUI if we programically change the parameter values. This happens
+	// on a timer, and we don't want to shove this code in the audio thread otherwise that would
+	// consume too much CPU.
 	void timerCallback() override
 	{
 		const OwnedArray<AudioProcessorParameter>& params = getAudioProcessor()->getParameters();
@@ -157,5 +162,8 @@ private:
 	Label noParameterLabel;
 	OwnedArray<Slider> paramSliders;
 	OwnedArray<Label> paramLabels;
+	//ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> sliderTree;
 
+// Adding this below to test passing params via ValueStateTree
+//private:
 };

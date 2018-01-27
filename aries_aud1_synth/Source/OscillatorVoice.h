@@ -28,12 +28,28 @@ string ToString(T val)
 ///////////////
 
 
+string FloatToStr(float val) {
+	std::ostringstream ss;
+	ss << val;
+	std::string s(ss.str());
+	return s;
+}
+string DoubleToStr(double val) {
+	std::ostringstream ss;
+	ss << val;
+	std::string s(ss.str());
+	return s;
+}
+
+
 class OscillatorVoice : public SynthesiserVoice {
 
 public:
-	OscillatorVoice(OscillatorType oscType) : level(0), keyPressed(0)
+	OscillatorVoice(OscillatorType oscType) : keyPressed(0)
 	{
 		this->oscType = oscType;
+		distortionAmount = 0.1f;
+		level = 1;
 	}
 
 	//must return true if this voice object is capable of playing the given sound
@@ -43,23 +59,19 @@ public:
 	}
 	//called to start a new note
 	void startNote(int midiNoteNumber, float velocity, SynthesiserSound *, int /*currentPitchWheelPosition*/) override {
-		env.trigger = 1;
-		level = velocity;
+		//level = velocity;
 		frequency = MidiMessage::getMidiNoteInHertz(midiNoteNumber);
 
 		this->initEnvelope();
 
 		keyPressed = 1;
-
-		//print out midi note when its pressed
-		std::cout << midiNoteNumber << std::endl;
 	}
 
 	// called to stop a note
 	void stopNote(float velocity, bool allowTailOff) override {
 		clearCurrentNote();
 		env.trigger = 0;
-		keyPressed = 0;
+		//keyPressed = 0;
 	}
 
 	// called to let the voice know that the pitch wheel has been moved
@@ -75,36 +87,57 @@ public:
 	void initEnvelope() {
 		// Slightly raise the attack and release to get rid of clicks.
 		// See for theory: https://www.youtube.com/watch?v=9niampRkFW0
-		env.setAttack(50);
+		env.setAttack(1000);
 		env.setDecay(1);
 		env.setSustain(100);
-		env.setRelease(50);
+		env.setRelease(1000);
 		env.amplitude = 0.1;
+		env.trigger = 1;
+	}
+
+	// Get updated values from the processor here
+	void getParamsFromProcessor(float releaseParam, double distParam, float levelParam) {
+		env.setRelease((double)releaseParam);
+		
+		if (distParam <= 0.05f)
+			distParam = 0.0f;
+		distortionAmount = 0.1f + distParam; // A value of 0 would mute everything, offset by a smidge
+
+		level = levelParam;
 	}
 
 	//renders the next block of data for this voice
 	void renderNextBlock(AudioBuffer<float> &outputBuffer, int startSample, int numSamples) override {
-		// This function runs constantly, so return to make it super fast if we aren't hitting a note.
-		// We can work on the tailoff feature later, but for now the frequency is actually working - Chris
+		
 		if (!keyPressed) return;
 		
 		for (int sample = 0; sample < numSamples; ++sample) {
 			
 			// Get our basic wave shape based on the oscillator type
-			double wave = getWave();
+			double wave = getWave() * level;
 
 			// Apply a basic envelope to get rid of clicks
-		 	double finalWave = env.adsr(wave, env.trigger);
+			wave = applyEffects(outputBuffer, wave);
 
 			for (int channel = 0; channel < outputBuffer.getNumChannels(); ++channel) {
 				// Keep this loop clean, apply effects to the finalWave
-				outputBuffer.addSample(channel, startSample, finalWave);
+				outputBuffer.addSample(channel, startSample, wave);
 				
 			}
-
 			++startSample;
 		}
 	}
+
+	float applyEffects(AudioBuffer<float> &buffer, double wave) {
+		// Apply distortion
+		wave = distortion.atanDist(wave, distortionAmount);
+		
+		// Apply an envelope
+		wave = env.adsr(wave, env.trigger);
+
+		return wave;
+	}
+
 private:
 	double level;
 	double frequency;
@@ -114,6 +147,9 @@ private:
 	maxiEnv env;
 	maxiDistortion distortion;
 	Random random;
+
+	// Temporary private variables to hold param values for PoC
+	double distortionAmount;
 
 	// This function outputs a wave form based on how the object was constructed
 	double getWave() {

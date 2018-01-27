@@ -25,16 +25,25 @@ class SynthProcessor : public AudioProcessor
 public:
 	SynthProcessor(MidiKeyboardState &keyState) : keyboardState(keyState) {
 
-		//initializing gain param
-		addParameter(gainParam = new AudioParameterFloat("gain", "Gain", 0.0f, 1.0f, 0.9f));
-		
+		// Initialize GUI controlled parameters
+		//addParameter(gainParam = new AudioParameterFloat("gain", "Gain", 0.0f, 1.0f, 0.9f));
+
+		// You can swap these lines to get one of these parameters to show up on the screen,
+		// need to fix the GUI so that more than one shows
+		addParameter(envReleaseParam = new AudioParameterFloat("release",
+			"Release", 50, 10000, 100));
+		addParameter(levelParam = new AudioParameterFloat("level",
+			"Level", 0.0f, 1.0f, 1.0f));
+		addParameter(distAmountParam = new AudioParameterFloat("distAmount",
+			"Distortion", 0.0f, 15.0f, 0.0f));
+
 		mySynth1.clearSounds();
 		mySynth1.addVoice(new OscillatorVoice(OscillatorType::sineWave));
 		mySynth1.addSound(new SynthSound());
-		
-		mySynth2.clearSounds();
+
+		/*mySynth2.clearSounds();
 		mySynth2.addVoice(new OscillatorVoice(OscillatorType::squareWave));
-		mySynth2.addSound(new SynthSound());
+		mySynth2.addSound(new SynthSound());*/
 	}
 
 	~SynthProcessor() {	}
@@ -49,10 +58,15 @@ public:
 		midiCollector.reset(sampleRate);
 
 		mySynth1.setCurrentPlaybackSampleRate(sampleRate);
-		mySynth2.setCurrentPlaybackSampleRate(sampleRate);
+		//mySynth2.setCurrentPlaybackSampleRate(sampleRate);
 	}
 	
 	void processBlock(AudioBuffer<float> &buffer, MidiBuffer &midiMessages) override {
+		// Hooking up our OscillatorVoice to our parameters. This will need to be refactored at some point.
+		if (myVoice = dynamic_cast<OscillatorVoice*>(mySynth1.getVoice(0))) {
+			myVoice->getParamsFromProcessor(envReleaseParam->get(), distAmountParam->get(), levelParam->get());
+		}
+		
 		// the synth always adds its output to the audio buffer, so we have to clear it
 		// first..
 		buffer.clear();
@@ -70,24 +84,6 @@ public:
 		// and now get the synth to process the midi events and generate its output.
 		mySynth1.renderNextBlock(buffer, incomingMidi, 0, buffer.getNumSamples());
 		//mySynth2.renderNextBlock(buffer, incomingMidi, 0, buffer.getNumSamples());
-
-		addEffects(buffer);
-	}
-
-	void addEffects(AudioBuffer<float> &buffer) {
-		const int numSamples = buffer.getNumSamples();
-		const int numChannels = buffer.getNumChannels();
-
-		for (int sample = 0; sample < numSamples; ++sample) {
-
-			for (int channel = 0; channel < numChannels; ++channel) {
-
-				// Apply distortion effect
-				float sampleToAdd = distortion.atanDist(buffer.getSample(channel, sample), 15) * gainParam->get();
-
-				buffer.addSample(channel, sample, sampleToAdd);
-			}
-		}
 	}
 
 	void releaseResources() override {
@@ -112,7 +108,7 @@ public:
 	**
 	*************/
 	AudioProcessorEditor* createEditor() override{
-		//not sure what to put here
+		// Connects a processor editor to this processor
 		return new GenericEditor (*this);
 	}
 
@@ -140,7 +136,7 @@ public:
 
 	//derp
 	const String getProgramName(int index) override {
-		return "The Snyth";
+		return "The Synth";
 	}
 
 	void setStateInformation(const void * data, int sizeInBytes) override {
@@ -156,16 +152,15 @@ public:
 	MidiKeyboardState& keyboardState;
 
 	//the actual synth object
-	//the actual synth object
 	Synthesiser mySynth1;
-	Synthesiser mySynth2;
-
-	// Effects for now
-	maxiDistortion distortion;
-	maxiEnv env;
+	//Synthesiser mySynth2;
+	OscillatorVoice* myVoice;
 
 	// Our parameters
-	AudioParameterFloat* gainParam = nullptr;
-
+	//AudioParameterFloat* gainParam = nullptr;
+	AudioParameterFloat* envReleaseParam = nullptr;
+	AudioParameterFloat* distAmountParam = nullptr;
+	AudioParameterFloat* levelParam = nullptr;
+	
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthProcessor)
 };
