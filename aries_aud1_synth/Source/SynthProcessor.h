@@ -13,7 +13,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "SynthSound.h"
 #include "OscillatorVoice.h"
-#include "SynthAudioProcessEditor.h"
+#include "GenericEditor.h"
 #include "maximilian.h"
 
 
