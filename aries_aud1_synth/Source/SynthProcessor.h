@@ -44,7 +44,9 @@ public:
 			"Distortion", 0.0f, 15.0f, 0.0f));
 
 		mySynth.clearSounds();
-		mySynth.addVoice(new OscillatorVoice());
+		// Add multiple voices so that we can play more than one note
+		for (int i = 0; i < 10; i++)
+			mySynth.addVoice(new OscillatorVoice());
 		mySynth.addSound(new SynthSound());
 	}
 
@@ -63,9 +65,9 @@ public:
 	void processBlock(AudioBuffer<float> &buffer, MidiBuffer &midiMessages) override {
 		// Hooking up our OscillatorVoice to our parameters.
 		const OwnedArray<AudioProcessorParameter>& params = getParameters();
-		if (myVoice = dynamic_cast<OscillatorVoice*>(mySynth.getVoice(0))) {
-			myVoice->getParamsFromProcessor(params);
-		}
+		for (int i = 0; i < mySynth.getNumVoices(); i++)
+			if (myVoice = dynamic_cast<OscillatorVoice*>(mySynth.getVoice(i)))
+				myVoice->getParamsFromProcessor(params);
 		
 		// the synth always adds its output to the audio buffer, so we have to clear it first..
 		buffer.clear();

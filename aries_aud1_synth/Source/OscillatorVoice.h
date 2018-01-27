@@ -39,10 +39,6 @@ public:
 	{
 		// Initialize parameter values
 		distortionMin = 0.1f;
-		distortionAmount = 0.1f;
-		sineLevel = 1.0f;
-		squareLevel = 0.0f;
-		sawLevel = 0.0f;
 	}
 
 	//must return true if this voice object is capable of playing the given sound
@@ -126,8 +122,10 @@ public:
 		
 		for (int sample = 0; sample < numSamples; ++sample) {
 			// Add all our oscillators together
-			double wave = (sineOsc.sinewave(frequency) * sineLevel) + (squareOsc.square(frequency) * squareLevel)
-				+ (sawOsc.saw(frequency) * sawLevel) + ((random.nextFloat() * 0.25f - 0.125f) * noiseLevel);
+			double wave = (sineOsc.sinewave(frequency) * sineLevel)
+				+ (squareOsc.square(frequency) * squareLevel)
+				+ (sawOsc.saw(frequency) * sawLevel)
+				+ ((random.nextFloat() * 0.25f - 0.125f) * noiseLevel);
 
 			// Apply post process effects
 			wave = applyEffects(outputBuffer, wave);
