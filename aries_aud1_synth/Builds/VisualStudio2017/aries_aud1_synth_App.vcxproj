@@ -1787,7 +1787,6 @@
     <ClInclude Include="..\..\Source\Oscillator.h"/>
     <ClInclude Include="..\..\Source\Enums.h"/>
     <ClInclude Include="..\..\Source\OscillatorVoice.h"/>
-    <ClInclude Include="..\..\Source\SynthAudioSource.h"/>
     <ClInclude Include="..\..\Source\SynthSound.h"/>
     <ClInclude Include="..\..\..\maximillion\libs\fft.h"/>
     <ClInclude Include="..\..\..\maximillion\libs\maxiAtoms.h"/>

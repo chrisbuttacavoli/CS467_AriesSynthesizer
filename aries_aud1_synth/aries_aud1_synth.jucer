@@ -15,8 +15,6 @@
       <FILE id="US94US" name="Enums.h" compile="0" resource="0" file="Source/Enums.h"/>
       <FILE id="DU16Nb" name="OscillatorVoice.h" compile="0" resource="0"
             file="Source/OscillatorVoice.h"/>
-      <FILE id="L6zs4E" name="SynthAudioSource.h" compile="0" resource="0"
-            file="Source/SynthAudioSource.h"/>
       <FILE id="zSmVh9" name="SynthSound.h" compile="0" resource="0" file="Source/SynthSound.h"/>
       <FILE id="bw7Kvt" name="MainComponent.cpp" compile="1" resource="0"
             file="Source/MainComponent.cpp"/>

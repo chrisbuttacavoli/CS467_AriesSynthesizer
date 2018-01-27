@@ -2202,9 +2202,6 @@
     <ClInclude Include="..\..\Source\OscillatorVoice.h">
       <Filter>aries_aud1_synth\Source</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\SynthAudioSource.h">
-      <Filter>aries_aud1_synth\Source</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\SynthSound.h">
       <Filter>aries_aud1_synth\Source</Filter>
     </ClInclude>
