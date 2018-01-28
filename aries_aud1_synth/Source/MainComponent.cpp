@@ -237,7 +237,7 @@ private:
 
 	// Controls
 	OscillatorCombo osc1;
-	OscillatorCombo sc2;
+	OscillatorCombo osc2;
 	OscillatorCombo osc3;
 	OscillatorCombo osc4;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
