@@ -32,13 +32,23 @@ public:
 		addParameter(new AudioParameterChoice("oscillator2", "Oscillator", theOscillators, 1, "Cats"));
 		addParameter(new AudioParameterChoice("oscillator3", "Oscillator", theOscillators, 1, "Cats"));
 		addParameter(new AudioParameterChoice("oscillator4", "Oscillator", theOscillators, 1, "Cats"));
-		addParameter(new AudioParameterFloat("squarePitch", "Square Pitch", -1.0f, 1.0f, 0.0f));
+
+		addParameter(new AudioParameterFloat("pitch1", "Pitch1", -1.0f, 1.0f, 0.0f));
+		addParameter(new AudioParameterFloat("level1", "Level1", 0.0f, 1.0f, 0.0f));
+		addParameter(new AudioParameterFloat("pitch2", "Pitch2", -1.0f, 1.0f, 0.0f));
+		addParameter(new AudioParameterFloat("level2", "Level2", 0.0f, 1.0f, 0.0f));
+		addParameter(new AudioParameterFloat("pitch3", "Pitch3", -1.0f, 1.0f, 0.0f));
+		addParameter(new AudioParameterFloat("level3", "Level3", 0.0f, 1.0f, 0.0f));
+		addParameter(new AudioParameterFloat("pitch4", "Pitch4", -1.0f, 1.0f, 0.0f));
+		addParameter(new AudioParameterFloat("level4", "Level4", 0.0f, 1.0f, 0.0f));
+
+		/*addParameter(new AudioParameterFloat("squarePitch", "Square Pitch", -1.0f, 1.0f, 0.0f));
 		addParameter(new AudioParameterFloat("sineLevel", "Sine Level", 0.0f, 1.0f, 0.0f));
 		addParameter(new AudioParameterFloat("squareLevel", "Square Level", 0.0f, 1.0f, 0.5f));
 		addParameter(new AudioParameterFloat("sawLevel", "Saw Level", 0.0f, 1.0f, 0.0f));
 		addParameter(new AudioParameterFloat("noiseLevel", "Noise Level", 0.0f, 1.0f, 0.0f));
 		addParameter(new AudioParameterFloat("release", "Release", 0.0f, 10.0f, 5.0f));
-		addParameter(new AudioParameterFloat("distAmount", "Distortion", 0.0f, 15.0f, 0.0f));
+		addParameter(new AudioParameterFloat("distAmount", "Distortion", 0.0f, 15.0f, 0.0f));*/
 
 		mySynth.clearSounds();
 		// Use this loop to add multiple voices so that we can play more than one note
