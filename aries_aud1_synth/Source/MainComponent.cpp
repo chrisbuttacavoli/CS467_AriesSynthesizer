@@ -124,13 +124,13 @@ public:
         // (Our component is opaque, so we must completely fill the background with a solid colour)
         g.fillAll (getLookAndFeel().findColour (ResizableWindow::backgroundColourId));
 
-        // You can add your drawing code here!
-		/*Font theFont("Helvetica", "Bold", 50.0f);
+        // "Logo" stuff
+		Font theFont("Helvetica", "Bold", 25.0f);
 		g.setFont(theFont);
-		g.drawText("Aries Synthesizer", 25, 25, 400, 60, Justification::topRight);
-		Font theFont2("Helvetica", "Bold", 20.0f);
+		g.drawText("Aries Synthesizer", -10, 400, getWidth(), 50, Justification::right);
+		Font theFont2("Helvetica", "Bold", 10.0f);
 		g.setFont(theFont2);
-		g.drawText("Chris B, Victoria D, Alex C", 50, 30, 400, 60, Justification::bottomLeft);*/
+		g.drawText("Chris B, Victoria D, Alex C", 10, 400, getWidth(), 25, Justification::bottomLeft);
     }
 
 	//placing objects inside the main window
@@ -148,8 +148,7 @@ public:
 
 		midiInputList.setBounds(area.removeFromTop(36).removeFromRight(getWidth() - 100).reduced(8));
 		
-		//theEditor->setBounds(0, 250, getWidth(), 250); // hardcoded positions
-		theEditor->setBounds(area);
+		theEditor->setBounds(area.removeFromTop(350));
 		keyboardComponent.setBounds(0, 450, getWidth(), 150);
 	}
 
