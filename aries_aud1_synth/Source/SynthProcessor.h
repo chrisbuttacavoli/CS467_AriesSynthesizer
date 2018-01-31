@@ -49,6 +49,14 @@ public:
 
 	~SynthProcessor() {	}
 
+	void addParametersToMap() {
+		const OwnedArray<AudioProcessorParameter>& params = getParameters();
+		for (AudioProcessorParameter** ptr = params.begin(); ptr < params.end(); ptr++)
+		{
+			paramMap.insert(std::pair<juce::String, AudioProcessorParameter*>((**ptr).getName(32), *ptr));
+		}
+	}
+
 	// TODO: simplify this function
 	const String getName() const override {
 		return String("My Synth Processor");
@@ -64,7 +72,7 @@ public:
 		const OwnedArray<AudioProcessorParameter>& params = getParameters();
 		for (int i = 0; i < mySynth.getNumVoices(); i++)
 			if (myVoice = dynamic_cast<OscillatorVoice*>(mySynth.getVoice(i)))
-				myVoice->getParamsFromProcessor(params);
+				myVoice->getParamsFromProcessor(params, paramMap);
 		
 		// the synth always adds its output to the audio buffer, so we have to clear it first..
 		buffer.clear();
@@ -155,6 +163,11 @@ public:
 	// Our parameters
 	//AudioParameterFloat* gainParam = nullptr;
 	AudioParameterFloat* paramFloat = nullptr;
+	std::map <juce::String, AudioProcessorParameter*> paramMap;
+
+	// Filters
+	dsp::ProcessorDuplicator<dsp::IIR::Filter<float>, dsp::IIR::Coefficients<float>> lowPassFilter;
+	dsp::ProcessorDuplicator<dsp::IIR::Filter<float>, dsp::IIR::Coefficients<float>> highPassFilter;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthProcessor)
 };

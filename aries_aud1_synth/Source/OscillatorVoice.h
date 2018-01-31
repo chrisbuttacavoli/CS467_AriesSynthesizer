@@ -14,6 +14,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "SynthSound.h"
 #include "Oscillator.h"
+#include <map>
 
 
 // This is used for debugging: DBG(FloatToStr(someFloatValue))
@@ -88,7 +89,16 @@ public:
 		env.trigger = 1;
 	}
 
-	void getParamsFromProcessor(const OwnedArray<AudioProcessorParameter>& params) {
+	void getParamsFromProcessor(const OwnedArray<AudioProcessorParameter>& params,
+		std::map <juce::String, AudioProcessorParameter*> paramMap) {
+		
+		/*distortionAmount = paramMap.at("Distortion")->getValue() + distortionMin;
+		sineOsc.level = paramMap.at("Sine Level")->getValue();
+		squareOsc.level = paramMap.at("Square Level")->getValue();
+		squareOsc.adjustPitch(paramMap.at("Square Pitch")->getValue(), frequency);
+		sawOsc.level = paramMap.at("Saw Level")->getValue();
+		env.setRelease(paramMap.at("Release")->getValue() * 10000 + 50);*/
+		
 		// Need to iterate over this array since there isn't a method to get by name/id etc
 		for (AudioProcessorParameter** ptr = params.begin(); ptr < params.end(); ptr++)
 		{
