@@ -135,8 +135,6 @@ public:
 
 		//juce::Rectangle<int> sideBarArea(r.removeFromRight(r.getWidth() / 4));
 
-		//paramCombo[0]->setBounds(r.removeFromTop(20));
-
 		Label * aLabel2 = new Label("Oscillators", "Oscillators");
 
 		addAndMakeVisible(aLabel2);

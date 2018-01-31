@@ -27,7 +27,7 @@ public:
 	SynthProcessor(MidiKeyboardState &keyState) : keyboardState(keyState) {
 
 		// Initialize GUI controlled parameters
-		const StringArray & theOscillators = { "None","Sine", "Saw", "Square", "Noise"};
+		const StringArray & theOscillators = {"Sine", "Saw", "Square", "Noise"};
 		addParameter(new AudioParameterChoice("oscillator1","Oscillator", theOscillators, 1, "Cats"));
 		addParameter(new AudioParameterChoice("oscillator2", "Oscillator", theOscillators, 1, "Cats"));
 		addParameter(new AudioParameterChoice("oscillator3", "Oscillator", theOscillators, 1, "Cats"));
