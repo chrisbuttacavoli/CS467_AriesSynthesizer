@@ -141,11 +141,6 @@ public:
         // update their positions.
 		juce::Rectangle<int> area(getLocalBounds());
 
-		//osc1.setBounds(50, 120, (area.getWidth()/4.8), 125);
-		//osc2.setBounds(250, 120, (area.getWidth() / 4.8), 125);
-		//osc3.setBounds(450, 120, (area.getWidth() / 4.8), 125);
-		//osc4.setBounds(650, 120, (area.getWidth() / 4.8), 125);
-
 		midiInputList.setBounds(area.removeFromTop(36).removeFromRight(getWidth() - 100).reduced(8));
 		
 		theEditor->setBounds(area.removeFromTop(350));

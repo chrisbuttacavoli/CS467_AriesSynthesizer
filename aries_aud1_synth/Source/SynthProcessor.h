@@ -42,12 +42,7 @@ public:
 		addParameter(new AudioParameterFloat("pitch4", "Pitch4", -1.0f, 1.0f, 0.0f));
 		addParameter(new AudioParameterFloat("level4", "Level4", 0.0f, 1.0f, 0.0f));
 
-		/*addParameter(new AudioParameterFloat("squarePitch", "Square Pitch", -1.0f, 1.0f, 0.0f));
-		addParameter(new AudioParameterFloat("sineLevel", "Sine Level", 0.0f, 1.0f, 0.0f));
-		addParameter(new AudioParameterFloat("squareLevel", "Square Level", 0.0f, 1.0f, 0.5f));
-		addParameter(new AudioParameterFloat("sawLevel", "Saw Level", 0.0f, 1.0f, 0.0f));
-		addParameter(new AudioParameterFloat("noiseLevel", "Noise Level", 0.0f, 1.0f, 0.0f));
-		addParameter(new AudioParameterFloat("release", "Release", 0.0f, 10.0f, 5.0f));
+		/*addParameter(new AudioParameterFloat("release", "Release", 0.0f, 10.0f, 5.0f));
 		addParameter(new AudioParameterFloat("distAmount", "Distortion", 0.0f, 15.0f, 0.0f));*/
 
 		mySynth.clearSounds();
