@@ -19,6 +19,7 @@ OscillatorCombo::OscillatorCombo()
 	cbOsc.addItem("Sine", OscillatorType::sineWave);
 	cbOsc.addItem("Saw", OscillatorType::sawWave);
 	cbOsc.addItem("Square", OscillatorType::squareWave);
+	cbOsc.addItem("Noise", OscillatorType::noiseWave);
 
 	cbOsc.setSize(200, 200);
 	cbOsc.setJustificationType(Justification::centred);
