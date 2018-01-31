@@ -40,6 +40,7 @@ available: visit www.juce.com for more information.
 //Using the generic editor so that we can use it for the plugins as well maybe? - Victoria
 class GenericEditor : public AudioProcessorEditor,
 	public Slider::Listener,
+	private ComboBox::Listener,
 	private Timer
 {
 public:
@@ -92,6 +93,21 @@ public:
 					addAndMakeVisible(aLabel);
 				//}
 			}
+			else if (const AudioParameterChoice* choiceParam = dynamic_cast<AudioParameterChoice*> (params[i]))
+			{
+				ComboBox * cbOsc;
+				paramCombo.add(cbOsc = new ComboBox(choiceParam->name));
+				//const String & theChoices;
+				int i = 1;
+				for (const juce::String * theChoice = choiceParam->choices.begin(); theChoice < choiceParam->choices.end(); theChoice++) {
+					cbOsc->addItem(*theChoice, i);
+					i++;
+				}
+
+				//cbOsc->setJustificationType(Justification::centred);
+				addAndMakeVisible(cbOsc);
+				cbOsc->addListener(this);
+			}
 
 		}
 
@@ -116,16 +132,31 @@ public:
 	void resized() override
 	{
 		juce::Rectangle<int> r = getLocalBounds();
+
+		//juce::Rectangle<int> sideBarArea(r.removeFromRight(r.getWidth() / 4));
+
+		//paramCombo[0]->setBounds(r.removeFromTop(20));
+
+		Label * aLabel2 = new Label("Oscillators", "Oscillators");
+
+		addAndMakeVisible(aLabel2);
+		aLabel2->setBounds(2, 10, (r.getWidth() / 4.8), 50);
+		paramCombo[0]->setBounds(75, 10, (r.getWidth() / 4.8), 50);
+		paramCombo[1]->setBounds(275, 10, (r.getWidth() / 4.8), 50);
+		paramCombo[2]->setBounds(475, 10, (r.getWidth() / 4.8), 50);
+		paramCombo[3]->setBounds(675, 10, (r.getWidth() / 4.8), 50);
+
 		noParameterLabel.setBounds(r);
 
-		for (int i = 0; i < paramSliders.size(); ++i)
+		//ugly fix this
+		/*for (int i = 0; i < paramSliders.size(); ++i)
 		{
 			juce::Rectangle<int> paramBounds = r.removeFromTop(kParamControlHeight);
 			juce::Rectangle<int> labelBounds = paramBounds.removeFromLeft(kParamLabelWidth);
 
 			paramLabels[i]->setBounds(labelBounds);
 			paramSliders[i]->setBounds(paramBounds);
-		}
+		}*/
 	}
 
 	void paint(Graphics& g) override
@@ -133,7 +164,6 @@ public:
 		//g.setColour(getLookAndFeel().findColour(ResizableWindow::backgroundColourId));
 		g.setColour(Colour::fromRGB(115, 115, 115));
 		g.fillAll();
-
 	}
 
 	//==============================================================================
@@ -153,6 +183,10 @@ public:
 	{
 		if (AudioParameterFloat* param = getParameterForSlider(slider))
 			param->endChangeGesture();
+	}
+
+	void juce::ComboBox::Listener::comboBoxChanged(juce::ComboBox *cb) {
+
 	}
 
 private:
@@ -182,6 +216,7 @@ private:
 	Label noParameterLabel;
 	OwnedArray<Slider> paramSliders;
 	OwnedArray<Label> paramLabels;
+	OwnedArray<ComboBox> paramCombo;
 	//ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> sliderTree;
 
 // Adding this below to test passing params via ValueStateTree

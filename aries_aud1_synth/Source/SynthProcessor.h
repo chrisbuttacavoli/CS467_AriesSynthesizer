@@ -15,6 +15,7 @@
 #include "OscillatorVoice.h"
 #include "GenericEditor.h"
 #include "maximilian.h"
+#include "OscillatorCombo.h"
 
 
 //==============================================================================
@@ -26,6 +27,11 @@ public:
 	SynthProcessor(MidiKeyboardState &keyState) : keyboardState(keyState) {
 
 		// Initialize GUI controlled parameters
+		const StringArray & theOscillators = { "None","Sine", "Saw", "Square", "Noise"};
+		addParameter(new AudioParameterChoice("oscillator1","Oscillator", theOscillators, 1, "Cats"));
+		addParameter(new AudioParameterChoice("oscillator2", "Oscillator", theOscillators, 1, "Cats"));
+		addParameter(new AudioParameterChoice("oscillator3", "Oscillator", theOscillators, 1, "Cats"));
+		addParameter(new AudioParameterChoice("oscillator4", "Oscillator", theOscillators, 1, "Cats"));
 		addParameter(new AudioParameterFloat("squarePitch", "Square Pitch", -1.0f, 1.0f, 0.0f));
 		addParameter(new AudioParameterFloat("sineLevel", "Sine Level", 0.0f, 1.0f, 0.0f));
 		addParameter(new AudioParameterFloat("squareLevel", "Square Level", 0.0f, 1.0f, 0.5f));
