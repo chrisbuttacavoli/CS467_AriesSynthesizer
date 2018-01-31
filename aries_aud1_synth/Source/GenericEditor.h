@@ -144,12 +144,33 @@ public:
 		paramCombo[2]->setBounds(475, 10, (r.getWidth() / 4.8), 50);
 		paramCombo[3]->setBounds(675, 10, (r.getWidth() / 4.8), 50);
 
-		//sine pitch
-		paramLabels[0]->setBounds(75, 70, (r.getWidth() / 4.8), 25);
-		paramSliders[0]->setBounds(75, 70, (r.getWidth() / 4.8), 50);
-		//sine level
-		paramLabels[0]->setBounds(100, 70, (r.getWidth() / 4.8), 25);
-		paramSliders[0]->setBounds(100, 70, (r.getWidth() / 4.8), 50);
+		//pitch 1
+		paramLabels[0]->setBounds(75, 75, (r.getWidth() / 4.8), 25);
+		paramSliders[0]->setBounds(75, 75, (r.getWidth() / 4.8), 50);
+		//level 1
+		paramLabels[1]->setBounds(75, 125, (r.getWidth() / 4.8), 25);
+		paramSliders[1]->setBounds(75, 125, (r.getWidth() / 4.8), 50);
+
+		//pitch 2
+		paramLabels[2]->setBounds(275, 75, (r.getWidth() / 4.8), 25);
+		paramSliders[2]->setBounds(275, 75, (r.getWidth() / 4.8), 50);
+		//level 2
+		paramLabels[3]->setBounds(275, 125, (r.getWidth() / 4.8), 25);
+		paramSliders[3]->setBounds(275, 125, (r.getWidth() / 4.8), 50);
+
+		//pitch 3
+		paramLabels[4]->setBounds(475, 75, (r.getWidth() / 4.8), 25);
+		paramSliders[4]->setBounds(475, 75, (r.getWidth() / 4.8), 50);
+		//level 3
+		paramLabels[5]->setBounds(475, 125, (r.getWidth() / 4.8), 25);
+		paramSliders[5]->setBounds(475, 125, (r.getWidth() / 4.8), 50);
+
+		//pitch 4
+		paramLabels[6]->setBounds(675, 75, (r.getWidth() / 4.8), 25);
+		paramSliders[6]->setBounds(675, 75, (r.getWidth() / 4.8), 50);
+		//level 4
+		paramLabels[7]->setBounds(675, 125, (r.getWidth() / 4.8), 25);
+		paramSliders[7]->setBounds(675, 125, (r.getWidth() / 4.8), 50);
 
 
 		noParameterLabel.setBounds(r);
