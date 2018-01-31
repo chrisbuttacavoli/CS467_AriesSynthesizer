@@ -63,18 +63,36 @@ public:
 			{
 				Slider* aSlider;
 
-				paramSliders.add(aSlider = new Slider(param->name));
-				aSlider->setRange(param->range.start, param->range.end);
-				aSlider->setSliderStyle(Slider::Rotary);
-				aSlider->setValue(*param);
+				//testing out comparing param names to do custom things with the sliders
+				/*if (param->name.compare("Square Pitch") == 0) {
+					printf("Param name %d: %s", i, param->name);
+					paramSliders.add(aSlider = new Slider(param->name));
+					aSlider->setRange(param->range.start, param->range.end);
+					aSlider->setSliderStyle(Slider::LinearVertical);
+					aSlider->setValue(*param);
 
-				aSlider->addListener(this);
-				addAndMakeVisible(aSlider);
+					aSlider->addListener(this);
+					addAndMakeVisible(aSlider);
 
-				Label* aLabel;
-				paramLabels.add(aLabel = new Label(param->name, param->name));
-				addAndMakeVisible(aLabel);
+					Label* aLabel;
+					paramLabels.add(aLabel = new Label(param->name, param->name));
+					addAndMakeVisible(aLabel);
+				}
+				else {*/
+					paramSliders.add(aSlider = new Slider(param->name));
+					aSlider->setRange(param->range.start, param->range.end);
+					aSlider->setSliderStyle(Slider::Rotary);
+					aSlider->setValue(*param);
+
+					aSlider->addListener(this);
+					addAndMakeVisible(aSlider);
+
+					Label* aLabel;
+					paramLabels.add(aLabel = new Label(param->name, param->name));
+					addAndMakeVisible(aLabel);
+				//}
 			}
+
 		}
 
 		//sliderTree = new AudioProcessorValueTreeState::SliderAttachment()

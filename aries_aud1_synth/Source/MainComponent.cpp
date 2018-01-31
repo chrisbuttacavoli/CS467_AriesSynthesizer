@@ -149,6 +149,7 @@ public:
 		midiInputList.setBounds(area.removeFromTop(36).removeFromRight(getWidth() - 100).reduced(8));
 		
 		theEditor->setBounds(0, 250, getWidth(), 250); // hardcoded positions
+
 		keyboardComponent.setBounds(0, 450, getWidth(), 150);
 	}
 
