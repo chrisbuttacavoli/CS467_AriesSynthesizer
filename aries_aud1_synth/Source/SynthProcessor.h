@@ -42,8 +42,11 @@ public:
 		addParameter(new AudioParameterFloat("pitch4", "Pitch4", -1.0f, 1.0f, 0.0f));
 		addParameter(new AudioParameterFloat("level4", "Level4", 0.0f, 1.0f, 0.0f));
 
-		/*addParameter(new AudioParameterFloat("release", "Release", 0.0f, 10.0f, 5.0f));
-		addParameter(new AudioParameterFloat("distAmount", "Distortion", 0.0f, 15.0f, 0.0f));*/
+		addParameter(new AudioParameterFloat("attack", "Attack", 0.0f, 10.0f, 1.0f));
+		addParameter(new AudioParameterFloat("decay", "Decay", 0.0f, 10.0f, 1.0f));
+		addParameter(new AudioParameterFloat("sustain", "Sustain", 0.0f, 10.0f, 1.0f));
+		addParameter(new AudioParameterFloat("release", "Release", 0.0f, 10.0f, 1.0f));
+		addParameter(new AudioParameterFloat("distAmount", "Distortion", 0.0f, 15.0f, 0.0f));
 
 		mySynth.clearSounds();
 		// Use this loop to add multiple voices so that we can play more than one note

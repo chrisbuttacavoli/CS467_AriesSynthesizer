@@ -133,8 +133,7 @@ public:
 	{
 		juce::Rectangle<int> r = getLocalBounds();
 
-		//juce::Rectangle<int> sideBarArea(r.removeFromRight(r.getWidth() / 4));
-
+		//creating the combo boxes
 		Label * aLabel2 = new Label("Oscillators", "Oscillators");
 
 		addAndMakeVisible(aLabel2);
@@ -172,8 +171,25 @@ public:
 		paramLabels[7]->setBounds(675, 125, (r.getWidth() / 4.8), 25);
 		paramSliders[7]->setBounds(675, 125, (r.getWidth() / 4.8), 50);
 
+		//ADSR
+		//attack
+		paramLabels[8]->setBounds(75, 175, (r.getWidth() / 4.8), 25);
+		paramSliders[8]->setBounds(75, 175, (r.getWidth() / 4.8), 50);
+		//decay
+		paramLabels[9]->setBounds(75, 225, (r.getWidth() / 4.8), 25);
+		paramSliders[9]->setBounds(75, 225, (r.getWidth() / 4.8), 50);
+		//sustain
+		paramLabels[10]->setBounds(275, 175, (r.getWidth() / 4.8), 25);
+		paramSliders[10]->setBounds(275, 175, (r.getWidth() / 4.8), 50);
+		//release
+		paramLabels[11]->setBounds(275, 225, (r.getWidth() / 4.8), 25);
+		paramSliders[11]->setBounds(275, 225, (r.getWidth() / 4.8), 50);
 
-		noParameterLabel.setBounds(r);
+		//distortion
+		paramLabels[12]->setBounds(475, 175, (r.getWidth() / 4.8), 25);
+		paramSliders[12]->setBounds(475, 175, (r.getWidth() / 4.8), 50);
+
+		//noParameterLabel.setBounds(r);
 
 		//ugly fix this
 		/*for (int i = 0; i < paramSliders.size(); ++i)
