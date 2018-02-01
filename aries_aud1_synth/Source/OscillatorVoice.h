@@ -89,6 +89,7 @@ public:
 		env.trigger = 1;
 	}
 
+	//move to a listener class within the synthprocessor - Victoria
 	void getParamsFromProcessor(const OwnedArray<AudioProcessorParameter>& params,
 		std::map <juce::String, AudioProcessorParameter*> paramMap) {
 		
@@ -111,58 +112,70 @@ public:
 			juce::String paramName = (**ptr).getName(32);
 
 			if (paramName == "Oscillator1") {
-				if (val == 1) {
+				if (val == 0) {
+					osc1.type = none;
+				}
+				else if ((val*4) == 1) {
 					osc1.type = sineWave;
 				}
-				else if (val == 2) {
+				else if ((val*4) == 2) {
 					osc1.type = sawWave;
 				}
-				else if (val == 3) {
+				else if ((val*4) == 3) {
 					osc1.type = squareWave;
 				}
-				else if (val == 4) {
+				else if ((val*4) == 4) {
 					osc1.type = noiseWave;
 				}
 			}
 			else if (paramName == "Oscillator2") {
-				if (val == 1) {
+				if (val == 0) {
+					osc2.type = none;
+				}
+				else if ((val * 4) == 1) {
 					osc2.type = sineWave;
 				}
-				else if (val == 2) {
+				else if ((val * 4) == 2) {
 					osc2.type = sawWave;
 				}
-				else if (val == 3) {
+				else if ((val * 4) == 3) {
 					osc2.type = squareWave;
 				}
-				else if (val == 4) {
+				else if ((val * 4) == 4) {
 					osc2.type = noiseWave;
 				}
 			}
 			else if (paramName == "Oscillator3") {
-				if (val == 1) {
+				if (val == 0) {
+					osc3.type = none;
+				}
+				else if ((val * 4) == 1) {
 					osc3.type = sineWave;
 				}
-				else if (val == 2) {
+				else if ((val * 4) == 2) {
 					osc3.type = sawWave;
 				}
-				else if (val == 3) {
+				else if ((val * 4) == 3) {
 					osc3.type = squareWave;
 				}
-				else if (val == 4) {
+				else if ((val * 4) == 4) {
 					osc3.type = noiseWave;
 				}
 			}
 			else if (paramName == "Oscillator3") {
-				if (val == 1) {
+				if (val == 0) {
+					osc4.type = none;
+				}
+				else if ((val * 4) == 1) {
 					osc4.type = sineWave;
 				}
-				else if (val == 2) {
+				else if ((val * 4) == 2) {
 					osc4.type = sawWave;
 				}
-				else if (val == 3) {
+				else if ((val * 4) == 3) {
 					osc4.type = squareWave;
 				}
-				else if (val == 4) {
+				else if ((val * 4) == 4) {
 					osc4.type = noiseWave;
 				}
 			}

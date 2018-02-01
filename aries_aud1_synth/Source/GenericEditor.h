@@ -64,34 +64,17 @@ public:
 			{
 				Slider* aSlider;
 
-				//testing out comparing param names to do custom things with the sliders
-				/*if (param->name.compare("Square Pitch") == 0) {
-					printf("Param name %d: %s", i, param->name);
-					paramSliders.add(aSlider = new Slider(param->name));
-					aSlider->setRange(param->range.start, param->range.end);
-					aSlider->setSliderStyle(Slider::LinearVertical);
-					aSlider->setValue(*param);
+				paramSliders.add(aSlider = new Slider(param->name));
+				aSlider->setRange(param->range.start, param->range.end);
+				aSlider->setSliderStyle(Slider::Rotary);
+				aSlider->setValue(*param);
 
-					aSlider->addListener(this);
-					addAndMakeVisible(aSlider);
+				aSlider->addListener(this);
+				addAndMakeVisible(aSlider);
 
-					Label* aLabel;
-					paramLabels.add(aLabel = new Label(param->name, param->name));
-					addAndMakeVisible(aLabel);
-				}
-				else {*/
-					paramSliders.add(aSlider = new Slider(param->name));
-					aSlider->setRange(param->range.start, param->range.end);
-					aSlider->setSliderStyle(Slider::Rotary);
-					aSlider->setValue(*param);
-
-					aSlider->addListener(this);
-					addAndMakeVisible(aSlider);
-
-					Label* aLabel;
-					paramLabels.add(aLabel = new Label(param->name, param->name));
-					addAndMakeVisible(aLabel);
-				//}
+				Label* aLabel;
+				paramLabels.add(aLabel = new Label(param->name, param->name));
+				addAndMakeVisible(aLabel);
 			}
 			else if (const AudioParameterChoice* choiceParam = dynamic_cast<AudioParameterChoice*> (params[i]))
 			{
@@ -228,8 +211,10 @@ public:
 			param->endChangeGesture();
 	}
 
-	void juce::ComboBox::Listener::comboBoxChanged(juce::ComboBox *cb) {
+	void comboBoxChanged(juce::ComboBox *cb) override {
 
+		if (AudioParameterChoice* param = getParameterForComboBox(cb))
+			*param = cb->getSelectedItemIndex();
 	}
 
 private:
@@ -254,6 +239,12 @@ private:
 	{
 		const OwnedArray<AudioProcessorParameter>& params = getAudioProcessor()->getParameters();
 		return dynamic_cast<AudioParameterFloat*> (params[paramSliders.indexOf(slider)]);
+	}
+
+	AudioParameterChoice* getParameterForComboBox(ComboBox* cb)
+	{
+		const OwnedArray<AudioProcessorParameter>& params = getAudioProcessor()->getParameters();
+		return dynamic_cast<AudioParameterChoice*> (params[paramCombo.indexOf(cb)]);
 	}
 
 	Label noParameterLabel;

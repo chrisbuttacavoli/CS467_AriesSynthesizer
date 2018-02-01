@@ -27,20 +27,20 @@ public:
 	SynthProcessor(MidiKeyboardState &keyState) : keyboardState(keyState) {
 
 		// Initialize GUI controlled parameters
-		const StringArray & theOscillators = {"Sine", "Saw", "Square", "Noise"};
-		addParameter(new AudioParameterChoice("oscillator1","Oscillator1", theOscillators, 1, "Cats"));
-		addParameter(new AudioParameterChoice("oscillator2", "Oscillator2", theOscillators, 1, "Cats"));
-		addParameter(new AudioParameterChoice("oscillator3", "Oscillator3", theOscillators, 1, "Cats"));
-		addParameter(new AudioParameterChoice("oscillator4", "Oscillator4", theOscillators, 1, "Cats"));
+		const StringArray & theOscillators = {"None", "Sine", "Saw", "Square", "Noise"};
+		addParameter(new AudioParameterChoice("oscillator1","Oscillator1", theOscillators, 0, "Cats"));
+		addParameter(new AudioParameterChoice("oscillator2", "Oscillator2", theOscillators, 0, "Cats"));
+		addParameter(new AudioParameterChoice("oscillator3", "Oscillator3", theOscillators, 0, "Cats"));
+		addParameter(new AudioParameterChoice("oscillator4", "Oscillator4", theOscillators, 0, "Cats"));
 
 		addParameter(new AudioParameterFloat("pitch1", "Pitch1", -1.0f, 1.0f, 0.0f));
-		addParameter(new AudioParameterFloat("level1", "Level1", 0.0f, 1.0f, 0.0f));
+		addParameter(new AudioParameterFloat("level1", "Level1", 0.0f, 1.0f, 0.5f));
 		addParameter(new AudioParameterFloat("pitch2", "Pitch2", -1.0f, 1.0f, 0.0f));
-		addParameter(new AudioParameterFloat("level2", "Level2", 0.0f, 1.0f, 0.0f));
+		addParameter(new AudioParameterFloat("level2", "Level2", 0.0f, 1.0f, 0.5f));
 		addParameter(new AudioParameterFloat("pitch3", "Pitch3", -1.0f, 1.0f, 0.0f));
-		addParameter(new AudioParameterFloat("level3", "Level3", 0.0f, 1.0f, 0.0f));
+		addParameter(new AudioParameterFloat("level3", "Level3", 0.0f, 1.0f, 0.5f));
 		addParameter(new AudioParameterFloat("pitch4", "Pitch4", -1.0f, 1.0f, 0.0f));
-		addParameter(new AudioParameterFloat("level4", "Level4", 0.0f, 1.0f, 0.0f));
+		addParameter(new AudioParameterFloat("level4", "Level4", 0.0f, 1.0f, 0.5f));
 
 		addParameter(new AudioParameterFloat("attack", "Attack", 0.0f, 10.0f, 1.0f));
 		addParameter(new AudioParameterFloat("decay", "Decay", 0.0f, 10.0f, 1.0f));

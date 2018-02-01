@@ -12,13 +12,14 @@ Author:  Chris.Buttacavoli
 
 #include "maximilian.h"
 
+//WHY DOES THIS START AT 1?
 enum OscillatorType
 {
+	none = 0,
 	sineWave = 1,
 	sawWave = 2,
 	squareWave = 3,
 	noiseWave = 4,
-	none = 5
 };
 
 class Oscillator {
