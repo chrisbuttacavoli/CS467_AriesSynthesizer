@@ -36,9 +36,9 @@ string DoubleToStr(double val) {
 class OscillatorVoice : public SynthesiserVoice {
 
 public:
-	OscillatorVoice() : keyPressed(0), sineOsc(OscillatorType::sineWave),
-		sawOsc(OscillatorType::sawWave), squareOsc(OscillatorType::squareWave),
-		noiseOsc(OscillatorType::noiseWave)
+	OscillatorVoice() : keyPressed(0), osc1(OscillatorType::none),
+		osc2(OscillatorType::none), osc3(OscillatorType::none),
+		osc4(OscillatorType::none)
 	{
 		// Initialize parameter values
 		distortionMin = 0.1f;
@@ -52,10 +52,10 @@ public:
 	//called to start a new note
 	void startNote(int midiNoteNumber, float velocity, SynthesiserSound *, int /*currentPitchWheelPosition*/) override {
 		frequency = MidiMessage::getMidiNoteInHertz(midiNoteNumber);
-		sineOsc.adjustPitch(0, frequency);
-		sawOsc.adjustPitch(0, frequency);
-		squareOsc.adjustPitch(0, frequency);
-		squareOsc.adjustPitch(0, frequency);
+		osc1.adjustPitch(0, frequency);
+		osc2.adjustPitch(0, frequency);
+		osc3.adjustPitch(0, frequency);
+		osc4.adjustPitch(0, frequency);
 
 		this->initEnvelope();
 		keyPressed = 1;
@@ -110,33 +110,120 @@ public:
 			float val = (**ptr).getValue();
 			juce::String paramName = (**ptr).getName(32);
 
-			if (paramName == "Distortion")
+			if (paramName == "Oscillator1") {
+				if (val == 1) {
+					osc1.type = sineWave;
+				}
+				else if (val == 2) {
+					osc1.type = sawWave;
+				}
+				else if (val == 3) {
+					osc1.type = squareWave;
+				}
+				else if (val == 4) {
+					osc1.type = noiseWave;
+				}
+			}
+			else if (paramName == "Oscillator2") {
+				if (val == 1) {
+					osc2.type = sineWave;
+				}
+				else if (val == 2) {
+					osc2.type = sawWave;
+				}
+				else if (val == 3) {
+					osc2.type = squareWave;
+				}
+				else if (val == 4) {
+					osc2.type = noiseWave;
+				}
+			}
+			else if (paramName == "Oscillator3") {
+				if (val == 1) {
+					osc3.type = sineWave;
+				}
+				else if (val == 2) {
+					osc3.type = sawWave;
+				}
+				else if (val == 3) {
+					osc3.type = squareWave;
+				}
+				else if (val == 4) {
+					osc3.type = noiseWave;
+				}
+			}
+			else if (paramName == "Oscillator3") {
+				if (val == 1) {
+					osc4.type = sineWave;
+				}
+				else if (val == 2) {
+					osc4.type = sawWave;
+				}
+				else if (val == 3) {
+					osc4.type = squareWave;
+				}
+				else if (val == 4) {
+					osc4.type = noiseWave;
+				}
+			}
+			else if (paramName == "Distortion") {
 				distortionAmount = val + distortionMin;
-
+			}
 			// Oscillator parameters
-			else if (paramName == "Sine Level")
+			//Osc1
+			else if (paramName == "Level1") {
 				//this->sineLevel = (**ptr).getValue();
-				sineOsc.level = val;
-
-			else if (paramName == "Square Level")
+				osc1.level = val;
+			}
+			else if (paramName == "Pitch1") {
+				//this->sineLevel = (**ptr).getValue();
+				osc1.adjustPitch(val, frequency);
+			}
+			else if (paramName == "Level2") {
 				//this->squareLevel = (**ptr).getValue();
-				squareOsc.level = val;
-
-			else if (paramName == "Square Pitch")
-				//this->squareFreq = adjustFrequency(((**ptr)).getValue(), frequency);
-				squareOsc.adjustPitch(val, frequency);
-
-			else if (paramName == "Saw Level")
-				sawOsc.level = val;
-
-			else if (paramName == "Noise Level")
-				noiseOsc.level = val;
-
+				osc2.level = val;
+			}
+			else if (paramName == "Pitch2") {
+				//this->sineLevel = (**ptr).getValue();
+				osc2.adjustPitch(val, frequency);
+			}
+			else if (paramName == "Level3") {
+				//this->squareLevel = (**ptr).getValue();
+				osc3.level = val;
+			}
+			else if (paramName == "Pitch3") {
+				//this->sineLevel = (**ptr).getValue();
+				osc3.adjustPitch(val, frequency);
+			}
+			else if (paramName == "Level4") {
+				//this->squareLevel = (**ptr).getValue();
+				osc4.level = val;
+			}
+			else if (paramName == "Pitch4") {
+				//this->sineLevel = (**ptr).getValue();
+				osc4.adjustPitch(val, frequency);
+			}
 			// Envelope parameters
+			//1000 ms = 1 second
+			else if (paramName == "Attack") {
+				// Value in GUI is displayed in seconds, but release needs ms, so 10*1000
+				// Min value (behind the scenes) is 50 ms to reduce clicks
+				if (val < 0.05f) {
+					env.setAttack(50);
+				}
+				env.setAttack(val * 1000);
+			}
+			else if (paramName == "Decay") {
+				// Value in GUI is displayed in seconds, but release needs ms, so 10*1000
+				env.setDecay(val * 1000);
+			}
+			else if (paramName == "Sustain") {
+				// Value in GUI is displayed in seconds, but release needs ms, so 10*1000
+				env.setSustain(val * 1000);
+			}
 			else if (paramName == "Release") {
 				// Value in GUI is displayed in seconds, but release needs ms, so 10*1000
-				// Min value (behind the scecnes) is 50 ms to reduce clicks
-				env.setRelease(val * 10000 + 50);
+				env.setRelease(val * 1000);
 			}
 		}
 	}
@@ -155,8 +242,8 @@ public:
 		
 		for (int sample = 0; sample < numSamples; ++sample) {
 			// Add all our oscillators together
-			double wave = sineOsc.getWave() + squareOsc.getWave()
-				+ sawOsc.getWave() + noiseOsc.getWave();
+			double wave = osc1.getWave() + osc2.getWave()
+				+ osc3.getWave() + osc4.getWave();
 			
 			// Apply post process effects
 			wave = applyEffects(outputBuffer, wave);
@@ -185,10 +272,10 @@ private:
 
 	maxiEnv env;
 	maxiDistortion distortion;
-	Oscillator sineOsc;
-	Oscillator sawOsc;
-	Oscillator squareOsc;
-	Oscillator noiseOsc;
+	Oscillator osc1;
+	Oscillator osc2;
+	Oscillator osc3;
+	Oscillator osc4;
 
 	// Temporary private variables to hold param values for PoC
 	double distortionAmount;

@@ -28,10 +28,10 @@ public:
 
 		// Initialize GUI controlled parameters
 		const StringArray & theOscillators = {"Sine", "Saw", "Square", "Noise"};
-		addParameter(new AudioParameterChoice("oscillator1","Oscillator", theOscillators, 1, "Cats"));
-		addParameter(new AudioParameterChoice("oscillator2", "Oscillator", theOscillators, 1, "Cats"));
-		addParameter(new AudioParameterChoice("oscillator3", "Oscillator", theOscillators, 1, "Cats"));
-		addParameter(new AudioParameterChoice("oscillator4", "Oscillator", theOscillators, 1, "Cats"));
+		addParameter(new AudioParameterChoice("oscillator1","Oscillator1", theOscillators, 1, "Cats"));
+		addParameter(new AudioParameterChoice("oscillator2", "Oscillator2", theOscillators, 1, "Cats"));
+		addParameter(new AudioParameterChoice("oscillator3", "Oscillator3", theOscillators, 1, "Cats"));
+		addParameter(new AudioParameterChoice("oscillator4", "Oscillator4", theOscillators, 1, "Cats"));
 
 		addParameter(new AudioParameterFloat("pitch1", "Pitch1", -1.0f, 1.0f, 0.0f));
 		addParameter(new AudioParameterFloat("level1", "Level1", 0.0f, 1.0f, 0.0f));

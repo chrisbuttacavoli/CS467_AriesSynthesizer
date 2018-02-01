@@ -17,7 +17,8 @@ enum OscillatorType
 	sineWave = 1,
 	sawWave = 2,
 	squareWave = 3,
-	noiseWave = 4
+	noiseWave = 4,
+	none = 5
 };
 
 class Oscillator {
