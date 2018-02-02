@@ -81,107 +81,46 @@ public:
 	void initEnvelope() {
 		// Slightly raise the attack and release to get rid of clicks.
 		// See for theory: https://www.youtube.com/watch?v=9niampRkFW0
-		env.setAttack(50);
-		env.setDecay(1);
+		//env.setAttack(50);
+		//env.setAttack(10000);
+		/*env.setDecay(1);
 		env.setSustain(50);
-		env.setRelease(50);
+		env.setRelease(50);*/
 		env.amplitude = 0.1;
 		env.trigger = 1;
 	}
 
 	//move to a listener class within the synthprocessor - Victoria
-	void getParamsFromProcessor(const OwnedArray<AudioProcessorParameter>& params,
-		std::map <juce::String, AudioProcessorParameter*> paramMap) {
-		
-		/*distortionAmount = paramMap.at("Distortion")->getValue() + distortionMin;
-		sineOsc.level = paramMap.at("Sine Level")->getValue();
-		squareOsc.level = paramMap.at("Square Level")->getValue();
-		squareOsc.adjustPitch(paramMap.at("Square Pitch")->getValue(), frequency);
-		sawOsc.level = paramMap.at("Saw Level")->getValue();
-		env.setRelease(paramMap.at("Release")->getValue() * 10000 + 50);*/
-		
-		// Need to iterate over this array since there isn't a method to get by name/id etc
-		for (AudioProcessorParameter** ptr = params.begin(); ptr < params.end(); ptr++)
-		{
-			/*
-			// This is a cheesy way of doing this, will have to figure out a fater way like
-			// using a dictionary to update the parameters. Parameter values are all between
-			// 0.0 and 1.0, so we need to handle them on a parameter by parameter basis
-			*/
-			float val = (**ptr).getValue();
-			juce::String paramName = (**ptr).getName(32);
+	void getParamsFromProcessor(std::map <juce::String, AudioProcessorParameter*> paramMap) {
+		osc1.setType(paramMap.at("Oscillator1")->getValue(), numOscillators);
+		osc1.adjustPitch(paramMap.at("Pitch1")->getValue(), frequency);
+		osc1.level = paramMap.at("Level1")->getValue();
 
-			if (paramName == "Oscillator1") {
-				osc1.setType(val, numOscillators);
-			}
-			else if (paramName == "Oscillator2") {
-				osc2.setType(val, numOscillators);
-			}
-			else if (paramName == "Oscillator3") {
-				osc3.setType(val, numOscillators);
-			}
-			else if (paramName == "Oscillator4") {
-				osc4.setType(val, numOscillators);
-			}
-			else if (paramName == "Distortion") {
-				distortionAmount = val + distortionMin;
-			}
-			// Oscillator parameters
-			else if (paramName == "Level1") {
-				osc1.level = val;
-			}
-			else if (paramName == "Pitch1") {
-				osc1.adjustPitch(val, frequency);
-			}
-			else if (paramName == "Level2") {
-				osc2.level = val;
-			}
-			else if (paramName == "Pitch2") {
-				osc2.adjustPitch(val, frequency);
-			}
-			else if (paramName == "Level3") {
-				osc3.level = val;
-			}
-			else if (paramName == "Pitch3") {
-				osc3.adjustPitch(val, frequency);
-			}
-			else if (paramName == "Level4") {
-				osc4.level = val;
-			}
-			else if (paramName == "Pitch4") {
-				osc4.adjustPitch(val, frequency);
-			}
-			// Envelope parameters
-			//1000 ms = 1 second
-			else if (paramName == "Attack") {
-				// Value in GUI is displayed in seconds, but release needs ms, so 10*1000
-				// Min value (behind the scenes) is 50 ms to reduce clicks
-				if (val < 0.05f) {
-					env.setAttack(50);
-				}
-				env.setAttack(val * 1000);
-			}
-			else if (paramName == "Decay") {
-				// Value in GUI is displayed in seconds, but release needs ms, so 10*1000
-				env.setDecay(val * 1000);
-			}
-			else if (paramName == "Sustain") {
-				// Value in GUI is displayed in seconds, but release needs ms, so 10*1000
-				env.setSustain(val * 1000);
-			}
-			else if (paramName == "Release") {
-				// Value in GUI is displayed in seconds, but release needs ms, so 10*1000
-				env.setRelease(val * 1000);
-			}
+		osc2.setType(paramMap.at("Oscillator2")->getValue(), numOscillators);
+		osc2.adjustPitch(paramMap.at("Pitch2")->getValue(), frequency);
+		osc2.level = paramMap.at("Level2")->getValue();
+
+		osc3.setType(paramMap.at("Oscillator3")->getValue(), numOscillators);
+		osc3.adjustPitch(paramMap.at("Pitch3")->getValue(), frequency);
+		osc3.level = paramMap.at("Level3")->getValue();
+
+		osc4.setType(paramMap.at("Oscillator4")->getValue(), numOscillators);
+		osc4.adjustPitch(paramMap.at("Pitch4")->getValue(), frequency);
+		osc4.level = paramMap.at("Level4")->getValue();
+
+		distortionAmount = paramMap.at("Distortion")->getValue() + distortionMin;
+		
+		// +50ms min on some params, * 10 to match param knob
+		if (paramMap.at("Attack")->getValue() < 0.05f) {
+			env.setAttack(50);
 		}
+		else {
+			env.setAttack((paramMap.at("Attack")->getValue() * 1000) * 10 + 50);
+		}
+		env.setDecay(paramMap.at("Decay")->getValue() * 1000); // This one is special I think?
+		env.setSustain(paramMap.at("Sustain")->getValue() * 1000 * 10 + 50);
+		env.setRelease(paramMap.at("Release")->getValue() * 1000 * 10 + 50);
 	}
-
-	// Maybe someone could figure out a more efficient algorithm?
-	//double adjustFrequency(float octaveVal, double freq) {
-	//	// Octave val is between 0.0 and 1.0
-	//	return freq * pow(2, 2 * octaveVal - 1);
-	//	//return freq * 2^(2*octaveVal - 1);
-	//}
 
 	//renders the next block of data for this voice
 	void renderNextBlock(AudioBuffer<float> &outputBuffer, int startSample, int numSamples) override {

@@ -47,6 +47,8 @@ public:
 		addParameter(new AudioParameterFloat("release", "Release", 0.0f, 10.0f, 1.0f));
 		addParameter(new AudioParameterFloat("distAmount", "Distortion", 0.0f, 15.0f, 0.0f));
 
+		addParametersToMap();
+
 		mySynth.clearSounds();
 		// Use this loop to add multiple voices so that we can play more than one note
 		for (int i = 0; i < 10; i++)
@@ -59,9 +61,7 @@ public:
 	void addParametersToMap() {
 		const OwnedArray<AudioProcessorParameter>& params = getParameters();
 		for (AudioProcessorParameter** ptr = params.begin(); ptr < params.end(); ptr++)
-		{
 			paramMap.insert(std::pair<juce::String, AudioProcessorParameter*>((**ptr).getName(32), *ptr));
-		}
 	}
 
 	// TODO: simplify this function
@@ -79,7 +79,7 @@ public:
 		const OwnedArray<AudioProcessorParameter>& params = getParameters();
 		for (int i = 0; i < mySynth.getNumVoices(); i++)
 			if (myVoice = dynamic_cast<OscillatorVoice*>(mySynth.getVoice(i)))
-				myVoice->getParamsFromProcessor(params, paramMap);
+				myVoice->getParamsFromProcessor(paramMap);
 		
 		// the synth always adds its output to the audio buffer, so we have to clear it first..
 		buffer.clear();
