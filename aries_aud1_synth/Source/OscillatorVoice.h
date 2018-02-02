@@ -52,10 +52,12 @@ public:
 	//called to start a new note
 	void startNote(int midiNoteNumber, float velocity, SynthesiserSound *, int /*currentPitchWheelPosition*/) override {
 		frequency = MidiMessage::getMidiNoteInHertz(midiNoteNumber);
-		osc1.adjustPitch(0, frequency);
-		osc2.adjustPitch(0, frequency);
-		osc3.adjustPitch(0, frequency);
-		osc4.adjustPitch(0, frequency);
+
+		// Initializes pitches, it needs this to make sound
+		osc1.initializePitch(frequency);
+		osc2.initializePitch(frequency);
+		osc3.initializePitch(frequency);
+		osc4.initializePitch(frequency);
 
 		this->initEnvelope();
 		keyPressed = 1;
@@ -112,90 +114,21 @@ public:
 			juce::String paramName = (**ptr).getName(32);
 
 			if (paramName == "Oscillator1") {
-				if (val == 0) {
-					osc1.type = none;
-				}
-				else if ((val*4) == 1) {
-					osc1.type = sineWave;
-				}
-				else if ((val*4) == 2) {
-					osc1.type = sawWave;
-				}
-				else if ((val*4) == 3) {
-					osc1.type = squareWave;
-				}
-				else if ((val*4) == 4) {
-					osc1.type = noiseWave;
-				}
+				osc1.type = static_cast<OscillatorType>(int(val * numOscillators + 0.5));
 			}
-			else if (paramName == "Oscillator2") {
-				if (val == 0) {
-					osc2.type = none;
-				}
-				else if ((val * 4) == 1) {
-					osc2.type = sineWave;
-				}
-				else if ((val * 4) == 2) {
-					osc2.type = sawWave;
-				}
-				else if ((val * 4) == 3) {
-					osc2.type = squareWave;
-				}
-				else if ((val * 4) == 4) {
-					osc2.type = noiseWave;
-				}
+
+			if (paramName == "Oscillator2") {
+				osc2.type = static_cast<OscillatorType>(int(val * numOscillators + 0.5));
 			}
-			else if (paramName == "Oscillator3") {
-				if (val == 0) {
-					osc3.type = none;
-				}
-				else if ((val * 4) == 1) {
-					osc3.type = sineWave;
-				}
-				else if ((val * 4) == 2) {
-					osc3.type = sawWave;
-				}
-				else if ((val * 4) == 3) {
-					osc3.type = squareWave;
-				}
-				else if ((val * 4) == 4) {
-					osc3.type = noiseWave;
-				}
+			
+			if (paramName == "Oscillator3") {
+				osc3.type = static_cast<OscillatorType>(int(val * numOscillators + 0.5));
 			}
-			else if (paramName == "Oscillator3") {
-				if (val == 0) {
-					osc4.type = none;
-				}
-				else if ((val * 4) == 1) {
-					osc4.type = sineWave;
-				}
-				else if ((val * 4) == 2) {
-					osc4.type = sawWave;
-				}
-				else if ((val * 4) == 3) {
-					osc4.type = squareWave;
-				}
-				else if ((val * 4) == 4) {
-					osc4.type = noiseWave;
-				}
+
+			if (paramName == "Oscillator4") {
+				osc4.type = static_cast<OscillatorType>(int(val * numOscillators + 0.5));
 			}
-			else if (paramName == "Distortion") {
-				distortionAmount = val + distortionMin;
-			}
-			// Oscillator parameters
-			//Osc1
-			else if (paramName == "Level1") {
-				//this->sineLevel = (**ptr).getValue();
-				osc1.level = val;
-			}
-			else if (paramName == "Pitch1") {
-				//this->sineLevel = (**ptr).getValue();
-				osc1.adjustPitch(val, frequency);
-			}
-			else if (paramName == "Level2") {
-				//this->squareLevel = (**ptr).getValue();
-				osc2.level = val;
-			}
+
 			else if (paramName == "Pitch2") {
 				//this->sineLevel = (**ptr).getValue();
 				osc2.adjustPitch(val, frequency);
@@ -280,6 +213,7 @@ public:
 	}
 
 private:
+	int numOscillators = 4;
 	double frequency;
 	int keyPressed;
 

@@ -62,6 +62,11 @@ public:
 	}
 
 
+	void initializePitch(float referenceFreq) {
+		freq = referenceFreq;
+	}
+
+
 	//=======================================================
 private:
 	double freq;
