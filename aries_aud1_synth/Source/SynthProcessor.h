@@ -15,7 +15,6 @@
 #include "OscillatorVoice.h"
 #include "GenericEditor.h"
 #include "maximilian.h"
-#include "OscillatorCombo.h"
 
 
 //==============================================================================

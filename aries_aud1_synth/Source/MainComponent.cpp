@@ -12,7 +12,6 @@
 #include "SynthSound.h"
 #include "SynthProcessor.h"
 #include "GenericEditor.h"
-#include "OscillatorCombo.h"
 
 //==============================================================================
 /*
@@ -54,8 +53,6 @@ public:
 		const StringArray midiInputs(MidiInput::getDevices());
 		midiInputList.addItemList(midiInputs, 1);
 		midiInputList.addListener(this);
-
-		addOscillatorControls();
 
 		// find the first enabled device and use that by default
 		for (int i = 0; i < midiInputs.size(); ++i)
@@ -110,12 +107,12 @@ public:
 
     void getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill) override
     {
-        //Currently using SynthAudioSource.h to play audio
+        //Currently using SynthProcessor.h to play audio
     }
 
     void releaseResources() override
     {
-        //releasing resources in SynthAudioSource.h
+        //releasing resources in SynthProcessor.h
     }
 
     //==============================================================================
@@ -136,13 +133,10 @@ public:
 	//placing objects inside the main window
     void resized() override
     {
-        // This is called when the MainContentComponent is resized.
-        // If you add any child components, this is where you should
-        // update their positions.
 		juce::Rectangle<int> area(getLocalBounds());
 
+		//displaying midi input list, the processor editor, and the keyboard
 		midiInputList.setBounds(area.removeFromTop(36).removeFromRight(getWidth() - 100).reduced(8));
-		
 		theEditor->setBounds(area.removeFromTop(350));
 		keyboardComponent.setBounds(0, 450, getWidth(), 150);
 	}
@@ -171,9 +165,6 @@ private:
 	{
 		if (box == &midiInputList)
 			setMidiInput(midiInputList.getSelectedItemIndex());
-
-		/*if (box == &cbOsc1)
-			DBG(cbOsc1.getSelectedIdAsValue().toString());*/
 	}
 
 	// These methods handle callbacks from the midi device + on-screen keyboard..
@@ -203,14 +194,6 @@ private:
 		}
 	}
 
-
-	void addOscillatorControls() {
-		addAndMakeVisible(osc1);
-		addAndMakeVisible(osc2);
-		addAndMakeVisible(osc3);
-		addAndMakeVisible(osc4);
-	}
-
 	//==============================================================================
 
     // Your private member variables go here...
@@ -230,11 +213,6 @@ private:
 	Synthesiser mySynth;
 	double lastSampleRate;
 
-	// Controls
-	OscillatorCombo osc1;
-	OscillatorCombo osc2;
-	OscillatorCombo osc3;
-	OscillatorCombo osc4;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
 };
 
