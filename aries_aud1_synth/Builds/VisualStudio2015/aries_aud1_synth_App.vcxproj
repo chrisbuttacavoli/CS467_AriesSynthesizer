@@ -1837,6 +1837,8 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_video.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\AudioRecorder.h"/>
+    <ClInclude Include="..\..\Source\RecordingThumbnail.h"/>
     <ClInclude Include="..\..\Source\OscillatorCombo.h"/>
     <ClInclude Include="..\..\Source\GenericEditor.h"/>
     <ClInclude Include="..\..\Source\SynthProcessor.h"/>

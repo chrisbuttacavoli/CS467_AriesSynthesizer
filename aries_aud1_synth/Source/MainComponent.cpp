@@ -12,14 +12,17 @@
 #include "SynthSound.h"
 #include "SynthProcessor.h"
 #include "GenericEditor.h"
+#include "AudioRecorder.h"
+#include "RecordingThumbnail.h"
 
 //==============================================================================
 /*
     This component lives inside our window, and this is where you should put all
     your controls and content.
 */
-class MainContentComponent   : public AudioAppComponent,
+class MainContentComponent : public AudioAppComponent,
 	private ComboBox::Listener,
+	private Button::Listener,
 	private MidiInputCallback,
 	private MidiKeyboardStateListener
 {
@@ -31,6 +34,7 @@ public:
 		isAddingFromMidiInput(false),
 		keyboardComponent(keyboardState, MidiKeyboardComponent::horizontalKeyboard),
 		theSynthProcessor(keyboardState),
+		recorder(recordingThumbnail.getAudioThumbnail()),	//initializing the recorder object
 		startTime(Time::getMillisecondCounterHiRes() * 0.001)
     {
 		setOpaque(true);
@@ -82,6 +86,13 @@ public:
 		deviceManager.addAudioCallback(&audioSourcePlayer);
 		deviceManager.addMidiInputCallback(String(), (&theSynthProcessor.midiCollector));
 
+		//recording button
+		addAndMakeVisible(recordButton);
+		recordButton.setButtonText("Record");
+		recordButton.addListener(this);
+		//addAndMakeVisible(recordingThumbnail);	//displays what is being recorded. Maybe not necessary?
+		deviceManager.addAudioCallback(&recorder);
+
 		//setting the size of the windows
 		setSize(900, 600);
 
@@ -94,6 +105,7 @@ public:
 		keyboardState.removeListener(this);
 		deviceManager.removeMidiInputCallback(MidiInput::getDevices()[midiInputList.getSelectedItemIndex()], this);
 		midiInputList.removeListener(this);
+		deviceManager.removeAudioCallback(&recorder);
     }
 
     //==============================================================================
@@ -139,10 +151,34 @@ public:
 		midiInputList.setBounds(area.removeFromTop(36).removeFromRight(getWidth() - 100).reduced(8));
 		theEditor->setBounds(area.removeFromTop(350));
 		keyboardComponent.setBounds(0, 450, getWidth(), 150);
+		//recordingThumbnail.setBounds(area.removeFromTop(80).reduced(8));	//displays what is being recorded. Maybe not necessary?
+		recordButton.setBounds(10, 350, 75, 25);
 	}
 
 private:
 	//==============================================================================
+	// Your private member variables go here...
+	AudioDeviceManager& deviceManager;           // [1]
+	ComboBox midiInputList;                     // [2]
+	Label midiInputListLabel;
+	int lastInputIndex;                         // [3]
+	bool isAddingFromMidiInput;                 // [4]
+	MidiKeyboardState keyboardState;            // [5]
+	MidiKeyboardComponent keyboardComponent;    // [6]
+	double startTime;
+
+	AudioProcessorPlayer audioSourcePlayer;	//need to play audio through a processor player now
+	SynthProcessor theSynthProcessor;		//new synth processor to replay synthAudioSource
+	GenericEditor *theEditor;
+
+	Synthesiser mySynth;
+	double lastSampleRate;
+
+	//Recording Objects
+	RecordingThumbnail recordingThumbnail;
+	AudioRecorder recorder;
+	TextButton recordButton;
+
 	/** Starts listening to a MIDI input device, enabling it if necessary. */
 	void setMidiInput(int index)
 	{
@@ -194,24 +230,38 @@ private:
 		}
 	}
 
+	//Recording function/Button clicked function
+	void startRecording()
+	{
+		//naming file and starting recording
+		//TODO: Create a way for the user to enter in their file name and saving location
+		const File file(File::getSpecialLocation(File::userDocumentsDirectory)
+			.getNonexistentChildFile("Juce Demo Audio Recording", ".wav"));
+		recorder.startRecording(file);
+
+		recordButton.setButtonText("Stop");
+		recordingThumbnail.setDisplayFullThumbnail(false);
+	}
+
+	void stopRecording()
+	{
+		recorder.stop();
+		recordButton.setButtonText("Record");
+		recordingThumbnail.setDisplayFullThumbnail(true);
+	}
+
+	void buttonClicked(Button* button) override
+	{
+		if (button == &recordButton)
+		{
+			if (recorder.isRecording())
+				stopRecording();
+			else
+				startRecording();
+		}
+	}
+
 	//==============================================================================
-
-    // Your private member variables go here...
-	AudioDeviceManager& deviceManager;           // [1]
-	ComboBox midiInputList;                     // [2]
-	Label midiInputListLabel;
-	int lastInputIndex;                         // [3]
-	bool isAddingFromMidiInput;                 // [4]
-	MidiKeyboardState keyboardState;            // [5]
-	MidiKeyboardComponent keyboardComponent;    // [6]
-	double startTime;
-
-	AudioProcessorPlayer audioSourcePlayer;	//need to play audio through a processor player now
-	SynthProcessor theSynthProcessor;		//new synth processor to replay synthAudioSource
-	GenericEditor *theEditor;
-
-	Synthesiser mySynth;
-	double lastSampleRate;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
 };
