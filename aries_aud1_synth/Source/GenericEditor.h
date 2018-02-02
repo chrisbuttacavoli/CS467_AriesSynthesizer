@@ -69,12 +69,14 @@ public:
 				aSlider->setSliderStyle(Slider::Rotary);
 				aSlider->setValue(*param);
 
-				aSlider->addListener(this);
 				addAndMakeVisible(aSlider);
+				aSlider->addListener(this);
 
 				Label* aLabel;
 				paramLabels.add(aLabel = new Label(param->name, param->name));
 				addAndMakeVisible(aLabel);
+
+				controls.add(aSlider);
 			}
 			else if (const AudioParameterChoice* choiceParam = dynamic_cast<AudioParameterChoice*> (params[i]))
 			{
@@ -90,6 +92,8 @@ public:
 				//cbOsc->setJustificationType(Justification::centred);
 				addAndMakeVisible(cbOsc);
 				cbOsc->addListener(this);
+
+				controls.add(cbOsc);
 			}
 
 		}
@@ -174,15 +178,6 @@ public:
 
 		//noParameterLabel.setBounds(r);
 
-		//ugly fix this
-		/*for (int i = 0; i < paramSliders.size(); ++i)
-		{
-			juce::Rectangle<int> paramBounds = r.removeFromTop(kParamControlHeight);
-			juce::Rectangle<int> labelBounds = paramBounds.removeFromLeft(kParamLabelWidth);
-
-			paramLabels[i]->setBounds(labelBounds);
-			paramSliders[i]->setBounds(paramBounds);
-		}*/
 	}
 
 	void paint(Graphics& g) override
@@ -225,12 +220,12 @@ private:
 	{
 		const OwnedArray<AudioProcessorParameter>& params = getAudioProcessor()->getParameters();
 
-		for (int i = 0; i < params.size(); ++i)
+		for (int i = 0; i < controls.size(); ++i)
 		{
-			if (const AudioParameterFloat* param = dynamic_cast<AudioParameterFloat*> (params[i]))
+			if (Slider* slider = dynamic_cast<Slider*> (controls[i]))
 			{
-				if (i < paramSliders.size())
-					paramSliders[i]->setValue(*param);
+				AudioParameterFloat* param = static_cast<AudioParameterFloat*> (params[i]);
+				slider->setValue((double)*param, dontSendNotification);
 			}
 		}
 	}
@@ -238,19 +233,20 @@ private:
 	AudioParameterFloat* getParameterForSlider(Slider* slider)
 	{
 		const OwnedArray<AudioProcessorParameter>& params = getAudioProcessor()->getParameters();
-		return dynamic_cast<AudioParameterFloat*> (params[paramSliders.indexOf(slider)]);
+		return dynamic_cast<AudioParameterFloat*> (params[controls.indexOf(slider)]);
 	}
 
 	AudioParameterChoice* getParameterForComboBox(ComboBox* cb)
 	{
 		const OwnedArray<AudioProcessorParameter>& params = getAudioProcessor()->getParameters();
-		return dynamic_cast<AudioParameterChoice*> (params[paramCombo.indexOf(cb)]);
+		return dynamic_cast<AudioParameterChoice*> (params[controls.indexOf(cb)]);
 	}
 
 	Label noParameterLabel;
 	OwnedArray<Slider> paramSliders;
 	OwnedArray<Label> paramLabels;
 	OwnedArray<ComboBox> paramCombo;
+	Array<Component*> controls;
 	//ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> sliderTree;
 
 // Adding this below to test passing params via ValueStateTree
