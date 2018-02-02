@@ -127,7 +127,6 @@ public:
 				distortionAmount = val + distortionMin;
 			}
 			// Oscillator parameters
-			//Osc1
 			else if (paramName == "Level1") {
 				osc1.level = val;
 			}
