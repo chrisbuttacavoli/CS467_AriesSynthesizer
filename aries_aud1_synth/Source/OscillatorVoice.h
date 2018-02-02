@@ -40,8 +40,6 @@ public:
 		osc2(OscillatorType::none), osc3(OscillatorType::none),
 		osc4(OscillatorType::none)
 	{
-		// Initialize parameter values
-		distortionMin = 0.1f;
 	}
 
 	//must return true if this voice object is capable of playing the given sound
@@ -114,39 +112,44 @@ public:
 			juce::String paramName = (**ptr).getName(32);
 
 			if (paramName == "Oscillator1") {
-				osc1.type = static_cast<OscillatorType>(int(val * numOscillators + 0.5));
+				osc1.setType(val, numOscillators);
 			}
-
-			if (paramName == "Oscillator2") {
-				osc2.type = static_cast<OscillatorType>(int(val * numOscillators + 0.5));
+			else if (paramName == "Oscillator2") {
+				osc2.setType(val, numOscillators);
 			}
-			
-			if (paramName == "Oscillator3") {
-				osc3.type = static_cast<OscillatorType>(int(val * numOscillators + 0.5));
+			else if (paramName == "Oscillator3") {
+				osc3.setType(val, numOscillators);
 			}
-
-			if (paramName == "Oscillator4") {
-				osc4.type = static_cast<OscillatorType>(int(val * numOscillators + 0.5));
+			else if (paramName == "Oscillator4") {
+				osc4.setType(val, numOscillators);
 			}
-
+			else if (paramName == "Distortion") {
+				distortionAmount = val + distortionMin;
+			}
+			// Oscillator parameters
+			//Osc1
+			else if (paramName == "Level1") {
+				osc1.level = val;
+			}
+			else if (paramName == "Pitch1") {
+				osc1.adjustPitch(val, frequency);
+			}
+			else if (paramName == "Level2") {
+				osc2.level = val;
+			}
 			else if (paramName == "Pitch2") {
-				//this->sineLevel = (**ptr).getValue();
 				osc2.adjustPitch(val, frequency);
 			}
 			else if (paramName == "Level3") {
-				//this->squareLevel = (**ptr).getValue();
 				osc3.level = val;
 			}
 			else if (paramName == "Pitch3") {
-				//this->sineLevel = (**ptr).getValue();
 				osc3.adjustPitch(val, frequency);
 			}
 			else if (paramName == "Level4") {
-				//this->squareLevel = (**ptr).getValue();
 				osc4.level = val;
 			}
 			else if (paramName == "Pitch4") {
-				//this->sineLevel = (**ptr).getValue();
 				osc4.adjustPitch(val, frequency);
 			}
 			// Envelope parameters
@@ -226,5 +229,5 @@ private:
 
 	// Temporary private variables to hold param values for PoC
 	double distortionAmount;
-	double distortionMin;
+	double distortionMin = 0.1f;
 };

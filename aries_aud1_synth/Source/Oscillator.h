@@ -12,7 +12,6 @@ Author:  Chris.Buttacavoli
 
 #include "maximilian.h"
 
-//WHY DOES THIS START AT 1?
 enum OscillatorType
 {
 	none = 0,
@@ -29,7 +28,6 @@ public:
 		type = oscType;
 	}
 
-	OscillatorType type;
 	double level;
 
 	// The frequency is adjusted by the GUI parameters. To change the
@@ -61,11 +59,39 @@ public:
 		freq = referenceFreq * pow(2, 2 * octaveVal - 1);
 	}
 
-
 	void initializePitch(float referenceFreq) {
 		freq = referenceFreq;
+		type = none;
 	}
 
+	void setType(OscillatorType oscType) {
+		type = oscType;
+	}
+
+	// Converts the float to an enum. Ranges from 0.0 to 1.0
+	void setType(float paramVal, int numOscillators) {
+		float val = paramVal * 4;
+		if (paramVal == 0) {
+			//osc2.type = none;
+			setType(none);
+		}
+		else if (val == 1) {
+			//osc2.type = sineWave;
+			setType(sineWave);
+		}
+		else if (val == 2) {
+			//osc2.type = sawWave;
+			setType(sawWave);
+		}
+		else if (val == 3) {
+			//osc2.type = squareWave;
+			setType(squareWave);
+		}
+		else if (val == 4) {
+			//osc2.type = noiseWave;
+			setType(noiseWave);
+		}
+	}
 
 	//=======================================================
 private:
@@ -73,4 +99,5 @@ private:
 	double pitch;
 	maxiOsc osc;
 	Random random; // For the noise oscillator
+	OscillatorType type;
 };
