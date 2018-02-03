@@ -13,6 +13,7 @@
 #include "maximilian.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "SynthSound.h"
+#include "Envelope.h"
 #include "Oscillator.h"
 #include <map>
 
@@ -57,15 +58,15 @@ public:
 		osc3.initializePitch(frequency);
 		osc4.initializePitch(frequency);
 
-		this->initEnvelope();
+		env.startNote();
+
 		keyPressed = 1;
 	}
 
 	// called to stop a note
 	void stopNote(float velocity, bool allowTailOff) override {
 		clearCurrentNote();
-		env.trigger = 0;
-		//keyPressed = 0;
+		env.stopNote();
 	}
 
 	// called to let the voice know that the pitch wheel has been moved
@@ -78,20 +79,9 @@ public:
 
 	}
 
-	void initEnvelope() {
-		// Slightly raise the attack and release to get rid of clicks.
-		// See for theory: https://www.youtube.com/watch?v=9niampRkFW0
-		//env.setAttack(50);
-		//env.setAttack(10000);
-		/*env.setDecay(1);
-		env.setSustain(50);
-		env.setRelease(50);*/
-		env.amplitude = 0.1;
-		env.trigger = 1;
-	}
-
-	//move to a listener class within the synthprocessor - Victoria
-	void getParamsFromProcessor(std::map <juce::String, AudioProcessorParameter*> paramMap) {
+	// move to a listener class within the synthprocessor - Victoria
+	void getParamsFromProcessor(map <juce::String, AudioProcessorParameter*> paramMap,
+			map <juce::String, float> paramScaleMap) {
 		osc1.setType(paramMap.at("Oscillator1")->getValue(), numOscillators);
 		osc1.adjustPitch(paramMap.at("Pitch1")->getValue(), frequency);
 		osc1.level = paramMap.at("Level1")->getValue();
@@ -108,18 +98,16 @@ public:
 		osc4.adjustPitch(paramMap.at("Pitch4")->getValue(), frequency);
 		osc4.level = paramMap.at("Level4")->getValue();
 
-		distortionAmount = paramMap.at("Distortion")->getValue() + distortionMin;
-		
-		// +50ms min on some params, * 10 to match param knob
-		if (paramMap.at("Attack")->getValue() < 0.05f) {
-			env.setAttack(50);
-		}
-		else {
-			env.setAttack((paramMap.at("Attack")->getValue() * 1000) * 10 + 50);
-		}
-		env.setDecay(paramMap.at("Decay")->getValue() * 1000); // This one is special I think?
-		env.setSustain(paramMap.at("Sustain")->getValue() * 1000 * 10 + 50);
-		env.setRelease(paramMap.at("Release")->getValue() * 1000 * 10 + 50);
+		env.setAttack(paramMap.at("Attack")->getValue() * 1000
+				* paramScaleMap.at("Attack"));
+		env.setDecay(paramMap.at("Decay")->getValue() * 1000
+			* paramScaleMap.at("Decay"));
+		env.setSustain(paramMap.at("Sustain")->getValue());
+		env.setRelease(paramMap.at("Release")->getValue() * 1000
+			* paramScaleMap.at("Release"));
+
+		distortionAmount = (paramMap.at("Distortion")->getValue()
+				* paramScaleMap.at("Distortion")) + distortionMin;
 	}
 
 	//renders the next block of data for this voice
@@ -148,7 +136,7 @@ public:
 		wave = distortion.atanDist(wave, distortionAmount);
 		
 		// Apply an envelope
-		wave = env.adsr(wave, env.trigger);
+		wave = env.apply(wave);
 
 		return wave;
 	}
@@ -158,12 +146,13 @@ private:
 	double frequency;
 	int keyPressed;
 
-	maxiEnv env;
+	//maxiEnv env;
 	maxiDistortion distortion;
 	Oscillator osc1;
 	Oscillator osc2;
 	Oscillator osc3;
 	Oscillator osc4;
+	Envelope env;
 
 	// Temporary private variables to hold param values for PoC
 	double distortionAmount;

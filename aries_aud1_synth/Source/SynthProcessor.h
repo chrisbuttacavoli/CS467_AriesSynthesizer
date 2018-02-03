@@ -41,11 +41,21 @@ public:
 		addParameter(new AudioParameterFloat("pitch4", "Pitch4", -1.0f, 1.0f, 0.0f));
 		addParameter(new AudioParameterFloat("level4", "Level4", 0.0f, 1.0f, 0.5f));
 
-		addParameter(new AudioParameterFloat("attack", "Attack", 0.0f, 10.0f, 1.0f));
-		addParameter(new AudioParameterFloat("decay", "Decay", 0.0f, 10.0f, 1.0f));
-		addParameter(new AudioParameterFloat("sustain", "Sustain", 0.0f, 10.0f, 1.0f));
-		addParameter(new AudioParameterFloat("release", "Release", 0.0f, 10.0f, 1.0f));
-		addParameter(new AudioParameterFloat("distAmount", "Distortion", 0.0f, 15.0f, 0.0f));
+		/* 
+			Envelope parameters: The scale parameters act as multiplies since our values are passed
+			are 0.0 to 1.0 in OscillatorVoice. To get a max of 10 seconds, we need to have a scale.
+			Sustain units are not ms, they are level (0-100%).
+		*/
+		paramScaleMap.insert(pair<juce::String, float>("Attack", 10.0f));
+		paramScaleMap.insert(pair<juce::String, float>("Decay", 10.0f));
+		paramScaleMap.insert(pair<juce::String, float>("Release", 10.0f));
+		addParameter(new AudioParameterFloat("attack", "Attack", 0.0f, paramScaleMap.at("Attack"), 0.0f));
+		addParameter(new AudioParameterFloat("decay", "Decay", 0.0f, paramScaleMap.at("Decay"), 0.5f));
+		addParameter(new AudioParameterFloat("sustain", "Sustain", 0.0f, 1.0f, 1.0f));
+		addParameter(new AudioParameterFloat("release", "Release", 0.0f, paramScaleMap.at("Release"), 0.5f));
+
+		paramScaleMap.insert(pair<juce::String, float>("Distortion", 15.0f));
+		addParameter(new AudioParameterFloat("distAmount", "Distortion", 0.0f, paramScaleMap.at("Distortion"), 0.0f));
 
 		addParametersToMap();
 
@@ -79,7 +89,7 @@ public:
 		const OwnedArray<AudioProcessorParameter>& params = getParameters();
 		for (int i = 0; i < mySynth.getNumVoices(); i++)
 			if (myVoice = dynamic_cast<OscillatorVoice*>(mySynth.getVoice(i)))
-				myVoice->getParamsFromProcessor(paramMap);
+				myVoice->getParamsFromProcessor(paramMap, paramScaleMap);
 		
 		// the synth always adds its output to the audio buffer, so we have to clear it first..
 		buffer.clear();
@@ -167,10 +177,14 @@ public:
 	Synthesiser mySynth;
 	OscillatorVoice* myVoice;
 
-	// Our parameters
-	//AudioParameterFloat* gainParam = nullptr;
-	AudioParameterFloat* paramFloat = nullptr;
-	std::map <juce::String, AudioProcessorParameter*> paramMap;
+	/*
+		The paramScaleMap gives us multiplers for parameters when passing
+		parameter values (0.0 to 1.0) to the OscillatorVoice. For instance,
+		the attack may range from 0 to 15 seconds, so our multiplier would
+		be 15 and would need to be considered in the envelope calculation.
+	*/
+	map <juce::String, AudioProcessorParameter*> paramMap;
+	map <juce::String, float> paramScaleMap;
 
 	// Filters
 	dsp::ProcessorDuplicator<dsp::IIR::Filter<float>, dsp::IIR::Coefficients<float>> lowPassFilter;

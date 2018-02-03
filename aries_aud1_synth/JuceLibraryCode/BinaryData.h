@@ -12,13 +12,13 @@ namespace BinaryData
     const int            beat2_wavSize = 211140;
 
     extern const char*   bigFiles_txt;
-    const int            bigFiles_txtSize = 224586;
+    const int            bigFiles_txtSize = 226264;
 
     extern const char*   blip_wav;
     const int            blip_wavSize = 18964;
 
     extern const char*   README;
-    const int            READMESize = 3042;
+    const int            READMESize = 3115;
 
     extern const char*   snare_wav;
     const int            snare_wavSize = 26734;
