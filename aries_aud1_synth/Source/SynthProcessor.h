@@ -71,7 +71,7 @@ public:
 		/*
 			Other parameters
 		*/
-		addScale("Distortion", 15.0f);
+		addScale("Distortion", 30.0f);
 		addParameter(new AudioParameterFloat("distAmount", "Distortion", 0.0f, getScale("Distortion"), 0.0f));
 
 		addParametersToMap();

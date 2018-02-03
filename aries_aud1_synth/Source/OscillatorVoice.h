@@ -13,6 +13,7 @@
 #include "maximilian.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "SynthSound.h"
+#include "Distortion.h"
 #include "Envelope.h"
 #include "Filter.h"
 #include "Oscillator.h"
@@ -107,8 +108,7 @@ public:
 		env.setRelease(paramMap.at("Release")->getValue() * 1000
 			* paramScaleMap.at("Release"));
 
-		distortionAmount = (paramMap.at("Distortion")->getValue()
-				* paramScaleMap.at("Distortion")) + distortionMin;
+		dist.setDistortion(paramMap.at("Distortion")->getValue() * paramScaleMap.at("Distortion"));
 
 		filter.setType(paramMap.at("Filter")->getValue(), numFilterTypes);
 		filter.setCutoffFreq(paramMap.at("Cutoff")->getValue() * paramScaleMap.at("Cutoff"));
@@ -126,7 +126,6 @@ public:
 			
 			// Apply post process effects
 			wave = applyEffects(outputBuffer, wave);
-			wave = filter.apply(wave);
 
 			// Output the final wave product
 			for (int channel = 0; channel < outputBuffer.getNumChannels(); ++channel) {
@@ -137,10 +136,8 @@ public:
 	}
 
 	float applyEffects(AudioBuffer<float> &buffer, double wave) {
-		// Apply distortion
-		wave = distortion.atanDist(wave, distortionAmount);
-		
-		// Apply an envelope
+		wave = dist.apply(wave);
+		wave = filter.apply(wave);
 		wave = env.apply(wave);
 
 		return wave;
@@ -153,17 +150,15 @@ private:
 	int keyPressed;
 
 	//maxiEnv env;
-	maxiDistortion distortion;
+	
 	Oscillator osc1;
 	Oscillator osc2;
 	Oscillator osc3;
 	Oscillator osc4;
+	Distortion dist;
 	Envelope env;
 	Filter filter;
 
-	// Temporary private variables to hold param values for PoC
-	double distortionAmount;
-	double distortionMin = 0.1f;
 
 	double loPassCutoff;
 	double loPassRes;
