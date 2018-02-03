@@ -400,13 +400,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\OscillatorCombo.cpp">
+    <ClCompile Include="..\..\Source\Main.cpp">
       <Filter>aries_aud1_synth\Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\MainComponent.cpp">
-      <Filter>aries_aud1_synth\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Main.cpp">
       <Filter>aries_aud1_synth\Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\maximillion\libs\fft.cpp">
@@ -2268,28 +2265,19 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\Distortion.h">
+    <ClInclude Include="..\..\Source\AudioRecorder.h">
       <Filter>aries_aud1_synth\Source</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Filter.h">
+    <ClInclude Include="..\..\Source\Distortion.h">
       <Filter>aries_aud1_synth\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Envelope.h">
       <Filter>aries_aud1_synth\Source</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\AudioRecorder.h">
-      <Filter>aries_aud1_synth\Source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\RecordingThumbnail.h">
-      <Filter>aries_aud1_synth\Source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\OscillatorCombo.h">
+    <ClInclude Include="..\..\Source\Filter.h">
       <Filter>aries_aud1_synth\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\GenericEditor.h">
-      <Filter>aries_aud1_synth\Source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\SynthProcessor.h">
       <Filter>aries_aud1_synth\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Oscillator.h">
@@ -2298,7 +2286,19 @@
     <ClInclude Include="..\..\Source\OscillatorVoice.h">
       <Filter>aries_aud1_synth\Source</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\OscillatorCombo.h">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\OscillatorGUI.h">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\SynthProcessor.h">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\SynthSound.h">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\RecordingThumbnail.h">
       <Filter>aries_aud1_synth\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\maximillion\libs\fft.h">

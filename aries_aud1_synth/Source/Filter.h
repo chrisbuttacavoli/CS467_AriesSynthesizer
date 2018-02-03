@@ -13,7 +13,8 @@
 enum FilterType {
 	noFilter = 0,
 	loPass = 1,
-	hiPass = 2
+	hiPass = 2,
+	bandPass = 3,
 };
 
 class Filter {
@@ -27,6 +28,9 @@ public:
 			break;
 		case hiPass:
 			return filter.hires(wave, cutoff, resonance);
+			break;
+		case  bandPass:
+			return filter.bandpass(wave, cutoff, resonance);
 			break;
 		}
 		return wave;

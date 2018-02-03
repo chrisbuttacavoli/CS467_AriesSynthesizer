@@ -145,7 +145,7 @@ public:
 
 private:
 	int numOscillators = 4;
-	int numFilterTypes = 3;
+	int numFilterTypes = 4;
 	double frequency;
 	int keyPressed;
 

@@ -60,7 +60,7 @@ public:
 		/*
 			Filter parameters
 		*/
-		const StringArray & filterChoices = { "None", "LoPass", "HiPass" };
+		const StringArray & filterChoices = { "None", "LoPass", "HiPass", "BandPass" };
 		addParameter(new AudioParameterChoice("filter", "Filter", filterChoices, noFilter, "Cats"));
 
 		addScale("Cutoff", 14000);

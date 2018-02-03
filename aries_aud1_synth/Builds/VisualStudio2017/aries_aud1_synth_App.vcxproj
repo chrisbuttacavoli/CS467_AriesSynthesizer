@@ -147,9 +147,8 @@
     <Lib/>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\OscillatorCombo.cpp"/>
-    <ClCompile Include="..\..\Source\MainComponent.cpp"/>
     <ClCompile Include="..\..\Source\Main.cpp"/>
+    <ClCompile Include="..\..\Source\MainComponent.cpp"/>
     <ClCompile Include="..\..\..\maximillion\libs\fft.cpp"/>
     <ClCompile Include="..\..\..\maximillion\libs\maxiAtoms.cpp"/>
     <ClCompile Include="..\..\..\maximillion\libs\maxiBark.cpp"/>
@@ -1837,17 +1836,18 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_video.cpp"/>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\Distortion.h"/>
-    <ClInclude Include="..\..\Source\Filter.h"/>
-    <ClInclude Include="..\..\Source\Envelope.h"/>
     <ClInclude Include="..\..\Source\AudioRecorder.h"/>
-    <ClInclude Include="..\..\Source\RecordingThumbnail.h"/>
-    <ClInclude Include="..\..\Source\OscillatorCombo.h"/>
+    <ClInclude Include="..\..\Source\Distortion.h"/>
+    <ClInclude Include="..\..\Source\Envelope.h"/>
+    <ClInclude Include="..\..\Source\Filter.h"/>
     <ClInclude Include="..\..\Source\GenericEditor.h"/>
-    <ClInclude Include="..\..\Source\SynthProcessor.h"/>
     <ClInclude Include="..\..\Source\Oscillator.h"/>
     <ClInclude Include="..\..\Source\OscillatorVoice.h"/>
+    <ClInclude Include="..\..\Source\OscillatorCombo.h"/>
+    <ClInclude Include="..\..\Source\OscillatorGUI.h"/>
+    <ClInclude Include="..\..\Source\SynthProcessor.h"/>
     <ClInclude Include="..\..\Source\SynthSound.h"/>
+    <ClInclude Include="..\..\Source\RecordingThumbnail.h"/>
     <ClInclude Include="..\..\..\maximillion\libs\fft.h"/>
     <ClInclude Include="..\..\..\maximillion\libs\maxiAtoms.h"/>
     <ClInclude Include="..\..\..\maximillion\libs\maxiBark.h"/>
