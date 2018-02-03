@@ -172,9 +172,17 @@ public:
 		paramLabels[11]->setBounds(275, 225, (r.getWidth() / 4.8), 25);
 		paramSliders[11]->setBounds(275, 225, (r.getWidth() / 4.8), 50);
 
-		//distortion
+		//Lo pass filter
 		paramLabels[12]->setBounds(475, 175, (r.getWidth() / 4.8), 25);
 		paramSliders[12]->setBounds(475, 175, (r.getWidth() / 4.8), 50);
+
+		//Hi pass filter
+		paramLabels[13]->setBounds(475, 225, (r.getWidth() / 4.8), 25);
+		paramSliders[13]->setBounds(475, 225, (r.getWidth() / 4.8), 50);
+
+		//distortion
+		paramLabels[14]->setBounds(675, 175, (r.getWidth() / 4.8), 25);
+		paramSliders[14]->setBounds(675, 175, (r.getWidth() / 4.8), 50);
 
 		//noParameterLabel.setBounds(r);
 

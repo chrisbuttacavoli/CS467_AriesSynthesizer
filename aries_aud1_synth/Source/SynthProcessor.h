@@ -46,16 +46,22 @@ public:
 			are 0.0 to 1.0 in OscillatorVoice. To get a max of 10 seconds, we need to have a scale.
 			Sustain units are not ms, they are level (0-100%).
 		*/
-		paramScaleMap.insert(pair<juce::String, float>("Attack", 10.0f));
-		paramScaleMap.insert(pair<juce::String, float>("Decay", 10.0f));
-		paramScaleMap.insert(pair<juce::String, float>("Release", 10.0f));
-		addParameter(new AudioParameterFloat("attack", "Attack", 0.0f, paramScaleMap.at("Attack"), 0.0f));
-		addParameter(new AudioParameterFloat("decay", "Decay", 0.0f, paramScaleMap.at("Decay"), 0.5f));
-		addParameter(new AudioParameterFloat("sustain", "Sustain", 0.0f, 1.0f, 0.5f));
-		addParameter(new AudioParameterFloat("release", "Release", 0.0f, paramScaleMap.at("Release"), 0.5f));
 
-		paramScaleMap.insert(pair<juce::String, float>("Distortion", 15.0f));
-		addParameter(new AudioParameterFloat("distAmount", "Distortion", 0.0f, paramScaleMap.at("Distortion"), 0.0f));
+		addScale("Attack", 10.0f);
+		addScale("Decay", 10.0f);
+		addScale("Release", 10.0f);
+		addParameter(new AudioParameterFloat("attack", "Attack", 0.0f, getScale("Attack"), 0.0f));
+		addParameter(new AudioParameterFloat("decay", "Decay", 0.0f, getScale("Decay"), 0.5f));
+		addParameter(new AudioParameterFloat("sustain", "Sustain", 0.0f, 1.0f, 1.0f));
+		addParameter(new AudioParameterFloat("release", "Release", 0.0f, getScale("Release"), 0.5f));
+
+		addScale("LoPass", 10000.0f);
+		addScale("HiPass", 3000.0f);
+		addParameter(new AudioParameterFloat("loPass", "LoPass", 6000.0f, getScale("LoPass"), 6000.0f));
+		addParameter(new AudioParameterFloat("hiPass", "HiPass", 0.0f, getScale("HiPass"), 0.0f));
+
+		addScale("Distortion", 15.0f);
+		addParameter(new AudioParameterFloat("distAmount", "Distortion", 0.0f, getScale("Distortion"), 0.0f));
 
 		addParametersToMap();
 
@@ -72,6 +78,14 @@ public:
 		const OwnedArray<AudioProcessorParameter>& params = getParameters();
 		for (AudioProcessorParameter** ptr = params.begin(); ptr < params.end(); ptr++)
 			paramMap.insert(std::pair<juce::String, AudioProcessorParameter*>((**ptr).getName(32), *ptr));
+	}
+
+	void addScale(juce::String key, float scale) {
+		paramScaleMap.insert(pair<juce::String, float>(key, scale));
+	}
+
+	float getScale(juce::String key) {
+		return paramScaleMap.at(key);
 	}
 
 	// TODO: simplify this function
