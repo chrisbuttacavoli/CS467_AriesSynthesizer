@@ -2268,6 +2268,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\Filter.h">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Envelope.h">
       <Filter>aries_aud1_synth\Source</Filter>
     </ClInclude>

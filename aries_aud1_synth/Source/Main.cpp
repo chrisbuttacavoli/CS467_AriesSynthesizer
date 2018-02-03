@@ -9,7 +9,7 @@
 */
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include <windows.h> // Gits rid of the WinMain error for Chris
+//#include <windows.h> // Gits rid of the WinMain error for Chris
 
 
 Component* createMainContentComponent();

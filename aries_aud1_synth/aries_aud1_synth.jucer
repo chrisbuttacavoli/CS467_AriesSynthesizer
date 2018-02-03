@@ -7,6 +7,7 @@
               userNotes="" headerPath="C:\Users\Chris.Buttacavoli\Documents\GitHub\CS467_Aries-\maximillion">
   <MAINGROUP id="DbO0WA" name="aries_aud1_synth">
     <GROUP id="{25EB4AD0-1085-2D6D-2C5D-94D74EEB437F}" name="Source">
+      <FILE id="VmvftI" name="Filter.h" compile="0" resource="0" file="Source/Filter.h"/>
       <FILE id="PjUoRq" name="Envelope.h" compile="0" resource="0" file="Source/Envelope.h"/>
       <FILE id="s73lEb" name="AudioRecorder.h" compile="0" resource="0" file="Source/AudioRecorder.h"/>
       <FILE id="Kbsyfc" name="RecordingThumbnail.h" compile="0" resource="0"

@@ -25,12 +25,14 @@ class SynthProcessor : public AudioProcessor
 public:
 	SynthProcessor(MidiKeyboardState &keyState) : keyboardState(keyState) {
 
-		// Initialize GUI controlled parameters
-		const StringArray & theOscillators = {"None", "Sine", "Saw", "Square", "Noise"};
-		addParameter(new AudioParameterChoice("oscillator1","Oscillator1", theOscillators, 0, "Cats"));
-		addParameter(new AudioParameterChoice("oscillator2", "Oscillator2", theOscillators, 0, "Cats"));
-		addParameter(new AudioParameterChoice("oscillator3", "Oscillator3", theOscillators, 0, "Cats"));
-		addParameter(new AudioParameterChoice("oscillator4", "Oscillator4", theOscillators, 0, "Cats"));
+		/*
+			Oscillator parameters
+		*/
+		const StringArray & oscillatorChoices = {"None", "Sine", "Saw", "Square", "Noise"};
+		addParameter(new AudioParameterChoice("oscillator1","Oscillator1", oscillatorChoices, sineWave, "Cats"));
+		addParameter(new AudioParameterChoice("oscillator2", "Oscillator2", oscillatorChoices, 0, "Cats"));
+		addParameter(new AudioParameterChoice("oscillator3", "Oscillator3", oscillatorChoices, 0, "Cats"));
+		addParameter(new AudioParameterChoice("oscillator4", "Oscillator4", oscillatorChoices, 0, "Cats"));
 
 		addParameter(new AudioParameterFloat("pitch1", "Pitch1", -1.0f, 1.0f, 0.0f));
 		addParameter(new AudioParameterFloat("level1", "Level1", 0.0f, 1.0f, 0.5f));
@@ -55,17 +57,26 @@ public:
 		addParameter(new AudioParameterFloat("sustain", "Sustain", 0.0f, 1.0f, 1.0f));
 		addParameter(new AudioParameterFloat("release", "Release", 0.0f, getScale("Release"), 0.5f));
 
-		addScale("LoPass", 10000.0f);
-		addScale("HiPass", 3000.0f);
-		addParameter(new AudioParameterFloat("loPass", "LoPass", 6000.0f, getScale("LoPass"), 6000.0f));
-		addParameter(new AudioParameterFloat("hiPass", "HiPass", 0.0f, getScale("HiPass"), 0.0f));
+		/*
+			Filter parameters
+		*/
+		const StringArray & filterChoices = { "None", "LoPass", "HiPass" };
+		addParameter(new AudioParameterChoice("filter", "Filter", filterChoices, noFilter, "Cats"));
 
+		addScale("Cutoff", 14000);
+		addScale("Resonance", 200);
+		addParameter(new AudioParameterFloat("cutoff", "Cutoff", 1.0f, getScale("Cutoff"), 5000.0f));
+		addParameter(new AudioParameterFloat("resonance", "Resonance", 1.0f, getScale("Resonance"), 50.0f));
+
+		/*
+			Other parameters
+		*/
 		addScale("Distortion", 15.0f);
 		addParameter(new AudioParameterFloat("distAmount", "Distortion", 0.0f, getScale("Distortion"), 0.0f));
 
 		addParametersToMap();
-
 		mySynth.clearSounds();
+
 		// Use this loop to add multiple voices so that we can play more than one note
 		for (int i = 0; i < 10; i++)
 			mySynth.addVoice(new OscillatorVoice());

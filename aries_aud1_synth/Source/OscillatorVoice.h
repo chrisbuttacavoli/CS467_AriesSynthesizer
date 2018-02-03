@@ -14,6 +14,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "SynthSound.h"
 #include "Envelope.h"
+#include "Filter.h"
 #include "Oscillator.h"
 #include <map>
 
@@ -37,9 +38,9 @@ string DoubleToStr(double val) {
 class OscillatorVoice : public SynthesiserVoice {
 
 public:
-	OscillatorVoice() : keyPressed(0), osc1(OscillatorType::none),
-		osc2(OscillatorType::none), osc3(OscillatorType::none),
-		osc4(OscillatorType::none)
+	OscillatorVoice() : keyPressed(0), osc1(OscillatorType::noWave),
+		osc2(OscillatorType::noWave), osc3(OscillatorType::noWave),
+		osc4(OscillatorType::noWave)
 	{
 	}
 
@@ -108,6 +109,10 @@ public:
 
 		distortionAmount = (paramMap.at("Distortion")->getValue()
 				* paramScaleMap.at("Distortion")) + distortionMin;
+
+		filter.setType(paramMap.at("Filter")->getValue(), numFilterTypes);
+		filter.setCutoffFreq(paramMap.at("Cutoff")->getValue() * paramScaleMap.at("Cutoff"));
+		filter.setResonanceBoost(paramMap.at("Resonance")->getValue() * paramScaleMap.at("Resonance"));
 	}
 
 	//renders the next block of data for this voice
@@ -121,6 +126,7 @@ public:
 			
 			// Apply post process effects
 			wave = applyEffects(outputBuffer, wave);
+			wave = filter.apply(wave);
 
 			// Output the final wave product
 			for (int channel = 0; channel < outputBuffer.getNumChannels(); ++channel) {
@@ -142,6 +148,7 @@ public:
 
 private:
 	int numOscillators = 4;
+	int numFilterTypes = 3;
 	double frequency;
 	int keyPressed;
 
@@ -152,8 +159,12 @@ private:
 	Oscillator osc3;
 	Oscillator osc4;
 	Envelope env;
+	Filter filter;
 
 	// Temporary private variables to hold param values for PoC
 	double distortionAmount;
 	double distortionMin = 0.1f;
+
+	double loPassCutoff;
+	double loPassRes;
 };

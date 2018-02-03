@@ -14,7 +14,7 @@ Author:  Chris.Buttacavoli
 
 enum OscillatorType
 {
-	none = 0,
+	noWave = 0,
 	sineWave = 1,
 	sawWave = 2,
 	squareWave = 3,
@@ -47,8 +47,6 @@ public:
 		case noiseWave:
 			return (random.nextFloat() * 0.25f - 0.125f) * level;
 			break;
-		default:
-			break;
 		}
 		return 0;
 	}
@@ -61,10 +59,10 @@ public:
 
 	void initializePitch(float referenceFreq) {
 		freq = referenceFreq;
-		type = none;
+		type = noWave;
 	}
 
-	// Converts the float to an enum. Ranges from 0.0 to 1.0
+	// Converts the float to an enum. paramVal ranges from 0.0 to 1.0
 	void setType(float paramVal, int numOscillators) {
 		type = static_cast<OscillatorType>(int(paramVal * numOscillators));
 	}

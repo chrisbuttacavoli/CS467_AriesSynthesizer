@@ -172,11 +172,15 @@ public:
 		paramLabels[11]->setBounds(275, 225, (r.getWidth() / 4.8), 25);
 		paramSliders[11]->setBounds(275, 225, (r.getWidth() / 4.8), 50);
 
-		//Lo pass filter
+		/*
+			Filter stuff
+		*/
+		//type
+		paramCombo[4]->setBounds(475, 275, (r.getWidth() / 4.8), 50);
+		//cutoff
 		paramLabels[12]->setBounds(475, 175, (r.getWidth() / 4.8), 25);
 		paramSliders[12]->setBounds(475, 175, (r.getWidth() / 4.8), 50);
-
-		//Hi pass filter
+		//res
 		paramLabels[13]->setBounds(475, 225, (r.getWidth() / 4.8), 25);
 		paramSliders[13]->setBounds(475, 225, (r.getWidth() / 4.8), 50);
 
