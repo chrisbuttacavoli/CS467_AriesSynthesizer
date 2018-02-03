@@ -51,7 +51,7 @@ public:
 		paramScaleMap.insert(pair<juce::String, float>("Release", 10.0f));
 		addParameter(new AudioParameterFloat("attack", "Attack", 0.0f, paramScaleMap.at("Attack"), 0.0f));
 		addParameter(new AudioParameterFloat("decay", "Decay", 0.0f, paramScaleMap.at("Decay"), 0.5f));
-		addParameter(new AudioParameterFloat("sustain", "Sustain", 0.0f, 1.0f, 1.0f));
+		addParameter(new AudioParameterFloat("sustain", "Sustain", 0.0f, 1.0f, 0.5f));
 		addParameter(new AudioParameterFloat("release", "Release", 0.0f, paramScaleMap.at("Release"), 0.5f));
 
 		paramScaleMap.insert(pair<juce::String, float>("Distortion", 15.0f));
@@ -85,14 +85,14 @@ public:
 	}
 	
 	void processBlock(AudioBuffer<float> &buffer, MidiBuffer &midiMessages) override {
+		// the synth always adds its output to the audio buffer, so we have to clear it first..
+		buffer.clear();
+
 		// Hooking up our OscillatorVoice to our parameters.
 		const OwnedArray<AudioProcessorParameter>& params = getParameters();
 		for (int i = 0; i < mySynth.getNumVoices(); i++)
 			if (myVoice = dynamic_cast<OscillatorVoice*>(mySynth.getVoice(i)))
 				myVoice->getParamsFromProcessor(paramMap, paramScaleMap);
-		
-		// the synth always adds its output to the audio buffer, so we have to clear it first..
-		buffer.clear();
 
 		// fill a midi buffer with incoming messages from the midi input.
 		MidiBuffer incomingMidi;

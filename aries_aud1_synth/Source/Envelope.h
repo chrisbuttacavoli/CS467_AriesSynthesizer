@@ -17,11 +17,21 @@ public:
 	}
 
 	void setAttack(double ms) {
-		env.setAttack(ms + minAttack);
+		if (ms < minVal) {
+			env.setAttack(minVal);
+		}
+		else {
+			env.setAttack(ms);
+		}
 	}
 
 	void setDecay(double ms) {
-		env.setDecay(ms + minDecay);
+		if (ms < minVal) {
+			env.setDecay(minVal);
+		}
+		else {
+			env.setDecay(ms);
+		}
 	}
 
 	void setSustain(double level) {
@@ -29,7 +39,12 @@ public:
 	}
 
 	void setRelease(double ms) {
-		env.setRelease(ms + minRelease);
+		if (ms < minVal) {
+			env.setRelease(minVal);
+		}
+		else {
+			env.setRelease(ms);
+		}
 	}
 
 	void startNote() {
@@ -44,7 +59,5 @@ public:
 private:
 	maxiEnv env;
 
-	int minAttack = 90;
-	int minDecay = 90;
-	int minRelease = 90;
+	int minVal = 25;
 };

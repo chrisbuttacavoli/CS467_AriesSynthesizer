@@ -112,7 +112,6 @@ public:
 
 	//renders the next block of data for this voice
 	void renderNextBlock(AudioBuffer<float> &outputBuffer, int startSample, int numSamples) override {
-		
 		if (!keyPressed) return;
 		
 		for (int sample = 0; sample < numSamples; ++sample) {
