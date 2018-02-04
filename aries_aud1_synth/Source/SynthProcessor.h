@@ -29,7 +29,7 @@ public:
 			Oscillator parameters
 		*/
 		const StringArray & oscillatorChoices = {"None", "Sine", "Saw", "Square", "Noise"};
-		addParameter(new AudioParameterChoice("oscillator1","Oscillator1", oscillatorChoices, sineWave, "Cats"));
+		addParameter(new AudioParameterChoice("oscillator1","Oscillator1", oscillatorChoices, 0, "Cats"));
 		addParameter(new AudioParameterChoice("oscillator2", "Oscillator2", oscillatorChoices, 0, "Cats"));
 		addParameter(new AudioParameterChoice("oscillator3", "Oscillator3", oscillatorChoices, 0, "Cats"));
 		addParameter(new AudioParameterChoice("oscillator4", "Oscillator4", oscillatorChoices, 0, "Cats"));
