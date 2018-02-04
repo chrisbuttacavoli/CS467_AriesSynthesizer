@@ -25,6 +25,21 @@
       <FILE id="bw7Kvt" name="MainComponent.cpp" compile="1" resource="0"
             file="Source/MainComponent.cpp"/>
       <FILE id="yw7lJI" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+      <FILE id="Nik8v7" name="aries_logo_cropped_s.png" compile="0" resource="1"
+            file="Source/aries_logo_cropped_s.png"/>
+      <FILE id="htB1KN" name="Osc_Box_2_sl2.png" compile="0" resource="1"
+            file="Source/Osc_Box_2_sl2.png"/>
+      <FILE id="gdGFHy" name="Osc_Box_1_sl2.png" compile="0" resource="1"
+            file="Source/Osc_Box_1_sl2.png"/>
+      <FILE id="cGxQss" name="Osc_Box_3_sl2.png" compile="0" resource="1"
+            file="Source/Osc_Box_3_sl2.png"/>
+      <FILE id="tzFDd6" name="Osc_Box_4_sl2.png" compile="0" resource="1"
+            file="Source/Osc_Box_4_sl2.png"/>
+      <FILE id="nOCslN" name="adsr_s.png" compile="0" resource="1" file="Source/adsr_s.png"/>
+      <FILE id="TclEm5" name="distortion_s.png" compile="0" resource="1"
+            file="Source/distortion_s.png"/>
+      <FILE id="RBD0Z9" name="filters.png" compile="0" resource="1" file="Source/filters.png"/>
+      <FILE id="lC4YIR" name="adsr_m.png" compile="0" resource="1" file="Source/adsr_m.png"/>
     </GROUP>
     <GROUP id="{62B2A28A-DBA4-0C44-1683-1CE945E2DB06}" name="maximillion">
       <GROUP id="{0FB15AE8-5596-7D38-2FB7-A7E9800324A1}" name="libs">
@@ -65,11 +80,11 @@
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
                        debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
                        linkTimeOptimisation="0" isDebug="1" optimisation="1" targetName="aries_aud1_synth"
-                       headerPath="C:\Users\vdorn\Documents\CS467\aries\maximillion"/>
+                       headerPath="C:\JUCE\maximillion"/>
         <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
                        debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
                        linkTimeOptimisation="1" isDebug="0" optimisation="3" targetName="aries_aud1_synth"
-                       headerPath="C:\Users\vdorn\Documents\CS467\aries\maximillion"/>
+                       headerPath="C:\JUCE\maximillion"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../juce/modules"/>
@@ -94,11 +109,11 @@
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
                        debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
                        linkTimeOptimisation="0" isDebug="1" optimisation="1" targetName="aries_aud1_synth"
-                       headerPath="C:\Users\vdorn\Documents\CS467\aries\maximillion"/>
+                       headerPath="C:\JUCE\maximillion"/>
         <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
                        debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
                        linkTimeOptimisation="1" isDebug="0" optimisation="3" targetName="aries_aud1_synth"
-                       headerPath="C:\Users\vdorn\Documents\CS467\aries\maximillion"/>
+                       headerPath="C:\JUCE\maximillion"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../juce/modules"/>
