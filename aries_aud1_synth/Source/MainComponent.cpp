@@ -94,7 +94,7 @@ public:
 		deviceManager.addAudioCallback(&recorder);
 
 		//setting the size of the windows
-		setSize(900, 600);
+		setSize(1060, 600);
 
     }
 
@@ -136,7 +136,9 @@ public:
         // "Logo" stuff
 		Font theFont("Helvetica", "Bold", 25.0f);
 		g.setFont(theFont);
-		g.drawText("Aries Synthesizer", -10, 400, getWidth(), 50, Justification::right);
+		//g.drawText("Aries Synthesizer", -10, 400, getWidth(), 50, Justification::right);
+		Image logo = ImageCache::getFromMemory(BinaryData::aries_logo_cropped_s_png, BinaryData::aries_logo_cropped_s_pngSize);
+		g.drawImageAt(logo, 850, 400);
 		Font theFont2("Helvetica", "Bold", 10.0f);
 		g.setFont(theFont2);
 		g.drawText("Chris B, Victoria D, Alex C", 10, 400, getWidth(), 25, Justification::bottomLeft);

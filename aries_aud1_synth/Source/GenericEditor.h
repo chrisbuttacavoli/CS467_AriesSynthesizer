@@ -124,69 +124,69 @@ public:
 		Label * aLabel2 = new Label("Oscillators", "Oscillators");
 
 		addAndMakeVisible(aLabel2);
-		aLabel2->setBounds(2, 10, (r.getWidth() / 4.8), 50);
-		paramCombo[0]->setBounds(75, 10, (r.getWidth() / 4.8), 50);
-		paramCombo[1]->setBounds(275, 10, (r.getWidth() / 4.8), 50);
-		paramCombo[2]->setBounds(475, 10, (r.getWidth() / 4.8), 50);
-		paramCombo[3]->setBounds(675, 10, (r.getWidth() / 4.8), 50);
+		//aLabel2->setBounds(2, 10, (r.getWidth() / 4.8), 50);
+		paramCombo[0]->setBounds(20, 12, (r.getWidth() / 4.8), 50);
+		paramCombo[1]->setBounds(285, 12, (r.getWidth() / 4.8), 50);
+		paramCombo[2]->setBounds(550, 12, (r.getWidth() / 4.8), 50);
+		paramCombo[3]->setBounds(815, 12, (r.getWidth() / 4.8), 50);
 
 		//pitch 1
-		paramLabels[0]->setBounds(75, 75, (r.getWidth() / 4.8), 25);
-		paramSliders[0]->setBounds(75, 75, (r.getWidth() / 4.8), 50);
+		paramLabels[0]->setBounds(70, 65, (r.getWidth() / 4.8), 25);
+		paramSliders[0]->setBounds(70, 65, (r.getWidth() / 4.8), 50);
 		//level 1
-		paramLabels[1]->setBounds(75, 125, (r.getWidth() / 4.8), 25);
-		paramSliders[1]->setBounds(75, 125, (r.getWidth() / 4.8), 50);
+		paramLabels[1]->setBounds(70, 115, (r.getWidth() / 4.8), 25);
+		paramSliders[1]->setBounds(70, 115, (r.getWidth() / 4.8), 50);
 
 		//pitch 2
-		paramLabels[2]->setBounds(275, 75, (r.getWidth() / 4.8), 25);
-		paramSliders[2]->setBounds(275, 75, (r.getWidth() / 4.8), 50);
+		paramLabels[2]->setBounds(335, 65, (r.getWidth() / 4.8), 25);
+		paramSliders[2]->setBounds(335, 65, (r.getWidth() / 4.8), 50);
 		//level 2
-		paramLabels[3]->setBounds(275, 125, (r.getWidth() / 4.8), 25);
-		paramSliders[3]->setBounds(275, 125, (r.getWidth() / 4.8), 50);
+		paramLabels[3]->setBounds(335, 115, (r.getWidth() / 4.8), 25);
+		paramSliders[3]->setBounds(335, 115, (r.getWidth() / 4.8), 50);
 
 		//pitch 3
-		paramLabels[4]->setBounds(475, 75, (r.getWidth() / 4.8), 25);
-		paramSliders[4]->setBounds(475, 75, (r.getWidth() / 4.8), 50);
+		paramLabels[4]->setBounds(600, 65, (r.getWidth() / 4.8), 25);
+		paramSliders[4]->setBounds(600, 65, (r.getWidth() / 4.8), 50);
 		//level 3
-		paramLabels[5]->setBounds(475, 125, (r.getWidth() / 4.8), 25);
-		paramSliders[5]->setBounds(475, 125, (r.getWidth() / 4.8), 50);
+		paramLabels[5]->setBounds(600, 115, (r.getWidth() / 4.8), 25);
+		paramSliders[5]->setBounds(600, 115, (r.getWidth() / 4.8), 50);
 
 		//pitch 4
-		paramLabels[6]->setBounds(675, 75, (r.getWidth() / 4.8), 25);
-		paramSliders[6]->setBounds(675, 75, (r.getWidth() / 4.8), 50);
+		paramLabels[6]->setBounds(865, 65, (r.getWidth() / 4.8), 25);
+		paramSliders[6]->setBounds(865, 65, (r.getWidth() / 4.8), 50);
 		//level 4
-		paramLabels[7]->setBounds(675, 125, (r.getWidth() / 4.8), 25);
-		paramSliders[7]->setBounds(675, 125, (r.getWidth() / 4.8), 50);
+		paramLabels[7]->setBounds(865, 115, (r.getWidth() / 4.8), 25);
+		paramSliders[7]->setBounds(865, 115, (r.getWidth() / 4.8), 50);
 
 		//ADSR
 		//attack
-		paramLabels[8]->setBounds(75, 175, (r.getWidth() / 4.8), 25);
-		paramSliders[8]->setBounds(75, 175, (r.getWidth() / 4.8), 50);
+		paramLabels[8]->setBounds(700, 275, (r.getWidth() / 4.8), 25);
+		paramSliders[8]->setBounds(700, 275, (r.getWidth() / 4.8), 50);
 		//decay
-		paramLabels[9]->setBounds(75, 225, (r.getWidth() / 4.8), 25);
-		paramSliders[9]->setBounds(75, 225, (r.getWidth() / 4.8), 50);
+		paramLabels[9]->setBounds(700, 225, (r.getWidth() / 4.8), 25);
+		paramSliders[9]->setBounds(700, 225, (r.getWidth() / 4.8), 50);
 		//sustain
-		paramLabels[10]->setBounds(275, 175, (r.getWidth() / 4.8), 25);
-		paramSliders[10]->setBounds(275, 175, (r.getWidth() / 4.8), 50);
+		paramLabels[10]->setBounds(875, 225, (r.getWidth() / 4.8), 25);
+		paramSliders[10]->setBounds(875, 225, (r.getWidth() / 4.8), 50);
 		//release
-		paramLabels[11]->setBounds(275, 225, (r.getWidth() / 4.8), 25);
-		paramSliders[11]->setBounds(275, 225, (r.getWidth() / 4.8), 50);
+		paramLabels[11]->setBounds(875, 275, (r.getWidth() / 4.8), 25);
+		paramSliders[11]->setBounds(875, 275, (r.getWidth() / 4.8), 50);
 
 		/*
 			Filter stuff
 		*/
 		//type
-		paramCombo[4]->setBounds(475, 275, (r.getWidth() / 4.8), 50);
+		paramCombo[4]->setBounds(420, 210, (r.getWidth() / 4.8), 20);
 		//cutoff
-		paramLabels[12]->setBounds(475, 175, (r.getWidth() / 4.8), 25);
-		paramSliders[12]->setBounds(475, 175, (r.getWidth() / 4.8), 50);
+		paramLabels[12]->setBounds(475, 225, (r.getWidth() / 4.8), 25);
+		paramSliders[12]->setBounds(475, 225, (r.getWidth() / 4.8), 50);
 		//res
-		paramLabels[13]->setBounds(475, 225, (r.getWidth() / 4.8), 25);
-		paramSliders[13]->setBounds(475, 225, (r.getWidth() / 4.8), 50);
+		paramLabels[13]->setBounds(475, 265, (r.getWidth() / 4.8), 25);
+		paramSliders[13]->setBounds(475, 265, (r.getWidth() / 4.8), 50);
 
 		//distortion
-		paramLabels[14]->setBounds(675, 175, (r.getWidth() / 4.8), 25);
-		paramSliders[14]->setBounds(675, 175, (r.getWidth() / 4.8), 50);
+		paramLabels[14]->setBounds(200, 265, (r.getWidth() / 4.8), 25);
+		paramSliders[14]->setBounds(200, 265, (r.getWidth() / 4.8), 50);
 
 		//noParameterLabel.setBounds(r);
 
@@ -195,8 +195,23 @@ public:
 	void paint(Graphics& g) override
 	{
 		//g.setColour(getLookAndFeel().findColour(ResizableWindow::backgroundColourId));
-		g.setColour(Colour::fromRGB(115, 115, 115));
+		g.setColour(Colour::fromRGB(0, 0, 0));
+
 		g.fillAll();
+		Image osc1Bg = ImageCache::getFromMemory(BinaryData::Osc_Box_1_sl2_png, BinaryData::Osc_Box_1_sl2_pngSize);
+		g.drawImageAt(osc1Bg, 0, 0);
+		Image osc2Bg = ImageCache::getFromMemory(BinaryData::Osc_Box_2_sl2_png, BinaryData::Osc_Box_2_sl2_pngSize);
+		g.drawImageAt(osc2Bg, 265, 0);
+		Image osc3Bg = ImageCache::getFromMemory(BinaryData::Osc_Box_3_sl2_png, BinaryData::Osc_Box_3_sl2_pngSize);
+		g.drawImageAt(osc3Bg, 530, 0);
+		Image osc4Bg = ImageCache::getFromMemory(BinaryData::Osc_Box_4_sl2_png, BinaryData::Osc_Box_4_sl2_pngSize);
+		g.drawImageAt(osc4Bg, 795, 0);
+		Image adsr = ImageCache::getFromMemory(BinaryData::adsr_m_png, BinaryData::adsr_m_pngSize);
+		g.drawImageAt(adsr, 652, 200);
+		Image filters = ImageCache::getFromMemory(BinaryData::filters_png, BinaryData::filters_pngSize);
+		g.drawImageAt(filters, 399, 200);
+		Image distortion = ImageCache::getFromMemory(BinaryData::distortion_s_png, BinaryData::distortion_s_pngSize);
+		g.drawImageAt(distortion, 148, 225);
 	}
 
 	//==============================================================================
