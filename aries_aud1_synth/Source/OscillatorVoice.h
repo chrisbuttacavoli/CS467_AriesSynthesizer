@@ -16,6 +16,7 @@
 #include "Distortion.h"
 #include "Envelope.h"
 #include "Filter.h"
+#include "LFO.h"
 #include "Oscillator.h"
 #include <map>
 
@@ -113,6 +114,10 @@ public:
 		filter.setType(paramMap.at("Filter")->getValue(), numFilterTypes);
 		filter.setCutoffFreq(paramMap.at("Cutoff")->getValue() * paramScaleMap.at("Cutoff"));
 		filter.setResonanceBoost(paramMap.at("Resonance")->getValue() * paramScaleMap.at("Resonance"));
+
+		lfo.setOscType(paramMap.at("LFOosc")->getValue(), numOscillators);
+		lfo.setOscFreq(paramMap.at("LFOFreq")->getValue() * paramScaleMap.at("LFOFreq"));
+		lfo.setOscLevel(paramMap.at("LFOLevel")->getValue());
 	}
 
 	//renders the next block of data for this voice
@@ -139,6 +144,7 @@ public:
 		wave = dist.apply(wave);
 		wave = filter.apply(wave);
 		wave = env.apply(wave);
+		wave = lfo.apply(wave);
 
 		return wave;
 	}
@@ -158,6 +164,7 @@ private:
 	Distortion dist;
 	Envelope env;
 	Filter filter;
+	LFO lfo;
 
 
 	double loPassCutoff;

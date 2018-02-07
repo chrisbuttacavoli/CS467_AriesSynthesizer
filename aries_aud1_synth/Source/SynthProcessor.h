@@ -68,6 +68,17 @@ public:
 		addParameter(new AudioParameterFloat("cutoff", "Cutoff", 1.0f, getScale("Cutoff"), 5000.0f));
 		addParameter(new AudioParameterFloat("resonance", "Resonance", 1.0f, getScale("Resonance"), 50.0f));
 
+
+		/*
+			LFO parameters
+		*/
+		addParameter(new AudioParameterChoice("lfoosc", "LFOosc", oscillatorChoices, 1, "Cats"));	//defaulted to sine
+
+		//set to some default values before UI is added
+		addScale("LFOFreq", 20);
+		addParameter(new AudioParameterFloat("lfolevel", "LFOLevel", 0.0f, 1.0f, 0.5f));
+		addParameter(new AudioParameterFloat("lfofreq", "LFOFreq", 1.0f, getScale("LFOFreq"), 10.0f));
+
 		/*
 			Other parameters
 		*/
