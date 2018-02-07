@@ -71,7 +71,7 @@ public:
 		clearCurrentNote();
 		env.stopNote();
 
-		keyPressed = 0;
+		//keyPressed = 0;	//this needs to happen but it currently breaks the envelope because of the tail...
 	}
 
 	// called to let the voice know that the pitch wheel has been moved

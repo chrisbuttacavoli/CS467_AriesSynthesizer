@@ -118,7 +118,7 @@ public:
 	void prepareToPlay(double sampleRate, int MaxSamplesPerBlock) override{
 		midiCollector.reset(sampleRate);
 		mySynth.setCurrentPlaybackSampleRate(sampleRate);
-		settings.setup(sampleRate, 2, MaxSamplesPerBlock);
+		//settings.setup(sampleRate, 2, MaxSamplesPerBlock);
 	}
 	
 	void processBlock(AudioBuffer<float> &buffer, MidiBuffer &midiMessages) override {
