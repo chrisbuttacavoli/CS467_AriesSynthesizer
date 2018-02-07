@@ -115,8 +115,8 @@ public:
 		sampleRate = 0;
 	}
 
-
-	//change this to take output buffer data - Victoria
+	//records outputbuffer data to a file in mono!
+	//TODO: Try to make this record in stereo? - Victoria
 	void audioDeviceIOCallback(const float** inputChannelData, int /*numInputChannels*/,
 		float** outputChannelData, int numOutputChannels,
 		int numSamples) override
@@ -125,18 +125,18 @@ public:
 
 		if (activeWriter != nullptr)
 		{
-			activeWriter->write(inputChannelData, numSamples);
+			activeWriter->write(outputChannelData, numSamples);
 
 			// Create an AudioSampleBuffer to wrap our incoming data, note that this does no allocations or copies, it simply references our input data
-			const AudioSampleBuffer buffer(const_cast<float**> (inputChannelData), thumbnail.getNumChannels(), numSamples);
+			const AudioSampleBuffer buffer(const_cast<float**> (outputChannelData), 2, numSamples);
 			thumbnail.addBlock(nextSampleNum, buffer, 0, numSamples);
 			nextSampleNum += numSamples;
 		}
 
-		// We need to clear the output buffers, in case they're full of junk..
-		for (int i = 0; i < numOutputChannels; ++i)
-			if (outputChannelData[i] != nullptr)
-				FloatVectorOperations::clear(outputChannelData[i], numSamples);
+		//// We need to clear the output buffers, in case they're full of junk..
+		//for (int i = 0; i < numOutputChannels; ++i)
+		//	if (outputChannelData[i] != nullptr)
+		//		FloatVectorOperations::clear(outputChannelData[i], numSamples);
 	}
 
 private:
