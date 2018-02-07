@@ -94,7 +94,7 @@ public:
 		deviceManager.addAudioCallback(&recorder);
 
 		//setting the size of the windows
-		setSize(1060, 600);
+		setSize(1060, 800);
 
     }
 
@@ -138,10 +138,10 @@ public:
 		g.setFont(theFont);
 		//g.drawText("Aries Synthesizer", -10, 400, getWidth(), 50, Justification::right);
 		Image logo = ImageCache::getFromMemory(BinaryData::aries_logo_cropped_s_png, BinaryData::aries_logo_cropped_s_pngSize);
-		g.drawImageAt(logo, 850, 400);
+		g.drawImageAt(logo, 850, 600);
 		Font theFont2("Helvetica", "Bold", 10.0f);
 		g.setFont(theFont2);
-		g.drawText("Chris B, Victoria D, Alex C", 10, 400, getWidth(), 25, Justification::bottomLeft);
+		g.drawText("Chris B, Victoria D, Alex C", 10, 600, getWidth(), 25, Justification::bottomLeft);
     }
 
 	//placing objects inside the main window
@@ -151,8 +151,8 @@ public:
 
 		//displaying midi input list, the processor editor, and the keyboard
 		midiInputList.setBounds(area.removeFromTop(36).removeFromRight(getWidth() - 100).reduced(8));
-		theEditor->setBounds(area.removeFromTop(350));
-		keyboardComponent.setBounds(0, 450, getWidth(), 150);
+		theEditor->setBounds(area.removeFromTop(550));
+		keyboardComponent.setBounds(0, 650, getWidth(), 150);
 		//recordingThumbnail.setBounds(area.removeFromTop(80).reduced(8));	//displays what is being recorded. Maybe not necessary?
 		recordButton.setBounds(10, 350, 75, 25);
 	}

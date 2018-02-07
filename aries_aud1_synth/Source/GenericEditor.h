@@ -161,11 +161,11 @@ public:
 
 		//ADSR
 		//attack
-		paramLabels[8]->setBounds(700, 275, (r.getWidth() / 4.8), 25);
-		paramSliders[8]->setBounds(700, 275, (r.getWidth() / 4.8), 50);
+		paramLabels[8]->setBounds(700, 225, (r.getWidth() / 4.8), 25);
+		paramSliders[8]->setBounds(700, 225, (r.getWidth() / 4.8), 50);
 		//decay
-		paramLabels[9]->setBounds(700, 225, (r.getWidth() / 4.8), 25);
-		paramSliders[9]->setBounds(700, 225, (r.getWidth() / 4.8), 50);
+		paramLabels[9]->setBounds(700, 275, (r.getWidth() / 4.8), 25);
+		paramSliders[9]->setBounds(700, 275, (r.getWidth() / 4.8), 50);
 		//sustain
 		paramLabels[10]->setBounds(875, 225, (r.getWidth() / 4.8), 25);
 		paramSliders[10]->setBounds(875, 225, (r.getWidth() / 4.8), 50);
@@ -186,11 +186,17 @@ public:
 		paramSliders[13]->setBounds(475, 265, (r.getWidth() / 4.8), 50);
 
 		//distortion
-		paramLabels[14]->setBounds(200, 265, (r.getWidth() / 4.8), 25);
-		paramSliders[14]->setBounds(200, 265, (r.getWidth() / 4.8), 50);
+		paramLabels[16]->setBounds(200, 265, (r.getWidth() / 4.8), 25);
+		paramSliders[16]->setBounds(200, 265, (r.getWidth() / 4.8), 50);
 
 		//noParameterLabel.setBounds(r);
 
+		//LFO
+		paramCombo[5]->setBounds(70, 375, (r.getWidth() / 4.8), 50);
+		paramLabels[14]->setBounds(70, 425, (r.getWidth() / 4.8), 25);
+		paramSliders[14]->setBounds(70, 425, (r.getWidth() / 4.8), 50);
+		paramLabels[15]->setBounds(70, 475, (r.getWidth() / 4.8), 25);
+		paramSliders[15]->setBounds(70, 475, (r.getWidth() / 4.8), 50);
 	}
 
 	void paint(Graphics& g) override
