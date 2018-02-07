@@ -2265,6 +2265,12 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\LFO.h">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EQ.h">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\AudioRecorder.h">
       <Filter>aries_aud1_synth\Source</Filter>
     </ClInclude>
