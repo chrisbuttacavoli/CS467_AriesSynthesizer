@@ -46,9 +46,9 @@ class GenericEditor : public AudioProcessorEditor,
 public:
 	enum
 	{
-		kParamControlHeight = 40,
+		kParamControlHeight = 4000,
 		kParamLabelWidth = 80,
-		kParamSliderWidth = 300
+		kParamSliderWidth = 1000,
 	};
 
 	GenericEditor(AudioProcessor& parent)
@@ -102,9 +102,9 @@ public:
 
 		noParameterLabel.setJustificationType(Justification::horizontallyCentred | Justification::verticallyCentred);
 		noParameterLabel.setFont(noParameterLabel.getFont().withStyle(Font::italic));
-
+		
 		setSize(kParamSliderWidth + kParamLabelWidth,
-			jmax(1, kParamControlHeight * paramSliders.size()));
+			jmax(1000, kParamControlHeight * paramSliders.size()));
 
 		if (paramSliders.size() == 0)
 			addAndMakeVisible(noParameterLabel);
@@ -133,6 +133,7 @@ public:
 		//pitch 1
 		paramLabels[0]->setBounds(70, 65, (r.getWidth() / 4.8), 25);
 		paramSliders[0]->setBounds(70, 65, (r.getWidth() / 4.8), 50);
+
 		//level 1
 		paramLabels[1]->setBounds(70, 115, (r.getWidth() / 4.8), 25);
 		paramSliders[1]->setBounds(70, 115, (r.getWidth() / 4.8), 50);
