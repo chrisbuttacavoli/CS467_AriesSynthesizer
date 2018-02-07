@@ -118,6 +118,7 @@ public:
 	void prepareToPlay(double sampleRate, int MaxSamplesPerBlock) override{
 		midiCollector.reset(sampleRate);
 		mySynth.setCurrentPlaybackSampleRate(sampleRate);
+		settings.setup(sampleRate, 2, MaxSamplesPerBlock);
 	}
 	
 	void processBlock(AudioBuffer<float> &buffer, MidiBuffer &midiMessages) override {
@@ -212,6 +213,8 @@ public:
 	//the actual synth object
 	Synthesiser mySynth;
 	OscillatorVoice* myVoice;
+
+	maxiSettings settings;
 
 	/*
 		The paramScaleMap gives us multiplers for parameters when passing

@@ -324,7 +324,6 @@ double maxiOsc::saw(double frequency) {
 	if ( phase >= 1.0 ) phase -= 2.0;
 	phase += (1./(maxiSettings::sampleRate/(frequency)));
 	return(output);
-	
 }
 
 double maxiOsc::sawn(double frequency) {

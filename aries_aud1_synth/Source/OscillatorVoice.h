@@ -70,6 +70,8 @@ public:
 	void stopNote(float velocity, bool allowTailOff) override {
 		clearCurrentNote();
 		env.stopNote();
+
+		keyPressed = 0;
 	}
 
 	// called to let the voice know that the pitch wheel has been moved
