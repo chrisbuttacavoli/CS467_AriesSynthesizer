@@ -80,11 +80,11 @@
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
                        debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
                        linkTimeOptimisation="0" isDebug="1" optimisation="1" targetName="aries_aud1_synth"
-                       headerPath="C:\JUCE\maximillion"/>
+                       headerPath="C:\JUCE\maximillion; C:\Users\vdorn\Documents\CS467\aries\maximillion"/>
         <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
                        debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
                        linkTimeOptimisation="1" isDebug="0" optimisation="3" targetName="aries_aud1_synth"
-                       headerPath="C:\JUCE\maximillion"/>
+                       headerPath="C:\JUCE\maximillion; C:\Users\vdorn\Documents\CS467\aries\maximillion"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../juce/modules"/>
