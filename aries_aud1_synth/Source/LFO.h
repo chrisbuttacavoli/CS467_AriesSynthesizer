@@ -30,7 +30,12 @@ public:
 
 	double apply(double wave) {
 		//return osc.getWave(freq);	//possibly overload oscillator class to take a freq
-		return (osc.getWave() + wave);
+		if (wave == NULL) {
+			return wave;
+		}
+		else {
+			return (osc.getWave() + wave);
+		}
 	}
 
 private:

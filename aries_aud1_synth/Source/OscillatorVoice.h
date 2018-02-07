@@ -143,8 +143,8 @@ public:
 	float applyEffects(AudioBuffer<float> &buffer, double wave) {
 		wave = dist.apply(wave);
 		wave = filter.apply(wave);
+		wave = lfo.apply(wave);	//must put LFO here to piggy back off of env trigger
 		wave = env.apply(wave);
-		wave = lfo.apply(wave);
 
 		return wave;
 	}
