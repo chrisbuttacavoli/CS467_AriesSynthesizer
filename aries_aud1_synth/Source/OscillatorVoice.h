@@ -61,6 +61,11 @@ public:
 		osc3.initializePitch(frequency);
 		osc4.initializePitch(frequency);
 
+		osc1.phaseReset();
+		osc2.phaseReset();
+		osc3.phaseReset();
+		osc4.phaseReset();
+
 		env.startNote();
 
 		keyPressed = 1;
@@ -71,7 +76,9 @@ public:
 		clearCurrentNote();
 		env.stopNote();
 
-		//keyPressed = 0;	//this needs to happen but it currently breaks the envelope because of the tail...
+		allowTailOff = true;
+
+		keyPressed = 0;
 	}
 
 	// called to let the voice know that the pitch wheel has been moved
@@ -124,15 +131,15 @@ public:
 
 	//renders the next block of data for this voice
 	void renderNextBlock(AudioBuffer<float> &outputBuffer, int startSample, int numSamples) override {
-		if (!keyPressed) return;
+		if (!keyPressed && wave == NULL) return;
 		
 		for (int sample = 0; sample < numSamples; ++sample) {
 			// Add all our oscillators together
-			double wave = osc1.getWave() + osc2.getWave()
+			wave = osc1.getWave() + osc2.getWave()
 				+ osc3.getWave() + osc4.getWave();
 			
 			// Apply post process effects
-			wave = applyEffects(outputBuffer, wave);
+			wave = applyEffects(wave);
 
 			// Output the final wave product
 			for (int channel = 0; channel < outputBuffer.getNumChannels(); ++channel) {
@@ -142,7 +149,7 @@ public:
 		}
 	}
 
-	float applyEffects(AudioBuffer<float> &buffer, double wave) {
+	float applyEffects(double wave) {
 		wave = dist.apply(wave);
 		wave = filter.apply(wave);
 		wave = lfo.apply(wave);	//must put LFO here to piggy back off of env trigger
@@ -167,6 +174,8 @@ private:
 	Envelope env;
 	Filter filter;
 	LFO lfo;
+
+	double wave = NULL;
 
 
 	double loPassCutoff;

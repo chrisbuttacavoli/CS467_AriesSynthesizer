@@ -72,6 +72,10 @@ public:
 		freq = frequency;
 	}
 
+	void phaseReset() {
+		osc.phaseReset(0);
+	}
+
 	//=======================================================
 private:
 	double freq;
