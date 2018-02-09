@@ -9,3 +9,13 @@
 */
 
 #pragma once
+
+class EQ {
+public:
+	double apply(double wave) {
+		
+	}
+
+private:
+
+};

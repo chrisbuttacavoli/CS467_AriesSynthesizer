@@ -75,10 +75,10 @@ public:
 	void stopNote(float velocity, bool allowTailOff) override {
 		clearCurrentNote();
 		env.stopNote();
-
+/*
 		allowTailOff = true;
 
-		keyPressed = 0;
+		keyPressed = 0;*/
 	}
 
 	// called to let the voice know that the pitch wheel has been moved
@@ -150,6 +150,7 @@ public:
 	}
 
 	float applyEffects(double wave) {
+		// Order matters
 		wave = dist.apply(wave);
 		wave = filter.apply(wave);
 		wave = lfo.apply(wave);	//must put LFO here to piggy back off of env trigger
@@ -163,8 +164,6 @@ private:
 	int numFilterTypes = 4;
 	double frequency;
 	int keyPressed;
-
-	//maxiEnv env;
 	
 	Oscillator osc1;
 	Oscillator osc2;
@@ -176,8 +175,4 @@ private:
 	LFO lfo;
 
 	double wave = NULL;
-
-
-	double loPassCutoff;
-	double loPassRes;
 };
