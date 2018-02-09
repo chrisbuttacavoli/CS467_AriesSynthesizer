@@ -76,6 +76,8 @@ public:
 		osc.phaseReset(0);
 	}
 
+	double getFreq() { return freq; }
+
 	//=======================================================
 private:
 	double freq;

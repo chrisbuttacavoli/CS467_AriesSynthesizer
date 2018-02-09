@@ -9,10 +9,14 @@
 */
 
 #pragma once
+#include "HelperFuncs.h"
+#include "../JuceLibraryCode/JuceHeader.h"
+
 
 class Envelope {
 public:
 	double apply(double wave) {
+		//DBG(FloatToStr(wave));
 		return env.adsr(wave, env.trigger);
 	}
 
