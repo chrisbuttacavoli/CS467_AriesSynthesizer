@@ -45,7 +45,7 @@ KeyPressMappingSet::~KeyPressMappingSet()
 }
 
 //==============================================================================
-Array<KeyPress> KeyPressMappingSet::getKeyPressesAssignedToCommand (const CommandID commandID) const
+juce::Array<KeyPress> KeyPressMappingSet::getKeyPressesAssignedToCommand (const CommandID commandID) const
 {
     for (int i = 0; i < mappings.size(); ++i)
         if (mappings.getUnchecked(i)->commandID == commandID)

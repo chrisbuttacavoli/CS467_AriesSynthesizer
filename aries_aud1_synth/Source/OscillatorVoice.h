@@ -53,6 +53,8 @@ public:
 
 		env.startNote();
 
+		tailOff = 0.0;
+
 		keyPressed = 1;
 	}
 
@@ -61,9 +63,11 @@ public:
 		env.stopNote();
 		
 		allowTailOff = true;
-		if (velocity == 0) {
+
+		//removing this removes the clicking mostly /shrug
+		/*if (velocity == 0) {
 			clearCurrentNote();
-		}
+		}*/
 		keyPressed = 0;
 	}
 
@@ -136,9 +140,9 @@ public:
 
 	float applyEffects(double wave) {
 		// Order matters
-		//wave = dist.apply(wave);
-		//wave = filter.apply(wave);
-		//wave = lfo.apply(wave);	//must put LFO here to piggy back off of env trigger
+		wave = dist.apply(wave);
+		wave = filter.apply(wave);
+		wave = lfo.apply(wave);	//must put LFO here to piggy back off of env trigger
 		wave = env.apply(wave);
 
 		return wave;
@@ -158,6 +162,8 @@ private:
 	Envelope env;
 	Filter filter;
 	LFO lfo;
+
+	double tailOff;
 
 	double wave = NULL;
 };

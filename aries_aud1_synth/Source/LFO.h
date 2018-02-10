@@ -17,7 +17,7 @@ public:
 		
 	}
 	void setOscFreq(double freq) {
-		//osc.setFrequency(freq);
+		osc.setFrequency(freq);
 	}
 
 	void setOscLevel(double level) {
@@ -29,13 +29,15 @@ public:
 	}
 
 	double apply(double wave) {
-		//return osc.getWave(freq);	//possibly overload oscillator class to take a freq
-		if (wave == NULL) {
-			return wave;
-		}
-		else {
-			return (osc.getWave() + wave);
-		}
+		////return osc.getWave(freq);	//possibly overload oscillator class to take a freq
+		//if (wave == NULL) {
+		//	return wave;
+		//}
+		//else {
+		//	return (osc.getWave() + wave);
+		//}
+
+		return (osc.getWave() + wave);
 	}
 
 private:

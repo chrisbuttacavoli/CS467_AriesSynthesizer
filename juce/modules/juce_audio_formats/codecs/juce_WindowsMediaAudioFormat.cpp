@@ -329,8 +329,8 @@ WindowsMediaAudioFormat::WindowsMediaAudioFormat()
 
 WindowsMediaAudioFormat::~WindowsMediaAudioFormat() {}
 
-Array<int> WindowsMediaAudioFormat::getPossibleSampleRates()    { return {}; }
-Array<int> WindowsMediaAudioFormat::getPossibleBitDepths()      { return {}; }
+juce::Array<int> WindowsMediaAudioFormat::getPossibleSampleRates()    { return {}; }
+juce::Array<int> WindowsMediaAudioFormat::getPossibleBitDepths()      { return{}; }
 
 bool WindowsMediaAudioFormat::canDoStereo()     { return true; }
 bool WindowsMediaAudioFormat::canDoMono()       { return true; }
