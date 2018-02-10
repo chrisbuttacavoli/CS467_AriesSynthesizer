@@ -1,11 +1,11 @@
 /*
-  ==============================================================================
+==============================================================================
 
-    OscillatorVoice.h
-    
-	Provides the wave data for any oscillator shape
+OscillatorVoice.h
 
-  ==============================================================================
+Provides the wave data for any oscillator shape
+
+==============================================================================
 */
 
 #pragma once
@@ -28,6 +28,7 @@ public:
 		osc2(noWave), osc3(noWave),
 		osc4(noWave), lfo(noWave)
 	{
+
 	}
 
 	//must return true if this voice object is capable of playing the given sound
@@ -45,11 +46,6 @@ public:
 		osc3.initializePitch(frequency);
 		osc4.initializePitch(frequency);
 
-		osc1.phaseReset();
-		osc2.phaseReset();
-		osc3.phaseReset();
-		osc4.phaseReset();
-
 		env.startNote();
 
 		keyPressed = 1;
@@ -59,11 +55,6 @@ public:
 	void stopNote(float velocity, bool allowTailOff) override {
 		clearCurrentNote();
 		env.stopNote();
-		wave = 0;
-/*
-		allowTailOff = true;
-
-		keyPressed = 0;*/
 	}
 
 	// called to let the voice know that the pitch wheel has been moved
@@ -78,7 +69,7 @@ public:
 
 	// move to a listener class within the synthprocessor - Victoria
 	void getParamsFromProcessor(map <juce::String, AudioProcessorParameter*> paramMap,
-			map <juce::String, float> paramScaleMap) {
+		map <juce::String, float> paramScaleMap) {
 		osc1.setType(paramMap.at("Oscillator1")->getValue(), numOscillators);
 		osc1.adjustPitch(paramMap.at("Pitch1")->getValue(), frequency);
 		osc1.level = paramMap.at("Level1")->getValue();
@@ -96,7 +87,7 @@ public:
 		osc4.level = paramMap.at("Level4")->getValue();
 
 		env.setAttack(paramMap.at("Attack")->getValue() * 1000
-				* paramScaleMap.at("Attack"));
+			* paramScaleMap.at("Attack"));
 		env.setDecay(paramMap.at("Decay")->getValue() * 1000
 			* paramScaleMap.at("Decay"));
 		env.setSustain(paramMap.at("Sustain")->getValue());
@@ -110,21 +101,18 @@ public:
 		filter.setResonanceBoost(paramMap.at("Resonance")->getValue() * paramScaleMap.at("Resonance"));
 
 		lfo.setType(paramMap.at("LFOosc")->getValue(), numOscillators);
-		lfo.setFrequency(paramMap.at("LFOFreq")->getValue() * paramScaleMap.at("LFOFreq") + 1); // Min freq of 1Hz
+		//lfo.(paramMap.at("LFOFreq")->getValue() * paramScaleMap.at("LFOFreq") + 1); // Min freq of 1Hz
 		lfo.level = paramMap.at("LFOLevel")->getValue();
-		//DBG(FloatToStr(lfo.getFreq()));
 	}
 
 	//renders the next block of data for this voice
 	void renderNextBlock(AudioBuffer<float> &outputBuffer, int startSample, int numSamples) override {
-		if (!keyPressed && wave == NULL) return;
-		
+		if (!keyPressed) return;
 
 		for (int sample = startSample; sample < numSamples; ++sample) {
 			// Add all our oscillators together
-			wave = osc1.getWave() + osc2.getWave()
-				+ osc3.getWave() + osc4.getWave();
-			
+			wave = osc1.getWave() + osc2.getWave() + osc3.getWave() + osc4.getWave();
+
 			// Apply post process effects
 			wave = applyEffects(wave);
 
@@ -132,7 +120,6 @@ public:
 			for (int channel = 0; channel < outputBuffer.getNumChannels(); ++channel) {
 				outputBuffer.addSample(channel, sample, wave);
 			}
-			//++startSample;
 		}
 	}
 
@@ -151,7 +138,7 @@ private:
 	int numFilterTypes = 4;
 	double frequency;
 	int keyPressed;
-	
+
 	Oscillator osc1;
 	Oscillator osc2;
 	Oscillator osc3;

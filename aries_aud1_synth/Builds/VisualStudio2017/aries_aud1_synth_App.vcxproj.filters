@@ -2265,6 +2265,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\OscillatorVoice.h">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\HelperFuncs.h">
       <Filter>aries_aud1_synth\Source</Filter>
     </ClInclude>
@@ -2292,7 +2295,7 @@
     <ClInclude Include="..\..\Source\Oscillator.h">
       <Filter>aries_aud1_synth\Source</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\OscillatorVoice.h">
+    <ClInclude Include="..\..\Source\OscillatorVoice_Failure.h">
       <Filter>aries_aud1_synth\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\OscillatorCombo.h">

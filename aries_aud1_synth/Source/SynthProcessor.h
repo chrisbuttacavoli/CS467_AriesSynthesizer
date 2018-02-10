@@ -12,9 +12,9 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "SynthSound.h"
-#include "OscillatorVoice.h"
 #include "GenericEditor.h"
 #include "maximilian.h"
+#include "OscillatorVoice_Failure.h" // Just change the Oscillator voice of choice here
 
 
 //==============================================================================
@@ -52,7 +52,7 @@ public:
 		addScale("Attack", 10.0f);
 		addScale("Decay", 10.0f);
 		addScale("Release", 10.0f);
-		addParameter(new AudioParameterFloat("attack", "Attack", 0.0f, getScale("Attack"), 4.0f));
+		addParameter(new AudioParameterFloat("attack", "Attack", 0.0f, getScale("Attack"), 3.0f));
 		addParameter(new AudioParameterFloat("decay", "Decay", 0.0f, getScale("Decay"), 0.5f));
 		addParameter(new AudioParameterFloat("sustain", "Sustain", 0.0f, 1.0f, 1.0f));
 		addParameter(new AudioParameterFloat("release", "Release", 0.0f, getScale("Release"), 1.0f));

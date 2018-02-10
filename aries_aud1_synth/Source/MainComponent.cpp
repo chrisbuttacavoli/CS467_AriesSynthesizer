@@ -8,7 +8,6 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "Oscillator.h"
-#include "OscillatorVoice.h"
 #include "SynthSound.h"
 #include "SynthProcessor.h"
 #include "GenericEditor.h"

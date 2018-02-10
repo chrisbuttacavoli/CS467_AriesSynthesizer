@@ -7,6 +7,8 @@
               userNotes="" headerPath="C:\Users\Chris.Buttacavoli\Documents\GitHub\CS467_Aries-\maximillion">
   <MAINGROUP id="DbO0WA" name="aries_aud1_synth">
     <GROUP id="{25EB4AD0-1085-2D6D-2C5D-94D74EEB437F}" name="Source">
+      <FILE id="mWSdSy" name="OscillatorVoice.h" compile="0" resource="0"
+            file="Source/OscillatorVoice.h"/>
       <FILE id="GwdEN6" name="HelperFuncs.h" compile="0" resource="0" file="Source/HelperFuncs.h"/>
       <FILE id="TmZb62" name="LFO.h" compile="0" resource="0" file="Source/LFO.h"/>
       <FILE id="BUrH0x" name="EQ.h" compile="0" resource="0" file="Source/EQ.h"/>
@@ -19,8 +21,8 @@
       <FILE id="VmvftI" name="Filter.h" compile="0" resource="0" file="Source/Filter.h"/>
       <FILE id="cmqKoL" name="GenericEditor.h" compile="0" resource="0" file="Source/GenericEditor.h"/>
       <FILE id="d2m8RY" name="Oscillator.h" compile="0" resource="0" file="Source/Oscillator.h"/>
-      <FILE id="DU16Nb" name="OscillatorVoice.h" compile="0" resource="0"
-            file="Source/OscillatorVoice.h"/>
+      <FILE id="DU16Nb" name="OscillatorVoice_Failure.h" compile="0" resource="0"
+            file="Source/OscillatorVoice_Failure.h"/>
       <FILE id="HaLA5R" name="OscillatorCombo.h" compile="0" resource="0"
             file="Source/OscillatorCombo.h"/>
       <FILE id="ls9zFy" name="OscillatorGUI.h" compile="0" resource="0" file="Source/OscillatorGUI.h"/>

@@ -67,15 +67,6 @@ public:
 		type = static_cast<OscillatorType>(int(paramVal * numOscillators));
 	}
 
-	//setting pitch
-	void setFrequency(double frequency) {
-		freq = frequency;
-	}
-
-	void phaseReset() {
-		osc.phaseReset(0);
-	}
-
 	double getFreq() { return freq; }
 
 	//=======================================================

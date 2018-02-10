@@ -17,7 +17,7 @@ public:
 		
 	}
 	void setOscFreq(double freq) {
-		osc.setFrequency(freq);
+		//osc.setFrequency(freq);
 	}
 
 	void setOscLevel(double level) {

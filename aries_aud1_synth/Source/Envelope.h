@@ -20,6 +20,15 @@ public:
 		return env.adsr(wave, env.trigger);
 	}
 
+	void initializeForTesting() {
+		env.setAttack(50);
+		env.setDecay(1);
+		env.setRelease(50);
+		env.setSustain(50);
+		env.amplitude = 0.1;
+		env.trigger = 0;
+	}
+
 	void setAttack(double ms) {
 		if (ms < minVal) {
 			env.setAttack(minVal);
