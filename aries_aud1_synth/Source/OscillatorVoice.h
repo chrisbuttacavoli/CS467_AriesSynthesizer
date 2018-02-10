@@ -26,7 +26,7 @@ class OscillatorVoice : public SynthesiserVoice {
 public:
 	OscillatorVoice() : keyPressed(0), osc1(noWave),
 		osc2(noWave), osc3(noWave),
-		osc4(noWave), lfo(noWave)
+		osc4(noWave)
 	{
 
 	}
@@ -46,6 +46,11 @@ public:
 		osc3.initializePitch(frequency);
 		osc4.initializePitch(frequency);
 
+		osc1.phaseReset();
+		osc2.phaseReset();
+		osc3.phaseReset();
+		osc4.phaseReset();
+
 		env.startNote();
 
 		keyPressed = 1;
@@ -53,8 +58,12 @@ public:
 
 	// called to stop a note
 	void stopNote(float velocity, bool allowTailOff) override {
-		clearCurrentNote();
 		env.stopNote();
+		
+		allowTailOff = true;
+		if (velocity == 0) {
+			clearCurrentNote();
+		}
 	}
 
 	// called to let the voice know that the pitch wheel has been moved
@@ -100,9 +109,9 @@ public:
 		filter.setCutoffFreq(paramMap.at("Cutoff")->getValue() * paramScaleMap.at("Cutoff"));
 		filter.setResonanceBoost(paramMap.at("Resonance")->getValue() * paramScaleMap.at("Resonance"));
 
-		lfo.setType(paramMap.at("LFOosc")->getValue(), numOscillators);
-		//lfo.(paramMap.at("LFOFreq")->getValue() * paramScaleMap.at("LFOFreq") + 1); // Min freq of 1Hz
-		lfo.level = paramMap.at("LFOLevel")->getValue();
+		lfo.setOscType(paramMap.at("LFOosc")->getValue(), numOscillators);
+		lfo.setOscFreq(paramMap.at("LFOFreq")->getValue() * paramScaleMap.at("LFOFreq"));
+		lfo.setOscLevel(paramMap.at("LFOLevel")->getValue());
 	}
 
 	//renders the next block of data for this voice
@@ -143,11 +152,10 @@ private:
 	Oscillator osc2;
 	Oscillator osc3;
 	Oscillator osc4;
-	Oscillator lfo;
 	Distortion dist;
 	Envelope env;
 	Filter filter;
-	//LFO lfo;
+	LFO lfo;
 
 	double wave = NULL;
 };
