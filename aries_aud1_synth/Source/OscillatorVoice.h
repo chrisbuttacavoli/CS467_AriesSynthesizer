@@ -64,6 +64,7 @@ public:
 		if (velocity == 0) {
 			clearCurrentNote();
 		}
+		keyPressed = 0;
 	}
 
 	// called to let the voice know that the pitch wheel has been moved
