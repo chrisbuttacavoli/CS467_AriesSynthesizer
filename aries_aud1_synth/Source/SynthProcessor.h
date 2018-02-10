@@ -14,8 +14,8 @@
 #include "SynthSound.h"
 #include "GenericEditor.h"
 #include "maximilian.h"
-#include "OscillatorVoice_Failure.h" // Just change the Oscillator voice of choice here
-
+//#include "OscillatorVoice_Failure.h" // Just change the Oscillator voice of choice here
+#include "OscillatorVoice.h"
 
 //==============================================================================
 /*

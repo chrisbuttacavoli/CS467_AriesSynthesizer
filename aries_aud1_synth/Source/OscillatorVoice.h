@@ -117,9 +117,9 @@ public:
 
 	//renders the next block of data for this voice
 	void renderNextBlock(AudioBuffer<float> &outputBuffer, int startSample, int numSamples) override {
-		if (!keyPressed) return;
+		if (!keyPressed && wave == NULL) return;
 
-		for (int sample = startSample; sample < numSamples; ++sample) {
+		for (int sample = 0; sample < numSamples; ++sample) {
 			// Add all our oscillators together
 			wave = osc1.getWave() + osc2.getWave() + osc3.getWave() + osc4.getWave();
 
@@ -128,8 +128,9 @@ public:
 
 			// Output the final wave product
 			for (int channel = 0; channel < outputBuffer.getNumChannels(); ++channel) {
-				outputBuffer.addSample(channel, sample, wave);
+				outputBuffer.addSample(channel, startSample, wave);
 			}
+			++startSample;
 		}
 	}
 
