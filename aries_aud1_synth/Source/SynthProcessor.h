@@ -29,7 +29,7 @@ public:
 			Oscillator parameters
 		*/
 		const StringArray & oscillatorChoices = {"None", "Sine", "Saw", "Square", "Noise"};
-		addParameter(new AudioParameterChoice("oscillator1","Oscillator1", oscillatorChoices, sineWave, "Cats"));
+		addParameter(new AudioParameterChoice("oscillator1","Oscillator1", oscillatorChoices, noWave, "Cats"));
 		addParameter(new AudioParameterChoice("oscillator2", "Oscillator2", oscillatorChoices, noWave, "Cats"));
 		addParameter(new AudioParameterChoice("oscillator3", "Oscillator3", oscillatorChoices, noWave, "Cats"));
 		addParameter(new AudioParameterChoice("oscillator4", "Oscillator4", oscillatorChoices, noWave, "Cats"));
@@ -72,7 +72,7 @@ public:
 		/*
 			LFO parameters
 		*/
-		addParameter(new AudioParameterChoice("lfoosc", "LFOosc", oscillatorChoices, sineWave, "Cats"));	//defaulted to sine
+		addParameter(new AudioParameterChoice("lfoosc", "LFOosc", oscillatorChoices, noWave, "Cats"));	//defaulted to sine
 
 		//set to some default values before UI is added
 		addScale("LFOFreq", 20);

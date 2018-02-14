@@ -132,11 +132,6 @@ public:
 			thumbnail.addBlock(nextSampleNum, buffer, 0, numSamples);
 			nextSampleNum += numSamples;
 		}
-
-		//// We need to clear the output buffers, in case they're full of junk..
-		//for (int i = 0; i < numOutputChannels; ++i)
-		//	if (outputChannelData[i] != nullptr)
-		//		FloatVectorOperations::clear(outputChannelData[i], numSamples);
 	}
 
 private:
