@@ -36,16 +36,16 @@ public:
 		switch (type)
 		{
 		case sineWave:
-			return osc.sinewave(freq) * level;
+			return osc.sinewave(freq) * (level * 0.25f);
 			break;
 		case sawWave:
-			return osc.saw(freq) * level;
+			return osc.saw(freq) * (level * 0.25f);
 			break;
 		case squareWave:
-			return osc.square(freq) * level;
+			return osc.square(freq) * (level * 0.25f);
 			break;
 		case noiseWave:
-			return (random.nextFloat() * 0.25f - 0.125f) * level;
+			return (random.nextFloat() * 0.25f - 0.125f) * (level * 0.25f);
 			break;
 		}
 		return 0;
