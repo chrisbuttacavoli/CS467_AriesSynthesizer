@@ -12,6 +12,7 @@
       <FILE id="GwdEN6" name="HelperFuncs.h" compile="0" resource="0" file="Source/HelperFuncs.h"/>
       <FILE id="TmZb62" name="LFO.h" compile="0" resource="0" file="Source/LFO.h"/>
       <FILE id="BUrH0x" name="EQ.h" compile="0" resource="0" file="Source/EQ.h"/>
+      <FILE id="OFDfrw" name="eq-3_s.png" compile="0" resource="1" file="Source/eq-3_s.png"/>
       <FILE id="yw7lJI" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
       <FILE id="bw7Kvt" name="MainComponent.cpp" compile="1" resource="0"
             file="Source/MainComponent.cpp"/>
@@ -33,6 +34,7 @@
             file="Source/RecordingThumbnail.h"/>
       <FILE id="pq63Jn" name="aries_logo_cropped_s.png" compile="0" resource="1"
             file="Source/aries_logo_cropped_s.png"/>
+      <FILE id="RfrEIe" name="record_s.png" compile="0" resource="1" file="Source/record_s.png"/>
       <FILE id="Nvb6Xe" name="distortion_s.png" compile="0" resource="1"
             file="Source/distortion_s.png"/>
       <FILE id="jPJG8N" name="filters.png" compile="0" resource="1" file="Source/filters.png"/>

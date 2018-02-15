@@ -86,14 +86,27 @@ public:
 		deviceManager.addMidiInputCallback(String(), (&theSynthProcessor.midiCollector));
 
 		//recording button
-		addAndMakeVisible(recordButton);
-		recordButton.setButtonText("Record");
-		recordButton.addListener(this);
+		// IMAGE BUTTON CODE FOR RECORD BUTTON
+
+		addAndMakeVisible(imageButton);
+		Image juceImage = ImageCache::getFromMemory(BinaryData::record_s_png, BinaryData::record_s_pngSize);
+		imageButton->setImages(true, true, true,
+			juceImage, 0.7f, Colours::transparentBlack,
+			juceImage, 1.0f, Colours::transparentBlack,
+			juceImage, 1.0f, Colours::pink.withAlpha(0.8f),
+			0.5f);
+		imageButton->setTopLeftPosition(760, 540);
+		imageButton->setTooltip("image button - showing alpha-channel hit-testing and colour overlay when clicked");
+		// END IMAGE BUTTON CODE
+		//addAndMakeVisible(recordButton);
+		//imageButton.setButtonText("Record");
+		imageButton->addListener(this);
+		//imageButton.addListener(this);
 		//addAndMakeVisible(recordingThumbnail);	//displays what is being recorded. Maybe not necessary?
 		deviceManager.addAudioCallback(&recorder);
 
 		//setting the size of the windows
-		setSize(1060, 800);
+		setSize(1060, 775);
 
     }
 
@@ -130,7 +143,7 @@ public:
     void paint (Graphics& g) override
     {
         // (Our component is opaque, so we must completely fill the background with a solid colour)
-        g.fillAll (getLookAndFeel().findColour (ResizableWindow::backgroundColourId));
+        //g.fillAll (getLookAndFeel().findColour (ResizableWindow::backgroundColourId));
 
         // "Logo" stuff
 		Font theFont("Helvetica", "Bold", 25.0f);
@@ -150,10 +163,10 @@ public:
 
 		//displaying midi input list, the processor editor, and the keyboard
 		midiInputList.setBounds(area.removeFromTop(36).removeFromRight(getWidth() - 100).reduced(8));
-		theEditor->setBounds(area.removeFromTop(550));
+		theEditor->setBounds(area.removeFromTop(595));
 		keyboardComponent.setBounds(0, 650, getWidth(), 150);
 		//recordingThumbnail.setBounds(area.removeFromTop(80).reduced(8));	//displays what is being recorded. Maybe not necessary?
-		recordButton.setBounds(10, 350, 75, 25);
+		//recordButton.setBounds(10, 350, 75, 25);
 	}
 
 private:
@@ -167,7 +180,7 @@ private:
 	MidiKeyboardState keyboardState;            // [5]
 	MidiKeyboardComponent keyboardComponent;    // [6]
 	double startTime;
-
+	ImageButton* imageButton = new ImageButton("imagebutton");
 	AudioProcessorPlayer audioSourcePlayer;	//need to play audio through a processor player now
 	SynthProcessor theSynthProcessor;		//new synth processor to replay synthAudioSource
 	GenericEditor *theEditor;
@@ -178,7 +191,7 @@ private:
 	//Recording Objects
 	RecordingThumbnail recordingThumbnail;
 	AudioRecorder recorder;
-	TextButton recordButton;
+	//TextButton recordButton;
 
 	/** Starts listening to a MIDI input device, enabling it if necessary. */
 	void setMidiInput(int index)
@@ -240,20 +253,32 @@ private:
 			.getNonexistentChildFile("Juce Demo Audio Recording", ".wav"));
 		recorder.startRecording(file);
 
-		recordButton.setButtonText("Stop");
-		recordingThumbnail.setDisplayFullThumbnail(false);
+		//	recordButton.setButtonText("Stop");
+
+		//recordingThumbnail.setDisplayFullThumbnail(false);
+		//	Image normal = ImageFileFormat::loadFrom(juce::File("record_s.png"));
+		//Image over = ImageFileFormat::loadFrom(juce::File("record_s.png"));
+		//Image down = ImageFileFormat::loadFrom(juce::File("record_s.png"));
+
+		//ImageButton* btnImg;
+		//btnImg = new ImageButton("Test");
+		//btnImg->setBounds(150, 310, 1, 1);
+		//btnImg->setBounds(400,9999, 50, 50);
+
+		//btnImg->setImages(true, false, true, normal, 0.5f, Colours::black, over, 0.5f, Colours::white, down, 0.1f, Colours::yellow);
+
 	}
 
 	void stopRecording()
 	{
 		recorder.stop();
-		recordButton.setButtonText("Record");
-		recordingThumbnail.setDisplayFullThumbnail(true);
+		//recordButton.setButtonText("Record");
+		//recordingThumbnail.setDisplayFullThumbnail(true);
 	}
 
 	void buttonClicked(Button* button) override
 	{
-		if (button == &recordButton)
+		if (button == imageButton)
 		{
 			if (recorder.isRecording())
 				stopRecording();

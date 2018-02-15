@@ -4280,7 +4280,13 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\Source\eq-3_s.png">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </None>
     <None Include="..\..\Source\aries_logo_cropped_s.png">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </None>
+    <None Include="..\..\Source\record_s.png">
       <Filter>aries_aud1_synth\Source</Filter>
     </None>
     <None Include="..\..\Source\distortion_s.png">
