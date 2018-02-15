@@ -164,7 +164,7 @@ public:
 		//displaying midi input list, the processor editor, and the keyboard
 		midiInputList.setBounds(area.removeFromTop(36).removeFromRight(getWidth() - 100).reduced(8));
 		theEditor->setBounds(area.removeFromTop(595));
-		keyboardComponent.setBounds(0, 650, getWidth(), 150);
+		keyboardComponent.setBounds(0, 623, getWidth(), 150);
 		//recordingThumbnail.setBounds(area.removeFromTop(80).reduced(8));	//displays what is being recorded. Maybe not necessary?
 		//recordButton.setBounds(10, 350, 75, 25);
 	}
