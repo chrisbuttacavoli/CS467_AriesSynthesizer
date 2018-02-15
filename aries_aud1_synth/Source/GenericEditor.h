@@ -198,11 +198,16 @@ public:
 			LFO stuff
 		*/
 
-		paramCombo[5]->setBounds(70, 375, (r.getWidth() / 4.8), 50);
-		paramLabels[14]->setBounds(70, 425, (r.getWidth() / 4.8), 25);
-		paramSliders[14]->setBounds(70, 425, (r.getWidth() / 4.8), 50);
-		paramLabels[15]->setBounds(70, 475, (r.getWidth() / 4.8), 25);
-		paramSliders[15]->setBounds(70, 475, (r.getWidth() / 4.8), 50);
+		// LFO Combo Box
+		paramCombo[5]->setBounds(417, 355, (r.getWidth() / 4.8), 25);
+
+		// LFO Level
+		paramLabels[14]->setBounds(475, 380, (r.getWidth() / 4.8), 25);
+		paramSliders[14]->setBounds(475, 380, (r.getWidth() / 4.8), 50);
+
+		// LFO Frequency 
+		paramLabels[15]->setBounds(475, 415, (r.getWidth() / 4.8), 25);
+		paramSliders[15]->setBounds(475, 415, (r.getWidth() / 4.8), 50);
 
 		/*
 			EQ stuff
@@ -232,6 +237,8 @@ public:
 		g.drawImageAt(distortion, 805, 352);
 		Image eq3 = ImageCache::getFromMemory(BinaryData::eq3_s_png, BinaryData::eq3_s_pngSize);
 		g.drawImageAt(eq3, 0, 200);
+		Image lfo = ImageCache::getFromMemory(BinaryData::lfo_s_png, BinaryData::lfo_s_pngSize);
+		g.drawImageAt(lfo, 401, 352);
 	}
 
 	//==============================================================================

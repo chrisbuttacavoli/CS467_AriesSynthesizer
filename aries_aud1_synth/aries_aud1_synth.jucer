@@ -11,6 +11,7 @@
             file="Source/OscillatorVoice.h"/>
       <FILE id="GwdEN6" name="HelperFuncs.h" compile="0" resource="0" file="Source/HelperFuncs.h"/>
       <FILE id="TmZb62" name="LFO.h" compile="0" resource="0" file="Source/LFO.h"/>
+      <FILE id="szsAbO" name="lfo_s.png" compile="0" resource="1" file="Source/lfo_s.png"/>
       <FILE id="BUrH0x" name="EQ.h" compile="0" resource="0" file="Source/EQ.h"/>
       <FILE id="OFDfrw" name="eq-3_s.png" compile="0" resource="1" file="Source/eq-3_s.png"/>
       <FILE id="yw7lJI" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>

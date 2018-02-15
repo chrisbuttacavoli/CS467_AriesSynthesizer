@@ -4280,6 +4280,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\Source\lfo_s.png">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </None>
     <None Include="..\..\Source\eq-3_s.png">
       <Filter>aries_aud1_synth\Source</Filter>
     </None>
