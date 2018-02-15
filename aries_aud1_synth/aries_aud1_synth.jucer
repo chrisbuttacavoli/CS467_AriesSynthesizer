@@ -14,6 +14,7 @@
       <FILE id="szsAbO" name="lfo_s.png" compile="0" resource="1" file="Source/lfo_s.png"/>
       <FILE id="BUrH0x" name="EQ.h" compile="0" resource="0" file="Source/EQ.h"/>
       <FILE id="OFDfrw" name="eq-3_s.png" compile="0" resource="1" file="Source/eq-3_s.png"/>
+      <FILE id="yGkqlj" name="eq-3_s2.png" compile="0" resource="1" file="Source/eq-3_s2.png"/>
       <FILE id="yw7lJI" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
       <FILE id="bw7Kvt" name="MainComponent.cpp" compile="1" resource="0"
             file="Source/MainComponent.cpp"/>
@@ -36,6 +37,7 @@
       <FILE id="pq63Jn" name="aries_logo_cropped_s.png" compile="0" resource="1"
             file="Source/aries_logo_cropped_s.png"/>
       <FILE id="RfrEIe" name="record_s.png" compile="0" resource="1" file="Source/record_s.png"/>
+      <FILE id="KhroZR" name="record_s_s.png" compile="0" resource="1" file="Source/record_s_s.png"/>
       <FILE id="Nvb6Xe" name="distortion_s.png" compile="0" resource="1"
             file="Source/distortion_s.png"/>
       <FILE id="jPJG8N" name="filters.png" compile="0" resource="1" file="Source/filters.png"/>

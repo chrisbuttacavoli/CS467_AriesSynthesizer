@@ -14,11 +14,17 @@ namespace BinaryData
     extern const char*   eq3_s_png;
     const int            eq3_s_pngSize = 3569;
 
+    extern const char*   eq3_s2_png;
+    const int            eq3_s2_pngSize = 3211;
+
     extern const char*   aries_logo_cropped_s_png;
     const int            aries_logo_cropped_s_pngSize = 7149;
 
     extern const char*   record_s_png;
     const int            record_s_pngSize = 5828;
+
+    extern const char*   record_s_s_png;
+    const int            record_s_s_pngSize = 2193;
 
     extern const char*   distortion_s_png;
     const int            distortion_s_pngSize = 2877;
@@ -60,7 +66,7 @@ namespace BinaryData
     extern const char* namedResourceList[];
 
     // Number of elements in the namedResourceList array.
-    const int namedResourceListSize = 16;
+    const int namedResourceListSize = 18;
 
     // If you provide the name of one of the binary resource variables above, this function will
     // return the corresponding data and its size (or a null pointer if the name isn't found).

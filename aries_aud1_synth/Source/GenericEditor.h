@@ -235,7 +235,7 @@ public:
 		g.drawImageAt(filters, 399, 200);
 		Image distortion = ImageCache::getFromMemory(BinaryData::distortion_s_png, BinaryData::distortion_s_pngSize);
 		g.drawImageAt(distortion, 805, 352);
-		Image eq3 = ImageCache::getFromMemory(BinaryData::eq3_s_png, BinaryData::eq3_s_pngSize);
+		Image eq3 = ImageCache::getFromMemory(BinaryData::eq3_s2_png, BinaryData::eq3_s2_pngSize);
 		g.drawImageAt(eq3, 0, 200);
 		Image lfo = ImageCache::getFromMemory(BinaryData::lfo_s_png, BinaryData::lfo_s_pngSize);
 		g.drawImageAt(lfo, 401, 352);

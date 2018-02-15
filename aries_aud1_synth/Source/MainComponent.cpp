@@ -89,13 +89,13 @@ public:
 		// IMAGE BUTTON CODE FOR RECORD BUTTON
 
 		addAndMakeVisible(imageButton);
-		Image juceImage = ImageCache::getFromMemory(BinaryData::record_s_png, BinaryData::record_s_pngSize);
+		Image juceImage = ImageCache::getFromMemory(BinaryData::record_s_s_png, BinaryData::record_s_s_pngSize);
 		imageButton->setImages(true, true, true,
 			juceImage, 0.7f, Colours::transparentBlack,
 			juceImage, 1.0f, Colours::transparentBlack,
 			juceImage, 1.0f, Colours::pink.withAlpha(0.8f),
 			0.5f);
-		imageButton->setTopLeftPosition(760, 540);
+		imageButton->setTopLeftPosition(666, 400);
 		imageButton->setTooltip("image button - showing alpha-channel hit-testing and colour overlay when clicked");
 		// END IMAGE BUTTON CODE
 		//addAndMakeVisible(recordButton);
@@ -106,7 +106,7 @@ public:
 		deviceManager.addAudioCallback(&recorder);
 
 		//setting the size of the windows
-		setSize(1060, 775);
+		setSize(1060, 690);
 
     }
 
@@ -164,7 +164,7 @@ public:
 		//displaying midi input list, the processor editor, and the keyboard
 		midiInputList.setBounds(area.removeFromTop(36).removeFromRight(getWidth() - 100).reduced(8));
 		theEditor->setBounds(area.removeFromTop(595));
-		keyboardComponent.setBounds(0, 623, getWidth(), 150);
+		keyboardComponent.setBounds(0, 545, getWidth(), 150);
 		//recordingThumbnail.setBounds(area.removeFromTop(80).reduced(8));	//displays what is being recorded. Maybe not necessary?
 		//recordButton.setBounds(10, 350, 75, 25);
 	}
