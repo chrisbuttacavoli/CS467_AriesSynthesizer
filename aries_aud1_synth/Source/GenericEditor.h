@@ -159,7 +159,10 @@ public:
 		paramLabels[7]->setBounds(865, 115, (r.getWidth() / 4.8), 25);
 		paramSliders[7]->setBounds(865, 115, (r.getWidth() / 4.8), 50);
 
-		//ADSR
+		/*
+			ADSR stuff
+		*/
+
 		//attack
 		paramLabels[8]->setBounds(700, 225, (r.getWidth() / 4.8), 25);
 		paramSliders[8]->setBounds(700, 225, (r.getWidth() / 4.8), 50);
@@ -186,17 +189,25 @@ public:
 		paramSliders[13]->setBounds(475, 265, (r.getWidth() / 4.8), 50);
 
 		//distortion
-		paramLabels[16]->setBounds(200, 265, (r.getWidth() / 4.8), 25);
-		paramSliders[16]->setBounds(200, 265, (r.getWidth() / 4.8), 50);
+		paramLabels[16]->setBounds(850, 380, (r.getWidth() / 4.8), 25);
+		paramSliders[16]->setBounds(850, 380, (r.getWidth() / 4.8), 50);
 
 		//noParameterLabel.setBounds(r);
 
-		//LFO
+		/*
+			LFO stuff
+		*/
+
 		paramCombo[5]->setBounds(70, 375, (r.getWidth() / 4.8), 50);
 		paramLabels[14]->setBounds(70, 425, (r.getWidth() / 4.8), 25);
 		paramSliders[14]->setBounds(70, 425, (r.getWidth() / 4.8), 50);
 		paramLabels[15]->setBounds(70, 475, (r.getWidth() / 4.8), 25);
 		paramSliders[15]->setBounds(70, 475, (r.getWidth() / 4.8), 50);
+
+		/*
+			EQ stuff
+		*/
+
 	}
 
 	void paint(Graphics& g) override
@@ -218,7 +229,9 @@ public:
 		Image filters = ImageCache::getFromMemory(BinaryData::filters_png, BinaryData::filters_pngSize);
 		g.drawImageAt(filters, 399, 200);
 		Image distortion = ImageCache::getFromMemory(BinaryData::distortion_s_png, BinaryData::distortion_s_pngSize);
-		g.drawImageAt(distortion, 148, 225);
+		g.drawImageAt(distortion, 805, 352);
+		Image eq3 = ImageCache::getFromMemory(BinaryData::eq3_s_png, BinaryData::eq3_s_pngSize);
+		g.drawImageAt(eq3, 0, 200);
 	}
 
 	//==============================================================================
