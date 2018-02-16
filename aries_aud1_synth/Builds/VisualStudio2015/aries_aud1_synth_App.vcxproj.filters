@@ -4301,6 +4301,12 @@
     <None Include="..\..\Source\distortion_s.png">
       <Filter>aries_aud1_synth\Source</Filter>
     </None>
+    <None Include="..\..\Source\save_s.png">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </None>
+    <None Include="..\..\Source\load_s.png">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </None>
     <None Include="..\..\Source\filters.png">
       <Filter>aries_aud1_synth\Source</Filter>
     </None>

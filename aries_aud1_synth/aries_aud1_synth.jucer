@@ -40,6 +40,8 @@
       <FILE id="KhroZR" name="record_s_s.png" compile="0" resource="1" file="Source/record_s_s.png"/>
       <FILE id="Nvb6Xe" name="distortion_s.png" compile="0" resource="1"
             file="Source/distortion_s.png"/>
+      <FILE id="qg9Ipl" name="save_s.png" compile="0" resource="1" file="Source/save_s.png"/>
+      <FILE id="DoAwg7" name="load_s.png" compile="0" resource="1" file="Source/load_s.png"/>
       <FILE id="jPJG8N" name="filters.png" compile="0" resource="1" file="Source/filters.png"/>
       <FILE id="bBDide" name="Osc_Box_1_sl2.png" compile="0" resource="1"
             file="Source/Osc_Box_1_sl2.png"/>

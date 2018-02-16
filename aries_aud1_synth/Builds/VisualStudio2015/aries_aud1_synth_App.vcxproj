@@ -2516,6 +2516,8 @@
     <None Include="..\..\Source\record_s.png"/>
     <None Include="..\..\Source\record_s_s.png"/>
     <None Include="..\..\Source\distortion_s.png"/>
+    <None Include="..\..\Source\save_s.png"/>
+    <None Include="..\..\Source\load_s.png"/>
     <None Include="..\..\Source\filters.png"/>
     <None Include="..\..\Source\Osc_Box_1_sl2.png"/>
     <None Include="..\..\Source\Osc_Box_2_sl2.png"/>

@@ -98,6 +98,32 @@ public:
 		imageButton->setTopLeftPosition(666, 400);
 		imageButton->setTooltip("image button - showing alpha-channel hit-testing and colour overlay when clicked");
 		// END IMAGE BUTTON CODE
+
+		// IMAGE BUTTON CODE FOR SAVE BUTTON
+
+		addAndMakeVisible(saveButton);
+		Image juceImage2 = ImageCache::getFromMemory(BinaryData::save_s_png, BinaryData::save_s_pngSize);
+		saveButton->setImages(true, true, true,
+			juceImage2, 0.7f, Colours::transparentBlack,
+			juceImage2, 1.0f, Colours::transparentBlack,
+			juceImage2, 1.0f, Colours::pink.withAlpha(0.8f),
+			0.5f);
+		saveButton->setTopLeftPosition(670, 490);
+		saveButton->setTooltip("image button - showing alpha-channel hit-testing and colour overlay when clicked");
+		// END IMAGE BUTTON CODE
+		// IMAGE BUTTON CODE FOR SAVE BUTTON
+
+		addAndMakeVisible(loadButton);
+		Image juceImage3 = ImageCache::getFromMemory(BinaryData::load_s_png, BinaryData::load_s_pngSize);
+		loadButton->setImages(true, true, true,
+			juceImage3, 0.7f, Colours::transparentBlack,
+			juceImage3, 1.0f, Colours::transparentBlack,
+			juceImage3, 1.0f, Colours::pink.withAlpha(0.8f),
+			0.5f);
+		loadButton->setTopLeftPosition(670, 450);
+		loadButton->setTooltip("image button - showing alpha-channel hit-testing and colour overlay when clicked");
+		// END IMAGE BUTTON CODE
+
 		//addAndMakeVisible(recordButton);
 		//imageButton.setButtonText("Record");
 		imageButton->addListener(this);
@@ -150,7 +176,7 @@ public:
 		g.setFont(theFont);
 		//g.drawText("Aries Synthesizer", -10, 400, getWidth(), 50, Justification::right);
 		Image logo = ImageCache::getFromMemory(BinaryData::aries_logo_cropped_s_png, BinaryData::aries_logo_cropped_s_pngSize);
-		g.drawImageAt(logo, 850, 600);
+		g.drawImageAt(logo, 500, 500);
 		Font theFont2("Helvetica", "Bold", 10.0f);
 		g.setFont(theFont2);
 		g.drawText("Chris B, Victoria D, Alex C", 10, 600, getWidth(), 25, Justification::bottomLeft);
@@ -181,6 +207,8 @@ private:
 	MidiKeyboardComponent keyboardComponent;    // [6]
 	double startTime;
 	ImageButton* imageButton = new ImageButton("imagebutton");
+	ImageButton* saveButton = new ImageButton("savebutton");
+	ImageButton* loadButton = new ImageButton("loadbutton");
 	AudioProcessorPlayer audioSourcePlayer;	//need to play audio through a processor player now
 	SynthProcessor theSynthProcessor;		//new synth processor to replay synthAudioSource
 	GenericEditor *theEditor;
