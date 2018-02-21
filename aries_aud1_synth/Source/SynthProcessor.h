@@ -80,6 +80,24 @@ public:
 		addParameter(new AudioParameterFloat("lfofreq", "LFOFreq", 1.0f, getScale("LFOFreq"), 10.0f));
 
 		/*
+			EQ parameters
+		*/
+		//low
+		addParameter(new AudioParameterFloat("eqlowfreq", "EQLowFreq", 20.0f, 800.0f, 125.0f));
+		addParameter(new AudioParameterFloat("eqlowq", "EQLowQ", 1.0f, 100.0f, 50.0f));
+		addParameter(new AudioParameterFloat("eqlowlevel", "EQLowLevel", 0.0f, 1.0f, 0.0f));
+
+		//mid
+		addParameter(new AudioParameterFloat("eqmidfreq", "EQMidFreq", 250.0f, 4000.0f, 2500.0f));
+		addParameter(new AudioParameterFloat("eqmidq", "EQMidQ", 1.0f, 100.0f, 50.0f));
+		addParameter(new AudioParameterFloat("eqmidlevel", "EQMidLevel", 0.0f, 1.0f, 0.0f));
+
+		//high
+		addParameter(new AudioParameterFloat("eqhifreq", "EQHiFreq", 800.0f, 20000.0f, 8000.0f));
+		addParameter(new AudioParameterFloat("eqhiq", "EQHiQ", 1.0f, 100.0f, 50.0f));
+		addParameter(new AudioParameterFloat("eqhilevel", "EQHiLevel", 0.0f, 1.0f, 0.0f));
+
+		/*
 			Other parameters
 		*/
 		addScale("Distortion", 30.0f);

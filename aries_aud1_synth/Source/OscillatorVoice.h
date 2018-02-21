@@ -18,6 +18,7 @@ Provides the wave data for any oscillator shape
 #include "Filter.h"
 #include "LFO.h"
 #include "Oscillator.h"
+#include "EQ.h"
 #include <map>
 
 
@@ -117,6 +118,18 @@ public:
 		lfo.setOscType(paramMap.at("LFOosc")->getValue(), numOscillators);
 		lfo.setOscFreq(paramMap.at("LFOFreq")->getValue() * paramScaleMap.at("LFOFreq"));
 		lfo.setOscLevel(paramMap.at("LFOLevel")->getValue());
+
+		eqLow.setFreq(paramMap.at("EQLowFreq")->getValue());
+		eqLow.setQ(paramMap.at("EQLowQ")->getValue());
+		eqLow.setLevel(paramMap.at("EQLowLevel")->getValue());
+
+		eqMid.setFreq(paramMap.at("EQMidFreq")->getValue());
+		eqMid.setQ(paramMap.at("EQMidQ")->getValue());
+		eqMid.setLevel(paramMap.at("EQMidLevel")->getValue());
+
+		eqHi.setFreq(paramMap.at("EQHiFreq")->getValue());
+		eqHi.setQ(paramMap.at("EQHiQ")->getValue());
+		eqHi.setLevel(paramMap.at("EQHiLevel")->getValue());
 	}
 
 	//renders the next block of data for this voice
@@ -162,6 +175,9 @@ private:
 	Envelope env;
 	Filter filter;
 	LFO lfo;
+	EQ eqLow;
+	EQ eqMid;
+	EQ eqHi;
 
 	double tailOff;
 
