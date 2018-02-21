@@ -79,8 +79,15 @@ public:
 		addParameter(new AudioParameterFloat("lfolevel", "LFOLevel", 0.0f, 1.0f, 0.5f));
 		addParameter(new AudioParameterFloat("lfofreq", "LFOFreq", 1.0f, getScale("LFOFreq"), 10.0f));
 
+
 		/*
-			EQ parameters
+			Other parameters
+		*/
+		addScale("Distortion", 30.0f);
+		addParameter(new AudioParameterFloat("distAmount", "Distortion", 0.0f, getScale("Distortion"), 0.0f));
+
+		/*
+		EQ parameters
 		*/
 		//low
 		addParameter(new AudioParameterFloat("eqlowfreq", "EQLowFreq", 20.0f, 800.0f, 125.0f));
@@ -96,12 +103,6 @@ public:
 		addParameter(new AudioParameterFloat("eqhifreq", "EQHiFreq", 800.0f, 20000.0f, 8000.0f));
 		addParameter(new AudioParameterFloat("eqhiq", "EQHiQ", 1.0f, 100.0f, 50.0f));
 		addParameter(new AudioParameterFloat("eqhilevel", "EQHiLevel", 0.0f, 1.0f, 0.0f));
-
-		/*
-			Other parameters
-		*/
-		addScale("Distortion", 30.0f);
-		addParameter(new AudioParameterFloat("distAmount", "Distortion", 0.0f, getScale("Distortion"), 0.0f));
 
 		addParametersToMap();
 		

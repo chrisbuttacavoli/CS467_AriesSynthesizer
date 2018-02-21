@@ -7,6 +7,7 @@
               userNotes="" headerPath="C:\Users\Chris.Buttacavoli\Documents\GitHub\CS467_Aries-\maximillion">
   <MAINGROUP id="DbO0WA" name="aries_aud1_synth">
     <GROUP id="{25EB4AD0-1085-2D6D-2C5D-94D74EEB437F}" name="Source">
+      <FILE id="TRDlUt" name="Biquad.h" compile="0" resource="0" file="Source/Biquad.h"/>
       <FILE id="mWSdSy" name="OscillatorVoice.h" compile="0" resource="0"
             file="Source/OscillatorVoice.h"/>
       <FILE id="GwdEN6" name="HelperFuncs.h" compile="0" resource="0" file="Source/HelperFuncs.h"/>
