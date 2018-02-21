@@ -213,34 +213,34 @@ public:
 			EQ stuff
 		*/
 		// Low EQ Freq
-		paramLabels[17]->setBounds(20, 415, (r.getWidth() / 4.8), 25);
-		paramSliders[17]->setBounds(20, 415, (r.getWidth() / 4.8), 50);
+		paramLabels[17]->setBounds(100, 200, (r.getWidth() / 4.8), 25);
+		paramSliders[17]->setBounds(100, 200, (r.getWidth() / 4.8), 50);
 		// Low EQ Q
-		paramLabels[18]->setBounds(40, 415, (r.getWidth() / 4.8), 25);
-		paramSliders[18]->setBounds(40, 415, (r.getWidth() / 4.8), 50);
+		paramLabels[18]->setBounds(100, 225, (r.getWidth() / 4.8), 25);
+		paramSliders[18]->setBounds(100, 225, (r.getWidth() / 4.8), 50);
 		// Low EQ Level
-		paramLabels[19]->setBounds(60, 415, (r.getWidth() / 4.8), 25);
-		paramSliders[19]->setBounds(60, 415, (r.getWidth() / 4.8), 50);
+		paramLabels[19]->setBounds(100, 250, (r.getWidth() / 4.8), 25);
+		paramSliders[19]->setBounds(100, 250, (r.getWidth() / 4.8), 50);
 
 		// Mid EQ Freq
-		paramLabels[20]->setBounds(475, 415, (r.getWidth() / 4.8), 25);
-		paramSliders[20]->setBounds(475, 415, (r.getWidth() / 4.8), 50);
+		paramLabels[20]->setBounds(100, 300, (r.getWidth() / 4.8), 25);
+		paramSliders[20]->setBounds(100, 300, (r.getWidth() / 4.8), 50);
 		// Mid EQ Q
-		paramLabels[21]->setBounds(475, 415, (r.getWidth() / 4.8), 25);
-		paramSliders[21]->setBounds(475, 415, (r.getWidth() / 4.8), 50);
+		paramLabels[21]->setBounds(100, 330, (r.getWidth() / 4.8), 25);
+		paramSliders[21]->setBounds(100, 330, (r.getWidth() / 4.8), 50);
 		// Mid EQ Level
-		paramLabels[22]->setBounds(475, 415, (r.getWidth() / 4.8), 25);
-		paramSliders[22]->setBounds(475, 415, (r.getWidth() / 4.8), 50);
+		paramLabels[22]->setBounds(100, 350, (r.getWidth() / 4.8), 25);
+		paramSliders[22]->setBounds(100, 350, (r.getWidth() / 4.8), 50);
 
 		// Hi EQ Freq
-		paramLabels[23]->setBounds(475, 415, (r.getWidth() / 4.8), 25);
-		paramSliders[23]->setBounds(475, 415, (r.getWidth() / 4.8), 50);
+		paramLabels[23]->setBounds(100, 380, (r.getWidth() / 4.8), 25);
+		paramSliders[23]->setBounds(100, 380, (r.getWidth() / 4.8), 50);
 		// Hi EQ Q
-		paramLabels[24]->setBounds(475, 415, (r.getWidth() / 4.8), 25);
-		paramSliders[24]->setBounds(475, 415, (r.getWidth() / 4.8), 50);
+		paramLabels[24]->setBounds(100, 415, (r.getWidth() / 4.8), 25);
+		paramSliders[24]->setBounds(100, 415, (r.getWidth() / 4.8), 50);
 		// Hi EQ Level
-		paramLabels[25]->setBounds(475, 415, (r.getWidth() / 4.8), 25);
-		paramSliders[25]->setBounds(475, 415, (r.getWidth() / 4.8), 50);
+		paramLabels[25]->setBounds(100, 450, (r.getWidth() / 4.8), 25);
+		paramSliders[25]->setBounds(100, 450, (r.getWidth() / 4.8), 50);
 
 	}
 
