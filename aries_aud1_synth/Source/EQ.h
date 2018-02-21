@@ -13,11 +13,15 @@
 class EQ {
 public:
 	double apply(double wave) {
+		theEQ.process(wave);
+	}
 
+	void setFilter(int type, double Fc, double Q, double peakGain) {
+		theEQ.setBiquad(type, Fc, Q, peakGain);
 	}
 
 private:
-
+	Biquad theEQ;
 
 };
 
@@ -40,7 +44,7 @@ enum {
 
 class Biquad {
 	public:
-		//first set biquad, then call process
+		//first set biquad (or call constructor), then call process
 
 		Biquad();
 		Biquad(int type, double Fc, double Q, double peakGainDB);
@@ -56,16 +60,19 @@ class Biquad {
 		void calcBiquad(void);
 
 		int type;
-		double a0, a1, a2, b1, b2;
-		double Fc, Q, peakGain;
+		double a0, a1, a2, b1, b2;	//filter poles
+		double Fc, Q, peakGain;	//frequency, Q, and peakGain
 		double z1, z2;
 
+		//applying the filter
 		inline float process(float in) {
 			double out = in * a0 + z1;
 			z1 = in * a1 + z2 - b1 * out;
 			z2 = in * a2 - b2 * out;
 			return out;
 		}
+
+		//default constructor
 		Biquad() {
 			type = bq_type_lowpass;
 			a0 = 1.0;
@@ -111,6 +118,7 @@ class Biquad {
 			setPeakGain(peakGainDB);
 		}
 
+		//actual math stuff
 		void calcBiquad(void) {
 			double norm;
 			double V = pow(10, fabs(peakGain) / 20.0);
