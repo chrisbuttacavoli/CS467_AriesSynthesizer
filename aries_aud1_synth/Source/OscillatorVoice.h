@@ -25,11 +25,9 @@ Provides the wave data for any oscillator shape
 class OscillatorVoice : public SynthesiserVoice {
 
 public:
-	OscillatorVoice() : keyPressed(0), osc1(noWave),
-		osc2(noWave), osc3(noWave),
-		osc4(noWave)
+	OscillatorVoice() : keyPressed(0), osc1(noWave), osc2(noWave), osc3(noWave), osc4(noWave)
 	{
-
+		
 	}
 
 	//must return true if this voice object is capable of playing the given sound
@@ -119,17 +117,27 @@ public:
 		lfo.setOscFreq(paramMap.at("LFOFreq")->getValue() * paramScaleMap.at("LFOFreq"));
 		lfo.setOscLevel(paramMap.at("LFOLevel")->getValue());
 
-		eqLow.setFreq(paramMap.at("EQLowFreq")->getValue());
+		/*eqLow.setFreq(paramMap.at("EQLowFreq")->getValue());
 		eqLow.setQ(paramMap.at("EQLowQ")->getValue());
-		eqLow.setLevel(paramMap.at("EQLowLevel")->getValue());
+		eqLow.setLevel(paramMap.at("EQLowLevel")->getValue());*/
+		eqLow.setFilter(paramMap.at("EQLowFreq")->getValue(),
+			paramMap.at("EQLowQ")->getValue(),
+			paramMap.at("EQLowLevel")->getValue());
 
-		eqMid.setFreq(paramMap.at("EQMidFreq")->getValue());
+		/*eqMid.setFreq(paramMap.at("EQMidFreq")->getValue());
 		eqMid.setQ(paramMap.at("EQMidQ")->getValue());
-		eqMid.setLevel(paramMap.at("EQMidLevel")->getValue());
+		eqMid.setLevel(paramMap.at("EQMidLevel")->getValue());*/
+		eqMid.setFilter(
+			(paramMap.at("EQMidFreq")->getValue() * 3750 + 250) / this->getSampleRate(),
+			paramMap.at("EQMidQ")->getValue() * 99 + 1,
+			paramMap.at("EQMidLevel")->getValue());
 
-		eqHi.setFreq(paramMap.at("EQHiFreq")->getValue());
+		/*eqHi.setFreq(paramMap.at("EQHiFreq")->getValue());
 		eqHi.setQ(paramMap.at("EQHiQ")->getValue());
-		eqHi.setLevel(paramMap.at("EQHiLevel")->getValue());
+		eqHi.setLevel(paramMap.at("EQHiLevel")->getValue());*/
+		eqHi.setFilter(paramMap.at("EQHiFreq")->getValue(),
+			paramMap.at("EQHiQ")->getValue(),
+			paramMap.at("EQHiLevel")->getValue());
 	}
 
 	//renders the next block of data for this voice
@@ -153,6 +161,7 @@ public:
 
 	float applyEffects(double wave) {
 		// Order matters
+		wave = eqMid.apply(wave);
 		wave = dist.apply(wave);
 		wave = filter.apply(wave);
 		wave = lfo.apply(wave);	//must put LFO here to piggy back off of env trigger

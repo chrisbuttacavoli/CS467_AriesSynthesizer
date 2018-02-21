@@ -14,15 +14,15 @@
 class EQ {
 public:
 	double apply(double wave) {
-		theEQ.process(wave);
+		return theEQ.process(wave);
 	}
 
 	//create a peak filter
-	void setFilter(double Fc, double Q, double peakGain) {
-		theEQ.setBiquad(4, Fc, Q, peakGain);
+	void setFilter(double freq, double Q, double gain) {
+		theEQ.setBiquad(4, freq, Q, gain);
 	}
 
-	void setFreq(double theFreq) {
+	/*void setFreq(double theFreq) {
 		freq = theFreq;
 	}
 
@@ -32,7 +32,7 @@ public:
 
 	void setLevel(double theGain) {
 		level = theGain;
-	}
+	}*/
 
 private:
 	Biquad theEQ;

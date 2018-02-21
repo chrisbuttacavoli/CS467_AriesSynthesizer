@@ -89,7 +89,7 @@ public:
 		/*
 		EQ parameters
 		*/
-		//low
+		
 		addParameter(new AudioParameterFloat("eqlowfreq", "EQLowFreq", 20.0f, 800.0f, 125.0f));
 		addParameter(new AudioParameterFloat("eqlowq", "EQLowQ", 1.0f, 100.0f, 50.0f));
 		addParameter(new AudioParameterFloat("eqlowlevel", "EQLowLevel", 0.0f, 1.0f, 0.0f));
@@ -142,6 +142,11 @@ public:
 		midiCollector.reset(sampleRate);
 		mySynth.setCurrentPlaybackSampleRate(sampleRate);
 		settings.setup(sampleRate, 2, MaxSamplesPerBlock);
+		
+		for (int i = 0; i < mySynth.getNumVoices(); i++)
+		{
+			mySynth.getVoice(i)->setCurrentPlaybackSampleRate(sampleRate);
+		}
 	}
 	
 	void processBlock(AudioBuffer<float> &buffer, MidiBuffer &midiMessages) override {
