@@ -46,9 +46,9 @@ class GenericEditor : public AudioProcessorEditor,
 public:
 	enum
 	{
-		kParamControlHeight = 4000,
+		kParamControlHeight = 25,
 		kParamLabelWidth = 80,
-		kParamSliderWidth = 1000,
+		kParamSliderWidth = 100,
 	};
 
 	GenericEditor(AudioProcessor& parent)
@@ -66,7 +66,7 @@ public:
 
 				paramSliders.add(aSlider = new Slider(param->name));
 				aSlider->setRange(param->range.start, param->range.end);
-				aSlider->setSliderStyle(Slider::Rotary);
+				aSlider->setSliderStyle(Slider::LinearHorizontal);
 				aSlider->setValue(*param);
 
 				addAndMakeVisible(aSlider);
@@ -131,50 +131,50 @@ public:
 		paramCombo[3]->setBounds(815, 12, (r.getWidth() / 4.8), 50);
 
 		//pitch 1
-		paramLabels[0]->setBounds(70, 65, (r.getWidth() / 4.8), 25);
-		paramSliders[0]->setBounds(70, 65, (r.getWidth() / 4.8), 50);
+		paramLabels[0]->setBounds(20, 65, (r.getWidth() / 4.8), 25);
+		paramSliders[0]->setBounds(20, 65, (r.getWidth() / 4.8), 50);
 
 		//level 1
-		paramLabels[1]->setBounds(70, 115, (r.getWidth() / 4.8), 25);
-		paramSliders[1]->setBounds(70, 115, (r.getWidth() / 4.8), 50);
+		paramLabels[1]->setBounds(20, 115, (r.getWidth() / 4.8), 25);
+		paramSliders[1]->setBounds(20, 115, (r.getWidth() / 4.8), 50);
 
 		//pitch 2
-		paramLabels[2]->setBounds(335, 65, (r.getWidth() / 4.8), 25);
-		paramSliders[2]->setBounds(335, 65, (r.getWidth() / 4.8), 50);
+		paramLabels[2]->setBounds(285, 65, (r.getWidth() / 4.8), 25);
+		paramSliders[2]->setBounds(285, 65, (r.getWidth() / 4.8), 50);
 		//level 2
-		paramLabels[3]->setBounds(335, 115, (r.getWidth() / 4.8), 25);
-		paramSliders[3]->setBounds(335, 115, (r.getWidth() / 4.8), 50);
+		paramLabels[3]->setBounds(285, 115, (r.getWidth() / 4.8), 25);
+		paramSliders[3]->setBounds(285, 115, (r.getWidth() / 4.8), 50);
 
 		//pitch 3
-		paramLabels[4]->setBounds(600, 65, (r.getWidth() / 4.8), 25);
-		paramSliders[4]->setBounds(600, 65, (r.getWidth() / 4.8), 50);
+		paramLabels[4]->setBounds(550, 65, (r.getWidth() / 4.8), 25);
+		paramSliders[4]->setBounds(550, 65, (r.getWidth() / 4.8), 50);
 		//level 3
-		paramLabels[5]->setBounds(600, 115, (r.getWidth() / 4.8), 25);
-		paramSliders[5]->setBounds(600, 115, (r.getWidth() / 4.8), 50);
+		paramLabels[5]->setBounds(550, 115, (r.getWidth() / 4.8), 25);
+		paramSliders[5]->setBounds(550, 115, (r.getWidth() / 4.8), 50);
 
 		//pitch 4
-		paramLabels[6]->setBounds(865, 65, (r.getWidth() / 4.8), 25);
-		paramSliders[6]->setBounds(865, 65, (r.getWidth() / 4.8), 50);
+		paramLabels[6]->setBounds(815, 65, (r.getWidth() / 4.8), 25);
+		paramSliders[6]->setBounds(815, 65, (r.getWidth() / 4.8), 50);
 		//level 4
-		paramLabels[7]->setBounds(865, 115, (r.getWidth() / 4.8), 25);
-		paramSliders[7]->setBounds(865, 115, (r.getWidth() / 4.8), 50);
+		paramLabels[7]->setBounds(815, 115, (r.getWidth() / 4.8), 25);
+		paramSliders[7]->setBounds(815, 115, (r.getWidth() / 4.8), 50);
 
 		/*
 			ADSR stuff
 		*/
 
 		//attack
-		paramLabels[8]->setBounds(700, 225, (r.getWidth() / 4.8), 25);
-		paramSliders[8]->setBounds(700, 225, (r.getWidth() / 4.8), 50);
+		paramLabels[8]->setBounds(675, 200, (r.getWidth() / 4.8), 25);
+		paramSliders[8]->setBounds(675, 200, (r.getWidth() / 4.8), 50);
 		//decay
-		paramLabels[9]->setBounds(700, 275, (r.getWidth() / 4.8), 25);
-		paramSliders[9]->setBounds(700, 275, (r.getWidth() / 4.8), 50);
+		paramLabels[9]->setBounds(675, 250, (r.getWidth() / 4.8), 25);
+		paramSliders[9]->setBounds(675, 250, (r.getWidth() / 4.8), 50);
 		//sustain
-		paramLabels[10]->setBounds(875, 225, (r.getWidth() / 4.8), 25);
-		paramSliders[10]->setBounds(875, 225, (r.getWidth() / 4.8), 50);
+		paramLabels[10]->setBounds(825, 225, (r.getWidth() / 4.8), 25);
+		paramSliders[10]->setBounds(825, 225, (r.getWidth() / 4.8), 50);
 		//release
-		paramLabels[11]->setBounds(875, 275, (r.getWidth() / 4.8), 25);
-		paramSliders[11]->setBounds(875, 275, (r.getWidth() / 4.8), 50);
+		paramLabels[11]->setBounds(825, 275, (r.getWidth() / 4.8), 25);
+		paramSliders[11]->setBounds(825, 275, (r.getWidth() / 4.8), 50);
 
 		/*
 			Filter stuff
@@ -182,15 +182,15 @@ public:
 		//type
 		paramCombo[4]->setBounds(420, 210, (r.getWidth() / 4.8), 20);
 		//cutoff
-		paramLabels[12]->setBounds(475, 225, (r.getWidth() / 4.8), 25);
-		paramSliders[12]->setBounds(475, 225, (r.getWidth() / 4.8), 50);
+		paramLabels[12]->setBounds(425, 225, (r.getWidth() / 4.8), 25);
+		paramSliders[12]->setBounds(425, 225, (r.getWidth() / 4.8), 50);
 		//res
-		paramLabels[13]->setBounds(475, 265, (r.getWidth() / 4.8), 25);
-		paramSliders[13]->setBounds(475, 265, (r.getWidth() / 4.8), 50);
+		paramLabels[13]->setBounds(425, 265, (r.getWidth() / 4.8), 25);
+		paramSliders[13]->setBounds(425, 265, (r.getWidth() / 4.8), 50);
 
 		//distortion
-		paramLabels[16]->setBounds(850, 380, (r.getWidth() / 4.8), 25);
-		paramSliders[16]->setBounds(850, 380, (r.getWidth() / 4.8), 50);
+		paramLabels[16]->setBounds(825, 380, (r.getWidth() / 4.8), 25);
+		paramSliders[16]->setBounds(825, 380, (r.getWidth() / 4.8), 50);
 
 		//noParameterLabel.setBounds(r);
 
@@ -202,45 +202,45 @@ public:
 		paramCombo[5]->setBounds(417, 355, (r.getWidth() / 4.8), 25);
 
 		// LFO Level
-		paramLabels[14]->setBounds(475, 380, (r.getWidth() / 4.8), 25);
-		paramSliders[14]->setBounds(475, 380, (r.getWidth() / 4.8), 50);
+		paramLabels[14]->setBounds(425, 380, (r.getWidth() / 4.8), 25);
+		paramSliders[14]->setBounds(425, 380, (r.getWidth() / 4.8), 50);
 
 		// LFO Frequency 
-		paramLabels[15]->setBounds(475, 415, (r.getWidth() / 4.8), 25);
-		paramSliders[15]->setBounds(475, 415, (r.getWidth() / 4.8), 50);
+		paramLabels[15]->setBounds(425, 415, (r.getWidth() / 4.8), 25);
+		paramSliders[15]->setBounds(425, 415, (r.getWidth() / 4.8), 50);
 
 		/*
 			EQ stuff
 		*/
 		// Low EQ Freq
-		paramLabels[17]->setBounds(100, 200, (r.getWidth() / 4.8), 25);
-		paramSliders[17]->setBounds(100, 200, (r.getWidth() / 4.8), 50);
+		paramLabels[17]->setBounds(20, 200, (r.getWidth() / 4.8), 25);
+		paramSliders[17]->setBounds(20, 200, (r.getWidth() / 4.8), 50);
 		// Low EQ Q
-		paramLabels[18]->setBounds(100, 225, (r.getWidth() / 4.8), 25);
-		paramSliders[18]->setBounds(100, 225, (r.getWidth() / 4.8), 50);
+		paramLabels[18]->setBounds(20, 225, (r.getWidth() / 4.8), 25);
+		paramSliders[18]->setBounds(20, 225, (r.getWidth() / 4.8), 50);
 		// Low EQ Level
-		paramLabels[19]->setBounds(100, 250, (r.getWidth() / 4.8), 25);
-		paramSliders[19]->setBounds(100, 250, (r.getWidth() / 4.8), 50);
+		paramLabels[19]->setBounds(20, 250, (r.getWidth() / 4.8), 25);
+		paramSliders[19]->setBounds(20, 250, (r.getWidth() / 4.8), 50);
 
 		// Mid EQ Freq
-		paramLabels[20]->setBounds(100, 300, (r.getWidth() / 4.8), 25);
-		paramSliders[20]->setBounds(100, 300, (r.getWidth() / 4.8), 50);
+		paramLabels[20]->setBounds(175, 275, (r.getWidth() / 4.8), 25);
+		paramSliders[20]->setBounds(175, 275, (r.getWidth() / 4.8), 50);
 		// Mid EQ Q
-		paramLabels[21]->setBounds(100, 330, (r.getWidth() / 4.8), 25);
-		paramSliders[21]->setBounds(100, 330, (r.getWidth() / 4.8), 50);
+		paramLabels[21]->setBounds(175, 300, (r.getWidth() / 4.8), 25);
+		paramSliders[21]->setBounds(175, 300, (r.getWidth() / 4.8), 50);
 		// Mid EQ Level
-		paramLabels[22]->setBounds(100, 350, (r.getWidth() / 4.8), 25);
-		paramSliders[22]->setBounds(100, 350, (r.getWidth() / 4.8), 50);
+		paramLabels[22]->setBounds(175, 325, (r.getWidth() / 4.8), 25);
+		paramSliders[22]->setBounds(175, 325, (r.getWidth() / 4.8), 50);
 
 		// Hi EQ Freq
-		paramLabels[23]->setBounds(100, 380, (r.getWidth() / 4.8), 25);
-		paramSliders[23]->setBounds(100, 380, (r.getWidth() / 4.8), 50);
+		paramLabels[23]->setBounds(50, 350, (r.getWidth() / 4.8), 25);
+		paramSliders[23]->setBounds(50, 350, (r.getWidth() / 4.8), 50);
 		// Hi EQ Q
-		paramLabels[24]->setBounds(100, 415, (r.getWidth() / 4.8), 25);
-		paramSliders[24]->setBounds(100, 415, (r.getWidth() / 4.8), 50);
+		paramLabels[24]->setBounds(50, 375, (r.getWidth() / 4.8), 25);
+		paramSliders[24]->setBounds(50, 375, (r.getWidth() / 4.8), 50);
 		// Hi EQ Level
-		paramLabels[25]->setBounds(100, 450, (r.getWidth() / 4.8), 25);
-		paramSliders[25]->setBounds(100, 450, (r.getWidth() / 4.8), 50);
+		paramLabels[25]->setBounds(50, 400, (r.getWidth() / 4.8), 25);
+		paramSliders[25]->setBounds(50, 400, (r.getWidth() / 4.8), 50);
 
 	}
 
