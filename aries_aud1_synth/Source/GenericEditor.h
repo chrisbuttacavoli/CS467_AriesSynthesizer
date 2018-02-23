@@ -68,7 +68,7 @@ public:
 
 				paramSliders.add(aSlider = new Slider(param->name));
 				aSlider->setRange(param->range.start, param->range.end);
-				aSlider->setSliderStyle(Slider::RotaryVerticalDrag);
+				aSlider->setSliderStyle(Slider::RotaryHorizontalVerticalDrag);
 				aSlider->setValue(*param);
 
 				addAndMakeVisible(aSlider);
