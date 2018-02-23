@@ -19,13 +19,13 @@ public:
 
 	//create a peak filter
 	void setFilter(double freq, double Q, double gain) {
-		theEQ.setBiquad(4, freq, Q, gain);
+		if (Q <= minQ)
+			Q = minQ;
+
+		theEQ.setBiquad(bq_type_peak, freq, Q, gain);
 	}
 
 private:
 	Biquad theEQ;
-	double freq;
-	double q;
-	double level;
-
+	double minQ = 0.05f;
 };

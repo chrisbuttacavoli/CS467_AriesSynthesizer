@@ -17,7 +17,7 @@
 **
 **********************************************************************/
 
-enum {
+enum EQFilterType {
 	bq_type_lowpass = 0,
 	bq_type_highpass = 1,
 	bq_type_bandpass = 2,
