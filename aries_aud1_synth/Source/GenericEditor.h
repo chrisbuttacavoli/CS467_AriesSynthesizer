@@ -68,7 +68,7 @@ public:
 
 				paramSliders.add(aSlider = new Slider(param->name));
 				aSlider->setRange(param->range.start, param->range.end);
-				aSlider->setSliderStyle(Slider::LinearHorizontal);
+				aSlider->setSliderStyle(Slider::RotaryVerticalDrag);
 				aSlider->setValue(*param);
 
 				addAndMakeVisible(aSlider);
@@ -290,6 +290,10 @@ public:
 	}
 	void setSliderSnapsToMousePosition(bool shouldSnapToMouse);
 	void setScrollWheelEnabled(bool enabled);
+	void setVelocityModeParameters(double sensitivity = 1.0,
+		int threshold = 1,
+		double offset = 0.0,
+		bool userCanPressKeyToSwapMode = true);
 
 	void sliderDragEnded(Slider* slider) override
 	{
