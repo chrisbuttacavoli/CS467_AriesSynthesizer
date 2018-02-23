@@ -68,12 +68,14 @@ public:
 
 				paramSliders.add(aSlider = new Slider(param->name));
 				aSlider->setRange(param->range.start, param->range.end);
+
 				if (param->name.contains("EQ") == 1) {
 					aSlider->setSliderStyle(Slider::LinearHorizontal);
 				}
 				else {
-					aSlider->setSliderStyle(Slider::RotaryVerticalDrag);
+					aSlider->setSliderStyle(Slider::RotaryHorizontalVerticalDrag);
 				}
+
 				aSlider->setValue(*param);
 
 				addAndMakeVisible(aSlider);
