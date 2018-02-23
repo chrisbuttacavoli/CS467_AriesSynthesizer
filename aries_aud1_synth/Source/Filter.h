@@ -9,6 +9,8 @@
 */
 
 #pragma once
+#include "Biquad.h"
+
 
 enum FilterType {
 	noFilter = 0,
@@ -23,36 +25,50 @@ public:
 	double apply(double wave) {
 		switch (type)
 		{
-		case loPass:
-			return filter.lores(wave, cutoff, resonance);
-			break;
-		case hiPass:
-			return filter.hires(wave, cutoff, resonance);
-			break;
-		case  bandPass:
-			return filter.bandpass(wave, cutoff, resonance);
-			break;
+			case noFilter:
+				return wave;
+
+			case loPass:
+				return filter.lores(wave, cutoff, resonance);
+
+			case hiPass:
+				return filter.hires(wave, cutoff, resonance);
+
+			case bandPass:
+				return biquad.process(wave);
 		}
-		return wave;
 	}
 
 	void setCutoffFreq(double freq) {
 		cutoff = freq;
 	}
 
-	// 1 to 200 seems good
 	void setResonanceBoost(double boost) {
 		resonance = boost;
 	}
 
+	// This is to pass info to the biquad
+	void setSampleRate(int rate) {
+		sampleRate = rate;
+	}
+
 	// Converts the float to an enum. paramVal ranges from 0.0 to 1.0
 	void setType(float paramVal, int numFilterTypes) {
-		type = static_cast<FilterType>(int(paramVal * numFilterTypes));
+		type = static_cast<FilterType>(int(paramVal * (numFilterTypes - 1)));
+
+		// Here we initialize the BiQuad parameters. Q is hardcoded in this class
+		if (type == bandPass)
+			biquad.setBiquad(bq_type_bandpass, cutoff / sampleRate, Q, resonance);
 	}
 
 private:
+	int sampleRate = 44100;
 	double cutoff;
 	double resonance;
 	maxiFilter filter;
 	FilterType type;
+
+	// BiQuad stuff
+	Biquad biquad;
+	double Q = 1.0f;
 };

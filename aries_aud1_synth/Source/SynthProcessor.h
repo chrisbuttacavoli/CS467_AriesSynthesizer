@@ -14,7 +14,6 @@
 #include "SynthSound.h"
 #include "GenericEditor.h"
 #include "maximilian.h"
-//#include "OscillatorVoice_Failure.h" // Just change the Oscillator voice of choice here
 #include "OscillatorVoice.h"
 
 //==============================================================================
@@ -25,11 +24,17 @@ class SynthProcessor : public AudioProcessor
 public:
 	SynthProcessor(MidiKeyboardState &keyState) : keyboardState(keyState) {
 
+		InitSynth();
+		InitParameters();
+	}
+
+	void InitParameters()
+	{
 		/*
 			Oscillator parameters
 		*/
-		const StringArray & oscillatorChoices = {"None", "Sine", "Saw", "Square", "Noise"};
-		addParameter(new AudioParameterChoice("oscillator1","Oscillator1", oscillatorChoices, noWave, "Cats"));
+		const StringArray & oscillatorChoices = { "None", "Sine", "Saw", "Square", "Noise" };
+		addParameter(new AudioParameterChoice("oscillator1", "Oscillator1", oscillatorChoices, noWave, "Cats"));
 		addParameter(new AudioParameterChoice("oscillator2", "Oscillator2", oscillatorChoices, noWave, "Cats"));
 		addParameter(new AudioParameterChoice("oscillator3", "Oscillator3", oscillatorChoices, noWave, "Cats"));
 		addParameter(new AudioParameterChoice("oscillator4", "Oscillator4", oscillatorChoices, noWave, "Cats"));
@@ -43,7 +48,7 @@ public:
 		addParameter(new AudioParameterFloat("pitch4", "Pitch4", -1.0f, 1.0f, 0.0f));
 		addParameter(new AudioParameterFloat("level4", "Level4", 0.0f, 1.0f, 0.5f));
 
-		/* 
+		/*
 			Envelope parameters: The scale parameters act as multiplies since our values are passed
 			are 0.0 to 1.0 in OscillatorVoice. To get a max of 10 seconds, we need to have a scale.
 			Sustain units are not ms, they are level (0-100%).
@@ -57,24 +62,24 @@ public:
 		addParameter(new AudioParameterFloat("sustain", "Sustain", 0.0f, 1.0f, 1.0f));
 		addParameter(new AudioParameterFloat("release", "Release", 0.0f, getScale("Release"), 1.0f));
 
+
 		/*
 			Filter parameters
 		*/
 		const StringArray & filterChoices = { "None", "LoPass", "HiPass", "BandPass" };
 		addParameter(new AudioParameterChoice("filter", "Filter", filterChoices, noFilter, "Cats"));
 
-		addScale("Cutoff", 14000);
-		addScale("Resonance", 200);
+		addScale("Cutoff", 14000); // The frequency
+		addScale("Resonance", 10); // The boost
 		addParameter(new AudioParameterFloat("cutoff", "Cutoff", 1.0f, getScale("Cutoff"), 5000.0f));
-		addParameter(new AudioParameterFloat("resonance", "Resonance", 1.0f, getScale("Resonance"), 50.0f));
+		addParameter(new AudioParameterFloat("resonance", "Resonance", 0.0f, getScale("Resonance"), getScale("Resonance")));
 
 
 		/*
 			LFO parameters
 		*/
-		addParameter(new AudioParameterChoice("lfoosc", "LFOosc", oscillatorChoices, noWave, "Cats"));	//defaulted to sine
+		addParameter(new AudioParameterChoice("lfoosc", "LFOosc", oscillatorChoices, noWave, "Cats"));
 
-		//set to some default values before UI is added
 		addScale("LFOFreq", 20);
 		addParameter(new AudioParameterFloat("lfolevel", "LFOLevel", 0.0f, 1.0f, 0.5f));
 		addParameter(new AudioParameterFloat("lfofreq", "LFOFreq", 1.0f, getScale("LFOFreq"), 10.0f));
@@ -86,10 +91,10 @@ public:
 		addScale("Distortion", 30.0f);
 		addParameter(new AudioParameterFloat("distAmount", "Distortion", 0.0f, getScale("Distortion"), 0.0f));
 
+
 		/*
-		EQ parameters
+			EQ parameters
 		*/
-		
 		addScale("EQLevel", 10.0f);
 		addScale("EQQ", 5.0f);
 
@@ -105,9 +110,13 @@ public:
 		addParameter(new AudioParameterFloat("eqhiq", "EQHiQ", 0.05f, getScale("EQQ"), 1.0f));
 		addParameter(new AudioParameterFloat("eqhilevel", "EQHiLevel", -getScale("EQLevel"), getScale("EQLevel"), 0.0f));
 
+		// Add parameters to a dictionary to pass to OscillatorVoice
 		addParametersToMap();
-		
-		//Dealing with the oscillators
+	}
+
+	void InitSynth()
+	{
+		// Dealing with the oscillators
 		mySynth.clearVoices();
 
 		// Use this loop to add multiple voices so that we can play more than one note

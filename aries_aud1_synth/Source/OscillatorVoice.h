@@ -37,6 +37,8 @@ public:
 	}
 	//called to start a new note
 	void startNote(int midiNoteNumber, float velocity, SynthesiserSound *, int /*currentPitchWheelPosition*/) override {
+		// The internal biquad filter needs the sample rate
+		filter.setSampleRate(this->getSampleRate());
 		frequency = MidiMessage::getMidiNoteInHertz(midiNoteNumber);
 
 		// Initializes pitches, it needs this to make sound
