@@ -22,18 +22,6 @@ public:
 		theEQ.setBiquad(4, freq, Q, gain);
 	}
 
-	/*void setFreq(double theFreq) {
-		freq = theFreq;
-	}
-
-	void setQ(double theq) {
-		q = theq;
-	}
-
-	void setLevel(double theGain) {
-		level = theGain;
-	}*/
-
 private:
 	Biquad theEQ;
 	double freq;

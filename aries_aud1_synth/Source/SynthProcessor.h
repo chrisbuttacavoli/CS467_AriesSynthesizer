@@ -90,19 +90,20 @@ public:
 		EQ parameters
 		*/
 		
+		addScale("EQLevel", 10.0f);
+		addScale("EQQ", 5.0f);
+
 		addParameter(new AudioParameterFloat("eqlowfreq", "EQLowFreq", 20.0f, 800.0f, 125.0f));
-		addParameter(new AudioParameterFloat("eqlowq", "EQLowQ", 0.0f, 5.0f, 1.0f));
-		addParameter(new AudioParameterFloat("eqlowlevel", "EQLowLevel", 0.0f, 12.0f, 0.0f));
+		addParameter(new AudioParameterFloat("eqlowq", "EQLowQ", 0.0f, getScale("EQQ"), 1.0f));
+		addParameter(new AudioParameterFloat("eqlowlevel", "EQLowLevel", -getScale("EQLevel"), getScale("EQLevel"), 0.0f));
 
-		//mid
 		addParameter(new AudioParameterFloat("eqmidfreq", "EQMidFreq", 250.0f, 4000.0f, 2500.0f));
-		addParameter(new AudioParameterFloat("eqmidq", "EQMidQ", 0.0f, 5.0f, 1.0f));
-		addParameter(new AudioParameterFloat("eqmidlevel", "EQMidLevel", 0.0f, 12.0f, 0.0f));
+		addParameter(new AudioParameterFloat("eqmidq", "EQMidQ", 0.0f, getScale("EQQ"), 1.0f));
+		addParameter(new AudioParameterFloat("eqmidlevel", "EQMidLevel", -getScale("EQLevel"), getScale("EQLevel"), 0.0f));
 
-		//high
 		addParameter(new AudioParameterFloat("eqhifreq", "EQHiFreq", 800.0f, 20000.0f, 8000.0f));
-		addParameter(new AudioParameterFloat("eqhiq", "EQHiQ", 0.0f, 5.0f, 1.0f));
-		addParameter(new AudioParameterFloat("eqhilevel", "EQHiLevel", 0.0f, 12.0f, 0.0f));
+		addParameter(new AudioParameterFloat("eqhiq", "EQHiQ", 0.0f, getScale("EQQ"), 1.0f));
+		addParameter(new AudioParameterFloat("eqhilevel", "EQHiLevel", -getScale("EQLevel"), getScale("EQLevel"), 0.0f));
 
 		addParametersToMap();
 		
