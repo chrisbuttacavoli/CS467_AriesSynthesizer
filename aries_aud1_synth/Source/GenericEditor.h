@@ -215,14 +215,14 @@ public:
 			EQ stuff
 		*/
 		// Low EQ Freq
-		paramLabels[17]->setBounds(20, 200, (r.getWidth() / 4.8), 25);
-		paramSliders[17]->setBounds(20, 200, (r.getWidth() / 4.8), 50);
+		paramLabels[17]->setBounds(20, 190, (r.getWidth() / 4.8), 25);
+		paramSliders[17]->setBounds(20, 190, (r.getWidth() / 4.8), 50);
 		// Low EQ Q
 		paramLabels[18]->setBounds(20, 225, (r.getWidth() / 4.8), 25);
 		paramSliders[18]->setBounds(20, 225, (r.getWidth() / 4.8), 50);
 		// Low EQ Level
-		paramLabels[19]->setBounds(20, 250, (r.getWidth() / 4.8), 25);
-		paramSliders[19]->setBounds(20, 250, (r.getWidth() / 4.8), 50);
+		paramLabels[19]->setBounds(20, 265, (r.getWidth() / 4.8), 25);
+		paramSliders[19]->setBounds(20, 265, (r.getWidth() / 4.8), 50);
 
 		// Mid EQ Freq
 		paramLabels[20]->setBounds(175, 275, (r.getWidth() / 4.8), 25);
