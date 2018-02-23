@@ -106,8 +106,8 @@ public:
 		noParameterLabel.setFont(noParameterLabel.getFont().withStyle(Font::italic));
 		
 		setSize(kParamSliderWidth + kParamLabelWidth,
-			jmax(1000, kParamControlHeight * paramSliders.size() ));
-
+			jmax(1000, kParamControlHeight * paramSliders.size()));
+		
 		if (paramSliders.size() == 0)
 			addAndMakeVisible(noParameterLabel);
 		else
@@ -218,31 +218,31 @@ public:
 		paramLabels[17]->setBounds(20, 200, (r.getWidth() / 4.8), 25);
 		paramSliders[17]->setBounds(20, 200, (r.getWidth() / 4.8), 50);
 		// Low EQ Q
-		paramLabels[18]->setBounds(20, 225, (r.getWidth() / 4.8), 25);
-		paramSliders[18]->setBounds(20, 225, (r.getWidth() / 4.8), 50);
+		paramLabels[18]->setBounds(20, 235, (r.getWidth() / 4.8), 25);
+		paramSliders[18]->setBounds(20, 235, (r.getWidth() / 4.8), 50);
 		// Low EQ Level
-		paramLabels[19]->setBounds(20, 250, (r.getWidth() / 4.8), 25);
-		paramSliders[19]->setBounds(20, 250, (r.getWidth() / 4.8), 50);
+		paramLabels[19]->setBounds(20, 270, (r.getWidth() / 4.8), 25);
+		paramSliders[19]->setBounds(20, 270, (r.getWidth() / 4.8), 50);
 
 		// Mid EQ Freq
-		paramLabels[20]->setBounds(175, 275, (r.getWidth() / 4.8), 25);
-		paramSliders[20]->setBounds(175, 275, (r.getWidth() / 4.8), 50);
+		paramLabels[20]->setBounds(20, 305, (r.getWidth() / 4.8), 25);
+		paramSliders[20]->setBounds(20, 305, (r.getWidth() / 4.8), 50);
 		// Mid EQ Q
-		paramLabels[21]->setBounds(175, 300, (r.getWidth() / 4.8), 25);
-		paramSliders[21]->setBounds(175, 300, (r.getWidth() / 4.8), 50);
+		paramLabels[21]->setBounds(20, 340, (r.getWidth() / 4.8), 25);
+		paramSliders[21]->setBounds(20, 340, (r.getWidth() / 4.8), 50);
 		// Mid EQ Level
-		paramLabels[22]->setBounds(175, 325, (r.getWidth() / 4.8), 25);
-		paramSliders[22]->setBounds(175, 325, (r.getWidth() / 4.8), 50);
+		paramLabels[22]->setBounds(20, 375, (r.getWidth() / 4.8), 25);
+		paramSliders[22]->setBounds(20, 375, (r.getWidth() / 4.8), 50);
 
 		// Hi EQ Freq
-		paramLabels[23]->setBounds(50, 350, (r.getWidth() / 4.8), 25);
-		paramSliders[23]->setBounds(50, 350, (r.getWidth() / 4.8), 50);
+		paramLabels[23]->setBounds(20, 415, (r.getWidth() / 4.8), 25);
+		paramSliders[23]->setBounds(20, 415, (r.getWidth() / 4.8), 50);
 		// Hi EQ Q
-		paramLabels[24]->setBounds(50, 375, (r.getWidth() / 4.8), 25);
-		paramSliders[24]->setBounds(50, 375, (r.getWidth() / 4.8), 50);
+		paramLabels[24]->setBounds(20, 450, (r.getWidth() / 4.8), 25);
+		paramSliders[24]->setBounds(20, 450, (r.getWidth() / 4.8), 50);
 		// Hi EQ Level
-		paramLabels[25]->setBounds(50, 400, (r.getWidth() / 4.8), 25);
-		paramSliders[25]->setBounds(50, 400, (r.getWidth() / 4.8), 50);
+		paramLabels[25]->setBounds(20, 480, (r.getWidth() / 4.8), 25);
+		paramSliders[25]->setBounds(20, 480, (r.getWidth() / 4.8), 50);
 
 	}
 
@@ -289,6 +289,7 @@ public:
 			param->beginChangeGesture();
 	}
 	void setSliderSnapsToMousePosition(bool shouldSnapToMouse);
+	void setScrollWheelEnabled(bool enabled);
 
 	void sliderDragEnded(Slider* slider) override
 	{
