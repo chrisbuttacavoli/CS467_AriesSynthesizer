@@ -117,27 +117,20 @@ public:
 		lfo.setOscFreq(paramMap.at("LFOFreq")->getValue() * paramScaleMap.at("LFOFreq"));
 		lfo.setOscLevel(paramMap.at("LFOLevel")->getValue());
 
-		/*eqLow.setFreq(paramMap.at("EQLowFreq")->getValue());
-		eqLow.setQ(paramMap.at("EQLowQ")->getValue());
-		eqLow.setLevel(paramMap.at("EQLowLevel")->getValue());*/
-		eqLow.setFilter((paramMap.at("EQLowFreq")->getValue() * 780 + 20) / this->getSampleRate(),
-			paramMap.at("EQLowQ")->getValue() * 5,
-			paramMap.at("EQLowLevel")->getValue() * 12);
+		eqLow.setFilter(
+			(paramMap.at("EQLowFreq")->getValue() * 780 + 20) / this->getSampleRate(),
+			paramMap.at("EQLowQ")->getValue() * paramScaleMap.at("EQQ"),
+			paramMap.at("EQLowLevel")->getValue() * (2 * paramScaleMap.at("EQLevel")) - paramScaleMap.at("EQLevel"));
 
-		/*eqMid.setFreq(paramMap.at("EQMidFreq")->getValue());
-		eqMid.setQ(paramMap.at("EQMidQ")->getValue());
-		eqMid.setLevel(paramMap.at("EQMidLevel")->getValue());*/
 		eqMid.setFilter(
 			(paramMap.at("EQMidFreq")->getValue() * 3750 + 250) / this->getSampleRate(),
-			paramMap.at("EQMidQ")->getValue() * 5,
-			paramMap.at("EQMidLevel")->getValue() * 12);
+			paramMap.at("EQMidQ")->getValue() * paramScaleMap.at("EQQ"),
+			paramMap.at("EQMidLevel")->getValue() * (2 * paramScaleMap.at("EQLevel")) - paramScaleMap.at("EQLevel"));
 
-		/*eqHi.setFreq(paramMap.at("EQHiFreq")->getValue());
-		eqHi.setQ(paramMap.at("EQHiQ")->getValue());
-		eqHi.setLevel(paramMap.at("EQHiLevel")->getValue());*/
-		eqHi.setFilter((paramMap.at("EQHiFreq")->getValue() * 19200 + 800) / this->getSampleRate(),
-			paramMap.at("EQHiQ")->getValue() * 5,
-			paramMap.at("EQHiLevel")->getValue() * 12);
+		eqHi.setFilter(
+			(paramMap.at("EQHiFreq")->getValue() * 19200 + 800) / this->getSampleRate(),
+			paramMap.at("EQHiQ")->getValue() * paramScaleMap.at("EQQ"),
+			paramMap.at("EQHiLevel")->getValue() * (2 * paramScaleMap.at("EQLevel")) - paramScaleMap.at("EQLevel"));
 	}
 
 	//renders the next block of data for this voice
