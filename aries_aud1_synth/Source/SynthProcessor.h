@@ -236,6 +236,11 @@ public:
 
 	}
 
+	//for use with updating params in GUI thread on slider move
+	/*void setParameterNotifyingHost(int parameterIndex, float newValue) override {
+		
+	}*/
+
 	//Getting midi/keyboard messages
 	MidiMessageCollector midiCollector;
 	MidiKeyboardState& keyboardState;

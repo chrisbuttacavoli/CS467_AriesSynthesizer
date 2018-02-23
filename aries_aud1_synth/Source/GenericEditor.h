@@ -53,8 +53,10 @@ public:
 
 	GenericEditor(AudioProcessor& parent)
 		: AudioProcessorEditor(parent),
-		noParameterLabel("noparam", "No parameters available")
+		noParameterLabel("noparam", "No parameters available"),
+		theParent(parent)
 	{
+		
 		const OwnedArray<AudioProcessorParameter>& params = parent.getParameters();
 
 		// Creates a rotary slider for each parameter of the processor
@@ -273,8 +275,11 @@ public:
 	//==============================================================================
 	void sliderValueChanged(Slider* slider) override
 	{
-		if (AudioParameterFloat* param = getParameterForSlider(slider))
+		if (AudioParameterFloat* param = getParameterForSlider(slider)) {
 			*param = (float)slider->getValue();
+			//for use with updating params in GUI thread on slider move
+			//theParent.setParameterNotifyingHost(param->getParameterIndex() ,(float)slider->getValue());
+		}
 	}
 
 	void sliderDragStarted(Slider* slider) override
@@ -330,6 +335,7 @@ private:
 	OwnedArray<Label> paramLabels;
 	OwnedArray<ComboBox> paramCombo;
 	Array<Component*> controls;
+	AudioProcessor& theParent;
 	//ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> sliderTree;
 
 // Adding this below to test passing params via ValueStateTree
