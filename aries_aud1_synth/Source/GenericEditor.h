@@ -106,7 +106,7 @@ public:
 		noParameterLabel.setFont(noParameterLabel.getFont().withStyle(Font::italic));
 		
 		setSize(kParamSliderWidth + kParamLabelWidth,
-			jmax(1000, kParamControlHeight * paramSliders.size()));
+			jmax(1000, kParamControlHeight * paramSliders.size() ));
 
 		if (paramSliders.size() == 0)
 			addAndMakeVisible(noParameterLabel);
@@ -276,6 +276,7 @@ public:
 	void sliderValueChanged(Slider* slider) override
 	{
 		if (AudioParameterFloat* param = getParameterForSlider(slider)) {
+
 			*param = (float)slider->getValue();
 			//for use with updating params in GUI thread on slider move
 			//theParent.setParameterNotifyingHost(param->getParameterIndex() ,(float)slider->getValue());
@@ -287,6 +288,7 @@ public:
 		if (AudioParameterFloat* param = getParameterForSlider(slider))
 			param->beginChangeGesture();
 	}
+	void setSliderSnapsToMousePosition(bool shouldSnapToMouse);
 
 	void sliderDragEnded(Slider* slider) override
 	{
