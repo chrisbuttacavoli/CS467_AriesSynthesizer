@@ -161,7 +161,9 @@ public:
 
 	float applyEffects(double wave) {
 		// Order matters
+		wave = eqLow.apply(wave);
 		wave = eqMid.apply(wave);
+		wave = eqHi.apply(wave);
 		wave = dist.apply(wave);
 		wave = filter.apply(wave);
 		wave = lfo.apply(wave);	//must put LFO here to piggy back off of env trigger
