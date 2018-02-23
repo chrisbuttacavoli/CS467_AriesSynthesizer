@@ -106,8 +106,8 @@ public:
 		noParameterLabel.setFont(noParameterLabel.getFont().withStyle(Font::italic));
 		
 		setSize(kParamSliderWidth + kParamLabelWidth,
-			jmax(1000, kParamControlHeight * paramSliders.size() ));
-
+			jmax(1000, kParamControlHeight * paramSliders.size()));
+		
 		if (paramSliders.size() == 0)
 			addAndMakeVisible(noParameterLabel);
 		else
@@ -289,6 +289,7 @@ public:
 			param->beginChangeGesture();
 	}
 	void setSliderSnapsToMousePosition(bool shouldSnapToMouse);
+	void setScrollWheelEnabled(bool enabled);
 
 	void sliderDragEnded(Slider* slider) override
 	{
