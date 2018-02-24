@@ -22,8 +22,8 @@
 class SynthProcessor : public AudioProcessor
 {
 public:
-	SynthProcessor(MidiKeyboardState &keyState) : keyboardState(keyState) {
-
+	SynthProcessor(MidiKeyboardState &keyState) : keyboardState(keyState), parameters(*this, nullptr) {
+	//SynthProcessor(MidiKeyboardState &keyState) : keyboardState(keyState){
 		InitSynth();
 		InitParameters();
 	}
@@ -112,6 +112,8 @@ public:
 
 		// Add parameters to a dictionary to pass to OscillatorVoice
 		addParametersToMap();
+		parameters.state = ValueTree(Identifier("savedParams"));
+
 	}
 
 	void InitSynth()
@@ -211,6 +213,7 @@ public:
 		return new GenericEditor (*this);
 	}
 
+
 	bool hasEditor() const override {
 		return true;
 	}
@@ -239,11 +242,19 @@ public:
 	}
 
 	void setStateInformation(const void * data, int sizeInBytes) override {
+		ScopedPointer <XmlElement> theParams(getXmlFromBinary(data, sizeInBytes));
 
+		if (theParams != nullptr) {
+			if (theParams->hasTagName(parameters.state.getType)) {
+				parameters.state = ValueTree::fromXml(*theParams);
+			}
+
+		}
 	}
 
 	void getStateInformation(juce::MemoryBlock &destData) override {
-
+		ScopedPointer <XmlElement> xml(parameters.state.createXml);
+		copyXmlToBinary(*xml, destData);
 	}
 
 	//for use with updating params in GUI thread on slider move
@@ -260,6 +271,9 @@ public:
 	OscillatorVoice* myVoice;
 	maxiSettings settings;
 
+
+	// Save State Params
+	AudioProcessorValueTreeState parameters;
 	/*
 		The paramScaleMap gives us multiplers for parameters when passing
 		parameter values (0.0 to 1.0) to the OscillatorVoice. For instance,
