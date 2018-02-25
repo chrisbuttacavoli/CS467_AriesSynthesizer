@@ -282,10 +282,6 @@ public:
 	*/
 	map <juce::String, AudioProcessorParameter*> paramMap;
 	map <juce::String, float> paramScaleMap;
-
-	// Filters
-	dsp::ProcessorDuplicator<dsp::IIR::Filter<float>, dsp::IIR::Coefficients<float>> lowPassFilter;
-	dsp::ProcessorDuplicator<dsp::IIR::Filter<float>, dsp::IIR::Coefficients<float>> highPassFilter;
-
+	
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthProcessor)
 };
