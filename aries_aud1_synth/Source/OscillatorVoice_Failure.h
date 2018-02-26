@@ -21,10 +21,10 @@
 #include <map>
 
 
-class OscillatorVoice : public SynthesiserVoice {
+class OscillatorFailureVoice : public SynthesiserVoice {
 
 public:
-	OscillatorVoice() : osc1(noWave), osc2(noWave), osc3(noWave), osc4(noWave), lfo(noWave)
+	OscillatorFailureVoice() : osc1(noWave), osc2(noWave), osc3(noWave), osc4(noWave), lfo(noWave)
 	{
 		// Initialize the envelopes??
 		for (int i = 0; i < waves.size(); i++) {

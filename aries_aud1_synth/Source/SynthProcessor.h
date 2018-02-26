@@ -22,10 +22,36 @@
 class SynthProcessor : public AudioProcessor
 {
 public:
-	SynthProcessor(MidiKeyboardState &keyState) : keyboardState(keyState), parameters(*this, nullptr) {
-	//SynthProcessor(MidiKeyboardState &keyState) : keyboardState(keyState){
+	SynthProcessor(MidiKeyboardState &keyState) : keyboardState(keyState) {
+	//SynthProcessor(MidiKeyboardState &keyState) : keyboardState(keyState), stateTree(*this, nullptr) {
 		InitSynth();
 		InitParameters();
+		
+		// Add parameters to a dictionary to pass to OscillatorVoice
+		addParametersToMap();
+		
+		// Don't think we can mix 2 different ways of getting parameters
+		/*stateTree.createAndAddParameter("Oscillator5", "Oscillator5", "Oscillator5",
+			NormalisableRange<float>(), 0.0f, nullptr, nullptr);*/
+		//stateTree.state = ValueTree(Identifier("savedParams"));
+
+		// See: https://forum.juce.com/t/parameters-best-practice/26148/5
+		// and: https://www.youtube.com/watch?v=lm5BxqXJ4mo
+		/*stateTree.createAndAddParameter("Pitch1", "Pitch1", "Pitch1",
+			NormalisableRange<float>(-1.0f, 1.0f), 0.0f, nullptr, nullptr);*/
+		/*stateTree.createAndAddParameter("Oscillator1", "Oscillator1", "Oscillator1",
+			NormalisableRange<float>(0.0f, 4.0f),
+			1.0f,
+			[](float value) { return value == 1.0f ? "Sine" : "Not Sine"; },
+			[](const String& text)
+		{
+			if (text.toLowerCase() == "Sine") return 1.0f;
+			return 0.0f;
+		},
+			false,
+			true,
+			true);*/
+		//AudioProcessorParameterWithID* cheese = stateTree.getParameter("oscillator1");
 	}
 
 	void InitParameters()
@@ -109,11 +135,6 @@ public:
 		addParameter(new AudioParameterFloat("eqhifreq", "EQHiFreq", 800.0f, 20000.0f, 8000.0f));
 		addParameter(new AudioParameterFloat("eqhiq", "EQHiQ", 0.05f, getScale("EQQ"), 1.0f));
 		addParameter(new AudioParameterFloat("eqhilevel", "EQHiLevel", -getScale("EQLevel"), getScale("EQLevel"), 0.0f));
-
-		// Add parameters to a dictionary to pass to OscillatorVoice
-		addParametersToMap();
-		parameters.state = ValueTree(Identifier("savedParams"));
-
 	}
 
 	void InitSynth()
@@ -242,19 +263,18 @@ public:
 	}
 
 	void setStateInformation(const void * data, int sizeInBytes) override {
-		ScopedPointer <XmlElement> theParams(getXmlFromBinary(data, sizeInBytes));
+		/*ScopedPointer <XmlElement> theParams(getXmlFromBinary(data, sizeInBytes));
 
 		if (theParams != nullptr) {
-			if (theParams->hasTagName(parameters.state.getType)) {
+			if (theParams->hasTagName(parameters.state.getType())) {
 				parameters.state = ValueTree::fromXml(*theParams);
 			}
-
-		}
+		}*/
 	}
 
 	void getStateInformation(juce::MemoryBlock &destData) override {
-		ScopedPointer <XmlElement> xml(parameters.state.createXml);
-		copyXmlToBinary(*xml, destData);
+		/*ScopedPointer <XmlElement> xml(parameters.state.createXml());
+		copyXmlToBinary(*xml, destData);*/
 	}
 
 	//for use with updating params in GUI thread on slider move
@@ -273,7 +293,7 @@ public:
 
 
 	// Save State Params
-	AudioProcessorValueTreeState parameters;
+	//AudioProcessorValueTreeState stateTree;
 	/*
 		The paramScaleMap gives us multiplers for parameters when passing
 		parameter values (0.0 to 1.0) to the OscillatorVoice. For instance,

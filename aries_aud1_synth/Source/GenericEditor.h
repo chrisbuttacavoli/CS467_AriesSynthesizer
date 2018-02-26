@@ -57,8 +57,10 @@ public:
 		theParent(parent)
 	{
 		
+		// This gets all parameters AudioParameterFloat and AudioProcessParameterWithID.
+		// So we have to make another editor to loop through the value state tree for testing
 		const OwnedArray<AudioProcessorParameter>& params = parent.getParameters();
-
+		
 		// Creates a rotary slider for each parameter of the processor
 		for (int i = 0; i < params.size(); ++i)
 		{
@@ -250,7 +252,6 @@ public:
 		// Hi EQ Level
 		paramLabels[25]->setBounds(20, 480, (r.getWidth() / 4.8), 25);
 		paramSliders[25]->setBounds(20, 480, (r.getWidth() / 4.8), 50);
-
 	}
 
 	void paint(Graphics& g) override
@@ -350,6 +351,7 @@ private:
 	OwnedArray<ComboBox> paramCombo;
 	Array<Component*> controls;
 	AudioProcessor& theParent;
+	
 	//ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> sliderTree;
 
 // Adding this below to test passing params via ValueStateTree
