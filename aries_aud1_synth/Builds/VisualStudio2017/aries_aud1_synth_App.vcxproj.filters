@@ -2265,6 +2265,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\GUIEditor.h">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Biquad.h">
       <Filter>aries_aud1_synth\Source</Filter>
     </ClInclude>
