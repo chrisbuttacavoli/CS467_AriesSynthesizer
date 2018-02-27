@@ -175,17 +175,17 @@ public:
 		*/
 
 		//attack
-		paramLabels[8]->setBounds(675, 200, (r.getWidth() / 4.8), 25);
-		paramSliders[8]->setBounds(675, 200, (r.getWidth() / 4.8), 50);
+		paramLabels[8]->setBounds(700, 215, (r.getWidth() / 8), 25);
+		paramSliders[8]->setBounds(700, 215, (r.getWidth() / 8), 50);
 		//decay
-		paramLabels[9]->setBounds(675, 250, (r.getWidth() / 4.8), 25);
-		paramSliders[9]->setBounds(675, 250, (r.getWidth() / 4.8), 50);
+		paramLabels[9]->setBounds(700, 265, (r.getWidth() / 8), 25);
+		paramSliders[9]->setBounds(700, 265, (r.getWidth() / 8), 50);
 		//sustain
-		paramLabels[10]->setBounds(825, 225, (r.getWidth() / 4.8), 25);
-		paramSliders[10]->setBounds(825, 225, (r.getWidth() / 4.8), 50);
+		paramLabels[10]->setBounds(875, 215, (r.getWidth() / 8), 25);
+		paramSliders[10]->setBounds(875, 215, (r.getWidth() / 8), 50);
 		//release
-		paramLabels[11]->setBounds(825, 275, (r.getWidth() / 4.8), 25);
-		paramSliders[11]->setBounds(825, 275, (r.getWidth() / 4.8), 50);
+		paramLabels[11]->setBounds(875, 265, (r.getWidth() / 8), 25);
+		paramSliders[11]->setBounds(875, 265, (r.getWidth() / 8), 50);
 
 		/*
 			Filter stuff
