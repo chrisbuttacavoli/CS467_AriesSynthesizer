@@ -301,13 +301,26 @@ private:
 		const File file(File::getSpecialLocation(File::userDocumentsDirectory)
 			.getNonexistentChildFile(inputText.getText(), ".wav"));
 		recorder.startRecording(file);
+		Image juceImage4 = ImageCache::getFromMemory(BinaryData::stop_s_png, BinaryData::stop_s_pngSize);
+		imageButton->setImages(true, true, true,
+			juceImage4, 0.7f, Colours::transparentBlack,
+			juceImage4, 1.0f, Colours::transparentBlack,
+			juceImage4, 1.0f, Colours::pink.withAlpha(0.8f),
+			0.5f);
+		imageButton->setTopLeftPosition(666, 400);
 	}
 
 	void stopRecording()
 	{
 		recorder.stop();
-		//recordButton.setButtonText("Record");
-		//recordingThumbnail.setDisplayFullThumbnail(true);
+		Image juceImage = ImageCache::getFromMemory(BinaryData::record_s_s_png, BinaryData::record_s_s_pngSize);
+		imageButton->setImages(true, true, true,
+			juceImage, 0.7f, Colours::transparentBlack,
+			juceImage, 1.0f, Colours::transparentBlack,
+			juceImage, 1.0f, Colours::pink.withAlpha(0.8f),
+			0.5f);
+		imageButton->setTopLeftPosition(666, 400);
+		imageButton->setTooltip("image button - showing alpha-channel hit-testing and colour overlay when clicked");
 	}
 
 	void buttonClicked(Button* button) override
