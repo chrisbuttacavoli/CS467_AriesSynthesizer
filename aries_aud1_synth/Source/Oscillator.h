@@ -79,6 +79,10 @@ public:
 
 	double getFreq() { return freq; }
 
+	OscillatorType getType() {
+		return type;
+	}
+
 	//=======================================================
 private:
 	double freq;

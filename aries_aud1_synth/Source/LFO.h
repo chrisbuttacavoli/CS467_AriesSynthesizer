@@ -29,15 +29,13 @@ public:
 	}
 
 	double apply(double wave) {
-		////return osc.getWave(freq);	//possibly overload oscillator class to take a freq
-		//if (wave == NULL) {
-		//	return wave;
-		//}
-		//else {
-		//	return (osc.getWave() + wave);
-		//}
-
-		return (osc.getWave() + wave);
+		if (osc.getType() == noWave || osc.level == 0) {
+			return wave;
+		}
+		else {
+			//frequency modulating LFO
+			return (8.0f * (osc.getWave() * wave));
+		}
 	}
 
 private:
