@@ -56,9 +56,11 @@ public:
 	void setType(float paramVal, int numFilterTypes) {
 		type = static_cast<FilterType>(int(paramVal * (numFilterTypes - 1)));
 
-		// Here we initialize the BiQuad parameters. Q is hardcoded in this class
-		if (type == bandPass)
+		// Here we initialize the BiQuad parameters.
+		if (type == bandPass) {
+			float Q = 2.0f;
 			biquad.setBiquad(bq_type_bandpass, cutoff / sampleRate, Q, resonance);
+		}
 	}
 
 private:
@@ -70,5 +72,4 @@ private:
 
 	// BiQuad stuff
 	Biquad biquad;
-	double Q = 1.0f;
 };
