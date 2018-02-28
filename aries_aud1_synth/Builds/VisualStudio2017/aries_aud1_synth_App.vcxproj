@@ -2519,6 +2519,7 @@
     <None Include="..\..\Source\record_s_s.png"/>
     <None Include="..\..\Source\distortion_s.png"/>
     <None Include="..\..\Source\save_s.png"/>
+    <None Include="..\..\..\..\..\2-27-18\CS467_Aries-\aries_aud1_synth\Source\stop_s.png"/>
     <None Include="..\..\Source\load_s.png"/>
     <None Include="..\..\Source\filters.png"/>
     <None Include="..\..\Source\Osc_Box_1_sl2.png"/>

@@ -32,6 +32,9 @@ namespace BinaryData
     extern const char*   save_s_png;
     const int            save_s_pngSize = 1724;
 
+    extern const char*   stop_s_png;
+    const int            stop_s_pngSize = 4719;
+
     extern const char*   load_s_png;
     const int            load_s_pngSize = 1568;
 
@@ -57,13 +60,13 @@ namespace BinaryData
     const int            beat2_wavSize = 211140;
 
     extern const char*   bigFiles_txt;
-    const int            bigFiles_txtSize = 224586;
+    const int            bigFiles_txtSize = 226264;
 
     extern const char*   blip_wav;
     const int            blip_wavSize = 18964;
 
     extern const char*   README;
-    const int            READMESize = 3042;
+    const int            READMESize = 3115;
 
     extern const char*   snare_wav;
     const int            snare_wavSize = 26734;
@@ -72,7 +75,7 @@ namespace BinaryData
     extern const char* namedResourceList[];
 
     // Number of elements in the namedResourceList array.
-    const int namedResourceListSize = 20;
+    const int namedResourceListSize = 21;
 
     // If you provide the name of one of the binary resource variables above, this function will
     // return the corresponding data and its size (or a null pointer if the name isn't found).
