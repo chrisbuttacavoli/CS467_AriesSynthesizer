@@ -175,17 +175,17 @@ public:
 		*/
 
 		//attack
-		paramLabels[8]->setBounds(775, 215, (r.getWidth() / 8), 25);
-		paramSliders[8]->setBounds(775, 215, (r.getWidth() / 8), 50);
+		paramLabels[8]->setBounds(785, 215, (r.getWidth() / 8), 25);
+		paramSliders[8]->setBounds(785, 215, (r.getWidth() / 8), 50);
 		//decay
-		paramLabels[9]->setBounds(775, 250, (r.getWidth() / 8), 25);
-		paramSliders[9]->setBounds(775, 250, (r.getWidth() / 8), 50);
+		paramLabels[9]->setBounds(785, 250, (r.getWidth() / 8), 25);
+		paramSliders[9]->setBounds(785, 250, (r.getWidth() / 8), 50);
 		//sustain
-		paramLabels[10]->setBounds(915, 215, (r.getWidth() / 8), 25);
-		paramSliders[10]->setBounds(915, 215, (r.getWidth() / 8), 50);
+		paramLabels[10]->setBounds(925, 215, (r.getWidth() / 8), 25);
+		paramSliders[10]->setBounds(925, 215, (r.getWidth() / 8), 50);
 		//release
-		paramLabels[11]->setBounds(915, 250, (r.getWidth() / 8), 25);
-		paramSliders[11]->setBounds(915, 250, (r.getWidth() / 8), 50);
+		paramLabels[11]->setBounds(925, 250, (r.getWidth() / 8), 25);
+		paramSliders[11]->setBounds(925, 250, (r.getWidth() / 8), 50);
 
 		/*
 			Filter stuff
@@ -273,7 +273,7 @@ public:
 		Image osc4Bg = ImageCache::getFromMemory(BinaryData::Osc_Box_4_sl2_png, BinaryData::Osc_Box_4_sl2_pngSize);
 		g.drawImageAt(osc4Bg, 795, 0);
 		Image adsr = ImageCache::getFromMemory(BinaryData::adsr_smaller_png, BinaryData::adsr_smaller_pngSize);
-		g.drawImageAt(adsr, 775, 210);
+		g.drawImageAt(adsr, 780, 210);
 		Image filters = ImageCache::getFromMemory(BinaryData::filters_png, BinaryData::filters_pngSize);
 		g.drawImageAt(filters, 399, 200);
 		Image distortion = ImageCache::getFromMemory(BinaryData::distortion_s_png, BinaryData::distortion_s_pngSize);

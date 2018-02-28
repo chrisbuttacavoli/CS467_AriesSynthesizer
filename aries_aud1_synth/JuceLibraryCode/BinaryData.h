@@ -30,7 +30,7 @@ namespace BinaryData
     const int            distortion_s_pngSize = 2877;
 
     extern const char*   adsr_smaller_png;
-    const int            adsr_smaller_pngSize = 7095;
+    const int            adsr_smaller_pngSize = 6290;
 
     extern const char*   save_s_png;
     const int            save_s_pngSize = 1724;
