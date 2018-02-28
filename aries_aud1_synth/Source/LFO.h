@@ -37,8 +37,8 @@ public:
 			return (8.0f * (osc.getWave() * wave));
 		}
 	}
+	
 
 private:
 	Oscillator osc;
-	double freq;
 };
