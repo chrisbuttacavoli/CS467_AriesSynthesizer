@@ -104,11 +104,10 @@ public:
 		/*
 			LFO parameters
 		*/
+		addScale("LFOFreq", 10);
+		addParameter(new AudioParameterFloat("lfofreq", "LFOFreq", 1.0f, getScale("LFOFreq"), 2.0f));
 		addParameter(new AudioParameterChoice("lfoosc", "LFOosc", oscillatorChoices, noWave, "Cats"));
-
-		addScale("LFOFreq", 20);
 		addParameter(new AudioParameterFloat("lfolevel", "LFOLevel", 0.0f, 1.0f, 0.5f));
-		addParameter(new AudioParameterFloat("lfofreq", "LFOFreq", 1.0f, getScale("LFOFreq"), 10.0f));
 
 
 		/*
