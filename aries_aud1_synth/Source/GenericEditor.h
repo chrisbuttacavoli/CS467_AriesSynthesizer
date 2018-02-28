@@ -252,6 +252,10 @@ public:
 		// Hi EQ Level
 		paramLabels[25]->setBounds(140, 375, (r.getWidth() / 6), 25);
 		paramSliders[25]->setBounds(140, 375, (r.getWidth() / 6), 50);
+
+		// MASTER OF THE PRECIOUS
+		paramLabels[26]->setBounds(20, 410, (r.getWidth() / 6), 25);
+		paramSliders[26]->setBounds(20, 445, (r.getWidth() / 6), 25);
 	}
 
 	void paint(Graphics& g) override

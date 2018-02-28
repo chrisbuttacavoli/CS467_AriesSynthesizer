@@ -133,6 +133,8 @@ public:
 			(paramMap.at("EQHiFreq")->getValue() * 19200 + 800) / this->getSampleRate(),
 			paramMap.at("EQHiQ")->getValue() * paramScaleMap.at("EQQ"),
 			paramMap.at("EQHiLevel")->getValue() * (2 * paramScaleMap.at("EQLevel")) - paramScaleMap.at("EQLevel"));
+
+		master = paramMap.at("Master")->getValue() * paramScaleMap.at("Master");
 	}
 
 	//renders the next block of data for this voice
@@ -145,6 +147,7 @@ public:
 
 			// Apply post process effects
 			wave = applyEffects(wave);
+			wave = wave * master;
 
 			// Output the final wave product
 			for (int channel = 0; channel < outputBuffer.getNumChannels(); ++channel) {
@@ -184,6 +187,7 @@ private:
 	EQ eqLow;
 	EQ eqMid;
 	EQ eqHi;
+	double master = 0.0f;
 
 	double tailOff;
 

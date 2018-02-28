@@ -112,7 +112,7 @@ public:
 
 
 		/*
-			Other parameters
+			Distortion
 		*/
 		addScale("Distortion", 30.0f);
 		addParameter(new AudioParameterFloat("distAmount", "Distortion", 0.0f, getScale("Distortion"), 0.0f));
@@ -135,6 +135,13 @@ public:
 		addParameter(new AudioParameterFloat("eqhifreq", "EQHiFreq", 800.0f, 20000.0f, 8000.0f));
 		addParameter(new AudioParameterFloat("eqhiq", "EQHiQ", 0.05f, getScale("EQQ"), 1.0f));
 		addParameter(new AudioParameterFloat("eqhilevel", "EQHiLevel", -getScale("EQLevel"), getScale("EQLevel"), 0.0f));
+
+
+		/*
+			Master Volume
+		*/
+		addScale("Master", 1.5f);
+		addParameter(new AudioParameterFloat("master", "Master", 0.0f, getScale("Master"), 1.0f));
 	}
 
 	void InitSynth()
