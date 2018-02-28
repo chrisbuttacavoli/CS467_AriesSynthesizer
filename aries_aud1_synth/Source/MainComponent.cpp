@@ -35,6 +35,7 @@ public:
 		theSynthProcessor(keyboardState),
 		recorder(recordingThumbnail.getAudioThumbnail()),	//initializing the recorder object
 		startTime(Time::getMillisecondCounterHiRes() * 0.001)
+
     {
 		setOpaque(true);
 
@@ -131,6 +132,17 @@ public:
 		//addAndMakeVisible(recordingThumbnail);	//displays what is being recorded. Maybe not necessary?
 		deviceManager.addAudioCallback(&recorder);
 
+		//text input
+		addAndMakeVisible(inputLabel);
+		inputLabel.setText("Filename:", dontSendNotification);
+		inputLabel.attachToComponent(&inputText, true);
+		inputLabel.setColour(Label::textColourId, Colours::deeppink);
+		inputLabel.setJustificationType(Justification::right);
+		addAndMakeVisible(inputText);
+		inputText.setEditable(true);
+		inputText.setColour(Label::backgroundColourId, Colours::white);
+		inputText.setFont(Font(16.0f, Font::bold));
+
 		//setting the size of the windows
 		setSize(1060, 690);
 
@@ -193,6 +205,8 @@ public:
 		keyboardComponent.setBounds(0, 545, getWidth(), 150);
 		//recordingThumbnail.setBounds(area.removeFromTop(80).reduced(8));	//displays what is being recorded. Maybe not necessary?
 		//recordButton.setBounds(10, 350, 75, 25);
+
+		inputText.setBounds(835, 515, (area.getWidth() / 4.8), 25);
 	}
 
 private:
@@ -220,6 +234,8 @@ private:
 	RecordingThumbnail recordingThumbnail;
 	AudioRecorder recorder;
 	//TextButton recordButton;
+	Label inputLabel;
+	Label inputText;
 
 	/** Starts listening to a MIDI input device, enabling it if necessary. */
 	void setMidiInput(int index)
@@ -277,24 +293,10 @@ private:
 	{
 		//naming file and starting recording
 		//TODO: Create a way for the user to enter in their file name and saving location
+
 		const File file(File::getSpecialLocation(File::userDocumentsDirectory)
-			.getNonexistentChildFile("Juce Demo Audio Recording", ".wav"));
+			.getNonexistentChildFile(inputText.getText(), ".wav"));
 		recorder.startRecording(file);
-
-		//	recordButton.setButtonText("Stop");
-
-		//recordingThumbnail.setDisplayFullThumbnail(false);
-		//	Image normal = ImageFileFormat::loadFrom(juce::File("record_s.png"));
-		//Image over = ImageFileFormat::loadFrom(juce::File("record_s.png"));
-		//Image down = ImageFileFormat::loadFrom(juce::File("record_s.png"));
-
-		//ImageButton* btnImg;
-		//btnImg = new ImageButton("Test");
-		//btnImg->setBounds(150, 310, 1, 1);
-		//btnImg->setBounds(400,9999, 50, 50);
-
-		//btnImg->setImages(true, false, true, normal, 0.5f, Colours::black, over, 0.5f, Colours::white, down, 0.1f, Colours::yellow);
-
 	}
 
 	void stopRecording()
