@@ -42,6 +42,8 @@
       <FILE id="KhroZR" name="record_s_s.png" compile="0" resource="1" file="Source/record_s_s.png"/>
       <FILE id="Nvb6Xe" name="distortion_s.png" compile="0" resource="1"
             file="Source/distortion_s.png"/>
+      <FILE id="ELsLo8" name="adsr_smaller.png" compile="0" resource="1"
+            file="Source/adsr_smaller.png"/>
       <FILE id="qg9Ipl" name="save_s.png" compile="0" resource="1" file="Source/save_s.png"/>
       <FILE id="ycicPM" name="stop_s.png" compile="0" resource="1" file="../../../2-27-18/CS467_Aries-/aries_aud1_synth/Source/stop_s.png"/>
       <FILE id="DoAwg7" name="load_s.png" compile="0" resource="1" file="Source/load_s.png"/>
