@@ -299,9 +299,14 @@ private:
 	{
 		//naming file and starting recording
 		//TODO: Create a way for the user to enter in their file name and saving location
+		FileChooser fileChooser("Save wav file", File::getSpecialLocation(File::userDocumentsDirectory), "*.wav");
+		if (!fileChooser.browseForFileToSave(true))
+			return;
 
-		const File file(File::getSpecialLocation(File::userDocumentsDirectory)
-			.getNonexistentChildFile(inputText.getText(), ".wav"));
+		File file(fileChooser.getResult());
+
+		/*const File file(File::getSpecialLocation(File::userDocumentsDirectory)
+			.getNonexistentChildFile(inputText.getText(), ".wav"));*/
 		recorder.startRecording(file);
 		//Image juceImage4 = ImageCache::getFromMemory(BinaryData::stop_s_png, BinaryData::stop_s_pngSize);
 		Image juceImage4 = ImageCache::getFromMemory(BinaryData::save_s_png, BinaryData::save_s_pngSize);
