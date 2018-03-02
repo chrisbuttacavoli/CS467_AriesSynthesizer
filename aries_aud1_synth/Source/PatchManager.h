@@ -20,10 +20,10 @@ class PatchManager {
 public:
 
 	//std::vector<double> GetParamsFromFile() {
-	Array<float> GetParamsFromFile(juce::String fileName) {
+	Array<float> GetParamsFromFile(juce::String absoluteFilePath) {
 		//String line = getFileLine(fileName);
 		juce::StringArray strArr;
-		const File file(File::getSpecialLocation(File::userDocumentsDirectory).getChildFile(fileName));
+		const File file(absoluteFilePath);
 		file.readLines(strArr);
 
 		Array<String> lines = strArr.strings;

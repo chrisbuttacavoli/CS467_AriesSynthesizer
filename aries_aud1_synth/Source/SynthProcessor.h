@@ -271,22 +271,23 @@ public:
 
 	// Here we need to set up logic to read from some file. I'm thinking just a CSV or something simple to implement
 	void loadPatch() {
-		// POC, updates the distortion value
-		/*AudioProcessorParameter* param = paramMap.at("Distortion");
-		param->setValue(0.5f);*/
-		Array<float> patchValues = patchManager.GetParamsFromFile("synth_patch.txt");
+		FileChooser fileChooser("Select a patch to load", File::getSpecialLocation(File::userDocumentsDirectory), "*.txt");
+		if (!fileChooser.browseForFileToOpen())
+			return;
+
+		File file(fileChooser.getResult());
+		
+		Array<float> patchValues = patchManager.GetParamsFromFile(file.getFullPathName());
 		for (int i = 0; i < patchValues.size(); i++)
 		{
 			AudioProcessorParameter* param = getParameters()[i];
 			float patchValue = patchValues[i];
 			param->setValue(patchValue);
 		}
-		DBG("Patch loaded");
 	}
 
 	void savePatch() {
 		patchManager.SaveParamsToFile(getParameters(), "synth_patch.txt");
-		DBG("Patch saved");
 	}
 
 	// This functions aren't going to be used, but we have to override them
