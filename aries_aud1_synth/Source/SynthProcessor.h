@@ -14,7 +14,7 @@
 #include "SynthSound.h"
 #include "GenericEditor.h"
 #include "maximilian.h"
-#include "FileReader.h"
+#include "PatchManager.h"
 #include "OscillatorVoice.h"
 
 //==============================================================================
@@ -274,63 +274,26 @@ public:
 		// POC, updates the distortion value
 		/*AudioProcessorParameter* param = paramMap.at("Distortion");
 		param->setValue(0.5f);*/
-		Array<float> params = fileReader.GetParamsFromFile("example.txt");
-		for (int i = 0; i < params.size(); i++)
+		Array<float> patchValues = patchManager.GetParamsFromFile("synth_patch.txt");
+		for (int i = 0; i < patchValues.size(); i++)
 		{
-			DBG(FloatToStr(params[i]));
+			AudioProcessorParameter* param = getParameters()[i];
+			float patchValue = patchValues[i];
+			param->setValue(patchValue);
 		}
-		DBG("Finished loading patch");
+		DBG("Patch loaded");
 	}
 
-	void setStateInformation(const void * data, int sizeInBytes) override {
-		/*ScopedPointer <XmlElement> theParams(getXmlFromBinary(data, sizeInBytes));
-
-		if (theParams != nullptr) {
-			if (theParams->hasTagName(parameters.state.getType())) {
-				parameters.state = ValueTree::fromXml(*theParams);
-			}
-		}*/
+	void savePatch() {
+		patchManager.SaveParamsToFile(getParameters(), "synth_patch.txt");
+		DBG("Patch saved");
 	}
 
-	void getStateInformation(juce::MemoryBlock &destData) override {
-		//// [1]
-		//std::cout << "Save Settings" << std::endl;
-		//
-		//// [2]
-		//// Create an outer XML element..
-		//XmlElement xml("GRRNLRRPLUGINSETTINGS");
-
-		//// [3.1]
-		//// Store the values of all our parameters, using their param ID as the XML attribute
-		//for (int i = 0; i < getNumParameters(); ++i)
-		//{
-		//	// [3.2]
-		//	if (AudioProcessorParameter* p = dynamic_cast<AudioProcessorParameter*> (getParameters().getUnchecked(i)))
-		//	{
-		//		// [3.3]
-		//		xml.setAttribute(juce::String(p->getParameterIndex()), p->getValue());
-
-		//		std::cout << p->getParameterIndex() << " " << p->getValue() << std::endl;
-		//	}
-		//}
-
-		//xml.setAttribute("FilePath", filePath);
-		//std::cout << "Save Path: " << filePath << std::endl;
-
-		//// [4]
-		//// then use this helper function to stuff it into the binary blob and return it..
-		//copyXmlToBinary(xml, destData);
-	}
-
-	//for use with updating params in GUI thread on slider move
-	/*void setParameterNotifyingHost(int parameterIndex, float newValue) override {
-		
-	}*/
-
-	// State/patch loading info via XML
-	String filePath = "C:\\Users\\Chris.Buttacavoli\\Documents\\GitHub\\CS467_Aries-\\aries_aud1_synth\\";
-	String restoredPath;
-	FileReader fileReader;
+	// This functions aren't going to be used, but we have to override them
+	void getStateInformation(juce::MemoryBlock & destData) override { }
+	void setStateInformation(const void * data,	int	sizeInBytes) override { }
+	
+	PatchManager patchManager;
 
 	//Getting midi/keyboard messages
 	MidiMessageCollector midiCollector;

@@ -129,6 +129,7 @@ public:
 		//imageButton.setButtonText("Record");
 		recordButton->addListener(this);
 		loadButton->addListener(this);
+		saveButton->addListener(this);
 		//imageButton.addListener(this);
 		//addAndMakeVisible(recordingThumbnail);	//displays what is being recorded. Maybe not necessary?
 		deviceManager.addAudioCallback(&recorder);
@@ -336,6 +337,9 @@ private:
 		}
 		else if (button == loadButton) {
 			synthProcessor.loadPatch();
+		}
+		else if (button == saveButton) {
+			synthProcessor.savePatch();
 		}
 	}
 

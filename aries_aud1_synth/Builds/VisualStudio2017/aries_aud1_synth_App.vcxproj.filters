@@ -2265,7 +2265,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\FileReader.h">
+    <ClInclude Include="..\..\Source\PatchManager.h">
       <Filter>aries_aud1_synth\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\GUIEditor.h">
