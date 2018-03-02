@@ -135,7 +135,7 @@ public:
 		deviceManager.addAudioCallback(&recorder);
 
 		//text input
-		Colour(255,0,255);
+		/*Colour(255,0,255);
 		addAndMakeVisible(inputLabel);
 		inputLabel.setText("Filename:", dontSendNotification);
 		inputLabel.setFont(Font(16.0f, Font::bold));
@@ -147,7 +147,7 @@ public:
 		inputText.setColour(Label::backgroundColourId, Colours::white);
 		inputText.setColour(Label::textColourId, Colours::black);
 		inputText.setColour(Label::textWhenEditingColourId, Colours::black);
-		inputText.setColour(Label::outlineWhenEditingColourId, Colour(255, 0, 255));
+		inputText.setColour(Label::outlineWhenEditingColourId, Colour(255, 0, 255));*/
 
 		//setting the size of the windows
 		setSize(1060, 690);
