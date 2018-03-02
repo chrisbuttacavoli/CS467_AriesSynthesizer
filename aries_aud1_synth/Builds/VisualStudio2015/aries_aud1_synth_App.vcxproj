@@ -1836,6 +1836,7 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_video.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\FileReader.h"/>
     <ClInclude Include="..\..\Source\GUIEditor.h"/>
     <ClInclude Include="..\..\Source\Biquad.h"/>
     <ClInclude Include="..\..\Source\OscillatorVoice.h"/>
@@ -2520,7 +2521,6 @@
     <None Include="..\..\Source\distortion_s.png"/>
     <None Include="..\..\Source\adsr_smaller.png"/>
     <None Include="..\..\Source\save_s.png"/>
-    <None Include="..\..\..\..\..\2-27-18\CS467_Aries-\aries_aud1_synth\Source\stop_s.png"/>
     <None Include="..\..\Source\load_s.png"/>
     <None Include="..\..\Source\filters.png"/>
     <None Include="..\..\Source\Osc_Box_1_sl2.png"/>

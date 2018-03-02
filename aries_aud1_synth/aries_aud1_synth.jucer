@@ -7,6 +7,7 @@
               userNotes="" headerPath="C:\Users\Chris.Buttacavoli\Documents\GitHub\CS467_Aries-\maximillion">
   <MAINGROUP id="DbO0WA" name="aries_aud1_synth">
     <GROUP id="{25EB4AD0-1085-2D6D-2C5D-94D74EEB437F}" name="Source">
+      <FILE id="H4OlQj" name="FileReader.h" compile="0" resource="0" file="Source/FileReader.h"/>
       <FILE id="OE086I" name="GUIEditor.h" compile="0" resource="0" file="Source/GUIEditor.h"/>
       <FILE id="TRDlUt" name="Biquad.h" compile="0" resource="0" file="Source/Biquad.h"/>
       <FILE id="mWSdSy" name="OscillatorVoice.h" compile="0" resource="0"
@@ -45,7 +46,6 @@
       <FILE id="Ayu5Ip" name="adsr_smaller.png" compile="0" resource="1"
             file="Source/adsr_smaller.png"/>
       <FILE id="qg9Ipl" name="save_s.png" compile="0" resource="1" file="Source/save_s.png"/>
-      <FILE id="ycicPM" name="stop_s.png" compile="0" resource="1" file="../../../2-27-18/CS467_Aries-/aries_aud1_synth/Source/stop_s.png"/>
       <FILE id="DoAwg7" name="load_s.png" compile="0" resource="1" file="Source/load_s.png"/>
       <FILE id="jPJG8N" name="filters.png" compile="0" resource="1" file="Source/filters.png"/>
       <FILE id="bBDide" name="Osc_Box_1_sl2.png" compile="0" resource="1"

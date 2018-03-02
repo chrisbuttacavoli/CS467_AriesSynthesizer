@@ -14,6 +14,7 @@
 #include "SynthSound.h"
 #include "GenericEditor.h"
 #include "maximilian.h"
+#include "FileReader.h"
 #include "OscillatorVoice.h"
 
 //==============================================================================
@@ -271,8 +272,14 @@ public:
 	// Here we need to set up logic to read from some file. I'm thinking just a CSV or something simple to implement
 	void loadPatch() {
 		// POC, updates the distortion value
-		AudioProcessorParameter* param = paramMap.at("Distortion");
-		param->setValue(0.5f);
+		/*AudioProcessorParameter* param = paramMap.at("Distortion");
+		param->setValue(0.5f);*/
+		Array<float> params = fileReader.GetParamsFromFile("example.txt");
+		for (int i = 0; i < params.size(); i++)
+		{
+			DBG(FloatToStr(params[i]));
+		}
+		DBG("Finished loading patch");
 	}
 
 	void setStateInformation(const void * data, int sizeInBytes) override {
@@ -323,6 +330,7 @@ public:
 	// State/patch loading info via XML
 	String filePath = "C:\\Users\\Chris.Buttacavoli\\Documents\\GitHub\\CS467_Aries-\\aries_aud1_synth\\";
 	String restoredPath;
+	FileReader fileReader;
 
 	//Getting midi/keyboard messages
 	MidiMessageCollector midiCollector;

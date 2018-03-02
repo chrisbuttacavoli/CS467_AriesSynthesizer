@@ -302,7 +302,8 @@ private:
 		const File file(File::getSpecialLocation(File::userDocumentsDirectory)
 			.getNonexistentChildFile(inputText.getText(), ".wav"));
 		recorder.startRecording(file);
-		Image juceImage4 = ImageCache::getFromMemory(BinaryData::stop_s_png, BinaryData::stop_s_pngSize);
+		//Image juceImage4 = ImageCache::getFromMemory(BinaryData::stop_s_png, BinaryData::stop_s_pngSize);
+		Image juceImage4 = ImageCache::getFromMemory(BinaryData::save_s_png, BinaryData::save_s_pngSize);
 		recordButton->setImages(true, true, true,
 			juceImage4, 0.7f, Colours::transparentBlack,
 			juceImage4, 1.0f, Colours::transparentBlack,
