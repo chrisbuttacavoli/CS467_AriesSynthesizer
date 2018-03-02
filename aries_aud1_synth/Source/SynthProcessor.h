@@ -24,35 +24,9 @@ class SynthProcessor : public AudioProcessor
 {
 public:
 	SynthProcessor(MidiKeyboardState &keyState) : keyboardState(keyState) {
-	//SynthProcessor(MidiKeyboardState &keyState) : keyboardState(keyState), stateTree(*this, nullptr) {
 		InitSynth();
 		InitParameters();
-		
-		// Add parameters to a dictionary to pass to OscillatorVoice
 		addParametersToMap();
-		
-		// Don't think we can mix 2 different ways of getting parameters
-		/*stateTree.createAndAddParameter("Oscillator5", "Oscillator5", "Oscillator5",
-			NormalisableRange<float>(), 0.0f, nullptr, nullptr);*/
-		//stateTree.state = ValueTree(Identifier("savedParams"));
-
-		// See: https://forum.juce.com/t/parameters-best-practice/26148/5
-		// and: https://www.youtube.com/watch?v=lm5BxqXJ4mo
-		/*stateTree.createAndAddParameter("Pitch1", "Pitch1", "Pitch1",
-			NormalisableRange<float>(-1.0f, 1.0f), 0.0f, nullptr, nullptr);*/
-		/*stateTree.createAndAddParameter("Oscillator1", "Oscillator1", "Oscillator1",
-			NormalisableRange<float>(0.0f, 4.0f),
-			1.0f,
-			[](float value) { return value == 1.0f ? "Sine" : "Not Sine"; },
-			[](const String& text)
-		{
-			if (text.toLowerCase() == "Sine") return 1.0f;
-			return 0.0f;
-		},
-			false,
-			true,
-			true);*/
-		//AudioProcessorParameterWithID* cheese = stateTree.getParameter("oscillator1");
 	}
 
 	void InitParameters()
@@ -159,6 +133,7 @@ public:
 
 	~SynthProcessor() {	}
 
+	// Add parameters to a dictionary to pass to OscillatorVoice
 	void addParametersToMap() {
 		const OwnedArray<AudioProcessorParameter>& params = getParameters();
 		for (AudioProcessorParameter** ptr = params.begin(); ptr < params.end(); ptr++)
@@ -277,7 +252,7 @@ public:
 
 		File file(fileChooser.getResult());
 		
-		Array<float> patchValues = patchManager.GetParamsFromFile(file.getFullPathName());
+		Array<float> patchValues = patchManager.GetParamsFromFile(file);
 		for (int i = 0; i < patchValues.size(); i++)
 		{
 			AudioProcessorParameter* param = getParameters()[i];
@@ -287,7 +262,12 @@ public:
 	}
 
 	void savePatch() {
-		patchManager.SaveParamsToFile(getParameters(), "synth_patch.txt");
+		FileChooser fileChooser("Save a patch", File::getSpecialLocation(File::userDocumentsDirectory), "*.txt");
+		if (!fileChooser.browseForFileToSave(true))
+			return;
+
+		File file(fileChooser.getResult());
+		patchManager.SaveParamsToFile(getParameters(), file);
 	}
 
 	// This functions aren't going to be used, but we have to override them
@@ -305,15 +285,6 @@ public:
 	OscillatorVoice* myVoice;
 	maxiSettings settings;
 
-
-	// Save State Params
-	//AudioProcessorValueTreeState stateTree;
-	/*
-		The paramScaleMap gives us multiplers for parameters when passing
-		parameter values (0.0 to 1.0) to the OscillatorVoice. For instance,
-		the attack may range from 0 to 15 seconds, so our multiplier would
-		be 15 and would need to be considered in the envelope calculation.
-	*/
 	map <juce::String, AudioProcessorParameter*> paramMap;
 	map <juce::String, float> paramScaleMap;
 	

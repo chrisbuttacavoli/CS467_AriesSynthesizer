@@ -175,7 +175,10 @@ private:
 	int numFilterTypes = 4;
 	double frequency;
 	int keyPressed;
+	double tailOff;
+	double wave = NULL;
 
+	// Tweakable parameters
 	Oscillator osc1;
 	Oscillator osc2;
 	Oscillator osc3;
@@ -188,8 +191,4 @@ private:
 	EQ eqMid;
 	EQ eqHi;
 	double master = 0.0f;
-
-	double tailOff;
-
-	double wave = NULL;
 };

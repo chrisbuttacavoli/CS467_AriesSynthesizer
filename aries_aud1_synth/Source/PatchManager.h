@@ -19,11 +19,8 @@
 class PatchManager {
 public:
 
-	//std::vector<double> GetParamsFromFile() {
-	Array<float> GetParamsFromFile(juce::String absoluteFilePath) {
-		//String line = getFileLine(fileName);
-		juce::StringArray strArr;
-		const File file(absoluteFilePath);
+	Array<float> GetParamsFromFile(File file) {
+		StringArray strArr;
 		file.readLines(strArr);
 
 		Array<String> lines = strArr.strings;
@@ -35,13 +32,11 @@ public:
 				params.add(line.getFloatValue());
 			}
 		}
-
 		return params;
 	}
 
 
-	void SaveParamsToFile(const OwnedArray<AudioProcessorParameter>& params, juce::String fileName) {
-		const File file(File::getSpecialLocation(File::userDocumentsDirectory).getChildFile(fileName));
+	void SaveParamsToFile(const OwnedArray<AudioProcessorParameter>& params, File file) {
 		file.deleteFile();
 		file.create();
 
