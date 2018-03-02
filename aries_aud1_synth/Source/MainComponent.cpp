@@ -32,7 +32,7 @@ public:
 		lastInputIndex(0),
 		isAddingFromMidiInput(false),
 		keyboardComponent(keyboardState, MidiKeyboardComponent::horizontalKeyboard),
-		theSynthProcessor(keyboardState),
+		synthProcessor(keyboardState),
 		recorder(recordingThumbnail.getAudioThumbnail()),	//initializing the recorder object
 		startTime(Time::getMillisecondCounterHiRes() * 0.001)
 
@@ -41,7 +41,7 @@ public:
 
 		mySynth.clearVoices();
 
-		theEditor = static_cast <GenericEditor*>(theSynthProcessor.createEditor());
+		theEditor = static_cast <GenericEditor*>(synthProcessor.createEditor());
 
 		addAndMakeVisible(theEditor);
 		theEditor->setSize(800, 400);
@@ -80,24 +80,24 @@ public:
 		keyboardState.addListener(this);
 
 		//setting up an audio player to actually output audio
-		audioSourcePlayer.setProcessor(&theSynthProcessor); //for synthProcessor class
+		audioSourcePlayer.setProcessor(&synthProcessor); //for synthProcessor class
 
 		//device manager to deal with midi/devices
 		deviceManager.addAudioCallback(&audioSourcePlayer);
-		deviceManager.addMidiInputCallback(String(), (&theSynthProcessor.midiCollector));
+		deviceManager.addMidiInputCallback(String(), (&synthProcessor.midiCollector));
 
 		//recording button
 		// IMAGE BUTTON CODE FOR RECORD BUTTON
 
-		addAndMakeVisible(imageButton);
+		addAndMakeVisible(recordButton);
 		Image juceImage = ImageCache::getFromMemory(BinaryData::record_s_s_png, BinaryData::record_s_s_pngSize);
-		imageButton->setImages(true, true, true,
+		recordButton->setImages(true, true, true,
 			juceImage, 0.7f, Colours::transparentBlack,
 			juceImage, 1.0f, Colours::transparentBlack,
 			juceImage, 1.0f, Colours::pink.withAlpha(0.8f),
 			0.5f);
-		imageButton->setTopLeftPosition(666, 400);
-		imageButton->setTooltip("image button - showing alpha-channel hit-testing and colour overlay when clicked");
+		recordButton->setTopLeftPosition(666, 400);
+		recordButton->setTooltip("image button - showing alpha-channel hit-testing and colour overlay when clicked");
 		// END IMAGE BUTTON CODE
 
 		// IMAGE BUTTON CODE FOR SAVE BUTTON
@@ -127,7 +127,8 @@ public:
 
 		//addAndMakeVisible(recordButton);
 		//imageButton.setButtonText("Record");
-		imageButton->addListener(this);
+		recordButton->addListener(this);
+		loadButton->addListener(this);
 		//imageButton.addListener(this);
 		//addAndMakeVisible(recordingThumbnail);	//displays what is being recorded. Maybe not necessary?
 		deviceManager.addAudioCallback(&recorder);
@@ -224,11 +225,11 @@ private:
 	MidiKeyboardState keyboardState;            // [5]
 	MidiKeyboardComponent keyboardComponent;    // [6]
 	double startTime;
-	ImageButton* imageButton = new ImageButton("imagebutton");
+	ImageButton* recordButton = new ImageButton("imagebutton");
 	ImageButton* saveButton = new ImageButton("savebutton");
 	ImageButton* loadButton = new ImageButton("loadbutton");
 	AudioProcessorPlayer audioSourcePlayer;	//need to play audio through a processor player now
-	SynthProcessor theSynthProcessor;		//new synth processor to replay synthAudioSource
+	SynthProcessor synthProcessor;		//new synth processor to replay synthAudioSource
 	GenericEditor *theEditor;
 
 	Synthesiser mySynth;
@@ -302,35 +303,38 @@ private:
 			.getNonexistentChildFile(inputText.getText(), ".wav"));
 		recorder.startRecording(file);
 		Image juceImage4 = ImageCache::getFromMemory(BinaryData::stop_s_png, BinaryData::stop_s_pngSize);
-		imageButton->setImages(true, true, true,
+		recordButton->setImages(true, true, true,
 			juceImage4, 0.7f, Colours::transparentBlack,
 			juceImage4, 1.0f, Colours::transparentBlack,
 			juceImage4, 1.0f, Colours::pink.withAlpha(0.8f),
 			0.5f);
-		imageButton->setTopLeftPosition(666, 400);
+		recordButton->setTopLeftPosition(666, 400);
 	}
 
 	void stopRecording()
 	{
 		recorder.stop();
 		Image juceImage = ImageCache::getFromMemory(BinaryData::record_s_s_png, BinaryData::record_s_s_pngSize);
-		imageButton->setImages(true, true, true,
+		recordButton->setImages(true, true, true,
 			juceImage, 0.7f, Colours::transparentBlack,
 			juceImage, 1.0f, Colours::transparentBlack,
 			juceImage, 1.0f, Colours::pink.withAlpha(0.8f),
 			0.5f);
-		imageButton->setTopLeftPosition(666, 400);
-		imageButton->setTooltip("image button - showing alpha-channel hit-testing and colour overlay when clicked");
+		recordButton->setTopLeftPosition(666, 400);
+		recordButton->setTooltip("image button - showing alpha-channel hit-testing and colour overlay when clicked");
 	}
 
 	void buttonClicked(Button* button) override
 	{
-		if (button == imageButton)
+		if (button == recordButton)
 		{
 			if (recorder.isRecording())
 				stopRecording();
 			else
 				startRecording();
+		}
+		else if (button == loadButton) {
+			synthProcessor.loadPatch();
 		}
 	}
 

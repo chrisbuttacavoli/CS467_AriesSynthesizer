@@ -60,19 +60,19 @@ public:
 			Oscillator parameters
 		*/
 		const StringArray & oscillatorChoices = { "None", "Sine", "Saw", "Square", "Noise" };
-		addParameter(new AudioParameterChoice("oscillator1", "Oscillator1", oscillatorChoices, noWave, "Cats"));
-		addParameter(new AudioParameterChoice("oscillator2", "Oscillator2", oscillatorChoices, noWave, "Cats"));
-		addParameter(new AudioParameterChoice("oscillator3", "Oscillator3", oscillatorChoices, noWave, "Cats"));
-		addParameter(new AudioParameterChoice("oscillator4", "Oscillator4", oscillatorChoices, noWave, "Cats"));
+		addParameter(new AudioParameterChoice("Oscillator1", "Oscillator1", oscillatorChoices, noWave, "Cats"));
+		addParameter(new AudioParameterChoice("Oscillator2", "Oscillator2", oscillatorChoices, noWave, "Cats"));
+		addParameter(new AudioParameterChoice("Oscillator3", "Oscillator3", oscillatorChoices, noWave, "Cats"));
+		addParameter(new AudioParameterChoice("Oscillator4", "Oscillator4", oscillatorChoices, noWave, "Cats"));
 
-		addParameter(new AudioParameterFloat("pitch1", "Pitch1", -1.0f, 1.0f, 0.0f));
-		addParameter(new AudioParameterFloat("level1", "Level1", 0.0f, 1.0f, 0.5f));
-		addParameter(new AudioParameterFloat("pitch2", "Pitch2", -1.0f, 1.0f, 0.0f));
-		addParameter(new AudioParameterFloat("level2", "Level2", 0.0f, 1.0f, 0.5f));
-		addParameter(new AudioParameterFloat("pitch3", "Pitch3", -1.0f, 1.0f, 0.0f));
-		addParameter(new AudioParameterFloat("level3", "Level3", 0.0f, 1.0f, 0.5f));
-		addParameter(new AudioParameterFloat("pitch4", "Pitch4", -1.0f, 1.0f, 0.0f));
-		addParameter(new AudioParameterFloat("level4", "Level4", 0.0f, 1.0f, 0.5f));
+		addParameter(new AudioParameterFloat("Pitch1", "Pitch1", -1.0f, 1.0f, 0.0f));
+		addParameter(new AudioParameterFloat("Level1", "Level1", 0.0f, 1.0f, 0.5f));
+		addParameter(new AudioParameterFloat("Pitch2", "Pitch2", -1.0f, 1.0f, 0.0f));
+		addParameter(new AudioParameterFloat("Level2", "Level2", 0.0f, 1.0f, 0.5f));
+		addParameter(new AudioParameterFloat("Pitch3", "Pitch3", -1.0f, 1.0f, 0.0f));
+		addParameter(new AudioParameterFloat("Level3", "Level3", 0.0f, 1.0f, 0.5f));
+		addParameter(new AudioParameterFloat("Pitch4", "Pitch4", -1.0f, 1.0f, 0.0f));
+		addParameter(new AudioParameterFloat("Level4", "Level4", 0.0f, 1.0f, 0.5f));
 
 		/*
 			Envelope parameters: The scale parameters act as multiplies since our values are passed
@@ -83,38 +83,38 @@ public:
 		addScale("Attack", 10.0f);
 		addScale("Decay", 10.0f);
 		addScale("Release", 10.0f);
-		addParameter(new AudioParameterFloat("attack", "Attack", 0.0f, getScale("Attack"), 3.0f));
-		addParameter(new AudioParameterFloat("decay", "Decay", 0.0f, getScale("Decay"), 0.5f));
-		addParameter(new AudioParameterFloat("sustain", "Sustain", 0.0f, 1.0f, 1.0f));
-		addParameter(new AudioParameterFloat("release", "Release", 0.0f, getScale("Release"), 1.0f));
+		addParameter(new AudioParameterFloat("Attack", "Attack", 0.0f, getScale("Attack"), 3.0f));
+		addParameter(new AudioParameterFloat("Decay", "Decay", 0.0f, getScale("Decay"), 0.5f));
+		addParameter(new AudioParameterFloat("Sustain", "Sustain", 0.0f, 1.0f, 1.0f));
+		addParameter(new AudioParameterFloat("Release", "Release", 0.0f, getScale("Release"), 1.0f));
 
 
 		/*
 			Filter parameters
 		*/
 		const StringArray & filterChoices = { "None", "LoPass", "HiPass", "BandPass" };
-		addParameter(new AudioParameterChoice("filter", "Filter", filterChoices, noFilter, "Cats"));
+		addParameter(new AudioParameterChoice("Filter", "Filter", filterChoices, noFilter, "Cats"));
 
 		addScale("Cutoff", 14000); // The frequency
 		addScale("Resonance", 10); // The boost
-		addParameter(new AudioParameterFloat("cutoff", "Cutoff", 1.0f, getScale("Cutoff"), 5000.0f));
-		addParameter(new AudioParameterFloat("resonance", "Resonance", 0.0f, getScale("Resonance"), getScale("Resonance")));
+		addParameter(new AudioParameterFloat("Cutoff", "Cutoff", 1.0f, getScale("Cutoff"), 5000.0f));
+		addParameter(new AudioParameterFloat("Resonance", "Resonance", 0.0f, getScale("Resonance"), getScale("Resonance")));
 
 
 		/*
 			LFO parameters
 		*/
 		addScale("LFOFreq", 10);
-		addParameter(new AudioParameterFloat("lfofreq", "LFOFreq", 1.0f, getScale("LFOFreq"), 2.0f));
-		addParameter(new AudioParameterChoice("lfoosc", "LFOosc", oscillatorChoices, noWave, "Cats"));
-		addParameter(new AudioParameterFloat("lfolevel", "LFOLevel", 0.0f, 1.0f, 0.5f));
+		addParameter(new AudioParameterFloat("LFOFreq", "LFOFreq", 1.0f, getScale("LFOFreq"), 2.0f));
+		addParameter(new AudioParameterChoice("LFOosc", "LFOosc", oscillatorChoices, noWave, "Cats"));
+		addParameter(new AudioParameterFloat("LFOLevel", "LFOLevel", 0.0f, 1.0f, 0.5f));
 
 
 		/*
 			Distortion
 		*/
 		addScale("Distortion", 30.0f);
-		addParameter(new AudioParameterFloat("distAmount", "Distortion", 0.0f, getScale("Distortion"), 0.0f));
+		addParameter(new AudioParameterFloat("Distortion", "Distortion", 0.0f, getScale("Distortion"), 0.0f));
 
 
 		/*
@@ -123,24 +123,24 @@ public:
 		addScale("EQLevel", 10.0f);
 		addScale("EQQ", 5.0f);
 
-		addParameter(new AudioParameterFloat("eqlowfreq", "EQLowFreq", 20.0f, 800.0f, 125.0f));
-		addParameter(new AudioParameterFloat("eqlowq", "EQLowQ", 0.05f, getScale("EQQ"), 1.0f));
-		addParameter(new AudioParameterFloat("eqlowlevel", "EQLowLevel", -getScale("EQLevel"), getScale("EQLevel"), 0.0f));
+		addParameter(new AudioParameterFloat("EQLowFreq", "EQLowFreq", 20.0f, 800.0f, 125.0f));
+		addParameter(new AudioParameterFloat("EQLowQ", "EQLowQ", 0.05f, getScale("EQQ"), 1.0f));
+		addParameter(new AudioParameterFloat("EQLowLevel", "EQLowLevel", -getScale("EQLevel"), getScale("EQLevel"), 0.0f));
 
-		addParameter(new AudioParameterFloat("eqmidfreq", "EQMidFreq", 250.0f, 4000.0f, 2500.0f));
-		addParameter(new AudioParameterFloat("eqmidq", "EQMidQ", 0.05f, getScale("EQQ"), 1.0f));
-		addParameter(new AudioParameterFloat("eqmidlevel", "EQMidLevel", -getScale("EQLevel"), getScale("EQLevel"), 0.0f));
+		addParameter(new AudioParameterFloat("EQMidFreq", "EQMidFreq", 250.0f, 4000.0f, 2500.0f));
+		addParameter(new AudioParameterFloat("EQMidQ", "EQMidQ", 0.05f, getScale("EQQ"), 1.0f));
+		addParameter(new AudioParameterFloat("EQMidLevel", "EQMidLevel", -getScale("EQLevel"), getScale("EQLevel"), 0.0f));
 
-		addParameter(new AudioParameterFloat("eqhifreq", "EQHiFreq", 800.0f, 20000.0f, 8000.0f));
-		addParameter(new AudioParameterFloat("eqhiq", "EQHiQ", 0.05f, getScale("EQQ"), 1.0f));
-		addParameter(new AudioParameterFloat("eqhilevel", "EQHiLevel", -getScale("EQLevel"), getScale("EQLevel"), 0.0f));
+		addParameter(new AudioParameterFloat("EQHiFreq", "EQHiFreq", 800.0f, 20000.0f, 8000.0f));
+		addParameter(new AudioParameterFloat("EQHiQ", "EQHiQ", 0.05f, getScale("EQQ"), 1.0f));
+		addParameter(new AudioParameterFloat("EQHiLevel", "EQHiLevel", -getScale("EQLevel"), getScale("EQLevel"), 0.0f));
 
 
 		/*
 			Master Volume
 		*/
 		addScale("Master", 1.5f);
-		addParameter(new AudioParameterFloat("master", "Master", 0.0f, getScale("Master"), 1.0f));
+		addParameter(new AudioParameterFloat("Master", "Master", 0.0f, getScale("Master"), 1.0f));
 	}
 
 	void InitSynth()
@@ -268,6 +268,13 @@ public:
 		return "The Synth";
 	}
 
+	// Here we need to set up logic to read from some file. I'm thinking just a CSV or something simple to implement
+	void loadPatch() {
+		// POC, updates the distortion value
+		AudioProcessorParameter* param = paramMap.at("Distortion");
+		param->setValue(0.5f);
+	}
+
 	void setStateInformation(const void * data, int sizeInBytes) override {
 		/*ScopedPointer <XmlElement> theParams(getXmlFromBinary(data, sizeInBytes));
 
@@ -279,14 +286,43 @@ public:
 	}
 
 	void getStateInformation(juce::MemoryBlock &destData) override {
-		/*ScopedPointer <XmlElement> xml(parameters.state.createXml());
-		copyXmlToBinary(*xml, destData);*/
+		//// [1]
+		//std::cout << "Save Settings" << std::endl;
+		//
+		//// [2]
+		//// Create an outer XML element..
+		//XmlElement xml("GRRNLRRPLUGINSETTINGS");
+
+		//// [3.1]
+		//// Store the values of all our parameters, using their param ID as the XML attribute
+		//for (int i = 0; i < getNumParameters(); ++i)
+		//{
+		//	// [3.2]
+		//	if (AudioProcessorParameter* p = dynamic_cast<AudioProcessorParameter*> (getParameters().getUnchecked(i)))
+		//	{
+		//		// [3.3]
+		//		xml.setAttribute(juce::String(p->getParameterIndex()), p->getValue());
+
+		//		std::cout << p->getParameterIndex() << " " << p->getValue() << std::endl;
+		//	}
+		//}
+
+		//xml.setAttribute("FilePath", filePath);
+		//std::cout << "Save Path: " << filePath << std::endl;
+
+		//// [4]
+		//// then use this helper function to stuff it into the binary blob and return it..
+		//copyXmlToBinary(xml, destData);
 	}
 
 	//for use with updating params in GUI thread on slider move
 	/*void setParameterNotifyingHost(int parameterIndex, float newValue) override {
 		
 	}*/
+
+	// State/patch loading info via XML
+	String filePath = "C:\\Users\\Chris.Buttacavoli\\Documents\\GitHub\\CS467_Aries-\\aries_aud1_synth\\";
+	String restoredPath;
 
 	//Getting midi/keyboard messages
 	MidiMessageCollector midiCollector;
