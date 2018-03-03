@@ -46,6 +46,8 @@
       <FILE id="Ayu5Ip" name="adsr_smaller.png" compile="0" resource="1"
             file="Source/adsr_smaller.png"/>
       <FILE id="qg9Ipl" name="save_s.png" compile="0" resource="1" file="Source/save_s.png"/>
+      <FILE id="mvqP4R" name="stop_s.png" compile="0" resource="1" file="Source/stop_s.png"/>
+      <FILE id="Y1QF3I" name="stop.png" compile="0" resource="1" file="Source/stop.png"/>
       <FILE id="DoAwg7" name="load_s.png" compile="0" resource="1" file="Source/load_s.png"/>
       <FILE id="jPJG8N" name="filters.png" compile="0" resource="1" file="Source/filters.png"/>
       <FILE id="bBDide" name="Osc_Box_1_sl2.png" compile="0" resource="1"

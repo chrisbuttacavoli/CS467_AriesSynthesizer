@@ -4316,6 +4316,12 @@
     <None Include="..\..\Source\save_s.png">
       <Filter>aries_aud1_synth\Source</Filter>
     </None>
+    <None Include="..\..\Source\stop_s.png">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </None>
+    <None Include="..\..\Source\stop.png">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </None>
     <None Include="..\..\Source\load_s.png">
       <Filter>aries_aud1_synth\Source</Filter>
     </None>

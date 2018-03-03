@@ -2521,6 +2521,8 @@
     <None Include="..\..\Source\distortion_s.png"/>
     <None Include="..\..\Source\adsr_smaller.png"/>
     <None Include="..\..\Source\save_s.png"/>
+    <None Include="..\..\Source\stop_s.png"/>
+    <None Include="..\..\Source\stop.png"/>
     <None Include="..\..\Source\load_s.png"/>
     <None Include="..\..\Source\filters.png"/>
     <None Include="..\..\Source\Osc_Box_1_sl2.png"/>
