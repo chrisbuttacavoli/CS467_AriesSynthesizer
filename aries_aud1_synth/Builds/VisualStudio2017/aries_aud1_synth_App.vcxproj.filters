@@ -4328,16 +4328,16 @@
     <None Include="..\..\Source\filters.png">
       <Filter>aries_aud1_synth\Source</Filter>
     </None>
-    <None Include="..\..\Source\osc_2_final.png">
-      <Filter>aries_aud1_synth\Source</Filter>
-    </None>
-    <None Include="..\..\Source\osc_1_final.png">
+    <None Include="..\..\Source\osc_3_final.png">
       <Filter>aries_aud1_synth\Source</Filter>
     </None>
     <None Include="..\..\Source\osc_4_final.png">
       <Filter>aries_aud1_synth\Source</Filter>
     </None>
-    <None Include="..\..\Source\osc_3_final.png">
+    <None Include="..\..\Source\osc_1_final.png">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </None>
+    <None Include="..\..\Source\osc_2_final.png">
       <Filter>aries_aud1_synth\Source</Filter>
     </None>
     <None Include="..\..\Source\Osc_Box_1_sl2.png">

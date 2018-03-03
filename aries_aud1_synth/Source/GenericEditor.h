@@ -136,10 +136,10 @@ public:
 
 		addAndMakeVisible(aLabel2);
 		//aLabel2->setBounds(2, 10, (r.getWidth() / 4.8), 50);
-		paramCombo[0]->setBounds(20, 12, (r.getWidth() / 4.8), 50);
-		paramCombo[1]->setBounds(285, 12, (r.getWidth() / 4.8), 50);
-		paramCombo[2]->setBounds(550, 12, (r.getWidth() / 4.8), 50);
-		paramCombo[3]->setBounds(815, 12, (r.getWidth() / 4.8), 50);
+		paramCombo[0]->setBounds(((r.getWidth() / 82)), 12, (r.getWidth() / 4.8), 25);
+		paramCombo[1]->setBounds((240 + (r.getWidth() / 82)), 12, (r.getWidth() / 4.8), 25);
+		paramCombo[2]->setBounds(550, 12, (r.getWidth() / 4.8), 25);
+		paramCombo[3]->setBounds(815, 12, (r.getWidth() / 4.8), 25);
 
 		//pitch 1
 		paramLabels[0]->setBounds(20, 65, (r.getWidth() / 4.8), 25);
@@ -266,12 +266,12 @@ public:
 		g.fillAll();
 		Image osc1Bg = ImageCache::getFromMemory(BinaryData::osc_1_final_png, BinaryData::osc_1_final_pngSize);
 		g.drawImageAt(osc1Bg, 0, 0); 
-		Image osc2Bg = ImageCache::getFromMemory(BinaryData::Osc_Box_2_sl2_png, BinaryData::Osc_Box_2_sl2_pngSize);
-		g.drawImageAt(osc2Bg, 265, 0);
-		Image osc3Bg = ImageCache::getFromMemory(BinaryData::Osc_Box_3_sl2_png, BinaryData::Osc_Box_3_sl2_pngSize);
-		g.drawImageAt(osc3Bg, 530, 0);
-		Image osc4Bg = ImageCache::getFromMemory(BinaryData::Osc_Box_4_sl2_png, BinaryData::Osc_Box_4_sl2_pngSize);
-		g.drawImageAt(osc4Bg, 795, 0);
+		Image osc2Bg = ImageCache::getFromMemory(BinaryData::osc_2_final_png, BinaryData::osc_2_final_pngSize);
+		g.drawImageAt(osc2Bg, 242, 0);
+		Image osc3Bg = ImageCache::getFromMemory(BinaryData::osc_3_final_png, BinaryData::osc_3_final_pngSize);
+		g.drawImageAt(osc3Bg, 484, 0);
+		Image osc4Bg = ImageCache::getFromMemory(BinaryData::osc_4_final_png, BinaryData::osc_4_final_pngSize);
+		g.drawImageAt(osc4Bg, 726, 0);
 		Image adsr = ImageCache::getFromMemory(BinaryData::adsr_smaller_png, BinaryData::adsr_smaller_pngSize);
 		g.drawImageAt(adsr, 780, 210);
 		Image filters = ImageCache::getFromMemory(BinaryData::filters_png, BinaryData::filters_pngSize);

@@ -2525,10 +2525,10 @@
     <None Include="..\..\Source\stop.png"/>
     <None Include="..\..\Source\load_s.png"/>
     <None Include="..\..\Source\filters.png"/>
-    <None Include="..\..\Source\osc_2_final.png"/>
-    <None Include="..\..\Source\osc_1_final.png"/>
-    <None Include="..\..\Source\osc_4_final.png"/>
     <None Include="..\..\Source\osc_3_final.png"/>
+    <None Include="..\..\Source\osc_4_final.png"/>
+    <None Include="..\..\Source\osc_1_final.png"/>
+    <None Include="..\..\Source\osc_2_final.png"/>
     <None Include="..\..\Source\Osc_Box_1_sl2.png"/>
     <None Include="..\..\Source\Osc_Box_2_sl2.png"/>
     <None Include="..\..\Source\Osc_Box_3_sl2.png"/>
