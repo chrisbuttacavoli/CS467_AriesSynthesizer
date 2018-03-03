@@ -50,6 +50,10 @@
       <FILE id="Y1QF3I" name="stop.png" compile="0" resource="1" file="Source/stop.png"/>
       <FILE id="DoAwg7" name="load_s.png" compile="0" resource="1" file="Source/load_s.png"/>
       <FILE id="jPJG8N" name="filters.png" compile="0" resource="1" file="Source/filters.png"/>
+      <FILE id="Yw3AAo" name="osc_2_final.png" compile="0" resource="1" file="Source/osc_2_final.png"/>
+      <FILE id="DsT0FC" name="osc_1_final.png" compile="0" resource="1" file="Source/osc_1_final.png"/>
+      <FILE id="cq4KYW" name="osc_4_final.png" compile="0" resource="1" file="Source/osc_4_final.png"/>
+      <FILE id="IznP2B" name="osc_3_final.png" compile="0" resource="1" file="Source/osc_3_final.png"/>
       <FILE id="bBDide" name="Osc_Box_1_sl2.png" compile="0" resource="1"
             file="Source/Osc_Box_1_sl2.png"/>
       <FILE id="TnlM8k" name="Osc_Box_2_sl2.png" compile="0" resource="1"
