@@ -138,37 +138,37 @@ public:
 		//aLabel2->setBounds(2, 10, (r.getWidth() / 4.8), 50);
 		paramCombo[0]->setBounds(((r.getWidth() / 82)), 12, (r.getWidth() / 4.8), 25);
 		paramCombo[1]->setBounds((240 + (r.getWidth() / 82)), 12, (r.getWidth() / 4.8), 25);
-		paramCombo[2]->setBounds(550, 12, (r.getWidth() / 4.8), 25);
-		paramCombo[3]->setBounds(815, 12, (r.getWidth() / 4.8), 25);
+		paramCombo[2]->setBounds((480 + (r.getWidth() / 82)), 12, (r.getWidth() / 4.8), 25);
+		paramCombo[3]->setBounds((720 + (r.getWidth() / 82)), 12, (r.getWidth() / 4.8), 25);
 
 		//pitch 1
-		paramLabels[0]->setBounds(20, 65, (r.getWidth() / 4.8), 25);
-		paramSliders[0]->setBounds(20, 65, (r.getWidth() / 4.8), 50);
+		paramLabels[0]->setBounds(((r.getWidth() / 82)), 40, (r.getWidth() / 4.8), 25);
+		paramSliders[0]->setBounds(((r.getWidth() / 82)), 40, (r.getWidth() / 4.8), 50);
 
 		//level 1
-		paramLabels[1]->setBounds(20, 115, (r.getWidth() / 4.8), 25);
-		paramSliders[1]->setBounds(20, 115, (r.getWidth() / 4.8), 50);
+		paramLabels[1]->setBounds(((r.getWidth() / 82)), 90, (r.getWidth() / 4.8), 25);
+		paramSliders[1]->setBounds(((r.getWidth() / 82)), 90, (r.getWidth() / 4.8), 50);
 
 		//pitch 2
-		paramLabels[2]->setBounds(285, 65, (r.getWidth() / 4.8), 25);
-		paramSliders[2]->setBounds(285, 65, (r.getWidth() / 4.8), 50);
+		paramLabels[2]->setBounds(240 + ((r.getWidth() / 82)), 40, (r.getWidth() / 4.8), 25);
+		paramSliders[2]->setBounds(240 + ((r.getWidth() / 82)), 40, (r.getWidth() / 4.8), 50);
 		//level 2
-		paramLabels[3]->setBounds(285, 115, (r.getWidth() / 4.8), 25);
-		paramSliders[3]->setBounds(285, 115, (r.getWidth() / 4.8), 50);
+		paramLabels[3]->setBounds(240 + ((r.getWidth() / 82)), 90, (r.getWidth() / 4.8), 25);
+		paramSliders[3]->setBounds(240 + ((r.getWidth() / 82)), 90, (r.getWidth() / 4.8), 50);
 
 		//pitch 3
-		paramLabels[4]->setBounds(550, 65, (r.getWidth() / 4.8), 25);
-		paramSliders[4]->setBounds(550, 65, (r.getWidth() / 4.8), 50);
+		paramLabels[4]->setBounds(480 + ((r.getWidth() / 82)), 40, (r.getWidth() / 4.8), 25);
+		paramSliders[4]->setBounds(480 + ((r.getWidth() / 82)), 40, (r.getWidth() / 4.8), 50);
 		//level 3
-		paramLabels[5]->setBounds(550, 115, (r.getWidth() / 4.8), 25);
-		paramSliders[5]->setBounds(550, 115, (r.getWidth() / 4.8), 50);
+		paramLabels[5]->setBounds(480 + ((r.getWidth() / 82)), 90, (r.getWidth() / 4.8), 25);
+		paramSliders[5]->setBounds(480 + ((r.getWidth() / 82)), 90, (r.getWidth() / 4.8), 50);
 
 		//pitch 4
-		paramLabels[6]->setBounds(815, 65, (r.getWidth() / 4.8), 25);
-		paramSliders[6]->setBounds(815, 65, (r.getWidth() / 4.8), 50);
+		paramLabels[6]->setBounds(720 + ((r.getWidth() / 82)), 40, (r.getWidth() / 4.8), 25);
+		paramSliders[6]->setBounds(720 + ((r.getWidth() / 82)), 40, (r.getWidth() / 4.8), 50);
 		//level 4
-		paramLabels[7]->setBounds(815, 115, (r.getWidth() / 4.8), 25);
-		paramSliders[7]->setBounds(815, 115, (r.getWidth() / 4.8), 50);
+		paramLabels[7]->setBounds(720 + ((r.getWidth() / 82)), 90, (r.getWidth() / 4.8), 25);
+		paramSliders[7]->setBounds(720 + ((r.getWidth() / 82)), 90, (r.getWidth() / 4.8), 50);
 
 		/*
 			ADSR stuff
