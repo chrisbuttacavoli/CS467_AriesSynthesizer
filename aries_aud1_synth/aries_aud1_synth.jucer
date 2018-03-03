@@ -39,21 +39,27 @@
             file="Source/RecordingThumbnail.h"/>
       <FILE id="pq63Jn" name="aries_logo_cropped_s.png" compile="0" resource="1"
             file="Source/aries_logo_cropped_s.png"/>
+      <FILE id="pJV7HX" name="adsr_final.png" compile="0" resource="1" file="Source/adsr_final.png"/>
       <FILE id="RfrEIe" name="record_s.png" compile="0" resource="1" file="Source/record_s.png"/>
       <FILE id="KhroZR" name="record_s_s.png" compile="0" resource="1" file="Source/record_s_s.png"/>
       <FILE id="Nvb6Xe" name="distortion_s.png" compile="0" resource="1"
             file="Source/distortion_s.png"/>
       <FILE id="Ayu5Ip" name="adsr_smaller.png" compile="0" resource="1"
             file="Source/adsr_smaller.png"/>
+      <FILE id="FW0lSu" name="filters_final.png" compile="0" resource="1"
+            file="Source/filters_final.png"/>
       <FILE id="qg9Ipl" name="save_s.png" compile="0" resource="1" file="Source/save_s.png"/>
       <FILE id="mvqP4R" name="stop_s.png" compile="0" resource="1" file="Source/stop_s.png"/>
       <FILE id="Y1QF3I" name="stop.png" compile="0" resource="1" file="Source/stop.png"/>
       <FILE id="DoAwg7" name="load_s.png" compile="0" resource="1" file="Source/load_s.png"/>
+      <FILE id="wZJ57O" name="lfo_final.png" compile="0" resource="1" file="Source/lfo_final.png"/>
       <FILE id="jPJG8N" name="filters.png" compile="0" resource="1" file="Source/filters.png"/>
       <FILE id="nUwHi4" name="osc_3_final.png" compile="0" resource="1" file="Source/osc_3_final.png"/>
       <FILE id="ReAiGM" name="osc_4_final.png" compile="0" resource="1" file="Source/osc_4_final.png"/>
       <FILE id="jam5M4" name="osc_1_final.png" compile="0" resource="1" file="Source/osc_1_final.png"/>
       <FILE id="xgIg2s" name="osc_2_final.png" compile="0" resource="1" file="Source/osc_2_final.png"/>
+      <FILE id="X38QzD" name="eq-3Box.png" compile="0" resource="1" file="Source/eq-3Box.png"/>
+      <FILE id="iZ81WA" name="eq3_final.png" compile="0" resource="1" file="Source/eq3_final.png"/>
       <FILE id="bBDide" name="Osc_Box_1_sl2.png" compile="0" resource="1"
             file="Source/Osc_Box_1_sl2.png"/>
       <FILE id="TnlM8k" name="Osc_Box_2_sl2.png" compile="0" resource="1"

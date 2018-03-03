@@ -20,6 +20,9 @@ namespace BinaryData
     extern const char*   aries_logo_cropped_s_png;
     const int            aries_logo_cropped_s_pngSize = 7149;
 
+    extern const char*   adsr_final_png;
+    const int            adsr_final_pngSize = 2743;
+
     extern const char*   record_s_png;
     const int            record_s_pngSize = 5828;
 
@@ -32,6 +35,9 @@ namespace BinaryData
     extern const char*   adsr_smaller_png;
     const int            adsr_smaller_pngSize = 6290;
 
+    extern const char*   filters_final_png;
+    const int            filters_final_pngSize = 2697;
+
     extern const char*   save_s_png;
     const int            save_s_pngSize = 1724;
 
@@ -43,6 +49,9 @@ namespace BinaryData
 
     extern const char*   load_s_png;
     const int            load_s_pngSize = 1568;
+
+    extern const char*   lfo_final_png;
+    const int            lfo_final_pngSize = 1620;
 
     extern const char*   filters_png;
     const int            filters_pngSize = 3176;
@@ -58,6 +67,12 @@ namespace BinaryData
 
     extern const char*   osc_2_final_png;
     const int            osc_2_final_pngSize = 3149;
+
+    extern const char*   eq3Box_png;
+    const int            eq3Box_pngSize = 3006;
+
+    extern const char*   eq3_final_png;
+    const int            eq3_final_pngSize = 2641;
 
     extern const char*   Osc_Box_1_sl2_png;
     const int            Osc_Box_1_sl2_pngSize = 3821;
@@ -93,7 +108,7 @@ namespace BinaryData
     extern const char* namedResourceList[];
 
     // Number of elements in the namedResourceList array.
-    const int namedResourceListSize = 27;
+    const int namedResourceListSize = 32;
 
     // If you provide the name of one of the binary resource variables above, this function will
     // return the corresponding data and its size (or a null pointer if the name isn't found).

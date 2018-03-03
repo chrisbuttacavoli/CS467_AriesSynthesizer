@@ -4301,6 +4301,9 @@
     <None Include="..\..\Source\aries_logo_cropped_s.png">
       <Filter>aries_aud1_synth\Source</Filter>
     </None>
+    <None Include="..\..\Source\adsr_final.png">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </None>
     <None Include="..\..\Source\record_s.png">
       <Filter>aries_aud1_synth\Source</Filter>
     </None>
@@ -4313,6 +4316,9 @@
     <None Include="..\..\Source\adsr_smaller.png">
       <Filter>aries_aud1_synth\Source</Filter>
     </None>
+    <None Include="..\..\Source\filters_final.png">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </None>
     <None Include="..\..\Source\save_s.png">
       <Filter>aries_aud1_synth\Source</Filter>
     </None>
@@ -4323,6 +4329,9 @@
       <Filter>aries_aud1_synth\Source</Filter>
     </None>
     <None Include="..\..\Source\load_s.png">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </None>
+    <None Include="..\..\Source\lfo_final.png">
       <Filter>aries_aud1_synth\Source</Filter>
     </None>
     <None Include="..\..\Source\filters.png">
@@ -4338,6 +4347,12 @@
       <Filter>aries_aud1_synth\Source</Filter>
     </None>
     <None Include="..\..\Source\osc_2_final.png">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </None>
+    <None Include="..\..\Source\eq-3Box.png">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </None>
+    <None Include="..\..\Source\eq3_final.png">
       <Filter>aries_aud1_synth\Source</Filter>
     </None>
     <None Include="..\..\Source\Osc_Box_1_sl2.png">
