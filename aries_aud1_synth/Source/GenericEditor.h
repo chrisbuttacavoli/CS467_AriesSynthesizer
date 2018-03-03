@@ -74,6 +74,9 @@ public:
 				if (param->name.contains("EQ") == 1) {
 					aSlider->setSliderStyle(Slider::LinearHorizontal);
 				}
+				if (param->name.contains("Master") == 1) {
+					aSlider->setSliderStyle(Slider::LinearVertical);
+				}
 				else {
 					aSlider->setSliderStyle(Slider::RotaryHorizontalVerticalDrag);
 				}
@@ -175,17 +178,17 @@ public:
 		*/
 
 		//attack
-		paramLabels[8]->setBounds(240 + ((r.getWidth() / 82)), 360, (r.getWidth() / 8), 25);
-		paramSliders[8]->setBounds(240 + ((r.getWidth() / 82)), 360, (r.getWidth() / 8), 50);
+		paramLabels[8]->setBounds(240 + ((r.getWidth() / 82)), 370, (r.getWidth() / 8), 25);
+		paramSliders[8]->setBounds(240 + ((r.getWidth() / 82)), 370, (r.getWidth() / 8), 50);
 		//decay
-		paramLabels[9]->setBounds(240 + ((r.getWidth() / 82)), 400, (r.getWidth() / 8), 25);
-		paramSliders[9]->setBounds(240 + ((r.getWidth() / 82)), 400, (r.getWidth() / 8), 50);
+		paramLabels[9]->setBounds(240 + ((r.getWidth() / 82)), 410, (r.getWidth() / 8), 25);
+		paramSliders[9]->setBounds(240 + ((r.getWidth() / 82)), 410, (r.getWidth() / 8), 50);
 		//sustain
-		paramLabels[10]->setBounds(380 + ((r.getWidth() / 82)), 360, (r.getWidth() / 8), 25);
-		paramSliders[10]->setBounds(380 + ((r.getWidth() / 82)), 360, (r.getWidth() / 8), 50);
+		paramLabels[10]->setBounds(380 + ((r.getWidth() / 82)), 370, (r.getWidth() / 8), 25);
+		paramSliders[10]->setBounds(380 + ((r.getWidth() / 82)), 370, (r.getWidth() / 8), 50);
 		//release
-		paramLabels[11]->setBounds(380 + ((r.getWidth() / 82)), 400, (r.getWidth() / 8), 25);
-		paramSliders[11]->setBounds(380 + ((r.getWidth() / 82)), 400, (r.getWidth() / 8), 50);
+		paramLabels[11]->setBounds(380 + ((r.getWidth() / 82)), 410, (r.getWidth() / 8), 25);
+		paramSliders[11]->setBounds(380 + ((r.getWidth() / 82)), 410, (r.getWidth() / 8), 50);
 
 		/*
 			Filter stuff
@@ -200,8 +203,8 @@ public:
 		paramSliders[13]->setBounds(((r.getWidth() / 82)), 270, (r.getWidth() / 4.8), 50);
 
 		//distortion
-		paramLabels[16]->setBounds(825, 380, (r.getWidth() / 4.8), 25);
-		paramSliders[16]->setBounds(825, 380, (r.getWidth() / 4.8), 50);
+		paramLabels[16]->setBounds(550 + ((r.getWidth() / 82)), 380, (r.getWidth() / 4.8), 25);
+		paramSliders[16]->setBounds(550 + ((r.getWidth() / 82)), 380, (r.getWidth() / 4.8), 50);
 
 		//noParameterLabel.setBounds(r);
 
@@ -210,15 +213,15 @@ public:
 		*/
 
 		// LFO Combo Box
-		paramCombo[5]->setBounds((10 + (r.getWidth() / 82)), 360, (r.getWidth() / 4.8), 20);
+		paramCombo[5]->setBounds(((r.getWidth() / 82)), 370, (r.getWidth() / 4.8), 20);
 
 		// LFO Level
-		paramLabels[14]->setBounds((10 + (r.getWidth() / 82)), 380, (r.getWidth() / 4.8), 25);
-		paramSliders[14]->setBounds((10 + (r.getWidth() / 82)), 380, (r.getWidth() / 4.8), 50);
+		paramLabels[14]->setBounds(( (r.getWidth() / 82)), 390, (r.getWidth() / 4.8), 25);
+		paramSliders[14]->setBounds(( (r.getWidth() / 82)), 390, (r.getWidth() / 4.8), 50);
 
 		// LFO Frequency 
-		paramLabels[15]->setBounds((10 + (r.getWidth() / 82)), 420, (r.getWidth() / 4.8), 25);
-		paramSliders[15]->setBounds((10 + (r.getWidth() / 82)), 420, (r.getWidth() / 4.8), 50);
+		paramLabels[15]->setBounds(( (r.getWidth() / 82)), 440, (r.getWidth() / 4.8), 25);
+		paramSliders[15]->setBounds(( (r.getWidth() / 82)), 440, (r.getWidth() / 4.8), 50);
 
 		/*
 			EQ stuff
@@ -254,8 +257,8 @@ public:
 		paramSliders[25]->setBounds((515 + (r.getWidth() / 6)), 280, (r.getWidth() / 6), 50);
 
 		// MASTER OF THE PRECIOUS
-		paramLabels[26]->setBounds(60, 445, (r.getWidth() / 6), 25);
-		paramSliders[26]->setBounds(60, 445, (r.getWidth() / 6), 50);
+		paramLabels[26]->setBounds((615 + (r.getWidth() / 6)), 360, (r.getWidth() / 6), 25);
+		paramSliders[26]->setBounds((615 + (r.getWidth() / 6)), 360, (r.getWidth() / 6), 50);
 	}
 
 	void paint(Graphics& g) override
@@ -273,19 +276,19 @@ public:
 		Image osc4Bg = ImageCache::getFromMemory(BinaryData::osc_4_final_png, BinaryData::osc_4_final_pngSize);
 		g.drawImageAt(osc4Bg, 726, 0);
 		Image adsr = ImageCache::getFromMemory(BinaryData::adsr_final_png, BinaryData::adsr_final_pngSize);
-		g.drawImageAt(adsr, 242, 362);
+		g.drawImageAt(adsr, 242, 364);
 		Image filters = ImageCache::getFromMemory(BinaryData::filters_final_png, BinaryData::filters_final_pngSize);
 		g.drawImageAt(filters, 0, 182);
-		Image distortion = ImageCache::getFromMemory(BinaryData::distortion_s_png, BinaryData::distortion_s_pngSize);
-		g.drawImageAt(distortion, 805, 352);
+		Image distortion = ImageCache::getFromMemory(BinaryData::distortion_final_png, BinaryData::distortion_final_pngSize);
+		g.drawImageAt(distortion, 524, 364);
 		Image eq3 = ImageCache::getFromMemory(BinaryData::eq3Box_png, BinaryData::eq3Box_pngSize);
 		g.drawImageAt(eq3, 242, 182); 
 		Image lfo = ImageCache::getFromMemory(BinaryData::lfo_final_png, BinaryData::lfo_final_pngSize);
 		g.drawImageAt(lfo, 0, 364);
 
 		g.setColour(Colour(255, 0, 255));
-		//g.drawLine(20, 278, 385, 278);
-		//g.drawLine(20, 353, 385, 353);
+		g.drawVerticalLine(440, 200, 345);
+		g.drawVerticalLine(660, 200, 345);
 	}
 
 	//==============================================================================

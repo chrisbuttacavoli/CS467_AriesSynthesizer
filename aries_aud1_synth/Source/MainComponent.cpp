@@ -150,7 +150,7 @@ public:
 		inputText.setColour(Label::outlineWhenEditingColourId, Colour(255, 0, 255));*/
 
 		//setting the size of the windows
-		setSize(1060, 690);
+		setSize(967, 690);
 
     }
 
