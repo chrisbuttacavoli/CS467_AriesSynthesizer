@@ -203,8 +203,8 @@ public:
 		paramSliders[13]->setBounds(((r.getWidth() / 82)), 270, (r.getWidth() / 4.8), 50);
 
 		//distortion
-		paramLabels[16]->setBounds(550 + ((r.getWidth() / 82)), 380, (r.getWidth() / 4.8), 25);
-		paramSliders[16]->setBounds(550 + ((r.getWidth() / 82)), 380, (r.getWidth() / 4.8), 50);
+		paramLabels[16]->setBounds(550 + ((r.getWidth() / 82)), 370, (r.getWidth() / 4.8), 25);
+		paramSliders[16]->setBounds(550 + ((r.getWidth() / 82)), 370, (r.getWidth() / 4.8), 50);
 
 		//noParameterLabel.setBounds(r);
 
@@ -216,12 +216,12 @@ public:
 		paramCombo[5]->setBounds(((r.getWidth() / 82)), 370, (r.getWidth() / 4.8), 20);
 
 		// LFO Level
-		paramLabels[14]->setBounds(( (r.getWidth() / 82)), 390, (r.getWidth() / 4.8), 25);
-		paramSliders[14]->setBounds(( (r.getWidth() / 82)), 390, (r.getWidth() / 4.8), 50);
+		paramLabels[14]->setBounds(( (r.getWidth() / 82)), 385, (r.getWidth() / 4.8), 25);
+		paramSliders[14]->setBounds(( (r.getWidth() / 82)), 385, (r.getWidth() / 4.8), 50);
 
 		// LFO Frequency 
-		paramLabels[15]->setBounds(( (r.getWidth() / 82)), 430, (r.getWidth() / 4.8), 25);
-		paramSliders[15]->setBounds(( (r.getWidth() / 82)), 430, (r.getWidth() / 4.8), 50);
+		paramLabels[15]->setBounds(( (r.getWidth() / 82)), 420, (r.getWidth() / 4.8), 25);
+		paramSliders[15]->setBounds(( (r.getWidth() / 82)), 420, (r.getWidth() / 4.8), 50);
 
 		/*
 			EQ stuff
