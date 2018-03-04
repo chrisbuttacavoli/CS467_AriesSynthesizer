@@ -62,6 +62,12 @@
       <FILE id="ReAiGM" name="osc_4_final.png" compile="0" resource="1" file="Source/osc_4_final.png"/>
       <FILE id="jam5M4" name="osc_1_final.png" compile="0" resource="1" file="Source/osc_1_final.png"/>
       <FILE id="xgIg2s" name="osc_2_final.png" compile="0" resource="1" file="Source/osc_2_final.png"/>
+      <FILE id="d4vTJC" name="eq_mid_final.png" compile="0" resource="1"
+            file="Source/eq_mid_final.png"/>
+      <FILE id="LEoZsn" name="eq_low_final.png" compile="0" resource="1"
+            file="Source/eq_low_final.png"/>
+      <FILE id="GsJlZn" name="eq_high_final.png" compile="0" resource="1"
+            file="Source/eq_high_final.png"/>
       <FILE id="X38QzD" name="eq-3Box.png" compile="0" resource="1" file="Source/eq-3Box.png"/>
       <FILE id="iZ81WA" name="eq3_final.png" compile="0" resource="1" file="Source/eq3_final.png"/>
       <FILE id="bBDide" name="Osc_Box_1_sl2.png" compile="0" resource="1"

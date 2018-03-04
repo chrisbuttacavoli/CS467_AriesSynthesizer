@@ -2535,6 +2535,9 @@
     <None Include="..\..\Source\osc_4_final.png"/>
     <None Include="..\..\Source\osc_1_final.png"/>
     <None Include="..\..\Source\osc_2_final.png"/>
+    <None Include="..\..\Source\eq_mid_final.png"/>
+    <None Include="..\..\Source\eq_low_final.png"/>
+    <None Include="..\..\Source\eq_high_final.png"/>
     <None Include="..\..\Source\eq-3Box.png"/>
     <None Include="..\..\Source\eq3_final.png"/>
     <None Include="..\..\Source\Osc_Box_1_sl2.png"/>

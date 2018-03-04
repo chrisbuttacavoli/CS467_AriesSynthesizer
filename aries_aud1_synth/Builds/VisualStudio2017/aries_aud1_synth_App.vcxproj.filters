@@ -4358,6 +4358,15 @@
     <None Include="..\..\Source\osc_2_final.png">
       <Filter>aries_aud1_synth\Source</Filter>
     </None>
+    <None Include="..\..\Source\eq_mid_final.png">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </None>
+    <None Include="..\..\Source\eq_low_final.png">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </None>
+    <None Include="..\..\Source\eq_high_final.png">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </None>
     <None Include="..\..\Source\eq-3Box.png">
       <Filter>aries_aud1_synth\Source</Filter>
     </None>

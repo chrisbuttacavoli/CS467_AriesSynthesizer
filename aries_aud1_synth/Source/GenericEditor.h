@@ -227,34 +227,34 @@ public:
 			EQ stuff
 		*/
 		// Low EQ Freq
-		paramLabels[17]->setBounds((240 + (r.getWidth() / 82)), 200, (r.getWidth() / 4.8), 25);
-		paramSliders[17]->setBounds((240 + (r.getWidth() / 82)), 200, (r.getWidth() / 4.8), 50);
+		paramLabels[17]->setBounds((240 + (r.getWidth() / 82)), 190, (r.getWidth() / 4.8), 25);
+		paramSliders[17]->setBounds((240 + (r.getWidth() / 82)), 190, (r.getWidth() / 4.8), 50);
 		// Low EQ Q
-		paramLabels[18]->setBounds((240 + (r.getWidth() / 82)), 240, (r.getWidth() / 4.8), 25);
-		paramSliders[18]->setBounds((240 + (r.getWidth() / 82)), 240, (r.getWidth() / 4.8), 50);
+		paramLabels[18]->setBounds((240 + (r.getWidth() / 82)), 230, (r.getWidth() / 4.8), 25);
+		paramSliders[18]->setBounds((240 + (r.getWidth() / 82)), 230, (r.getWidth() / 4.8), 50);
 		// Low EQ Level
-		paramLabels[19]->setBounds((240 + (r.getWidth() / 82)), 280, (r.getWidth() / 4.8), 25);
-		paramSliders[19]->setBounds((240 + (r.getWidth() / 82)), 280, (r.getWidth() / 4.8), 50);
+		paramLabels[19]->setBounds((240 + (r.getWidth() / 82)), 270, (r.getWidth() / 4.8), 25);
+		paramSliders[19]->setBounds((240 + (r.getWidth() / 82)), 270, (r.getWidth() / 4.8), 50);
 
 		// Mid EQ Freq
-		paramLabels[20]->setBounds((480 + (r.getWidth() / 82)), 200, (r.getWidth() / 4.8), 25);
-		paramSliders[20]->setBounds((480 + (r.getWidth() / 82)), 200, (r.getWidth() / 4.8), 50);
+		paramLabels[20]->setBounds((480 + (r.getWidth() / 82)), 190, (r.getWidth() / 4.8), 25);
+		paramSliders[20]->setBounds((480 + (r.getWidth() / 82)), 190, (r.getWidth() / 4.8), 50);
 		// Mid EQ Q
-		paramLabels[21]->setBounds((480 + (r.getWidth() / 82)), 240, (r.getWidth() / 4.8), 25);
-		paramSliders[21]->setBounds((480 + (r.getWidth() / 82)), 240, (r.getWidth() / 4.8), 50);
+		paramLabels[21]->setBounds((480 + (r.getWidth() / 82)), 230, (r.getWidth() / 4.8), 25);
+		paramSliders[21]->setBounds((480 + (r.getWidth() / 82)), 230, (r.getWidth() / 4.8), 50);
 		// Mid EQ Level
-		paramLabels[22]->setBounds((480 + (r.getWidth() / 82)), 280, (r.getWidth() / 4.8), 25);
-		paramSliders[22]->setBounds((480 + (r.getWidth() / 82)), 280, (r.getWidth() / 4.8), 50);
+		paramLabels[22]->setBounds((480 + (r.getWidth() / 82)), 270, (r.getWidth() / 4.8), 25);
+		paramSliders[22]->setBounds((480 + (r.getWidth() / 82)), 270, (r.getWidth() / 4.8), 50);
 
 		// Hi EQ Freq
-		paramLabels[23]->setBounds((720 + (r.getWidth() / 82)), 200, (r.getWidth() / 4.8), 25);
-		paramSliders[23]->setBounds((720 + (r.getWidth() / 82)), 200, (r.getWidth() / 4.8), 50);
+		paramLabels[23]->setBounds((720 + (r.getWidth() / 82)), 190, (r.getWidth() / 4.8), 25);
+		paramSliders[23]->setBounds((720 + (r.getWidth() / 82)), 190, (r.getWidth() / 4.8), 50);
 		// Hi EQ Q
-		paramLabels[24]->setBounds((720 + (r.getWidth() / 82)), 240, (r.getWidth() / 4.8), 25);
-		paramSliders[24]->setBounds((720 + (r.getWidth() / 82)), 240, (r.getWidth() / 4.8), 50);
+		paramLabels[24]->setBounds((720 + (r.getWidth() / 82)), 230, (r.getWidth() / 4.8), 25);
+		paramSliders[24]->setBounds((720 + (r.getWidth() / 82)), 230, (r.getWidth() / 4.8), 50);
 		// Hi EQ Level
-		paramLabels[25]->setBounds((720 + (r.getWidth() / 82)), 280, (r.getWidth() / 4.8), 25);
-		paramSliders[25]->setBounds((720 + (r.getWidth() / 82)), 280, (r.getWidth() / 4.8), 50);
+		paramLabels[25]->setBounds((720 + (r.getWidth() / 82)), 270, (r.getWidth() / 4.8), 25);
+		paramSliders[25]->setBounds((720 + (r.getWidth() / 82)), 270, (r.getWidth() / 4.8), 50);
 
 		// MASTER OF THE PRECIOUS
 		paramLabels[26]->setBounds((645 + (r.getWidth() / 6)), 360, (r.getWidth() / 6), 25);
@@ -281,14 +281,18 @@ public:
 		g.drawImageAt(filters, 0, 182);
 		Image distortion = ImageCache::getFromMemory(BinaryData::distortion_final_png, BinaryData::distortion_final_pngSize);
 		g.drawImageAt(distortion, 524, 364);
-		Image eq3 = ImageCache::getFromMemory(BinaryData::eq3_final_v_png, BinaryData::eq3_final_v_pngSize);
-		g.drawImageAt(eq3, 242, 182); 
+		Image eqLow = ImageCache::getFromMemory(BinaryData::eq_low_final_png, BinaryData::eq_low_final_pngSize);
+		g.drawImageAt(eqLow, 242, 182);
+		Image eqMid = ImageCache::getFromMemory(BinaryData::eq_mid_final_png, BinaryData::eq_mid_final_pngSize);
+		g.drawImageAt(eqMid, 484, 182);
+		Image eqHi = ImageCache::getFromMemory(BinaryData::eq_high_final_png, BinaryData::eq_high_final_pngSize);
+		g.drawImageAt(eqHi, 726, 182);
 		Image lfo = ImageCache::getFromMemory(BinaryData::lfo_final_png, BinaryData::lfo_final_pngSize);
 		g.drawImageAt(lfo, 0, 364);
 
 		g.setColour(Colour(255, 0, 255));
-		g.drawVerticalLine(482, 190, 355);
-		g.drawVerticalLine(725, 190, 355);
+		//g.drawVerticalLine(482, 190, 355);
+		//g.drawVerticalLine(725, 190, 355);
 	}
 
 	//==============================================================================
