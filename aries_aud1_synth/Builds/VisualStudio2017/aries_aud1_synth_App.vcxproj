@@ -2525,11 +2525,13 @@
     <None Include="..\..\Source\save_s.png"/>
     <None Include="..\..\Source\distortion_final.png"/>
     <None Include="..\..\Source\stop_s.png"/>
+    <None Include="..\..\Source\credits.png"/>
     <None Include="..\..\Source\stop.png"/>
     <None Include="..\..\Source\load_s.png"/>
     <None Include="..\..\Source\lfo_final.png"/>
     <None Include="..\..\Source\filters.png"/>
     <None Include="..\..\Source\osc_3_final.png"/>
+    <None Include="..\..\Source\eq3_final_v.png"/>
     <None Include="..\..\Source\osc_4_final.png"/>
     <None Include="..\..\Source\osc_1_final.png"/>
     <None Include="..\..\Source\osc_2_final.png"/>

@@ -42,10 +42,13 @@ namespace BinaryData
     const int            save_s_pngSize = 1724;
 
     extern const char*   distortion_final_png;
-    const int            distortion_final_pngSize = 2514;
+    const int            distortion_final_pngSize = 2038;
 
     extern const char*   stop_s_png;
     const int            stop_s_pngSize = 4719;
+
+    extern const char*   credits_png;
+    const int            credits_pngSize = 4077;
 
     extern const char*   stop_png;
     const int            stop_pngSize = 8714;
@@ -61,6 +64,9 @@ namespace BinaryData
 
     extern const char*   osc_3_final_png;
     const int            osc_3_final_pngSize = 3070;
+
+    extern const char*   eq3_final_v_png;
+    const int            eq3_final_v_pngSize = 3200;
 
     extern const char*   osc_4_final_png;
     const int            osc_4_final_pngSize = 3079;
@@ -111,7 +117,7 @@ namespace BinaryData
     extern const char* namedResourceList[];
 
     // Number of elements in the namedResourceList array.
-    const int namedResourceListSize = 33;
+    const int namedResourceListSize = 35;
 
     // If you provide the name of one of the binary resource variables above, this function will
     // return the corresponding data and its size (or a null pointer if the name isn't found).

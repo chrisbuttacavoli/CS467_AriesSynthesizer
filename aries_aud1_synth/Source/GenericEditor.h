@@ -220,8 +220,8 @@ public:
 		paramSliders[14]->setBounds(( (r.getWidth() / 82)), 390, (r.getWidth() / 4.8), 50);
 
 		// LFO Frequency 
-		paramLabels[15]->setBounds(( (r.getWidth() / 82)), 440, (r.getWidth() / 4.8), 25);
-		paramSliders[15]->setBounds(( (r.getWidth() / 82)), 440, (r.getWidth() / 4.8), 50);
+		paramLabels[15]->setBounds(( (r.getWidth() / 82)), 430, (r.getWidth() / 4.8), 25);
+		paramSliders[15]->setBounds(( (r.getWidth() / 82)), 430, (r.getWidth() / 4.8), 50);
 
 		/*
 			EQ stuff
@@ -257,8 +257,8 @@ public:
 		paramSliders[25]->setBounds((515 + (r.getWidth() / 6)), 280, (r.getWidth() / 6), 50);
 
 		// MASTER OF THE PRECIOUS
-		paramLabels[26]->setBounds((615 + (r.getWidth() / 6)), 360, (r.getWidth() / 6), 25);
-		paramSliders[26]->setBounds((615 + (r.getWidth() / 6)), 360, (r.getWidth() / 6), 50);
+		paramLabels[26]->setBounds((645 + (r.getWidth() / 6)), 360, (r.getWidth() / 6), 25);
+		paramSliders[26]->setBounds((645 + (r.getWidth() / 6)), 360, (r.getWidth() / 6), 50);
 	}
 
 	void paint(Graphics& g) override
@@ -281,7 +281,7 @@ public:
 		g.drawImageAt(filters, 0, 182);
 		Image distortion = ImageCache::getFromMemory(BinaryData::distortion_final_png, BinaryData::distortion_final_pngSize);
 		g.drawImageAt(distortion, 524, 364);
-		Image eq3 = ImageCache::getFromMemory(BinaryData::eq3Box_png, BinaryData::eq3Box_pngSize);
+		Image eq3 = ImageCache::getFromMemory(BinaryData::eq3_final_v_png, BinaryData::eq3_final_v_pngSize);
 		g.drawImageAt(eq3, 242, 182); 
 		Image lfo = ImageCache::getFromMemory(BinaryData::lfo_final_png, BinaryData::lfo_final_pngSize);
 		g.drawImageAt(lfo, 0, 364);

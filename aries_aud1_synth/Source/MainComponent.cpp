@@ -96,7 +96,7 @@ public:
 			juceImage, 1.0f, Colours::transparentBlack,
 			juceImage, 1.0f, Colours::pink.withAlpha(0.8f),
 			0.5f);
-		recordButton->setTopLeftPosition(666, 400);
+		recordButton->setTopLeftPosition(800, 445);
 		recordButton->setTooltip("image button - showing alpha-channel hit-testing and colour overlay when clicked");
 		// END IMAGE BUTTON CODE
 
@@ -109,7 +109,7 @@ public:
 			juceImage2, 1.0f, Colours::transparentBlack,
 			juceImage2, 1.0f, Colours::pink.withAlpha(0.8f),
 			0.5f);
-		saveButton->setTopLeftPosition(670, 490);
+		saveButton->setTopLeftPosition(525, 505);
 		saveButton->setTooltip("image button - showing alpha-channel hit-testing and colour overlay when clicked");
 		// END IMAGE BUTTON CODE
 		// IMAGE BUTTON CODE FOR SAVE BUTTON
@@ -121,15 +121,25 @@ public:
 			juceImage3, 1.0f, Colours::transparentBlack,
 			juceImage3, 1.0f, Colours::pink.withAlpha(0.8f),
 			0.5f);
-		loadButton->setTopLeftPosition(670, 450);
+		loadButton->setTopLeftPosition(650, 505);
 		loadButton->setTooltip("image button - showing alpha-channel hit-testing and colour overlay when clicked");
 		// END IMAGE BUTTON CODE
-
+		addAndMakeVisible(creditsButton);
+		Image creditImage = ImageCache::getFromMemory(BinaryData::credits_png, BinaryData::credits_pngSize);
+		creditsButton->setImages(true, true, true,
+			creditImage, 0.7f, Colours::transparentBlack,
+			creditImage, 1.0f, Colours::transparentBlack,
+			creditImage, 1.0f, Colours::pink.withAlpha(0.8f),
+			0.5f);
+		creditsButton->setTopLeftPosition(800, 495);
+		creditsButton->setTooltip("image button - showing alpha-channel hit-testing and colour overlay when clicked");
+		// END IMAGE BUTTON CODE
 		//addAndMakeVisible(recordButton);
 		//imageButton.setButtonText("Record");
 		recordButton->addListener(this);
 		loadButton->addListener(this);
 		saveButton->addListener(this);
+		creditsButton->addListener(this);
 		//imageButton.addListener(this);
 		//addAndMakeVisible(recordingThumbnail);	//displays what is being recorded. Maybe not necessary?
 		deviceManager.addAudioCallback(&recorder);
@@ -183,6 +193,7 @@ public:
         //releasing resources in SynthProcessor.h
     }
 
+
     //==============================================================================
     void paint (Graphics& g) override
     {
@@ -194,10 +205,10 @@ public:
 		g.setFont(theFont);
 		//g.drawText("Aries Synthesizer", -10, 400, getWidth(), 50, Justification::right);
 		Image logo = ImageCache::getFromMemory(BinaryData::aries_logo_cropped_s_png, BinaryData::aries_logo_cropped_s_pngSize);
-		g.drawImageAt(logo, 500, 500);
+		g.drawImageAt(logo, 780, 445);
 		Font theFont2("Helvetica", "Bold", 10.0f);
 		g.setFont(theFont2);
-		g.drawText("Chris B, Victoria D, Alex C", 10, 600, getWidth(), 25, Justification::bottomLeft);
+		g.drawText("Chris B, Victoria D, Alex C", 780, 445, getWidth(), 25, Justification::bottomLeft);
     }
 
 	//placing objects inside the main window
@@ -232,7 +243,8 @@ private:
 	AudioProcessorPlayer audioSourcePlayer;	//need to play audio through a processor player now
 	SynthProcessor synthProcessor;		//new synth processor to replay synthAudioSource
 	GenericEditor *theEditor;
-
+	ImageButton* creditsButton = new ImageButton("creditsbutton");
+	PopupMenu w;
 	Synthesiser mySynth;
 	double lastSampleRate;
 
@@ -308,14 +320,14 @@ private:
 		/*const File file(File::getSpecialLocation(File::userDocumentsDirectory)
 			.getNonexistentChildFile(inputText.getText(), ".wav"));*/
 		recorder.startRecording(file);
-		//Image juceImage4 = ImageCache::getFromMemory(BinaryData::stop_s_png, BinaryData::stop_s_pngSize);
-		Image juceImage4 = ImageCache::getFromMemory(BinaryData::save_s_png, BinaryData::save_s_pngSize);
+		Image juceImage4 = ImageCache::getFromMemory(BinaryData::stop_s_png, BinaryData::stop_s_pngSize);
+		//Image juceImage4 = ImageCache::getFromMemory(BinaryData::save_s_png, BinaryData::save_s_pngSize);
 		recordButton->setImages(true, true, true,
 			juceImage4, 0.7f, Colours::transparentBlack,
 			juceImage4, 1.0f, Colours::transparentBlack,
 			juceImage4, 1.0f, Colours::pink.withAlpha(0.8f),
 			0.5f);
-		recordButton->setTopLeftPosition(666, 400);
+		recordButton->setTopLeftPosition(800, 445);
 	}
 
 	void stopRecording()
@@ -327,10 +339,17 @@ private:
 			juceImage, 1.0f, Colours::transparentBlack,
 			juceImage, 1.0f, Colours::pink.withAlpha(0.8f),
 			0.5f);
-		recordButton->setTopLeftPosition(666, 400);
+		recordButton->setTopLeftPosition(800, 445);
 		recordButton->setTooltip("image button - showing alpha-channel hit-testing and colour overlay when clicked");
 	}
+	void credits()
+	{
+		AlertWindow::showMessageBoxAsync(AlertWindow::InfoIcon,
+			"Oregon State University CS467 Capstone Project - Team Aries Software Synthesizer | March 2018 ",
+			"Team Members: \nVictoria Dorn\nChristopher Buttacavoli\nAlexander Clairmont\n \n Synthesizer constructed with the Maximilian Library, the JUCE Framework and the Biquad Library.\n Thank you for checking out our project!.",
+			"Have a Nice Day :)");
 
+	}
 	void buttonClicked(Button* button) override
 	{
 		if (button == recordButton)
@@ -345,6 +364,9 @@ private:
 		}
 		else if (button == saveButton) {
 			synthProcessor.savePatch();
+		}
+		else if (button == creditsButton) {
+			credits();
 		}
 	}
 

@@ -4328,6 +4328,9 @@
     <None Include="..\..\Source\stop_s.png">
       <Filter>aries_aud1_synth\Source</Filter>
     </None>
+    <None Include="..\..\Source\credits.png">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </None>
     <None Include="..\..\Source\stop.png">
       <Filter>aries_aud1_synth\Source</Filter>
     </None>
@@ -4341,6 +4344,9 @@
       <Filter>aries_aud1_synth\Source</Filter>
     </None>
     <None Include="..\..\Source\osc_3_final.png">
+      <Filter>aries_aud1_synth\Source</Filter>
+    </None>
+    <None Include="..\..\Source\eq3_final_v.png">
       <Filter>aries_aud1_synth\Source</Filter>
     </None>
     <None Include="..\..\Source\osc_4_final.png">

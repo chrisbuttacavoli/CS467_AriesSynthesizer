@@ -52,11 +52,13 @@
       <FILE id="kq0bXq" name="distortion_final.png" compile="0" resource="1"
             file="Source/distortion_final.png"/>
       <FILE id="mvqP4R" name="stop_s.png" compile="0" resource="1" file="Source/stop_s.png"/>
+      <FILE id="y0OMqj" name="credits.png" compile="0" resource="1" file="Source/credits.png"/>
       <FILE id="Y1QF3I" name="stop.png" compile="0" resource="1" file="Source/stop.png"/>
       <FILE id="DoAwg7" name="load_s.png" compile="0" resource="1" file="Source/load_s.png"/>
       <FILE id="wZJ57O" name="lfo_final.png" compile="0" resource="1" file="Source/lfo_final.png"/>
       <FILE id="jPJG8N" name="filters.png" compile="0" resource="1" file="Source/filters.png"/>
       <FILE id="nUwHi4" name="osc_3_final.png" compile="0" resource="1" file="Source/osc_3_final.png"/>
+      <FILE id="nGR9XM" name="eq3_final_v.png" compile="0" resource="1" file="Source/eq3_final_v.png"/>
       <FILE id="ReAiGM" name="osc_4_final.png" compile="0" resource="1" file="Source/osc_4_final.png"/>
       <FILE id="jam5M4" name="osc_1_final.png" compile="0" resource="1" file="Source/osc_1_final.png"/>
       <FILE id="xgIg2s" name="osc_2_final.png" compile="0" resource="1" file="Source/osc_2_final.png"/>
