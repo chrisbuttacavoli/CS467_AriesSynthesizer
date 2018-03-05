@@ -58,10 +58,10 @@ public:
 		addScale("Attack", 10.0f);
 		addScale("Decay", 10.0f);
 		addScale("Release", 10.0f);
-		addParameter(new AudioParameterFloat("Attack", "Attack", 0.0f, getScale("Attack"), 3.0f));
+		addParameter(new AudioParameterFloat("Attack", "Attack", 0.0f, getScale("Attack"), 0.15f));
 		addParameter(new AudioParameterFloat("Decay", "Decay", 0.0f, getScale("Decay"), 0.5f));
 		addParameter(new AudioParameterFloat("Sustain", "Sustain", 0.0f, 1.0f, 1.0f));
-		addParameter(new AudioParameterFloat("Release", "Release", 0.0f, getScale("Release"), 1.0f));
+		addParameter(new AudioParameterFloat("Release", "Release", 0.0f, getScale("Release"), 0.15f));
 
 
 		/*
