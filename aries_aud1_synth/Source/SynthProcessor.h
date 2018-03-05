@@ -246,7 +246,7 @@ public:
 
 	// Here we need to set up logic to read from some file. I'm thinking just a CSV or something simple to implement
 	void loadPatch() {
-		FileChooser fileChooser("Select a patch to load", File::getSpecialLocation(File::userDocumentsDirectory), "*.txt");
+		FileChooser fileChooser("Select a patch to load", File::getSpecialLocation(File::userDocumentsDirectory), "*.pat");
 		if (!fileChooser.browseForFileToOpen())
 			return;
 
@@ -262,7 +262,7 @@ public:
 	}
 
 	void savePatch() {
-		FileChooser fileChooser("Save a patch", File::getSpecialLocation(File::userDocumentsDirectory), "*.txt");
+		FileChooser fileChooser("Save a patch", File::getSpecialLocation(File::userDocumentsDirectory), "*.pat");
 		if (!fileChooser.browseForFileToSave(true))
 			return;
 
