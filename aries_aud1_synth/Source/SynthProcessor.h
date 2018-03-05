@@ -244,7 +244,6 @@ public:
 		return "The Synth";
 	}
 
-	// Here we need to set up logic to read from some file. I'm thinking just a CSV or something simple to implement
 	void loadPatch() {
 		FileChooser fileChooser("Select a patch to load", File::getSpecialLocation(File::userDocumentsDirectory), "*.pat");
 		if (!fileChooser.browseForFileToOpen())
