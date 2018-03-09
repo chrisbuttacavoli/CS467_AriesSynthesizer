@@ -32,4 +32,7 @@ The class instructor, Benjamin Brewster, will be considered the client for this 
 
 ## Sources:
 We will be using the JUCE framework in addition to supplemental functions created by our team to create and power the synthesizer. As for the visual elements of our project, the JUCE framework contains a large amount of UI elements that we will be using for this project. Since this project is for educational purposes, we will be using the JUCE framework under their educational license.
-We will also be using the Maximilion library for some DSP effects as well. Digital signal processing is comprised of a lot of really complicated math problems. Since we would like to create a quality, usable synthesizer more than anything, we have decided to spend more time making it as usable as possible instead of custom writing all of our audio effects.
+We will also be using the Maximilion library for some DSP effects as well. Digital signal processing is comprised of a lot of really complicated math problems. Since we would like to create a quality, usable synthesizer more than anything, we have decided to spend more time making it as usable as possible instead of custom writing all of our audio effects. Finally, we are making use of the biquad filter source code found here: http://www.earlevel.com/main/2012/11/26/biquad-c-source-code/
+
+## Synth:
+The synthesizer can be used by opening the AriesSynth.exe file found in the main directory of the project.
